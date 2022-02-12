@@ -1514,6 +1514,7 @@ void ItemRndDur(Item &item)
 		item._iDurability = GenerateRnd(item._iMaxDur / 2) + (item._iMaxDur / 4) + 1;
 }
 
+/* Determines what type of item is created?? */
 void SetupAllItems(Item &item, int idx, int iseed, int lvl, int uper, bool onlygood, bool recreate, bool pregen)
 {
 	item._iSeed = iseed;
