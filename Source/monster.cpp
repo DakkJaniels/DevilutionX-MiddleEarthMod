@@ -3833,8 +3833,8 @@ void InitMonsters()
 		if (!gbIsSpawn)
 			PlaceUniqueMonsters();
 		int na = 0;
-		for (int s = 16; s < 96; s++) {
-			for (int t = 16; t < 96; t++) {
+		for (int s = 16; s < 127; s++) {
+			for (int t = 16; t < 127; t++) {
 				if (!IsTileSolid({ s, t }))
 					na++;
 			}
