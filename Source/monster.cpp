@@ -1469,7 +1469,7 @@ void MonsterAttackPlayer(int i, int pnum, int hit, int minDam, int maxDam)
 	hit += 2 * (monster.mLevel - player._pLevel)
 	    + 30
 	    - ac;
-	int minhit = 15;
+	int minhit = 10;
 	if (currlevel == 14)
 		minhit = 20;
 	if (currlevel == 15)
@@ -1482,7 +1482,7 @@ void MonsterAttackPlayer(int i, int pnum, int hit, int minDam, int maxDam)
 		blkper = GenerateRnd(100);
 	}
 	int blk = player.GetBlockChance() - (monster.mLevel * 2);
-	blk = clamp(blk, 0, 100);
+	blk = clamp(blk, 0, 90); /* max block reduced to 90% in ME Mod*/
 	if (hper >= hit)
 		return;
 	if (blkper < blk) {
@@ -1495,7 +1495,9 @@ void MonsterAttackPlayer(int i, int pnum, int hit, int minDam, int maxDam)
 		}
 		return;
 	}
-	if (monster.MType->mtype == MT_YZOMBIE && pnum == MyPlayerId) {
+
+	/* eliminate */
+	/*if (monster.MType->mtype == MT_INVALID && pnum == MyPlayerId) {
 		if (player._pMaxHP > 64) {
 			if (player._pMaxHPBase > 64) {
 				player._pMaxHP -= 64;
@@ -1508,7 +1510,7 @@ void MonsterAttackPlayer(int i, int pnum, int hit, int minDam, int maxDam)
 				}
 			}
 		}
-	}
+	}*/
 	int dam = (minDam << 6) + GenerateRnd(((maxDam - minDam) << 6) + 1);
 	dam = std::max(dam + (player._pIGetHit << 6), 64);
 	if (pnum == MyPlayerId) {
@@ -1524,7 +1526,8 @@ void MonsterAttackPlayer(int i, int pnum, int hit, int minDam, int maxDam)
 		else
 			M_StartHit(i, pnum, mdam);
 	}
-	if ((monster._mFlags & MFLAG_NOLIFESTEAL) == 0 && monster.MType->mtype == MT_SKING && gbIsMultiplayer)
+	/* life steal always on in ME Mod*/
+	if (monster._mFlags & MFLAG_LIFESTEAL)
 		monster._mhitpoints += dam;
 	if (player._pHitPoints >> 6 <= 0) {
 		if (gbIsHellfire)

@@ -350,7 +350,7 @@ bool ForceTownTrig()
 			if (tileId == -1)
 				break;
 			if (dPiece[cursPosition.x][cursPosition.y] == tileId) {
-				strcpy(infostr, _("Down to catacombs"));
+				strcpy(infostr, _("To the Paths of the Dead"));
 				cursPosition = { 49, 21 };
 				return true;
 			}
@@ -360,7 +360,7 @@ bool ForceTownTrig()
 	if (IsWarpOpen(DTYPE_CAVES)) {
 		for (int i = 1199; i <= 1220; i++) {
 			if (dPiece[cursPosition.x][cursPosition.y] == i) {
-				strcpy(infostr, _("Down to caves"));
+				strcpy(infostr, _("To the Bowels of the Earth"));
 				cursPosition = { 17, 69 };
 				return true;
 			}
@@ -370,7 +370,7 @@ bool ForceTownTrig()
 	if (IsWarpOpen(DTYPE_HELL)) {
 		for (int i = 1240; i <= 1255; i++) {
 			if (dPiece[cursPosition.x][cursPosition.y] == i) {
-				strcpy(infostr, _("Down to hell"));
+				strcpy(infostr, _("To the Pits of Angband"));
 				cursPosition = { 41, 80 };
 				return true;
 			}
@@ -675,7 +675,7 @@ bool ForceL4Trig()
 	if (currlevel == 15) {
 		for (int i = 0; L4PentaList[i] != -1; i++) {
 			if (dPiece[cursPosition.x][cursPosition.y] == L4PentaList[i]) {
-				strcpy(infostr, _("Down to Diablo"));
+				strcpy(infostr, _("Down to Morgoth"));
 				for (int j = 0; j < numtrigs; j++) {
 					if (trigs[j]._tmsg == WM_DIABNEXTLVL) {
 						cursPosition = trigs[j].position;

@@ -42,7 +42,7 @@ enum monster_flag : uint16_t {
 	MFLAG_CAN_OPEN_DOOR   = 1 << 9,
 	MFLAG_NO_ENEMY        = 1 << 10,
 	MFLAG_BERSERK         = 1 << 11,
-	MFLAG_NOLIFESTEAL     = 1 << 12,
+	MFLAG_LIFESTEAL     = 1 << 12,
 	// clang-format on
 };
 
