@@ -4143,16 +4143,17 @@ void PrepDoEnding()
 
 	myPlayer.pDiabloKillLevel = std::max(myPlayer.pDiabloKillLevel, static_cast<uint8_t>(sgGameInitInfo.nDifficulty + 1));
 
-	for (auto &player : Players) {
-		player._pmode = PM_QUIT;
-		player._pInvincible = true;
-		if (gbIsMultiplayer) {
-			if (player._pHitPoints >> 6 == 0)
-				player._pHitPoints = 64;
-			if (player._pMana >> 6 == 0)
-				player._pMana = 64;
-		}
-	}
+	/* Disable Diablo kill from ending game */
+	//for (auto &player : Players) {
+	//	player._pmode = PM_QUIT;
+	//	player._pInvincible = true;
+	//	if (gbIsMultiplayer) {
+	//		if (player._pHitPoints >> 6 == 0)
+	//			player._pHitPoints = 64;
+	//		if (player._pMana >> 6 == 0)
+	//			player._pMana = 64;
+	//	}
+	//}
 }
 
 void M_WalkDir(int i, Direction md)
