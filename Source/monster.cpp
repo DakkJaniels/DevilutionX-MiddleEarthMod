@@ -4285,12 +4285,8 @@ void ProcessMonsters()
 			SetRndSeed(monster._mAISeed);
 			monster._mAISeed = AdvanceRndSeed();
 		}
-		if ((monster._mFlags & MFLAG_NOHEAL) == 0 && monster._mhitpoints < monster._mmaxhp && monster._mhitpoints >> 6 > 0) {
-			if (monster.mLevel > 1) {
-				monster._mhitpoints += monster.mLevel / 2;
-			} else {
-				monster._mhitpoints += monster.mLevel;
-			}
+		if ((monster._mFlags & MFLAG_NOHEAL) == 0 && monster._mhitpoints < monster._mmaxhp && monster._mhitpoints >> 6 > 0 && mi > 3) {
+			monster._mhitpoints += monster.mLevel << sgGameInitInfo.nDifficulty;
 		}
 
 		if (IsTileVisible(monster.position.tile) && monster._msquelch == 0) {
