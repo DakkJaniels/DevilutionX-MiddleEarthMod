@@ -1,3 +1,8 @@
+Middle Earth Mod created by Diablo 1.07, now ported to Devilution X.
+
+Based on data files I had for the Mod, and a copy of the modified binary I compared to Diablo 1.07, I think I've determined most, if not all of the changes that V&K implemented in Diablo. To play the mod, compile the source as described in the readme, then copy the folders in the `ME Mod assets.zip` file to the assets folder in your build folder (or to the assets folder wherever the executable file is located).
+
+
 <p align="center">
 <img width="554" src="https://user-images.githubusercontent.com/204594/113575181-c946a400-961d-11eb-8347-a8829fa3830c.png">
 </p>
