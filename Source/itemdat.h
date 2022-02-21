@@ -185,7 +185,7 @@ enum item_cursor_graphic : uint8_t {
 	ICURS_SMALL_AXE                   = 112,
 	ICURS_KITE_SHIELD                 = 113,
 	ICURS_SCALE_MAIL                  = 114,
-	ICURS_DWARVEN_SHIELD			  = 115, /*new item*/
+	ICURS_DWARVEN_SHIELD              = 115, /*new item*/
 	ICURS_SHORT_BOW                   = 118,
 	ICURS_LONG_BATTLE_BOW             = 119,
 	ICURS_LONG_WAR_BOW                = 120,

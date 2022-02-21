@@ -55,8 +55,8 @@ namespace {
 #define NIGHTMARE_TO_HIT_BONUS 85
 #define HELL_TO_HIT_BONUS 120
 
-#define NIGHTMARE_AC_BONUS 50
-#define HELL_AC_BONUS 80
+#define NIGHTMARE_AC_BONUS 60
+#define HELL_AC_BONUS 90
 
 /** Tracks which missile files are already loaded */
 int totalmonsters;
@@ -171,8 +171,7 @@ void InitMonster(Monster &monster, Direction rd, int mtype, Point position)
 	monster.mLevel = monster.MData->mLevel;
 	monster._mmaxhp = (monster.MType->mMinHP + GenerateRnd(monster.MType->mMaxHP - monster.MType->mMinHP + 1)) << 6;
 	if (monster.MType->mtype == MT_DIABLO && !gbIsHellfire) {
-		monster._mmaxhp /= 2;
-		monster.mLevel -= 15;
+		monster._mmaxhp = 2500;
 	}
 
 	if (!gbIsMultiplayer)
@@ -215,11 +214,11 @@ void InitMonster(Monster &monster, Direction rd, int mtype, Point position)
 	}
 
 	if (sgGameInitInfo.nDifficulty == DIFF_NIGHTMARE) {
-		monster._mmaxhp = 3 * monster._mmaxhp;
+		monster._mmaxhp = 4 * monster._mmaxhp;
 		if (gbIsHellfire)
 			monster._mmaxhp += (gbIsMultiplayer ? 100 : 50) << 6;
-		else
-			monster._mmaxhp += 64;
+	/*	else
+			monster._mmaxhp += 64;*/
 		monster._mhitpoints = monster._mmaxhp;
 		monster.mLevel += 15;
 		monster.mExp = 2 * (monster.mExp + 1000);
@@ -231,11 +230,11 @@ void InitMonster(Monster &monster, Direction rd, int mtype, Point position)
 		monster.mMaxDamage2 = 2 * (monster.mMaxDamage2 + 2);
 		monster.mArmorClass += NIGHTMARE_AC_BONUS;
 	} else if (sgGameInitInfo.nDifficulty == DIFF_HELL) {
-		monster._mmaxhp = 4 * monster._mmaxhp;
+		monster._mmaxhp = 5 * monster._mmaxhp;
 		if (gbIsHellfire)
 			monster._mmaxhp += (gbIsMultiplayer ? 200 : 100) << 6;
 		else
-			monster._mmaxhp += 192;
+			monster._mmaxhp += 0x4b00;
 		monster._mhitpoints = monster._mmaxhp;
 		monster.mLevel += 30;
 		monster.mExp = 4 * (monster.mExp + 1000);
@@ -477,11 +476,13 @@ void PlaceUniqueMonst(int uniqindex, int miniontype, int bosspacksize)
 	PlaceMonster(ActiveMonsterCount, uniqtype, xp, yp);
 	monster._uniqtype = uniqindex + 1;
 
-	if (uniqueMonsterData.mlevel != 0) {
+	/*if (uniqueMonsterData.mlevel != 0) {
 		monster.mLevel = 2 * uniqueMonsterData.mlevel;
 	} else {
 		monster.mLevel = monster.MData->mLevel + 5;
-	}
+	}*/
+
+	monster.mLevel = uniqueMonsterData.mlevelNorm;
 
 	monster.mExp *= 2;
 	monster.mName = pgettext("monster", uniqueMonsterData.mName);
@@ -517,25 +518,27 @@ void PlaceUniqueMonst(int uniqindex, int miniontype, int bosspacksize)
 	}
 
 	if (sgGameInitInfo.nDifficulty == DIFF_NIGHTMARE) {
-		monster._mmaxhp = 3 * monster._mmaxhp;
+		monster._mmaxhp = 4 * monster._mmaxhp;
 		if (gbIsHellfire)
 			monster._mmaxhp += (gbIsMultiplayer ? 100 : 50) << 6;
-		else
-			monster._mmaxhp += 64;
-		monster.mLevel += 15;
+		/*else
+			monster._mmaxhp += 64;*/
+		monster.mLevel = uniqueMonsterData.mlevelNM;
 		monster._mhitpoints = monster._mmaxhp;
 		monster.mExp = 2 * (monster.mExp + 1000);
 		monster.mMinDamage = 2 * (monster.mMinDamage + 2);
 		monster.mMaxDamage = 2 * (monster.mMaxDamage + 2);
 		monster.mMinDamage2 = 2 * (monster.mMinDamage2 + 2);
 		monster.mMaxDamage2 = 2 * (monster.mMaxDamage2 + 2);
-	} else if (sgGameInitInfo.nDifficulty == DIFF_HELL) {
-		monster._mmaxhp = 4 * monster._mmaxhp;
+	}
+
+	else if (sgGameInitInfo.nDifficulty == DIFF_HELL) {
+		monster._mmaxhp = 5 * monster._mmaxhp;
 		if (gbIsHellfire)
 			monster._mmaxhp += (gbIsMultiplayer ? 200 : 100) << 6;
 		else
-			monster._mmaxhp += 192;
-		monster.mLevel += 30;
+			monster._mmaxhp += 0x9600;
+		monster.mLevel = uniqueMonsterData.mlevelHell;
 		monster._mhitpoints = monster._mmaxhp;
 		monster.mExp = 4 * (monster.mExp + 1000);
 		monster.mMinDamage = 4 * monster.mMinDamage + 6;
@@ -550,26 +553,28 @@ void PlaceUniqueMonst(int uniqindex, int miniontype, int bosspacksize)
 
 	monster._uniqtrans = uniquetrans++;
 
-	if (uniqueMonsterData.customHitpoints != 0) {
-		monster.mHit = uniqueMonsterData.customHitpoints;
-		monster.mHit2 = uniqueMonsterData.customHitpoints;
-
-		if (sgGameInitInfo.nDifficulty == DIFF_NIGHTMARE) {
-			monster.mHit += NIGHTMARE_TO_HIT_BONUS;
-			monster.mHit2 += NIGHTMARE_TO_HIT_BONUS;
-		} else if (sgGameInitInfo.nDifficulty == DIFF_HELL) {
-			monster.mHit += HELL_TO_HIT_BONUS;
-			monster.mHit2 += HELL_TO_HIT_BONUS;
-		}
+	/* Not used, but put here in case of future changes */
+	if (uniqueMonsterData.customToHit != 0) {
+		monster.mHit = uniqueMonsterData.customToHit;
+		monster.mHit2 = uniqueMonsterData.customToHit;
 	}
-	if (uniqueMonsterData.customArmorClass != 0) {
-		monster.mArmorClass = uniqueMonsterData.customArmorClass;
 
-		if (sgGameInitInfo.nDifficulty == DIFF_NIGHTMARE) {
-			monster.mArmorClass += NIGHTMARE_AC_BONUS;
-		} else if (sgGameInitInfo.nDifficulty == DIFF_HELL) {
-			monster.mArmorClass += HELL_AC_BONUS;
-		}
+	if (sgGameInitInfo.nDifficulty == DIFF_NIGHTMARE) {
+		monster.mHit += NIGHTMARE_TO_HIT_BONUS;
+		monster.mHit2 += NIGHTMARE_TO_HIT_BONUS;
+	} else if (sgGameInitInfo.nDifficulty == DIFF_HELL) {
+		monster.mHit += HELL_TO_HIT_BONUS;
+		monster.mHit2 += HELL_TO_HIT_BONUS;
+	}
+	
+	/* Not used, but put here in case of future changes */
+	if (uniqueMonsterData.customAC != 0) {
+		monster.mArmorClass = uniqueMonsterData.customAC;
+	}
+	if (sgGameInitInfo.nDifficulty == DIFF_NIGHTMARE) {
+		monster.mArmorClass += NIGHTMARE_AC_BONUS;
+	} else if (sgGameInitInfo.nDifficulty == DIFF_HELL) {
+		monster.mArmorClass += HELL_AC_BONUS;
 	}
 
 	ActiveMonsterCount++;

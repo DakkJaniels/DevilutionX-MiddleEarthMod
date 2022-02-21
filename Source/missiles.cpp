@@ -2268,6 +2268,14 @@ void AddStone(Missile &missile, const AddMissileParameter &parameter)
 		    if (IsAnyOf(monster.MType->mtype, MT_GOLEM, MT_DIABLO, MT_NAKRUL)) {
 			    return false;
 		    }
+		    /* Putting in ME Mod logic, because for stone curse exclusions */
+		    if (monster.MType->mtype > MT_DIABLO)
+			    return false;
+
+			/* set up stone curse immunity for specific monsters */
+			if ((monster.mMagicRes & IMMUNE_SC) != 0) {
+			    return false;
+			}
 		    if (IsAnyOf(monster._mmode, MonsterMode::FadeIn, MonsterMode::FadeOut, MonsterMode::Charge)) {
 			    return false;
 		    }

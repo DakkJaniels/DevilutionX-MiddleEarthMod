@@ -52,8 +52,8 @@ int plryoff2[9] = { 0, 0, 1, 1, 0, 2, 2, 1, 2 };
 /** Maps from player_class to starting stat in strength. */
 int StrengthTbl[enum_size<HeroClass>::value] = {
 	30,
-	20,
 	15,
+	0,
 	25,
 	20,
 	40,
@@ -61,9 +61,9 @@ int StrengthTbl[enum_size<HeroClass>::value] = {
 /** Maps from player_class to starting stat in magic. */
 int MagicTbl[enum_size<HeroClass>::value] = {
 	// clang-format off
-	10,
+	0,
 	15,
-	35,
+	40,
 	15,
 	20,
 	 0,
@@ -72,15 +72,15 @@ int MagicTbl[enum_size<HeroClass>::value] = {
 /** Maps from player_class to starting stat in dexterity. */
 int DexterityTbl[enum_size<HeroClass>::value] = {
 	20,
-	30,
-	15,
+	35,
+	10,
 	25,
 	25,
 	20,
 };
 /** Maps from player_class to starting stat in vitality. */
 int VitalityTbl[enum_size<HeroClass>::value] = {
-	25,
+	30,
 	20,
 	20,
 	20,
@@ -449,7 +449,7 @@ void StartAttack(int pnum, Direction d)
 		skippedAnimationFrames = 1;
 	} else if ((player._pIFlags & ISPL_FASTESTATTACK) != 0) {
 		// Fastest Attack is skipped if Fast or Faster Attack is also specified, cause both skip the frame that triggers fastest attack skipping
-		skippedAnimationFrames = 2;
+		skippedAnimationFrames = 3;
 	}
 
 	auto animationFlags = AnimationDistributionFlags::ProcessAnimationPending;
@@ -473,10 +473,17 @@ void StartRangeAttack(int pnum, Direction d, int cx, int cy)
 		return;
 	}
 
+	// ME mod gives xbow and heavy xbow faster and fastest attack speed
 	int skippedAnimationFrames = 0;
 	if (!gbIsHellfire) {
-		if ((player._pIFlags & ISPL_FASTATTACK) != 0) {
-			skippedAnimationFrames += 1;
+		if ((player._pIFlags & ISPL_FASTERATTACK) != 0) {
+			// The combination of Faster and Fast Attack doesn't result in more skipped skipped frames, cause the secound frame skip of Faster Attack is not triggered.
+			skippedAnimationFrames = 2;
+		} else if ((player._pIFlags & ISPL_FASTATTACK) != 0) {
+			skippedAnimationFrames = 1;
+		} else if ((player._pIFlags & ISPL_FASTESTATTACK) != 0) {
+			// Fastest Attack is skipped if Fast or Faster Attack is also specified, cause both skip the frame that triggers fastest attack skipping
+			skippedAnimationFrames = 3;
 		}
 	}
 
@@ -2031,9 +2038,9 @@ int Player::GetMaximumAttributeValue(CharacterAttribute attribute) const
 {
 	static const int MaxStats[enum_size<HeroClass>::value][enum_size<CharacterAttribute>::value] = {
 		// clang-format off
-		{ 250,  50,  60, 100 },
-		{  55,  70, 250,  80 },
-		{  45, 250,  85,  80 },
+		{ 255,  30,  60, 120 },
+		{  50,  75, 255,  85 },
+		{   5, 255,  30,  80 },
 		{ 150,  80, 150,  80 },
 		{ 120, 120, 120, 100 },
 		{ 255,   0,  55, 150 },

@@ -207,7 +207,7 @@ ItemData AllItemsList[] = {
 	{IDROP_REGULAR,      ICLASS_MISC,        ILOC_RING,               ICURS_NORM_RING,                        ItemType::Ring,        UITYPE_NORMRING,      N_("Ring"),                        N_("Ring"),           20,   0,  0,   0,  0,  0,   0,   0,   0,                                         0, IMISC_RING,      SPL_NULL,        false,  2000},
 	{IDROP_REGULAR,      ICLASS_MISC,        ILOC_AMULET,             ICURS_AMULET,                           ItemType::Amulet,      UITYPE_NONE,          N_("Lesser Amulet"),               N_("Amulet"),         10,   0,  0,   0,  0,  0,   0,   0,   0,                                         0, IMISC_AMULET,    SPL_NULL,        false,  1500},
 	{IDROP_REGULAR,      ICLASS_MISC,        ILOC_AMULET,             ICURS_OPTIC_AMULET,                     ItemType::Amulet,      UITYPE_AMULET,        N_("Amulet"),                      N_("Amulet"),         20,   0,  0,   0,  0,  0,   0,   0,   0,                                         0, IMISC_AMULET,    SPL_NULL,        false,  2000},
- /**/ {IDROP_NEVER, ICLASS_NONE,  ILOC_INVALID,			ICURS_POTION_OF_FULL_MANA,			ItemType::Misc,			UITYPE_NONE, 			nullptr,                           nullptr,           0,           0,       0,       0,      0,      0,       0,       0,       0, ISPL_NONE,         IMISC_NONE,      SPL_NULL,        false,        0 },
+ /**/ {IDROP_NEVER,		 ICLASS_NONE,	     ILOC_INVALID,			  ICURS_POTION_OF_FULL_MANA,			  ItemType::Misc,		 UITYPE_NONE, 		   nullptr,                           nullptr,               0,   0,  0,   0,  0,  0,   0,   0,   0,                                 ISPL_NONE,   IMISC_NONE,    SPL_NULL,        false,    0 },
 	// clang-format on
 };
 

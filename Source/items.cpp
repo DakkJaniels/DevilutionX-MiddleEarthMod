@@ -691,20 +691,20 @@ int CalculateToHitBonus(int level)
 		return RndPL(1, 5);
 	case 36:
 		return RndPL(6, 10);
-	case 51:
-		return RndPL(11, 15);
-	case 66:
-		return RndPL(16, 20);
-	case 81:
-		return RndPL(21, 30);
-	case 96:
-		return RndPL(31, 40);
-	case 111:
-		return RndPL(41, 50);
-	case 126:
-		return RndPL(51, 75);
-	case 151:
-		return RndPL(76, 100);
+	case 50:
+		return RndPL(10, 19);
+	case 65:
+		return RndPL(20, 29);
+	case 80:
+		return RndPL(30, 39);
+	case 95:
+		return RndPL(40, 59);
+	case 110:
+		return RndPL(60, 79);
+	case 125:
+		return RndPL(80, 99);
+	case 171:
+		return RndPL(100, 110);
 	default:
 		app_fatal("Unknown to hit bonus");
 	}

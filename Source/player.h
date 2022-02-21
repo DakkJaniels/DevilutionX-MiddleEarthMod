@@ -28,7 +28,7 @@ namespace devilution {
 // number of inventory grid cells
 #define NUM_INV_GRID_ELEM 40
 #define MAXBELTITEMS 8
-#define MAXRESIST 75
+#define MAXRESIST 85
 #define MAXCHARLEVEL 51
 #define MAX_SPELL_LEVEL 15
 #define PLR_NAME_LEN 32
@@ -450,11 +450,11 @@ struct Player {
 	void Reset();
 
 	/**
-	 * @brief Return player's armor value
+	 * @brief Return player's armor value, modified to Dex/4 in ME mod
 	 */
 	int GetArmor() const
 	{
-		return _pIBonusAC + _pIAC + _pDexterity / 5;
+		return _pIBonusAC + _pIAC + _pDexterity / 4;
 	}
 
 	/**
