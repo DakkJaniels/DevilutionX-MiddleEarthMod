@@ -1,6 +1,6 @@
 Middle Earth Mod created by Varaya and Khan for Diablo 1.07, now ported to Devilution X.
 
-Based on data files I had for the Mod, and a copy of the modified binary I compared to Diablo 1.07, I think I've determined most, if not all of the changes that V&K implemented in Diablo. To play the mod, compile the source as described in the readme, then copy the folders in the `ME Mod assets.zip` file to the assets folder in your build folder (or to the assets folder wherever the executable file is located). In addition, you have to copy your Diablo.MPQ file to the location of the executable or have your Diablo CD in your disc drive.
+Based on data files I had for the Mod, and a copy of the modified binary I compared to Diablo 1.07, I think I've determined most, if not all of the changes that V&K implemented in Diablo. To play the mod, compile the source as described in the readme, then copy the folders in the `ME Mod assets.zip` file to the assets folder in your build folder (or to the assets folder wherever the executable file is located). In addition, you have to copy your `DIABDAT.MPQ` file to the location of the executable or have your Diablo CD in your disc drive.
 
 
 <p align="center">
