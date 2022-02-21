@@ -664,6 +664,13 @@ struct UniqueItem {
 	ItemPower powers[6];
 };
 
+struct ItemPanelData {
+	uint8_t ItemIdx;
+	const char *PanelText;
+};
+
+
+extern ItemPanelData ItemPanelList[];
 extern ItemData AllItemsList[];
 extern const PLStruct ItemPrefixes[];
 extern const PLStruct ItemSuffixes[];

@@ -4659,7 +4659,7 @@ void PrintMonstHistory(int mt)
 	}
 	if (MonsterKillCounts[mt] >= 15) {
 		int res = (sgGameInitInfo.nDifficulty != DIFF_HELL) ? MonstersData[mt].mMagicRes : MonstersData[mt].mMagicRes2;
-		if ((res & (RESIST_MAGIC | RESIST_FIRE | RESIST_LIGHTNING | IMMUNE_MAGIC | IMMUNE_FIRE | IMMUNE_LIGHTNING)) == 0) {
+		if ((res & (RESIST_MAGIC | RESIST_FIRE | RESIST_LIGHTNING | IMMUNE_MAGIC | IMMUNE_FIRE | IMMUNE_LIGHTNING | IMMUNE_SC)) == 0) {
 			strcpy(tempstr, _("No magic resistance"));
 			AddPanelString(tempstr);
 		} else {
@@ -4675,7 +4675,7 @@ void PrintMonstHistory(int mt)
 				str.remove_suffix(str.size() - FindLastUtf8Symbols(str));
 				AddPanelString(str);
 			}
-			if ((res & (IMMUNE_MAGIC | IMMUNE_FIRE | IMMUNE_LIGHTNING)) != 0) {
+			if ((res & (IMMUNE_MAGIC | IMMUNE_FIRE | IMMUNE_LIGHTNING | IMMUNE_SC)) != 0) {
 				strcpy(tempstr, _("Immune: "));
 				if ((res & IMMUNE_MAGIC) != 0)
 					strcat(tempstr, _("Magic "));
@@ -4683,6 +4683,8 @@ void PrintMonstHistory(int mt)
 					strcat(tempstr, _("Fire "));
 				if ((res & IMMUNE_LIGHTNING) != 0)
 					strcat(tempstr, _("Lightning "));
+				if ((res & IMMUNE_SC) != 0)
+					strcat(tempstr, _("Stone Curse "));
 				string_view str { tempstr };
 				str.remove_suffix(str.size() - FindLastUtf8Symbols(str));
 				AddPanelString(str);
