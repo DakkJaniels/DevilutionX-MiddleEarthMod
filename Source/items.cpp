@@ -3316,8 +3316,8 @@ void SpawnItem(Monster &monster, Point position, bool sendmsg)
 	int uper = monster._uniqtype != 0 ? 15 : 1;
 
 	int8_t mLevel = monster.MData->mLevel;
-	if (!gbIsHellfire && monster.MType->mtype == MT_DIABLO)
-		mLevel -= 15;
+	/*if (!gbIsHellfire && monster.MType->mtype == MT_DIABLO)
+		mLevel -= 15;*/
 
 	SetupAllItems(item, idx, AdvanceRndSeed(), mLevel, uper, onlygood, false, false);
 
