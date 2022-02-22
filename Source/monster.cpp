@@ -3580,6 +3580,10 @@ void PlaceUniqueMonst(int uniqindex, int miniontype, int bosspacksize, int dx /*
 		monster._mFlags &= ~MFLAG_ALLOW_SPECIAL;
 		monster._mmode = MonsterMode::Stand;
 	}
+
+	if (dx != 0 && dy != 0) {
+		monster._udeadval = 1;
+	}
 }
 
 void InitLevelMonsters()
