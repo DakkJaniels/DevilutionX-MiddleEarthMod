@@ -356,12 +356,12 @@ const char MonstAvailTbl[] = {
 	MAT_ALWAYS, // Corpse Captain
 	MAT_ALWAYS, // Burning Dead Captain
 	MAT_ALWAYS, // Horror Captain
-	MAT_NEVER,  // Invisible Lord
+	MAT_ALWAYS, // Invisible Lord
 	MAT_RETAIL, // Hidden
 	MAT_RETAIL, // Stalker
 	MAT_RETAIL, // Unseen
 	MAT_RETAIL, // Illusion Weaver
-	MAT_RETAIL, // Satyr Lord
+	MAT_ALWAYS, // Satyr Lord
 	MAT_RETAIL, // Flesh Clan
 	MAT_RETAIL, // Stone Clan
 	MAT_RETAIL, // Fire Clan
@@ -374,72 +374,72 @@ const char MonstAvailTbl[] = {
 	MAT_RETAIL, // Stone Clan
 	MAT_RETAIL, // Fire Clan
 	MAT_RETAIL, // Night Clan
-	MAT_RETAIL, // Acid Beast
-	MAT_RETAIL, // Poison Spitter
+	MAT_ALWAYS, // Acid Beast
+	MAT_ALWAYS, // Poison Spitter
 	MAT_RETAIL, // Pit Beast
-	MAT_RETAIL, // Lava Maw
+	MAT_ALWAYS, // Lava Maw
 	MAT_NEVER,  // Skeleton King
 	MAT_NEVER,  // The Butcher
 	MAT_RETAIL, // Overlord
 	MAT_RETAIL, // Mud Man
 	MAT_RETAIL, // Toad Demon
 	MAT_RETAIL, // Flayed One
-	MAT_NEVER,  // Wyrm
-	MAT_NEVER,  // Cave Slug
-	MAT_NEVER,  // Devil Wyrm
-	MAT_NEVER,  // Devourer
+	MAT_ALWAYS, // Wyrm
+	MAT_ALWAYS, // Cave Slug
+	MAT_ALWAYS, // Devil Wyrm
+	MAT_RETAIL, // Devourer
 	MAT_RETAIL, // Magma Demon
 	MAT_RETAIL, // Blood Stone
 	MAT_RETAIL, // Hell Stone
 	MAT_RETAIL, // Lava Lord
 	MAT_RETAIL, // Horned Demon
-	MAT_RETAIL, // Mud Runner
+	MAT_ALWAYS, // Mud Runner
 	MAT_RETAIL, // Frost Charger
 	MAT_RETAIL, // Obsidian Lord
-	MAT_NEVER,  // Bone Demon (oldboned in Hellfire)
-	MAT_NEVER,  // Red Death
-	MAT_NEVER,  // Litch Demon
-	MAT_NEVER,  // Undead Balrog
-	MAT_NEVER,  // Incinerator
-	MAT_NEVER,  // Flame Lord
-	MAT_NEVER,  // Doom Fire
-	MAT_NEVER,  // Hell Burner
-	MAT_RETAIL, // Red Storm
-	MAT_RETAIL, // Storm Rider
-	MAT_RETAIL, // Storm Lord
-	MAT_RETAIL, // Maelstorm
-	MAT_RETAIL, // Devil Kin Brute
+	MAT_ALWAYS, // Bone Demon (oldboned in Hellfire)
+	MAT_ALWAYS, // Red Death
+	MAT_RETAIL, // Litch Demon
+	MAT_ALWAYS, // Undead Balrog
+	MAT_RETAIL, // Incinerator
+	MAT_RETAIL, // Flame Lord
+	MAT_ALWAYS, // Doom Fire
+	MAT_ALWAYS, // Hell Burner
+	MAT_ALWAYS, // Red Storm
+	MAT_ALWAYS, // Storm Rider
+	MAT_ALWAYS, // Storm Lord
+	MAT_ALWAYS, // Maelstorm
+	MAT_ALWAYS, // Devil Kin Brute
 	MAT_RETAIL, // Winged-Demon
 	MAT_RETAIL, // Gargoyle
 	MAT_RETAIL, // Blood Claw
 	MAT_RETAIL, // Death Wing
-	MAT_RETAIL, // Slayer
-	MAT_RETAIL, // Guardian
-	MAT_RETAIL, // Vortex Lord
+	MAT_ALWAYS, // Slayer
+	MAT_ALWAYS, // Guardian
+	MAT_ALWAYS, // Vortex Lord
 	MAT_RETAIL, // Balrog
-	MAT_RETAIL, // Cave Viper
-	MAT_RETAIL, // Fire Drake
-	MAT_RETAIL, // Gold Viper
-	MAT_RETAIL, // Azure Drake
-	MAT_RETAIL, // Black Knight
-	MAT_RETAIL, // Doom Guard
-	MAT_RETAIL, // Steel Lord
-	MAT_RETAIL, // Blood Knight
-	MAT_RETAIL, // The Shredded
-	MAT_NEVER,  // Hollow One
-	MAT_NEVER,  // Pain Master
-	MAT_NEVER,  // Reality Weaver
-	MAT_RETAIL, // Succubus
-	MAT_RETAIL, // Snow Witch
-	MAT_RETAIL, // Hell Spawn
-	MAT_RETAIL, // Soul Burner
-	MAT_RETAIL, // Counselor
-	MAT_RETAIL, // Magistrate
-	MAT_RETAIL, // Cabalist
-	MAT_RETAIL, // Advocate
+	MAT_ALWAYS, // Cave Viper
+	MAT_ALWAYS, // Fire Drake
+	MAT_ALWAYS, // Gold Viper
+	MAT_ALWAYS, // Azure Drake
+	MAT_ALWAYS, // Black Knight
+	MAT_ALWAYS, // Doom Guard
+	MAT_ALWAYS, // Steel Lord
+	MAT_ALWAYS, // Blood Knight
+	MAT_ALWAYS, // The Shredded
+	MAT_RETAIL, // Hollow One
+	MAT_ALWAYS, // Pain Master
+	MAT_ALWAYS, // Reality Weaver
+	MAT_ALWAYS, // Succubus
+	MAT_ALWAYS, // Snow Witch
+	MAT_ALWAYS, // Hell Spawn
+	MAT_ALWAYS, // Soul Burner
+	MAT_ALWAYS, // Counselor
+	MAT_ALWAYS, // Magistrate
+	MAT_ALWAYS, // Cabalist
+	MAT_ALWAYS, // Advocate
 	MAT_NEVER,  // Golem
 	MAT_NEVER,  // The Dark Lord
-	MAT_NEVER,  // The Arch-Litch Malignus
+	MAT_ALWAYS, // The Arch-Litch Malignus
 	MAT_RETAIL, // Hellboar
 	MAT_RETAIL, // Stinger
 	MAT_RETAIL, // Psychorb
