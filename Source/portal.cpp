@@ -23,10 +23,10 @@ int portalindex;
 
 /** Coordinate of each players portal in town. */
 Point WarpDrop[MAXPORTAL] = {
-	{ 57, 40 },
-	{ 59, 40 },
-	{ 61, 40 },
-	{ 63, 40 },
+	{ 57, 67 },
+	{ 57, 74 },
+	{ 64, 67 },
+	{ 64, 74 },
 };
 
 } // namespace
