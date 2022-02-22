@@ -348,13 +348,14 @@ bool IsPrefixValidForItemType(int i, int flgs)
 {
 	int itemTypes = ItemPrefixes[i].PLIType;
 
-	if (!gbIsHellfire) {
+	/* remove checks */
+	/*if (!gbIsHellfire) {
 		if (i > 82)
 			return false;
 
 		if (i >= 12 && i <= 20)
 			itemTypes &= ~PLT_STAFF;
-	}
+	}*/
 
 	return (flgs & itemTypes) != 0;
 }
@@ -363,7 +364,9 @@ bool IsSuffixValidForItemType(int i, int flgs)
 {
 	int itemTypes = ItemSuffixes[i].PLIType;
 
-	if (!gbIsHellfire) {
+	/* remove checks */
+
+	/*if (!gbIsHellfire) {
 		if (i > 94)
 			return false;
 
@@ -374,7 +377,7 @@ bool IsSuffixValidForItemType(int i, int flgs)
 		    || (i >= 41 && i <= 44)
 		    || (i >= 60 && i <= 63))
 			itemTypes &= ~PLT_STAFF;
-	}
+	}*/
 
 	return (flgs & itemTypes) != 0;
 }
@@ -1085,12 +1088,12 @@ void SaveItemAffix(Item &item, const PLStruct &affix)
 {
 	auto power = affix.power;
 
-	if (!gbIsHellfire) {
-		if (power.type == IPL_TARGAC) {
-			power.param1 = 1 << power.param1;
-			power.param2 = 3 << power.param2;
-		}
-	}
+	//if (!gbIsHellfire) {
+	//	if (power.type == IPL_TARGAC) {
+	//		power.param1 = 1 << power.param1;
+	//		power.param2 = 3 << power.param2;
+	//	}
+	//}
 
 	int value = SaveItemPower(item, power);
 
@@ -1323,6 +1326,14 @@ void GetItemBonus(Item &item, int minlvl, int maxlvl, bool onlygood, bool allows
 	if (minlvl > 25)
 		minlvl = 25;
 
+	#ifdef _DEBUG
+	SDL_Log("Getting Item Bonus:\n");
+	//sprintf(tempstr, fmt::format(_("minlvl: {:d} maxlevel {:d}"), minlvl, maxlvl).c_str());
+	SDL_Log(fmt::format(_("minlvl: {:d} maxlevel {:d}"), minlvl, maxlvl).c_str());
+
+	#endif
+
+
 	switch (item._itype) {
 	case ItemType::Sword:
 	case ItemType::Axe:
@@ -1365,6 +1376,15 @@ int RndUItem(Monster *monster)
 
 	int ril[512];
 
+	
+	#ifdef _DEBUG
+	if (monster != nullptr) {
+		SDL_Log("Getting RndUItem:\n");
+		// sprintf(tempstr, fmt::format(_("minlvl: {:d} maxlevel {:d}"), minlvl, maxlvl).c_str());
+		SDL_Log(fmt::format(_("bilvl: {:d} ailvl {:d}"), monster->mLevel, monster->MData->mLevel).c_str());
+	}
+	#endif
+
 	int curlv = ItemsGetCurrlevel();
 	int ri = 0;
 	for (int i = 0; AllItemsList[i].iLoc != ILOC_INVALID; i++) {
@@ -1396,7 +1416,7 @@ int RndUItem(Monster *monster)
 			ri++;
 		}
 	}
-
+	
 	return ril[GenerateRnd(ri)];
 }
 
@@ -1422,7 +1442,6 @@ int RndAllItems()
 		if (AllItemsList[i].iSpell == SPL_HEALOTHER && !gbIsMultiplayer)
 			ri--;
 	}
-
 	return ril[GenerateRnd(ri)];
 }
 
@@ -2441,30 +2460,36 @@ bool IsItemAvailable(int i)
 {
 	if (i < 0 || i > IDI_LAST)
 		return false;
+	return true;
 
-	if (gbIsSpawn) {
-		if (i >= 62 && i <= 71)
-			return false; // Medium and heavy armors
-		if (IsAnyOf(i, 105, 107, 108, 110, 111, 113))
-			return false; // Unavailable scrolls
-	}
+	/* mod is Diablo only, and item positions are all moved around
+	getting rid of this stuff*/
 
-	if (gbIsHellfire)
-		return true;
+	//if (gbIsSpawn) {
+	//	if (i >= 62 && i <= 71)
+	//		return false; // Medium and heavy armors
+	//	if (IsAnyOf(i, 105, 107, 108, 110, 111, 113))
+	//		return false; // Unavailable scrolls
+	//}
 
-	return (
-	           i != IDI_MAPOFDOOM                   // Cathedral Map
-	           && i != IDI_LGTFORGE                 // Bovine Plate
-	           && (i < IDI_OIL || i > IDI_GREYSUIT) // Hellfire exclusive items
-	           && (i < 83 || i > 86)                // Oils
-	           && i != 92                           // Scroll of Search
-	           && (i < 161 || i > 165)              // Runes
-	           && i != IDI_SORCERER                 // Short Staff of Mana
-	           )
-	    || (
-	        // Bard items are technically Hellfire-exclusive
-	        // but are just normal items with adjusted stats.
-	        *sgOptions.Gameplay.testBard && IsAnyOf(i, IDI_BARDSWORD, IDI_BARDDAGGER));
+
+	//if (gbIsHellfire)
+	//	return true;
+
+	//return (
+	//           i != IDI_MAPOFDOOM                   // Cathedral Map
+	//           && i != IDI_LGTFORGE                 // Bovine Plate
+	//           && (i < IDI_OIL || i > IDI_GREYSUIT) // Hellfire exclusive items
+	//           && (i < 83 || i > 86)                // Oils
+	//           && i != 92                           // Scroll of Search
+	//           && (i < 161 || i > 165)              // Runes
+	//           && i != IDI_SORCERER                 // Short Staff of Mana
+	//           )
+	//    || (
+	//        // Bard items are technically Hellfire-exclusive
+	//        // but are just normal items with adjusted stats.
+	//        *sgOptions.Gameplay.testBard && IsAnyOf(i, IDI_BARDSWORD, IDI_BARDDAGGER));
+
 }
 
 BYTE GetOutlineColor(const Item &item, bool checkReq)
@@ -3051,7 +3076,7 @@ void CreatePlrItems(int playerId)
 		GetPlrHandSeed(&player.SpdList[1]);
 		break;
 	case HeroClass::Sorcerer:
-		SetPlrHandItem(player.InvBody[INVLOC_HAND_LEFT], gbIsHellfire ? IDI_SORCERER : 166);
+		SetPlrHandItem(player.InvBody[INVLOC_HAND_LEFT], gbIsHellfire ? IDI_SORCERER : IDI_SORCERER_DIABLO);
 		GetPlrHandSeed(&player.InvBody[INVLOC_HAND_LEFT]);
 
 		SetPlrHandItem(player.SpdList[0], gbIsHellfire ? IDI_HEAL : IDI_MANA);
@@ -3234,6 +3259,15 @@ int RndItem(const Monster &monster)
 		return IDI_GOLD + 1;
 
 	int ril[512];
+
+	
+	#ifdef _DEBUG
+	
+		SDL_Log("Generating Rnd Item:\n");
+		// sprintf(tempstr, fmt::format(_("minlvl: {:d} maxlevel {:d}"), minlvl, maxlvl).c_str());
+		SDL_Log(fmt::format(_("bilvl: {:d} ailvl {:d}"), monster.mLevel, monster.MData->mLevel).c_str());
+	
+	#endif
 
 	int ri = 0;
 	for (int i = 0; AllItemsList[i].iLoc != ILOC_INVALID; i++) {

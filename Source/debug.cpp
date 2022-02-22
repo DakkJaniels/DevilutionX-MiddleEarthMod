@@ -545,6 +545,8 @@ std::string DebugCmdLevelSeed(const string_view parameter)
 
 std::string DebugCmdSpawnMonster(const string_view parameter)
 {
+	bool isUnique = false;
+
 	if (currlevel == 0)
 		return "Do you want to kill the towners?!?";
 
@@ -569,6 +571,7 @@ std::string DebugCmdSpawnMonster(const string_view parameter)
 	std::transform(name.begin(), name.end(), name.begin(), [](unsigned char c) { return std::tolower(c); });
 
 	int mtype = -1;
+	int uniqueidx = -1;
 	for (int i = 0; i < 138; i++) {
 		auto mondata = MonstersData[i];
 		std::string monsterName(mondata.mName);
@@ -582,11 +585,16 @@ std::string DebugCmdSpawnMonster(const string_view parameter)
 	if (mtype == -1) {
 		for (int i = 0; i < 100; i++) {
 			auto mondata = UniqueMonstersData[i];
+			if (mondata.mtype == MT_INVALID)
+				break;
 			std::string monsterName(mondata.mName);
 			std::transform(monsterName.begin(), monsterName.end(), monsterName.begin(), [](unsigned char c) { return std::tolower(c); });
+			/* if no match */
 			if (monsterName.find(name) == std::string::npos)
 				continue;
-			mtype = mondata.mtype;
+			uniqueidx = i;
+			mtype = UniqueMonstersData[i].mtype;
+			isUnique = true;
 			break;
 		}
 	}
@@ -606,6 +614,8 @@ std::string DebugCmdSpawnMonster(const string_view parameter)
 	}
 
 	if (!found) {
+		id = LevelMonsterTypeCount;
+		LevelMonsterTypeCount++;
 		LevelMonsterTypes[id].mtype = static_cast<_monster_id>(mtype);
 		InitMonsterGFX(id);
 		LevelMonsterTypes[id].mPlaceFlags |= PLACE_SCATTER;
@@ -624,9 +634,14 @@ std::string DebugCmdSpawnMonster(const string_view parameter)
 				continue;
 			if (!IsTileWalkable(pos))
 				continue;
+			if (isUnique){
+				PlaceUniqueMonst(uniqueidx, mtype, 0, pos.x, pos.y);
+			} else {
+				if (AddMonster(pos, myPlayer._pdir, id, true) < 0)
+					return fmt::format("I could only summon {} Monsters. The rest strike for shorter working hours.", spawnedMonster);
+			}
 
-			if (AddMonster(pos, myPlayer._pdir, id, true) < 0)
-				return fmt::format("I could only summon {} Monsters. The rest strike for shorter working hours.", spawnedMonster);
+			
 			spawnedMonster += 1;
 
 			if (spawnedMonster >= count)

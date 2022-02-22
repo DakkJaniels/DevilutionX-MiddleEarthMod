@@ -302,6 +302,8 @@ void PrintMonstHistory(int mt);
 void PrintUniqueHistory();
 void PlayEffect(Monster &monster, int mode);
 void MissToMonst(Missile &missile, Point position);
+void PlaceUniqueMonst(int uniqindex, int miniontype, int bosspacksize, int dx = 0, int dy = 0);
+
 
 /**
  * @brief Check that the given tile is available to the monster
