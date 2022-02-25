@@ -53,29 +53,7 @@ int MaxGold = GOLD_MAX_LIMIT;
 
 /** Maps from item_cursor_graphic to in-memory item type. */
 BYTE ItemCAnimTbl[] = {
-	20, 16, 16, 16, 4, 4, 4, 12, 12, 12,
-	12, 12, 12, 12, 12, 21, 21, 25, 12, 28,
-	28, 28, 38, 38, 38, 32, 38, 38, 38, 24,
-	24, 26, 2, 25, 22, 23, 24, 25, 27, 27,
-	29, 0, 0, 0, 12, 12, 12, 12, 12, 0,
-	8, 8, 0, 8, 8, 8, 8, 8, 8, 6,
-	8, 8, 8, 6, 8, 8, 6, 8, 8, 6,
-	6, 6, 8, 8, 8, 5, 9, 13, 13, 13,
-	5, 5, 5, 15, 5, 5, 18, 18, 18, 30,
-	5, 5, 14, 5, 14, 13, 16, 18, 5, 5,
-	7, 1, 3, 17, 1, 15, 10, 14, 3, 11,
-	8, 0, 1, 7, 0, 7, 15, 7, 3, 3,
-	3, 6, 6, 11, 11, 11, 31, 14, 14, 14,
-	6, 6, 7, 3, 8, 14, 0, 14, 14, 0,
-	33, 1, 1, 1, 1, 1, 7, 7, 7, 14,
-	14, 17, 17, 17, 0, 34, 1, 0, 3, 17,
-	8, 8, 6, 1, 3, 3, 11, 3, 12, 12,
-	12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
-	12, 12, 12, 12, 12, 12, 12, 35, 39, 36,
-	36, 36, 37, 38, 38, 38, 38, 38, 41, 42,
-	8, 8, 8, 17, 0, 6, 8, 11, 11, 3,
-	3, 1, 6, 6, 6, 1, 8, 6, 11, 3,
-	6, 8, 1, 6, 6, 17, 40, 0, 0
+	20, 16, 16, 16, 4, 4, 4, 12, 12, 12, 12, 12, 12, 12, 12, 21, 21, 25, 12, 28, 28, 28, 0, 0, 0, 32, 32, 0, 0, 24, 24, 26, 2, 25, 22, 23, 24, 25, 27, 27, 29, 12, 0, 0, 12, 12, 12, 12, 12, 0, 8, 8, 0, 8, 8, 8, 8, 8, 8, 6, 8, 8, 8, 6, 8, 8, 6, 8, 8, 6, 6, 6, 8, 8, 8, 5, 9, 13, 13, 13, 5, 5, 5, 15, 5, 5, 18, 18, 18, 30, 5, 5, 14, 5, 14, 13, 16, 18, 5, 5, 7, 1, 3, 17, 1, 15, 10, 14, 3, 11, 8, 0, 1, 7, 0, 7, 15, 7, 3, 3, 3, 6, 6, 11, 11, 11, 31, 14, 14, 14, 6, 6, 7, 3, 8, 14, 0, 14, 14, 0, 33, 1, 1, 1, 1, 1, 7, 7, 7, 14, 14, 17, 17, 17, 0, 34, 1, 0, 3, 17, 8, 8, 6, 1, 3, 3, 11, 3, 4, 0, 0, 0, 0, 0, 0, 0, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 32, 32, 16, 16, 16, 16, 32, 32, 32, 32, 32, 14, 14, 8, 8, 8, 14, 0, 6, 8, 11, 11, 3, 3, 1, 6, 6, 6, 1, 8, 6, 11, 3, 6, 8, 1, 6, 6, 0, 17, 32, 32, 12, 32, 32, 32, 13, 5, 5, 5, 5, 18, 30, 5, 7, 3, 17, 8, 0, 0, 7, 3, 3, 11, 11, 11, 8, 14, 1
 };
 
 /** Maps of drop sounds effect of placing the item in the inventory. */
@@ -115,14 +93,6 @@ _sfx_id ItemInvSnds[] = {
 	IS_IBLST,
 	IS_IANVL,
 	IS_ISTAF,
-	IS_IROCK,
-	IS_ISCROL,
-	IS_ISCROL,
-	IS_IROCK,
-	IS_IMUSH,
-	IS_IHARM,
-	IS_ILARM,
-	IS_ILARM,
 };
 
 namespace {
@@ -257,14 +227,6 @@ BYTE ItemAnimLs[] = {
 	13,
 	13,
 	8,
-	10,
-	16,
-	16,
-	10,
-	10,
-	15,
-	15,
-	15,
 };
 /** Maps of drop sounds effect of dropping the item on ground. */
 _sfx_id ItemDropSnds[] = {
@@ -303,14 +265,6 @@ _sfx_id ItemDropSnds[] = {
 	IS_FBLST,
 	IS_FANVL,
 	IS_FSTAF,
-	IS_FROCK,
-	IS_FSCRL,
-	IS_FSCRL,
-	IS_FROCK,
-	IS_FMUSH,
-	IS_FHARM,
-	IS_FLARM,
-	IS_FLARM,
 };
 /** Maps from Griswold premium item number to a quality level delta as added to the base quality level. */
 int premiumlvladd[] = {
@@ -2515,7 +2469,7 @@ void InitItemGFX()
 {
 	char arglist[64];
 
-	int itemTypes = gbIsHellfire ? ITEMTYPES : 35;
+	int itemTypes = 35;
 	for (int i = 0; i < itemTypes; i++) {
 		sprintf(arglist, "Items\\%s.CEL", ItemDropNames[i]);
 		itemanims[i] = LoadCel(arglist, ItemAnimWidth);

@@ -89,7 +89,7 @@ ItemPanelData ItemPanelList[] {
 /** Contains the data related to each item ID. */
 ItemData AllItemsList[] = {
 	// clang-format off
-//        iRnd,           iClass,            iLoc,					  iCurs,								  itype,				iItemId,				iName,                             iSName,     iMinMLvl, iDurability, iMinDam, iMaxDam, iMinAC, iMaxAC, iMinStr, iMinMag, iMinDex, iFlags,            iMiscId,         iSpell,          iUsable, iValue
+//        iRnd,           iClass,            iLoc,					  iCurs,								  itype,				iItemId,				iName,                             iSName,     iMinMLvl, iDurability, iMinDam, iMaxDam, iMinAC, iMaxAC, iMinStr, iMinMag, iMinDex, iFlags,  iMiscId,         iSpell,          iUsable, iValue
 
 	{IDROP_REGULAR,      ICLASS_GOLD,        ILOC_UNEQUIPABLE,        ICURS_GOLD,                             ItemType::Gold,        UITYPE_NONE,          N_("Gold"),                        nullptr,               1,   0,  0,   0,  0,  0,   0,   0,   0,                                         0, IMISC_NONE,      SPL_NULL,        true,      0},
 	{IDROP_NEVER,        ICLASS_WEAPON,      ILOC_ONEHAND,            ICURS_SHORT_SWORD,                      ItemType::Sword,       UITYPE_NONE,          N_("Long Knife"),                  nullptr,               2,  20,  2,   6,  0,  0,  18,   0,   0,                                         0, IMISC_NONE,      SPL_NULL,        false,    50},

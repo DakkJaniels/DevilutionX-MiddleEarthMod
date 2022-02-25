@@ -4653,14 +4653,14 @@ void PrintMonstHistory(int mt)
 	int maxHP = Monsters[pcursmonst]._mmaxhp >> 6;
 
 	// TEMP TURN OFF
-	/*strcpy(tempstr, fmt::format(_("Hit Points: {:d} of {:d}"), actHP, maxHP).c_str());
-	AddPanelString(tempstr);*/
+	strcpy(tempstr, fmt::format(_("Hit Points: {:d} of {:d}"), actHP, maxHP).c_str());
+	AddPanelString(tempstr);
 
-	int8_t baseilvl = Monsters[pcursmonst].mLevel;
+	/*int8_t baseilvl = Monsters[pcursmonst].mLevel;
 	int8_t affixilvl = MonstersData[mt].mLevel;
 
 	strcpy(tempstr, fmt::format(_("bilvl: {:d} ailvl {:d}"), baseilvl, affixilvl).c_str());
-	AddPanelString(tempstr);
+	AddPanelString(tempstr);*/
 
 	/* Print Monster Resistances based on Kill Count*/
 	/* If below threshold, print hints at what monster has */
@@ -4727,11 +4727,11 @@ void PrintUniqueHistory()
 		AddPanelString(tempstr);
 	}
 
-	int8_t baseilvl = Monsters[pcursmonst].mLevel;
+	/*int8_t baseilvl = Monsters[pcursmonst].mLevel;
 	int8_t affixilvl = Monsters[pcursmonst].MData->mLevel;
 
 	strcpy(tempstr, fmt::format(_("bilvl: {:d} ailvl {:d}"), baseilvl, affixilvl).c_str());
-	AddPanelString(tempstr);
+	AddPanelString(tempstr);*/
 
 	int res = monster.mMagicRes & (RESIST_MAGIC | RESIST_FIRE | RESIST_LIGHTNING | IMMUNE_MAGIC | IMMUNE_FIRE | IMMUNE_LIGHTNING);
 	if (res == 0) {
