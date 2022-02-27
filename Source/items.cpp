@@ -1411,8 +1411,8 @@ int RndTypeItems(ItemType itemType, int imid, int lvl)
 		bool okflag = true;
 		if (AllItemsList[i].iRnd == IDROP_NEVER)
 			okflag = false;
-		if (lvl * 2 < AllItemsList[i].iMinMLvl)
-			okflag = false;
+		/*if (lvl * 2 < AllItemsList[i].iMinMLvl)
+			okflag = false;*/
 		if (AllItemsList[i].itype != itemType)
 			okflag = false;
 		if (imid != -1 && AllItemsList[i].iMiscId != imid)
@@ -2462,7 +2462,7 @@ BYTE GetOutlineColor(const Item &item, bool checkReq)
 
 bool IsUniqueAvailable(int i)
 {
-	return gbIsHellfire || i <= 89;
+	return true;
 }
 
 void InitItemGFX()

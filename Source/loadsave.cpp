@@ -1582,7 +1582,7 @@ const int HellfireItemSaveSize = 372;
 
 void RemoveInvalidItem(Item &item)
 {
-	bool isInvalid = !IsItemAvailable(item.IDidx) || !IsUniqueAvailable(item._iUid);
+	/*bool isInvalid = !IsItemAvailable(item.IDidx) || !IsUniqueAvailable(item._iUid);
 
 	if (!gbIsHellfire) {
 		isInvalid = isInvalid || (item._itype == ItemType::Staff && GetSpellStaffLevel(item._iSpell) == -1);
@@ -1594,7 +1594,8 @@ void RemoveInvalidItem(Item &item)
 
 	if (isInvalid) {
 		item._itype = ItemType::None;
-	}
+	}*/
+	return;
 }
 
 _item_indexes RemapItemIdxFromDiablo(_item_indexes i)

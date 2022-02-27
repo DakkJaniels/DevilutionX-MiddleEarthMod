@@ -42,12 +42,12 @@ void PackItem(ItemPack &packedItem, const Item &item, bool isHellfire)
 		packedItem.idx = 0xFFFF;
 	} else {
 		auto idx = item.IDidx;
-		if (!isHellfire) {
+		/* if (!isHellfire) {
 			idx = RemapItemIdxToDiablo(idx);
 		}
 		if (gbIsSpawn) {
 			idx = RemapItemIdxToSpawn(idx);
-		}
+		}*/
 		packedItem.idx = SDL_SwapLE16(idx);
 		if (item.IDidx == IDI_EAR) {
 			packedItem.iCreateInfo = item._iName[8] | (item._iName[7] << 8);
@@ -146,12 +146,12 @@ void UnPackItem(const ItemPack &packedItem, Item &item, bool isHellfire)
 {
 	auto idx = static_cast<_item_indexes>(SDL_SwapLE16(packedItem.idx));
 
-	if (gbIsSpawn) {
+	/*if (gbIsSpawn) {
 		idx = RemapItemIdxFromSpawn(idx);
 	}
 	if (!isHellfire) {
 		idx = RemapItemIdxFromDiablo(idx);
-	}
+	}*/
 
 	if (!IsItemAvailable(idx)) {
 		item._itype = ItemType::None;
