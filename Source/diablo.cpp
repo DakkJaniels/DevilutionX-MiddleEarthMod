@@ -1415,12 +1415,12 @@ void InitKeymapActions()
 		    CanPlayerTakeAction,
 		    i + 1);
 	}
-	for (int i = 0; i < 4; ++i) {
+	for (int i = 0; i < 8; ++i) {
 		sgOptions.Keymapper.AddAction(
 		    "QuickSpell{}",
 		    N_("Quick spell {}"),
 		    N_("Hotkey for skill or spell."),
-		    DVL_VK_F5 + i,
+		    DVL_VK_F1 + i,
 		    [i]() {
 			    if (spselflag) {
 				    SetSpeedSpell(i);
@@ -1443,7 +1443,7 @@ void InitKeymapActions()
 	    DisplaySpellsKeyPressed,
 	    nullptr,
 	    CanPlayerTakeAction);
-	sgOptions.Keymapper.AddAction(
+	/*sgOptions.Keymapper.AddAction(
 	    "QuickSave",
 	    N_("Quick save"),
 	    N_("Saves the game."),
@@ -1458,7 +1458,7 @@ void InitKeymapActions()
 	    DVL_VK_F3,
 	    [] { gamemenu_load_game(false); },
 	    nullptr,
-	    [&]() { return !gbIsMultiplayer && gbValidSaveFile && stextflag == STORE_NONE && IsGameRunning(); });
+	    [&]() { return !gbIsMultiplayer && gbValidSaveFile && stextflag == STORE_NONE && IsGameRunning(); });*/
 #ifndef NOEXIT
 	sgOptions.Keymapper.AddAction(
 	    "QuitGame",
@@ -1594,14 +1594,14 @@ void InitKeymapActions()
 	    IncreaseGamma,
 	    nullptr,
 	    CanPlayerTakeAction);
-	sgOptions.Keymapper.AddAction(
+	/*sgOptions.Keymapper.AddAction(
 	    "Help",
 	    N_("Help"),
 	    N_("Open Help Screen."),
 	    DVL_VK_F1,
 	    HelpKeyPressed,
 	    nullptr,
-	    CanPlayerTakeAction);
+	    CanPlayerTakeAction);*/
 	sgOptions.Keymapper.AddAction(
 	    "Screenshot",
 	    N_("Screenshot"),

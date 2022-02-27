@@ -161,7 +161,7 @@ void DrawSpellsCircleMenuHint(const Surface &out, const CircleMenuHint &hint, co
 	spell_type splType;
 	Point textPosition;
 
-	for (int slot = 0; slot < 4; ++slot) {
+	for (int slot = 0; slot < 8; ++slot) {
 		splId = myPlayer._pSplHotKey[slot];
 
 		if (splId != SPL_INVALID && (spells & GetSpellBitmask(splId)) != 0)
