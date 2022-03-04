@@ -893,6 +893,8 @@ bool PlrHitMonst(int pnum, int m, bool adjacentDamage = false)
 		int midam = player._pIFMinDam + GenerateRnd(player._pIFMaxDam - player._pIFMinDam);
 		AddMissile(player.position.tile, player.position.temp, player._pdir, MIS_SPECARROW, TARGET_MONSTERS, pnum, midam, 0);
 	}
+	if (((player._pIFlags & ISPL_NOHEALMON) != 0))
+		monster._mFlags |= MFLAG_NOHEAL;
 	int mind = player._pIMinDam;
 	int maxd = player._pIMaxDam;
 	int dam = GenerateRnd(maxd - mind + 1) + mind;
