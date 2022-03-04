@@ -273,7 +273,7 @@ bool MonsterMHit(int pnum, int m, int mindam, int maxdam, int dist, missile_id t
 	if (pnum == MyPlayerId)
 		monster._mhitpoints -= dam;
 
-	if ((gbIsHellfire && (player._pIFlags & ISPL_NOHEALMON) != 0) || (!gbIsHellfire && (player._pIFlags & ISPL_FIRE_ARROWS) != 0))
+	if (((player._pIFlags & ISPL_NOHEALMON) != 0) || ((player._pIFlags & ISPL_FIRE_ARROWS) != 0))
 		monster._mFlags |= MFLAG_NOHEAL;
 
 	if (monster._mhitpoints >> 6 <= 0) {
