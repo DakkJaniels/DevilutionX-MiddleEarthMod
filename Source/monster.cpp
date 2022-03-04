@@ -170,9 +170,6 @@ void InitMonster(Monster &monster, Direction rd, int mtype, Point position)
 
 	monster.mLevel = monster.MData->mLevel;
 	monster._mmaxhp = (monster.MType->mMinHP + GenerateRnd(monster.MType->mMaxHP - monster.MType->mMinHP + 1)) << 6;
-	if (monster.MType->mtype == MT_DIABLO && !gbIsHellfire) {
-		monster._mmaxhp = 2500;
-	}
 
 	if (!gbIsMultiplayer)
 		monster._mmaxhp = std::max(monster._mmaxhp / 2, 64);
