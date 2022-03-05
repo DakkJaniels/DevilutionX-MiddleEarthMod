@@ -2082,6 +2082,28 @@ void AddManashield(Missile &missile, const AddMissileParameter & /*parameter*/)
 		UseMana(missile._misource, SPL_MANASHIELD);
 }
 
+ void AddEtherealize(Missile &missile, const AddMissileParameter &parameter/*, int mi, int sx, int sy, int dx, int dy, int midir, char mienemy, int id, int dam*/)
+{
+	if (missile._misource < 0)
+		return;
+
+	auto &player = Players[missile._misource];
+
+	missile._mirange = 16 * player._pLevel >> 1;
+	for (int i = missile._mispllvl; i > 0; i--) {
+		missile._mirange += missile._mirange >> 3;
+	}
+	missile._mirange += missile._mirange * player._pISplDur >> 7;
+	missile.var1 = player._pHitPoints;
+	missile.var2 = player._pHPBase;
+
+	if (missile._misource == MyPlayerId)
+		NetSendCmd(true, CMD_SETETHEREALIZE);
+	
+	if (missile._micaster == TARGET_MONSTERS)
+		UseMana(missile._misource, SPL_ETHEREALIZE);
+ }
+
 void AddFiremove(Missile &missile, const AddMissileParameter &parameter)
 {
 	missile._midam = GenerateRnd(10) + Players[missile._misource]._pLevel + 1;
@@ -4042,6 +4064,39 @@ void MI_Element(Missile &missile)
 	}
 	PutMissile(missile);
 }
+
+void MI_Etherealize(Missile &missile)
+{
+	int src;
+
+	missile._mirange--;
+	src = missile._misource;
+	missile._mix = Players[missile._misource]._px;
+	missile._miy = Players[missile._misource]._py;
+	missile._mitxoff = plr[src]._pxoff << 16;
+	missile._mityoff = plr[src]._pyoff << 16;
+	if (plr[src]._pmode == PM_WALK3) {
+		missile[i]._misx = plr[src]._pfutx;
+		missile[i]._misy = plr[src]._pfuty;
+	} else {
+		missile[i]._misx = plr[src]._px;
+		missile[i]._misy = plr[src]._py;
+	}
+	GetMissilePos(i);
+	if (plr[src]._pmode == PM_WALK3) {
+		if (plr[src]._pdir == DIR_W)
+			missile[i]._mix++;
+		else
+			missile[i]._miy++;
+	}
+	plr[src]._pSpellFlags |= 1;
+	if (missile[i]._mirange == 0 || plr[src]._pHitPoints <= 0) {
+		missile[i]._miDelFlag = TRUE;
+		plr[src]._pSpellFlags &= ~0x1;
+	}
+	PutMissile(i);
+}
+
 
 void MI_Bonespirit(Missile &missile)
 {

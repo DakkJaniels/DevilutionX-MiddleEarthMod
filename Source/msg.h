@@ -452,6 +452,14 @@ enum _cmd_id : uint8_t {
 	FAKE_CMD_DROPID,
 	NUM_CMDS,
 	CMD_INVALID = 0xFF,
+	// Enable mana shield of player (render).
+	//
+	// body (TCmd)
+	CMD_SETETHEREALIZE,
+	// Disable mana shield of player (don't render).
+	//
+	// body (TCmd)
+	CMD_REMETHEREALIZE,
 };
 
 #pragma pack(push, 1)

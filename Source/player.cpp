@@ -644,16 +644,21 @@ void InitLevelChange(int pnum)
 	RemovePlrMissiles(pnum);
 	player.pManaShield = false;
 	player.wReflections = 0;
+	player.pEtherealize = false;
 	// share info about your manashield when another player joins the level
 	if (pnum != MyPlayerId && myPlayer.pManaShield)
 		NetSendCmd(true, CMD_SETSHIELD);
 	// share info about your reflect charges when another player joins the level
 	if (pnum != MyPlayerId)
 		NetSendCmdParam1(true, CMD_SETREFLECT, myPlayer.wReflections);
+	// share info about your etherealize when another player joins the level
+	if (pnum != MyPlayerId && myPlayer.pEtherealize)
+		NetSendCmd(true, CMD_SETETHEREALIZE);
 	if (pnum == MyPlayerId && qtextflag) {
 		qtextflag = false;
 		stream_stop();
 	}
+	
 
 	RemovePlrFromMap(pnum);
 	SetPlayerOld(player);
@@ -2693,6 +2698,7 @@ void CreatePlayer(int playerId, HeroClass c)
 	player.pManaShield = false;
 	player.pDamAcFlags = 0;
 	player.wReflections = 0;
+	player.pEtherealize = false;
 
 	InitDungMsgs(player);
 	CreatePlrItems(playerId);
@@ -2849,6 +2855,7 @@ void InitPlayer(Player &player, bool firstTime)
 		player._pSplType = player._pRSplType;
 		player.pManaShield = false;
 		player.wReflections = 0;
+		player.pEtherealize = false;
 	}
 
 	if (player.plrlevel == currlevel) {
@@ -3237,6 +3244,9 @@ void StripTopGold(Player &player)
 void ApplyPlrDamage(int pnum, int dam, int minHP /*= 0*/, int frac /*= 0*/, int earflag /*= 0*/)
 {
 	auto &player = Players[pnum];
+
+	if (player.pEtherealize)
+		return;
 
 	int totalDamage = (dam << 6) + frac;
 	if (totalDamage > 0 && player.pManaShield) {
