@@ -2111,7 +2111,7 @@ void AddManashield(Missile &missile, const AddMissileParameter & /*parameter*/)
 	
 
 	if (missile._misource == MyPlayerId) {
-		// NetSendCmdParam1(true, CMD_SETETHEREALIZE, player.wEtherealize);
+		NetSendCmdParam1(true, CMD_SETETHEREALIZE, player.wEtherealize);
 	}
 	
 	if (missile._micaster == TARGET_MONSTERS)
@@ -4100,7 +4100,7 @@ void ProcessEtherealize()
 		// If duration over
 		if (myPlayer.wEtherealize == 0 || myPlayer._pHitPoints <= 0) {
 			myPlayer._pSpellFlags &= ~0x1;
-			//NetSendCmdParam1(true, CMD_SETETHEREALIZE, 0);
+			NetSendCmdParam1(true, CMD_SETETHEREALIZE, 0);
 		} else {
 			// Set Spell Flag 1 to work with existing code
 			myPlayer._pSpellFlags |= 1;

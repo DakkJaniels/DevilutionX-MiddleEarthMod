@@ -1915,7 +1915,7 @@ DWORD OnSetEtherealize(const TCmd *pCmd, Player &player)
 
 	}
 
-	return sizeof(*pCmd);
+	return sizeof(message);
 }
 
 DWORD OnSetReflect(const TCmd *pCmd, Player &player)
