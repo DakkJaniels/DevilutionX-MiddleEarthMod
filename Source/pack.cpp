@@ -131,6 +131,7 @@ void PackPlayer(PlayerPack *pPack, const Player &player, bool manashield, bool n
 	}
 
 	pPack->wReflections = SDL_SwapLE16(player.wReflections);
+	pPack->wEtherealize = SDL_SwapLE16(player.wEtherealize);
 	pPack->pDifficulty = SDL_SwapLE32(player.pDifficulty);
 	pPack->pDamAcFlags = SDL_SwapLE32(player.pDamAcFlags);
 	pPack->pDiabloKillLevel = SDL_SwapLE32(player.pDiabloKillLevel);
@@ -283,6 +284,7 @@ bool UnPackPlayer(const PlayerPack *pPack, Player &player, bool netSync)
 
 	CalcPlrInv(player, false);
 	player.wReflections = SDL_SwapLE16(pPack->wReflections);
+	player.wEtherealize = SDL_SwapLE16(pPack->wEtherealize);
 	player.pTownWarps = 0;
 	player.pDungMsgs = 0;
 	player.pDungMsgs2 = 0;

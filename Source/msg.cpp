@@ -1906,7 +1906,7 @@ DWORD OnSetEtherealize(const TCmd *pCmd, Player &player)
 	if (gbBufferMsgs != 1) {
 		uint16_t duration = message.wParam1;
 		if (duration > 0) {
-			player.wEtherealize = message.wParam1;
+			player.wEtherealize = duration;
 			player._pSpellFlags |= 1;
 		} else {
 			player.wEtherealize = 0;
@@ -1914,8 +1914,6 @@ DWORD OnSetEtherealize(const TCmd *pCmd, Player &player)
 		}
 
 	}
-		
-		
 
 	return sizeof(*pCmd);
 }
@@ -2844,14 +2842,15 @@ uint32_t ParseCmd(int pnum, const TCmd *pCmd)
 		return OnRemoveShield(pCmd, player);
 	case CMD_SETREFLECT:
 		return OnSetReflect(pCmd, player);
+	case CMD_SETETHEREALIZE:
+		return OnSetEtherealize(pCmd, player);
 	case CMD_NAKRUL:
 		return OnNakrul(pCmd);
 	case CMD_OPENHIVE:
 		return OnOpenHive(pCmd, pnum);
 	case CMD_OPENCRYPT:
 		return OnOpenCrypt(pCmd);
-	case CMD_SETETHEREALIZE:
-		return OnSetEtherealize(pCmd, player);
+
 	default:
 		break;
 	}

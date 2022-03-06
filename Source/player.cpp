@@ -652,8 +652,9 @@ void InitLevelChange(int pnum)
 	if (pnum != MyPlayerId)
 		NetSendCmdParam1(true, CMD_SETREFLECT, myPlayer.wReflections);
 	// share info about your etherealize when another player joins the level
-	if (pnum != MyPlayerId && myPlayer.wEtherealize > 0)
-		NetSendCmdParam1(true, CMD_SETETHEREALIZE, myPlayer.wEtherealize);
+	if (pnum != MyPlayerId) {
+		//NetSendCmdParam1(true, CMD_SETETHEREALIZE, myPlayer.wEtherealize);
+	}
 	if (pnum == MyPlayerId && qtextflag) {
 		qtextflag = false;
 		stream_stop();

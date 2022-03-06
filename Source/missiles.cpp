@@ -2092,7 +2092,7 @@ void AddManashield(Missile &missile, const AddMissileParameter & /*parameter*/)
 		return;
 
 	auto &player = Players[missile._misource];
-	int duration;
+	uint16_t duration;
 	/* Set the Duration for the Spell */
 	duration = 16 * player._pLevel >> 1;
 	
@@ -2100,7 +2100,7 @@ void AddManashield(Missile &missile, const AddMissileParameter & /*parameter*/)
 		duration += duration >> 3;
 	}
 
-	duration += duration * player._pISplDur >> 7;
+	//duration += duration * player._pISplDur >> 7;
 
 	/* Save player current hitpoints (why?) */
 	/*missile.var1 = player._pHitPoints;
@@ -2110,8 +2110,9 @@ void AddManashield(Missile &missile, const AddMissileParameter & /*parameter*/)
 	player._pSpellFlags |= 1;
 	
 
-	if (missile._misource == MyPlayerId)
-		NetSendCmdParam1(true, CMD_SETETHEREALIZE, player.wEtherealize);
+	if (missile._misource == MyPlayerId) {
+		// NetSendCmdParam1(true, CMD_SETETHEREALIZE, player.wEtherealize);
+	}
 	
 	if (missile._micaster == TARGET_MONSTERS)
 		UseMana(missile._misource, SPL_ETHEREALIZE);
@@ -4099,7 +4100,7 @@ void ProcessEtherealize()
 		// If duration over
 		if (myPlayer.wEtherealize == 0 || myPlayer._pHitPoints <= 0) {
 			myPlayer._pSpellFlags &= ~0x1;
-			NetSendCmdParam1(true, CMD_SETETHEREALIZE, 0);
+			//NetSendCmdParam1(true, CMD_SETETHEREALIZE, 0);
 		} else {
 			// Set Spell Flag 1 to work with existing code
 			myPlayer._pSpellFlags |= 1;
