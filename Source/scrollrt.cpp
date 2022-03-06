@@ -488,6 +488,8 @@ void DrawPlayerIcons(const Surface &out, int pnum, Point position, bool lighting
 		DrawPlayerIconHelper(out, pnum, MFILE_MANASHLD, position, lighting);
 	if (player.wReflections > 0)
 		DrawPlayerIconHelper(out, pnum, MFILE_REFLECT, position + Displacement { 0, 16 }, lighting);
+	if (player.wEtherealize > 0)
+		DrawPlayerIconHelper(out, pnum, MFILE_ETHRSHLD, position, lighting);
 }
 
 /**

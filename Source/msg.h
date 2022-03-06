@@ -439,6 +439,10 @@ enum _cmd_id : uint8_t {
 	// body (TCmd)
 	CMD_REMSHIELD,
 	CMD_SETREFLECT,
+	// Set Etherealize Duration of Player (render).
+	//
+	// body (TCmd)
+	CMD_SETETHEREALIZE,
 	CMD_NAKRUL,
 	CMD_OPENHIVE,
 	CMD_OPENCRYPT,
@@ -451,6 +455,7 @@ enum _cmd_id : uint8_t {
 	// body (TFakeDropPlr)
 	FAKE_CMD_DROPID,
 	NUM_CMDS,
+
 	CMD_INVALID = 0xFF,
 };
 

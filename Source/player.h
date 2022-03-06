@@ -330,10 +330,12 @@ struct Player {
 	bool pManaShield;
 	uint8_t pDungMsgs2;
 	bool pOriginalCathedral;
+	uint16_t wEtherealize;
 	uint16_t wReflections;
 	uint8_t pDiabloKillLevel;
 	_difficulty pDifficulty;
 	uint32_t pDamAcFlags;
+
 
 	void CalcScrolls();
 

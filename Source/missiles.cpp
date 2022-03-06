@@ -14,6 +14,7 @@
 #ifdef _DEBUG
 #include "debug.h"
 #endif
+#include <fmt/format.h>
 #include "engine/cel_header.hpp"
 #include "engine/load_file.hpp"
 #include "engine/random.hpp"
@@ -2082,6 +2083,40 @@ void AddManashield(Missile &missile, const AddMissileParameter & /*parameter*/)
 		UseMana(missile._misource, SPL_MANASHIELD);
 }
 
+ void AddEtherealize(Missile &missile, const AddMissileParameter &parameter)
+{
+
+	missile._miDelFlag = true;
+
+	if (missile._misource < 0)
+		return;
+
+	auto &player = Players[missile._misource];
+	int duration;
+	/* Set the Duration for the Spell */
+	duration = 16 * player._pLevel >> 1;
+	
+	for (int i = missile._mispllvl; i > 0; i--) {
+		duration += duration >> 3;
+	}
+
+	duration += duration * player._pISplDur >> 7;
+
+	/* Save player current hitpoints (why?) */
+	/*missile.var1 = player._pHitPoints;
+	missile.var2 = player._pHPBase;*/
+
+	player.wEtherealize = duration;
+	player._pSpellFlags |= 1;
+	
+
+	if (missile._misource == MyPlayerId)
+		NetSendCmdParam1(true, CMD_SETETHEREALIZE, player.wEtherealize);
+	
+	if (missile._micaster == TARGET_MONSTERS)
+		UseMana(missile._misource, SPL_ETHEREALIZE);
+ }
+
 void AddFiremove(Missile &missile, const AddMissileParameter &parameter)
 {
 	missile._midam = GenerateRnd(10) + Players[missile._misource]._pLevel + 1;
@@ -4043,6 +4078,35 @@ void MI_Element(Missile &missile)
 	PutMissile(missile);
 }
 
+void ProcessEtherealize()
+{
+	auto &myPlayer = Players[MyPlayerId];
+
+	if (myPlayer.wEtherealize > 0) {
+		// reduce Etherealize duration
+		myPlayer.wEtherealize--;
+
+		#ifdef _DEBUG
+		int duration_remaining = myPlayer.wEtherealize;
+		int remainder = duration_remaining % 20;
+
+		if (remainder == 0) {
+			duration_remaining /= 20;
+			SDL_Log(fmt::format(("Etherealize Time Remaining: {:d} seconds"), duration_remaining).c_str());
+		}	
+		#endif
+
+		// If duration over
+		if (myPlayer.wEtherealize == 0 || myPlayer._pHitPoints <= 0) {
+			myPlayer._pSpellFlags &= ~0x1;
+			NetSendCmdParam1(true, CMD_SETETHEREALIZE, 0);
+		} else {
+			// Set Spell Flag 1 to work with existing code
+			myPlayer._pSpellFlags |= 1;
+		}
+	}
+}
+
 void MI_Bonespirit(Missile &missile)
 {
 	missile._mirange--;
@@ -4166,6 +4230,7 @@ void ProcessMissiles()
 	}
 
 	ProcessManaShield();
+	ProcessEtherealize();
 	DeleteMissiles();
 }
 
