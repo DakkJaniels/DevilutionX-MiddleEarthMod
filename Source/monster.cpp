@@ -825,7 +825,7 @@ void StartEating(Monster &monster)
 
 void DiabloDeath(Monster &diablo, bool sendmsg)
 {
-	PlaySFX(USFX_DIABLOD);
+//	PlaySFX(USFX_DIABLOD);
 //	auto &quest = Quests[Q_DIABLO];
 //	quest._qactive = QUEST_DONE;
 //	if (sendmsg)
@@ -983,10 +983,9 @@ void StartMonsterDeath(int i, int pnum, bool sendmsg)
 	monster._mhitpoints = 0;
 	SetRndSeed(monster._mRndSeed);
 	SpawnLoot(monster, sendmsg);
-	if (monster.MType->mtype == MT_DIABLO)
-		DiabloDeath(monster, true);
-	else
-		PlayEffect(monster, 2);
+	/*if (monster.MType->mtype == MT_DIABLO)
+		DiabloDeath(monster, true);*/
+	PlayEffect(monster, 2);
 
 	Direction md = pnum >= 0 ? GetMonsterDirection(monster) : monster._mdir;
 	NewMonsterAnim(monster, MonsterGraphic::Death, md, gGameLogicStep < GameLogicStep::ProcessMonsters ? AnimationDistributionFlags::ProcessAnimationPending : AnimationDistributionFlags::None);
@@ -1242,7 +1241,7 @@ void MonsterAttackPlayer(int i, int pnum, int hit, int minDam, int maxDam)
 	if ((player.pDamAcFlags & ISPLHF_ACUNDEAD) != 0 && monster.MData->mMonstClass == MonsterClass::Undead)
 		ac += 20;
 	hit += 2 * (monster.mLevel - player._pLevel)
-	    + 30
+	    + 50 // modified in ME Mod
 	    - ac;
 	int minhit = 10;
 	if (currlevel == 14)
@@ -1255,6 +1254,8 @@ void MonsterAttackPlayer(int i, int pnum, int hit, int minDam, int maxDam)
 	int blkper = 100;
 	if ((player._pmode == PM_STAND || player._pmode == PM_ATTACK) && player._pBlockFlag) {
 		blkper = GenerateRnd(100);
+		if (blkper < monster.mLevel >> 1)	// something from ME Mod, I don't really get it
+			blkper = 100;
 	}
 	int blk = player.GetBlockChance() - (monster.mLevel * 2);
 	blk = clamp(blk, 0, 90); /* max block reduced to 90% in ME Mod*/
@@ -2630,7 +2631,7 @@ void ButcherAi(int i)
 
 void SuccubusAi(int i)
 {
-	AiRanged(i, MIS_FLARE, false);
+	AiRanged(i, MIS_BSTAR, false);
 }
 
 void SneakAi(int i)
@@ -3688,9 +3689,9 @@ void GetLevelMTypes()
 			}
 		}
 
-		while (nt > 0 && LevelMonsterTypeCount < MAX_LVLMTYPES && monstimgtot < 4000) {
+		while (nt > 0 && LevelMonsterTypeCount < MAX_LVLMTYPES && monstimgtot < 4050) {
 			for (int i = 0; i < nt;) {
-				if (MonstersData[typelist[i]].mImage > 4000 - monstimgtot) {
+				if (MonstersData[typelist[i]].mImage > 4050 - monstimgtot) {
 					typelist[i] = typelist[--nt];
 					continue;
 				}

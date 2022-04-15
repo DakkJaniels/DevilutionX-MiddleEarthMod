@@ -613,7 +613,7 @@ void GetBookSpell(Item &item, int lvl)
 		}
 		if (!gbIsMultiplayer) {
 			if (s == SPL_HEALOTHER)
-				s = SPL_FLARE;
+				s = SPL_BSTAR;
 		}
 		if (s == maxSpells)
 			s = 1;
@@ -1230,7 +1230,7 @@ void GetStaffSpell(Item &item, int lvl, bool onlygood)
 		if (!gbIsMultiplayer && s == SPL_RESURRECT)
 			s = SPL_TELEKINESIS;
 		if (!gbIsMultiplayer && s == SPL_HEALOTHER)
-			s = SPL_FLARE;
+			s = SPL_BSTAR;
 		if (s == maxSpells)
 			s = SPL_FIREBOLT;
 	}
@@ -2023,7 +2023,7 @@ void PrintItemInfo(const Item &item)
 	uint8_t dex = item._iMinDex;
 	uint8_t mag = item._iMinMag;
 	if (str != 0 || mag != 0 || dex != 0) {
-		strcpy(tempstr, _("Required:"));
+		strcpy(tempstr, _("Req:"));
 		if (str != 0)
 			strcpy(tempstr + strlen(tempstr), fmt::format(_(" {:d} Str"), str).c_str());
 		if (mag != 0)
@@ -2155,7 +2155,7 @@ void SpawnOnePremium(Item &premiumItem, int plvl, int playerId)
 		GetItemBonus(premiumItem, plvl / 2, plvl, true, !gbIsHellfire);
 
 		if (!gbIsHellfire) {
-			if (premiumItem._iIvalue > 140000) {
+			if (premiumItem._iIvalue > 180000) {  // ME Mod higher premium ivalue
 				keepGoing = true; // prevent breaking the do/while loop too early by failing hellfire's condition in while
 				continue;
 			}
@@ -3835,7 +3835,7 @@ void DoOil(Player &player, int cii)
 		else
 			return fmt::format(_("fireball damage: {:d}-{:d}"), item._iFMinDam, item._iFMaxDam);
 	case IPL_THORNS:
-		return _("attacker takes 1-3 damage");
+		return _("attacker takes 1-10 damage");
 	case IPL_NOMANA:
 		return _("user loses all mana");
 	case IPL_NOHEALPLR:
@@ -3849,7 +3849,7 @@ void DoOil(Player &player, int cii)
 	case IPL_ALLRESZERO:
 		return _("All Resistance equals 0");
 	case IPL_NOHEALMON:
-		return _("hit monster doesn't heal");
+		return _("Hit monster doesn't heal");
 	case IPL_STEALMANA:
 		if ((item._iFlags & ISPL_STEALMANA_3) != 0)
 			return _(/*xgettext:no-c-format*/ "hit steals 3% mana");
