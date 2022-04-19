@@ -1330,14 +1330,13 @@ int RndUItem(Monster *monster)
 
 	int ril[512];
 
-	
-	#ifdef _DEBUG
-	if (monster != nullptr) {
-		SDL_Log("Getting RndUItem:\n");
-		// sprintf(tempstr, fmt::format(_("minlvl: {:d} maxlevel {:d}"), minlvl, maxlvl).c_str());
-		SDL_Log(fmt::format(_("bilvl: {:d} ailvl {:d}"), monster->mLevel, monster->MData->mLevel).c_str());
-	}
-	#endif
+	//#ifdef _DEBUG
+	//if (monster != nullptr) {
+	//	//SDL_Log("Getting RndUItem:\n");
+	//	// sprintf(tempstr, fmt::format(_("minlvl: {:d} maxlevel {:d}"), minlvl, maxlvl).c_str());
+	//	//SDL_Log(fmt::format(_("bilvl: {:d} ailvl {:d}"), monster->mLevel, monster->MData->mLevel).c_str());
+	//}
+	//#endif
 
 	int curlv = ItemsGetCurrlevel();
 	int ri = 0;
@@ -1345,32 +1344,24 @@ int RndUItem(Monster *monster)
 		if (!IsItemAvailable(i))
 			continue;
 
-		bool okflag = true;
-		if (AllItemsList[i].iRnd == IDROP_NEVER)
-			okflag = false;
-		if (monster != nullptr) {
-			if (monster->mLevel < AllItemsList[i].iMinMLvl)
-				okflag = false;
-		} else {
-			if (2 * curlv < AllItemsList[i].iMinMLvl)
-				okflag = false;
-		}
-		if (AllItemsList[i].itype == ItemType::Misc)
-			okflag = false;
-		if (AllItemsList[i].itype == ItemType::Gold)
-			okflag = false;
-		if (AllItemsList[i].iMiscId == IMISC_BOOK)
-			okflag = true;
-		if (AllItemsList[i].iSpell == SPL_RESURRECT && !gbIsMultiplayer)
-			okflag = false;
-		if (AllItemsList[i].iSpell == SPL_HEALOTHER && !gbIsMultiplayer)
-			okflag = false;
-		if (okflag && ri < 512) {
-			ril[ri] = i;
-			ri++;
+		auto &item = AllItemsList[i];
+
+		if (item.iUMonstDropRate > 0
+			&& (monster != nullptr && monster->mLevel >= item.iMinMLvl)
+			|| (monster == nullptr && 2 * curlv >= item.iMinMLvl)) {
+
+			if ((item.itype != ItemType::Misc || item.iMiscId == IMISC_BOOK)
+				&& item.itype != ItemType::Gold
+				&& (gbIsMultiplayer || (item.iSpell != SPL_RESURRECT && item.iSpell != SPL_HEALOTHER))) {
+
+				for (int j = item.iUMonstDropRate; j > 0 && ri < 512; j--) {
+					ril[ri] = i;
+					ri++;
+				}
+			}
 		}
 	}
-	
+
 	return ril[GenerateRnd(ri)];
 }
 
@@ -3228,20 +3219,18 @@ int RndItem(const Monster &monster)
 		if (!IsItemAvailable(i))
 			continue;
 
-		if (AllItemsList[i].iRnd == IDROP_DOUBLE && monster.mLevel >= AllItemsList[i].iMinMLvl
-		    && ri < 512) {
-			ril[ri] = i;
-			ri++;
-		}
-		if (AllItemsList[i].iRnd != IDROP_NEVER && monster.mLevel >= AllItemsList[i].iMinMLvl
-		    && ri < 512) {
-			ril[ri] = i;
-			ri++;
-		}
-		if (AllItemsList[i].iSpell == SPL_RESURRECT && !gbIsMultiplayer)
-			ri--;
-		if (AllItemsList[i].iSpell == SPL_HEALOTHER && !gbIsMultiplayer)
-			ri--;
+		auto &item = AllItemsList[i];
+
+		if (monster.mLevel >= item.iMinMLvl) {
+			if (!gbIsMultiplayer && (item.iSpell == SPL_RESURRECT || item.iSpell == SPL_HEALOTHER)) {
+				continue;
+			} else {
+				for (int j = AllItemsList[i].iRnd; j > 0 && ri < 512; j--) {
+					ril[ri] = i;
+					ri++;
+				}
+			}
+		}	
 	}
 
 	int r = GenerateRnd(ri);
@@ -4680,6 +4669,7 @@ std::string DebugSpawnItem(std::string itemName)
 		std::uniform_int_distribution<int32_t> dist(0, INT_MAX);
 		SetRndSeed(dist(BetterRng));
 		if (SDL_GetTicks() - begin > max_time)
+			
 			return fmt::format("Item not found in {:d} seconds!", max_time / 1000);
 
 		if (i > max_iter)
