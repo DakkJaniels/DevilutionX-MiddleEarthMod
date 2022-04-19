@@ -1,5 +1,5 @@
 {
-	"name": "DevilutionX-MiddleEarthMod",
+	"name": "devilutionx-middleearthmod",
 	"version-string": "1.3.0",
 	"dependencies": [
 		"fmt",
