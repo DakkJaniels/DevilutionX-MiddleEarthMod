@@ -304,11 +304,11 @@ bool IsPrefixValidForItemType(int i, int flgs)
 
 	/* remove checks */
 	/*if (!gbIsHellfire) {
-		if (i > 82)
-			return false;
+	    if (i > 82)
+	        return false;
 
-		if (i >= 12 && i <= 20)
-			itemTypes &= ~PLT_STAFF;
+	    if (i >= 12 && i <= 20)
+	        itemTypes &= ~PLT_STAFF;
 	}*/
 
 	return (flgs & itemTypes) != 0;
@@ -321,16 +321,16 @@ bool IsSuffixValidForItemType(int i, int flgs)
 	/* remove checks */
 
 	/*if (!gbIsHellfire) {
-		if (i > 94)
-			return false;
+	    if (i > 94)
+	        return false;
 
-		if ((i >= 0 && i <= 1)
-		    || (i >= 14 && i <= 15)
-		    || (i >= 21 && i <= 22)
-		    || (i >= 34 && i <= 36)
-		    || (i >= 41 && i <= 44)
-		    || (i >= 60 && i <= 63))
-			itemTypes &= ~PLT_STAFF;
+	    if ((i >= 0 && i <= 1)
+	        || (i >= 14 && i <= 15)
+	        || (i >= 21 && i <= 22)
+	        || (i >= 34 && i <= 36)
+	        || (i >= 41 && i <= 44)
+	        || (i >= 60 && i <= 63))
+	        itemTypes &= ~PLT_STAFF;
 	}*/
 
 	return (flgs & itemTypes) != 0;
@@ -1042,12 +1042,12 @@ void SaveItemAffix(Item &item, const PLStruct &affix)
 {
 	auto power = affix.power;
 
-	//if (!gbIsHellfire) {
+	// if (!gbIsHellfire) {
 	//	if (power.type == IPL_TARGAC) {
 	//		power.param1 = 1 << power.param1;
 	//		power.param2 = 3 << power.param2;
 	//	}
-	//}
+	// }
 
 	int value = SaveItemPower(item, power);
 
@@ -1280,13 +1280,12 @@ void GetItemBonus(Item &item, int minlvl, int maxlvl, bool onlygood, bool allows
 	if (minlvl > 25)
 		minlvl = 25;
 
-	#ifdef _DEBUG
+#ifdef _DEBUG
 	SDL_Log("Getting Item Bonus:\n");
-	//sprintf(tempstr, fmt::format(_("minlvl: {:d} maxlevel {:d}"), minlvl, maxlvl).c_str());
+	// sprintf(tempstr, fmt::format(_("minlvl: {:d} maxlevel {:d}"), minlvl, maxlvl).c_str());
 	SDL_Log(fmt::format(_("minlvl: {:d} maxlevel {:d}"), minlvl, maxlvl).c_str());
 
-	#endif
-
+#endif
 
 	switch (item._itype) {
 	case ItemType::Sword:
@@ -1331,7 +1330,7 @@ int RndUItem(Monster *monster)
 	int ril[512];
 
 	//#ifdef _DEBUG
-	//if (monster != nullptr) {
+	// if (monster != nullptr) {
 	//	//SDL_Log("Getting RndUItem:\n");
 	//	// sprintf(tempstr, fmt::format(_("minlvl: {:d} maxlevel {:d}"), minlvl, maxlvl).c_str());
 	//	//SDL_Log(fmt::format(_("bilvl: {:d} ailvl {:d}"), monster->mLevel, monster->MData->mLevel).c_str());
@@ -1347,12 +1346,12 @@ int RndUItem(Monster *monster)
 		auto &item = AllItemsList[i];
 
 		if (item.iUMonstDropRate > 0
-			&& (monster != nullptr && monster->mLevel >= item.iMinMLvl)
-			|| (monster == nullptr && 2 * curlv >= item.iMinMLvl)) {
+		        && (monster != nullptr && monster->mLevel >= item.iMinMLvl)
+		    || (monster == nullptr && 2 * curlv >= item.iMinMLvl)) {
 
 			if ((item.itype != ItemType::Misc || item.iMiscId == IMISC_BOOK)
-				&& item.itype != ItemType::Gold
-				&& (gbIsMultiplayer || (item.iSpell != SPL_RESURRECT && item.iSpell != SPL_HEALOTHER))) {
+			    && item.itype != ItemType::Gold
+			    && (gbIsMultiplayer || (item.iSpell != SPL_RESURRECT && item.iSpell != SPL_HEALOTHER))) {
 
 				for (int j = item.iUMonstDropRate; j > 0 && ri < 512; j--) {
 					ril[ri] = i;
@@ -1403,7 +1402,7 @@ int RndTypeItems(ItemType itemType, int imid, int lvl)
 		if (AllItemsList[i].iRnd == IDROP_NEVER)
 			okflag = false;
 		/*if (lvl * 2 < AllItemsList[i].iMinMLvl)
-			okflag = false;*/
+		    okflag = false;*/
 		if (AllItemsList[i].itype != itemType)
 			okflag = false;
 		if (imid != -1 && AllItemsList[i].iMiscId != imid)
@@ -2146,8 +2145,8 @@ void SpawnOnePremium(Item &premiumItem, int plvl, int playerId)
 		GetItemBonus(premiumItem, plvl / 2, plvl, true, !gbIsHellfire);
 
 		if (!gbIsHellfire) {
-			if (premiumItem._iIvalue > 180000) {  // ME Mod higher premium ivalue
-				keepGoing = true; // prevent breaking the do/while loop too early by failing hellfire's condition in while
+			if (premiumItem._iIvalue > 180000) { // ME Mod higher premium ivalue
+				keepGoing = true;                // prevent breaking the do/while loop too early by failing hellfire's condition in while
 				continue;
 			}
 			break;
@@ -2410,31 +2409,29 @@ bool IsItemAvailable(int i)
 	/* mod is Diablo only, and item positions are all moved around
 	getting rid of this stuff*/
 
-	//if (gbIsSpawn) {
+	// if (gbIsSpawn) {
 	//	if (i >= 62 && i <= 71)
 	//		return false; // Medium and heavy armors
 	//	if (IsAnyOf(i, 105, 107, 108, 110, 111, 113))
 	//		return false; // Unavailable scrolls
-	//}
+	// }
 
-
-	//if (gbIsHellfire)
+	// if (gbIsHellfire)
 	//	return true;
 
-	//return (
-	//           i != IDI_MAPOFDOOM                   // Cathedral Map
-	//           && i != IDI_LGTFORGE                 // Bovine Plate
-	//           && (i < IDI_OIL || i > IDI_GREYSUIT) // Hellfire exclusive items
-	//           && (i < 83 || i > 86)                // Oils
-	//           && i != 92                           // Scroll of Search
-	//           && (i < 161 || i > 165)              // Runes
-	//           && i != IDI_SORCERER                 // Short Staff of Mana
-	//           )
-	//    || (
-	//        // Bard items are technically Hellfire-exclusive
-	//        // but are just normal items with adjusted stats.
-	//        *sgOptions.Gameplay.testBard && IsAnyOf(i, IDI_BARDSWORD, IDI_BARDDAGGER));
-
+	// return (
+	//            i != IDI_MAPOFDOOM                   // Cathedral Map
+	//            && i != IDI_LGTFORGE                 // Bovine Plate
+	//            && (i < IDI_OIL || i > IDI_GREYSUIT) // Hellfire exclusive items
+	//            && (i < 83 || i > 86)                // Oils
+	//            && i != 92                           // Scroll of Search
+	//            && (i < 161 || i > 165)              // Runes
+	//            && i != IDI_SORCERER                 // Short Staff of Mana
+	//            )
+	//     || (
+	//         // Bard items are technically Hellfire-exclusive
+	//         // but are just normal items with adjusted stats.
+	//         *sgOptions.Gameplay.testBard && IsAnyOf(i, IDI_BARDSWORD, IDI_BARDDAGGER));
 }
 
 BYTE GetOutlineColor(const Item &item, bool checkReq)
@@ -3205,14 +3202,13 @@ int RndItem(const Monster &monster)
 
 	int ril[512];
 
-	
-	#ifdef _DEBUG
-	
-		SDL_Log("Generating Rnd Item:\n");
-		// sprintf(tempstr, fmt::format(_("minlvl: {:d} maxlevel {:d}"), minlvl, maxlvl).c_str());
-		SDL_Log(fmt::format(_("bilvl: {:d} ailvl {:d}"), monster.mLevel, monster.MData->mLevel).c_str());
-	
-	#endif
+#ifdef _DEBUG
+
+	SDL_Log("Generating Rnd Item:\n");
+	// sprintf(tempstr, fmt::format(_("minlvl: {:d} maxlevel {:d}"), minlvl, maxlvl).c_str());
+	SDL_Log(fmt::format(_("bilvl: {:d} ailvl {:d}"), monster.mLevel, monster.MData->mLevel).c_str());
+
+#endif
 
 	int ri = 0;
 	for (int i = 0; AllItemsList[i].iLoc != ILOC_INVALID; i++) {
@@ -3230,7 +3226,7 @@ int RndItem(const Monster &monster)
 					ri++;
 				}
 			}
-		}	
+		}
 	}
 
 	int r = GenerateRnd(ri);
@@ -3294,7 +3290,7 @@ void SpawnItem(Monster &monster, Point position, bool sendmsg)
 
 	int8_t mLevel = monster.MData->mLevel;
 	/*if (!gbIsHellfire && monster.MType->mtype == MT_DIABLO)
-		mLevel -= 15;*/
+	    mLevel -= 15;*/
 
 	SetupAllItems(item, idx, AdvanceRndSeed(), mLevel, uper, onlygood, false, false);
 
@@ -4669,7 +4665,7 @@ std::string DebugSpawnItem(std::string itemName)
 		std::uniform_int_distribution<int32_t> dist(0, INT_MAX);
 		SetRndSeed(dist(BetterRng));
 		if (SDL_GetTicks() - begin > max_time)
-			
+
 			return fmt::format("Item not found in {:d} seconds!", max_time / 1000);
 
 		if (i > max_iter)

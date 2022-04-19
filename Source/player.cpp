@@ -659,7 +659,6 @@ void InitLevelChange(int pnum)
 		qtextflag = false;
 		stream_stop();
 	}
-	
 
 	RemovePlrFromMap(pnum);
 	SetPlayerOld(player);
@@ -2790,7 +2789,7 @@ void AddPlrExperience(int pnum, int lvl, int exp)
 	uint32_t clampedExp = std::max(static_cast<int>(exp * (1 + (lvl - player._pLevel) / 10.0)), 0);
 
 	//// Prevent power leveling
-	//if (gbIsMultiplayer) {
+	// if (gbIsMultiplayer) {
 	//	const uint32_t clampedPlayerLevel = clamp(static_cast<int>(player._pLevel), 0, 50);
 
 	//	// for low level characters experience gain is capped to 1/20 of current levels xp

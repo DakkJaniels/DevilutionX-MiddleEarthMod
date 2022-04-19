@@ -63,8 +63,6 @@ SDL_RWops *OpenAsset(const char *filename, bool threadsafe)
 	if (OpenMpqFile(filename, &archive, &fileNumber))
 		return SDL_RWops_FromMpqFile(*archive, fileNumber, filename, threadsafe);
 
-
-
 #if defined(__ANDROID__) || defined(__APPLE__)
 	// Fall back to the bundled assets on supported systems.
 	// This is handled by SDL when we pass a relative path.

@@ -515,9 +515,9 @@ void LoadPlayer(LoadHelper &file, Player &player)
 		file.Skip(1);
 		player.pOriginalCathedral = true;
 	}
-	//file.Skip(2); // Available bytes
+	// file.Skip(2); // Available bytes
 	player.wReflections = file.NextLE<uint16_t>();
-	//file.Skip(14); // Available bytes
+	// file.Skip(14); // Available bytes
 	player.wEtherealize = file.NextLE<uint16_t>();
 	player.pDiabloKillLevel = file.NextLE<uint32_t>();
 	player.pDifficulty = static_cast<_difficulty>(file.NextLE<uint32_t>());
@@ -1237,9 +1237,9 @@ void SavePlayer(SaveHelper &file, const Player &player)
 		file.WriteLE<uint8_t>(player.pBattleNet ? 1 : 0);
 	file.WriteLE<uint8_t>(player.pManaShield ? 1 : 0);
 	file.WriteLE<uint8_t>(player.pOriginalCathedral ? 1 : 0);
-	//file.Skip(2); // Available bytes
+	// file.Skip(2); // Available bytes
 	file.WriteLE<uint16_t>(player.wReflections);
-	//file.Skip(14); // Available bytes
+	// file.Skip(14); // Available bytes
 	file.WriteLE<uint16_t>(player.wEtherealize);
 
 	file.WriteLE<uint32_t>(player.pDiabloKillLevel);
@@ -1586,15 +1586,15 @@ void RemoveInvalidItem(Item &item)
 	/*bool isInvalid = !IsItemAvailable(item.IDidx) || !IsUniqueAvailable(item._iUid);
 
 	if (!gbIsHellfire) {
-		isInvalid = isInvalid || (item._itype == ItemType::Staff && GetSpellStaffLevel(item._iSpell) == -1);
-		isInvalid = isInvalid || (item._iMiscId == IMISC_BOOK && GetSpellBookLevel(item._iSpell) == -1);
-		isInvalid = isInvalid || item._iDamAcFlags != 0;
-		isInvalid = isInvalid || item._iPrePower > IPL_LASTDIABLO;
-		isInvalid = isInvalid || item._iSufPower > IPL_LASTDIABLO;
+	    isInvalid = isInvalid || (item._itype == ItemType::Staff && GetSpellStaffLevel(item._iSpell) == -1);
+	    isInvalid = isInvalid || (item._iMiscId == IMISC_BOOK && GetSpellBookLevel(item._iSpell) == -1);
+	    isInvalid = isInvalid || item._iDamAcFlags != 0;
+	    isInvalid = isInvalid || item._iPrePower > IPL_LASTDIABLO;
+	    isInvalid = isInvalid || item._iSufPower > IPL_LASTDIABLO;
 	}
 
 	if (isInvalid) {
-		item._itype = ItemType::None;
+	    item._itype = ItemType::None;
 	}*/
 	return;
 }

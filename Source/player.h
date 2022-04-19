@@ -336,7 +336,6 @@ struct Player {
 	_difficulty pDifficulty;
 	uint32_t pDamAcFlags;
 
-
 	void CalcScrolls();
 
 	bool CanUseItem(const Item &item) const

@@ -560,12 +560,12 @@ void PressChar(char vkey)
 		}
 		return;
 #ifdef _DEBUG
-	/*case 'M':
-		NextDebugMonster();
-		return;
-	case 'm':
-		GetDebugMonster();
-		return;*/
+		/*case 'M':
+		    NextDebugMonster();
+		    return;
+		case 'm':
+		    GetDebugMonster();
+		    return;*/
 #endif
 	}
 }

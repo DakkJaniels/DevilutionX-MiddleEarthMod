@@ -14,7 +14,6 @@
 #ifdef _DEBUG
 #include "debug.h"
 #endif
-#include <fmt/format.h>
 #include "engine/cel_header.hpp"
 #include "engine/load_file.hpp"
 #include "engine/random.hpp"
@@ -24,6 +23,7 @@
 #include "monster.h"
 #include "spells.h"
 #include "trigs.h"
+#include <fmt/format.h>
 
 namespace devilution {
 
@@ -276,7 +276,7 @@ bool MonsterMHit(int pnum, int m, int mindam, int maxdam, int dist, missile_id t
 
 	// ME Mod did not have missiles stop monster heal
 	/*if (((player._pIFlags & ISPL_NOHEALMON) != 0) || ((player._pIFlags & ISPL_FIRE_ARROWS) != 0))
-		monster._mFlags |= MFLAG_NOHEAL;*/
+	    monster._mFlags |= MFLAG_NOHEAL;*/
 
 	if (monster._mhitpoints >> 6 <= 0) {
 		if (monster._mmode == MonsterMode::Petrified) {
@@ -1061,7 +1061,7 @@ bool PlayerMHit(int pnum, Monster *monster, int dist, int mind, int maxd, missil
 		if (monster != nullptr) {
 			hper = monster->mHit
 			    + ((monster->mLevel - player._pLevel) * 2)
-			    + 50	// ME Mod modification (from 30)
+			    + 50 // ME Mod modification (from 30)
 			    - (dist * 2) - tac;
 		} else {
 			hper = 100 - (tac / 2) - (dist * 2);
@@ -2084,7 +2084,7 @@ void AddManashield(Missile &missile, const AddMissileParameter & /*parameter*/)
 		UseMana(missile._misource, SPL_MANASHIELD);
 }
 
- void AddEtherealize(Missile &missile, const AddMissileParameter &parameter)
+void AddEtherealize(Missile &missile, const AddMissileParameter &parameter)
 {
 
 	missile._miDelFlag = true;
@@ -2096,12 +2096,12 @@ void AddManashield(Missile &missile, const AddMissileParameter & /*parameter*/)
 	uint16_t duration;
 	/* Set the Duration for the Spell */
 	duration = 16 * player._pLevel >> 1;
-	
+
 	for (int i = missile._mispllvl; i > 0; i--) {
 		duration += duration >> 3;
 	}
 
-	//duration += duration * player._pISplDur >> 7;
+	// duration += duration * player._pISplDur >> 7;
 
 	/* Save player current hitpoints (why?) */
 	/*missile.var1 = player._pHitPoints;
@@ -2109,15 +2109,14 @@ void AddManashield(Missile &missile, const AddMissileParameter & /*parameter*/)
 
 	player.wEtherealize = duration;
 	player._pSpellFlags |= 1;
-	
 
 	if (missile._misource == MyPlayerId) {
 		NetSendCmdParam1(true, CMD_SETETHEREALIZE, player.wEtherealize);
 	}
-	
+
 	if (missile._micaster == TARGET_MONSTERS)
 		UseMana(missile._misource, SPL_ETHEREALIZE);
- }
+}
 
 void AddFiremove(Missile &missile, const AddMissileParameter &parameter)
 {
@@ -2309,10 +2308,10 @@ void AddStone(Missile &missile, const AddMissileParameter &parameter)
 		    if (monster._mAi >= AI_DIABLO)
 			    return false;
 
-			/* set up stone curse immunity for specific monsters */
-			if ((monster.mMagicRes & IMMUNE_SC) != 0) {
+		    /* set up stone curse immunity for specific monsters */
+		    if ((monster.mMagicRes & IMMUNE_SC) != 0) {
 			    return false;
-			}
+		    }
 		    if (IsAnyOf(monster._mmode, MonsterMode::FadeIn, MonsterMode::FadeOut, MonsterMode::Charge)) {
 			    return false;
 		    }
@@ -3535,10 +3534,9 @@ void MI_Chain(Missile &missile)
 	AddMissile(position, dst, dir, MIS_LIGHTCTRL, TARGET_MONSTERS, id, 1, missile._mispllvl);
 	int rad = 17; // basically changed to static radius in ME Mod (from variable based on spell level, up to 19 max)
 
-				  //missile._mispllvl + 3;
-	//if (rad > 17)	// reduced in ME Mod (from 19)
+	// missile._mispllvl + 3;
+	// if (rad > 17)	// reduced in ME Mod (from 19)
 	//	rad = 17;
-
 
 	for (int i = 1; i < rad; i++) {
 		int k = CrawlNum[i];
@@ -4092,15 +4090,15 @@ void ProcessEtherealize()
 		// reduce Etherealize duration
 		myPlayer.wEtherealize--;
 
-		#ifdef _DEBUG
+#ifdef _DEBUG
 		int duration_remaining = myPlayer.wEtherealize;
 		int remainder = duration_remaining % 20;
 
 		if (remainder == 0) {
 			duration_remaining /= 20;
 			SDL_Log(fmt::format(("Etherealize Time Remaining: {:d} seconds"), duration_remaining).c_str());
-		}	
-		#endif
+		}
+#endif
 
 		// If duration over
 		if (myPlayer.wEtherealize == 0 || myPlayer._pHitPoints <= 0) {

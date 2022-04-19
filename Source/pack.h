@@ -69,9 +69,9 @@ struct PlayerPack {
 	int8_t bIsHellfire;
 	int8_t bReserved; // For future use
 	uint16_t wReflections;
-	uint16_t wEtherealize;  // For future use
-	int8_t pSplLvl2[10]; // Hellfire spells
-	int16_t wReserved8;  // For future use
+	uint16_t wEtherealize; // For future use
+	int8_t pSplLvl2[10];   // Hellfire spells
+	int16_t wReserved8;    // For future use
 	uint32_t pDiabloKillLevel;
 	uint32_t pDifficulty;
 	uint32_t pDamAcFlags;

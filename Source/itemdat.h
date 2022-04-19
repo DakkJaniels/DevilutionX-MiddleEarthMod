@@ -671,7 +671,6 @@ struct ItemPanelData {
 	const char *PanelText;
 };
 
-
 extern ItemPanelData ItemPanelList[];
 extern ItemData AllItemsList[];
 extern const PLStruct ItemPrefixes[];
