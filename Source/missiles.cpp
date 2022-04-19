@@ -4090,16 +4090,6 @@ void ProcessEtherealize()
 		// reduce Etherealize duration
 		myPlayer.wEtherealize--;
 
-#ifdef _DEBUG
-		int duration_remaining = myPlayer.wEtherealize;
-		int remainder = duration_remaining % 20;
-
-		if (remainder == 0) {
-			duration_remaining /= 20;
-			SDL_Log(fmt::format(("Etherealize Time Remaining: {:d} seconds"), duration_remaining).c_str());
-		}
-#endif
-
 		// If duration over
 		if (myPlayer.wEtherealize == 0 || myPlayer._pHitPoints <= 0) {
 			myPlayer._pSpellFlags &= ~0x1;
