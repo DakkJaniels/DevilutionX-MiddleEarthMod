@@ -634,14 +634,13 @@ std::string DebugCmdSpawnMonster(const string_view parameter)
 				continue;
 			if (!IsTileWalkable(pos))
 				continue;
-			if (isUnique){
+			if (isUnique) {
 				PlaceUniqueMonst(uniqueidx, mtype, 0, pos.x, pos.y);
 			} else {
 				if (AddMonster(pos, myPlayer._pdir, id, true) < 0)
 					return fmt::format("I could only summon {} Monsters. The rest strike for shorter working hours.", spawnedMonster);
 			}
 
-			
 			spawnedMonster += 1;
 
 			if (spawnedMonster >= count)

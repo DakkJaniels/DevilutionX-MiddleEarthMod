@@ -25,7 +25,7 @@
 #include "init.h"
 #include "inv.h"
 #include "inv_iterators.hpp"
-#include "itemdat.h"				/* added to grab the item panel data*/
+#include "itemdat.h" /* added to grab the item panel data*/
 #include "lighting.h"
 #include "minitext.h"
 #include "missiles.h"
