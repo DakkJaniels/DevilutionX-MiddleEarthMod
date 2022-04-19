@@ -67,7 +67,7 @@ enum _item_indexes : int16_t { // TODO defines all indexes in AllItemsList
 	IDI_GREYSUIT,
 	IDI_SORCERER_DIABLO = IDI_SORCERER,
 
-	IDI_LAST = 156,
+	IDI_LAST = 155,
 	IDI_NONE = -1,
 };
 
@@ -496,7 +496,9 @@ enum item_misc_id : int8_t {
 };
 
 struct ItemData {
-	enum item_drop_rate iRnd;
+	uint8_t iRnd;
+	uint8_t iMonstDropRate;
+	uint8_t iUMonstDropRate;
 	enum item_class iClass;
 	enum item_equip_type iLoc;
 	enum item_cursor_graphic iCurs;
@@ -668,7 +670,6 @@ struct ItemPanelData {
 	uint8_t ItemIdx;
 	const char *PanelText;
 };
-
 
 extern ItemPanelData ItemPanelList[];
 extern ItemData AllItemsList[];

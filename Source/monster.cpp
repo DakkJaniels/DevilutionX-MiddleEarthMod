@@ -214,8 +214,8 @@ void InitMonster(Monster &monster, Direction rd, int mtype, Point position)
 		monster._mmaxhp = 4 * monster._mmaxhp;
 		if (gbIsHellfire)
 			monster._mmaxhp += (gbIsMultiplayer ? 100 : 50) << 6;
-	/*	else
-			monster._mmaxhp += 64;*/
+		/*	else
+		        monster._mmaxhp += 64;*/
 		monster._mhitpoints = monster._mmaxhp;
 		monster.mLevel += 15;
 		monster.mExp = 2 * (monster.mExp + 1000);
@@ -360,8 +360,6 @@ void PlaceGroup(int mtype, int num, UniqueMonsterPack uniqueMonsterPack, int lea
 		leader.packsize = placed;
 	}
 }
-
-
 
 int AddMonsterType(_monster_id type, placeflag placeflag)
 {
@@ -825,37 +823,37 @@ void StartEating(Monster &monster)
 
 void DiabloDeath(Monster &diablo, bool sendmsg)
 {
-	PlaySFX(USFX_DIABLOD);
-//	auto &quest = Quests[Q_DIABLO];
-//	quest._qactive = QUEST_DONE;
-//	if (sendmsg)
-//		NetSendCmdQuest(true, quest);
-//	sgbSaveSoundOn = gbSoundOn;
-//	gbProcessPlayers = false;
-//	for (int j = 0; j < ActiveMonsterCount; j++) {
-//		int k = ActiveMonsters[j];
-//		auto &monster = Monsters[k];
-//		if (monster.MType->mtype == MT_DIABLO || diablo._msquelch == 0)
-//			continue;
-//
-//		NewMonsterAnim(monster, MonsterGraphic::Death, monster._mdir);
-//		monster._mmode = MonsterMode::Death;
-//		monster.position.offset = { 0, 0 };
-//		monster._mVar1 = 0;
-//		monster.position.tile = monster.position.old;
-//		monster.position.future = monster.position.tile;
-//		M_ClearSquares(k);
-//		dMonster[monster.position.tile.x][monster.position.tile.y] = k + 1;
-//	}
-//	AddLight(diablo.position.tile, 8);
-//	DoVision(diablo.position.tile, 8, MAP_EXP_NONE, true);
-//	int dist = diablo.position.tile.WalkingDistance(ViewPosition);
-//	if (dist > 20)
-//		dist = 20;
-//	diablo._mVar3 = ViewPosition.x << 16;
-//	diablo.position.temp.x = ViewPosition.y << 16;
-//	diablo.position.temp.y = (int)((diablo._mVar3 - (diablo.position.tile.x << 16)) / (double)dist);
-//	diablo.position.offset2.deltaX = (int)((diablo.position.temp.x - (diablo.position.tile.y << 16)) / (double)dist);
+	//	PlaySFX(USFX_DIABLOD);
+	//	auto &quest = Quests[Q_DIABLO];
+	//	quest._qactive = QUEST_DONE;
+	//	if (sendmsg)
+	//		NetSendCmdQuest(true, quest);
+	//	sgbSaveSoundOn = gbSoundOn;
+	//	gbProcessPlayers = false;
+	//	for (int j = 0; j < ActiveMonsterCount; j++) {
+	//		int k = ActiveMonsters[j];
+	//		auto &monster = Monsters[k];
+	//		if (monster.MType->mtype == MT_DIABLO || diablo._msquelch == 0)
+	//			continue;
+	//
+	//		NewMonsterAnim(monster, MonsterGraphic::Death, monster._mdir);
+	//		monster._mmode = MonsterMode::Death;
+	//		monster.position.offset = { 0, 0 };
+	//		monster._mVar1 = 0;
+	//		monster.position.tile = monster.position.old;
+	//		monster.position.future = monster.position.tile;
+	//		M_ClearSquares(k);
+	//		dMonster[monster.position.tile.x][monster.position.tile.y] = k + 1;
+	//	}
+	//	AddLight(diablo.position.tile, 8);
+	//	DoVision(diablo.position.tile, 8, MAP_EXP_NONE, true);
+	//	int dist = diablo.position.tile.WalkingDistance(ViewPosition);
+	//	if (dist > 20)
+	//		dist = 20;
+	//	diablo._mVar3 = ViewPosition.x << 16;
+	//	diablo.position.temp.x = ViewPosition.y << 16;
+	//	diablo.position.temp.y = (int)((diablo._mVar3 - (diablo.position.tile.x << 16)) / (double)dist);
+	//	diablo.position.offset2.deltaX = (int)((diablo.position.temp.x - (diablo.position.tile.y << 16)) / (double)dist);
 }
 
 void SpawnLoot(Monster &monster, bool sendmsg)
@@ -866,22 +864,22 @@ void SpawnLoot(Monster &monster, bool sendmsg)
 		/* not applicable for ME Mod*/
 		/*} else if (monster._uniqtype - 1 == UMT_DEFILER) {
 		if (effect_is_playing(USFX_DEFILER8))
-			stream_stop();
+		    stream_stop();
 		Quests[Q_DEFILER]._qlog = false;
 		SpawnMapOfDoom(monster.position.tile);
 	} else if (monster._uniqtype - 1 == UMT_HORKDMN) {
 		if (sgGameInitInfo.bTheoQuest != 0) {
-			SpawnTheodore(monster.position.tile);
+		    SpawnTheodore(monster.position.tile);
 		} else {
-			CreateAmulet(monster.position.tile, 13, sendmsg, false);
+		    CreateAmulet(monster.position.tile, 13, sendmsg, false);
 		}
 	} else if (monster.MType->mtype == MT_HORKSPWN) {
 	} else if (monster.MType->mtype == MT_NAKRUL) {
 		int nSFX = IsUberRoomOpened ? USFX_NAKRUL4 : USFX_NAKRUL5;
 		if (sgGameInitInfo.bCowQuest != 0)
-			nSFX = USFX_NAKRUL6;
+		    nSFX = USFX_NAKRUL6;
 		if (effect_is_playing(nSFX))
-			stream_stop();
+		    stream_stop();
 		Quests[Q_NAKRUL]._qlog = false;
 		UberDiabloMonsterIndex = -2;
 		CreateMagicWeapon(monster.position.tile, ItemType::Sword, ICURS_GREAT_SWORD, sendmsg, false);
@@ -983,10 +981,9 @@ void StartMonsterDeath(int i, int pnum, bool sendmsg)
 	monster._mhitpoints = 0;
 	SetRndSeed(monster._mRndSeed);
 	SpawnLoot(monster, sendmsg);
-	if (monster.MType->mtype == MT_DIABLO)
-		DiabloDeath(monster, true);
-	else
-		PlayEffect(monster, 2);
+	/*if (monster.MType->mtype == MT_DIABLO)
+	    DiabloDeath(monster, true);*/
+	PlayEffect(monster, 2);
 
 	Direction md = pnum >= 0 ? GetMonsterDirection(monster) : monster._mdir;
 	NewMonsterAnim(monster, MonsterGraphic::Death, md, gGameLogicStep < GameLogicStep::ProcessMonsters ? AnimationDistributionFlags::ProcessAnimationPending : AnimationDistributionFlags::None);
@@ -1242,7 +1239,7 @@ void MonsterAttackPlayer(int i, int pnum, int hit, int minDam, int maxDam)
 	if ((player.pDamAcFlags & ISPLHF_ACUNDEAD) != 0 && monster.MData->mMonstClass == MonsterClass::Undead)
 		ac += 20;
 	hit += 2 * (monster.mLevel - player._pLevel)
-	    + 30
+	    + 50 // modified in ME Mod
 	    - ac;
 	int minhit = 10;
 	if (currlevel == 14)
@@ -1255,6 +1252,8 @@ void MonsterAttackPlayer(int i, int pnum, int hit, int minDam, int maxDam)
 	int blkper = 100;
 	if ((player._pmode == PM_STAND || player._pmode == PM_ATTACK) && player._pBlockFlag) {
 		blkper = GenerateRnd(100);
+		if (blkper < monster.mLevel >> 1) // something from ME Mod, I don't really get it
+			blkper = 100;
 	}
 	int blk = player.GetBlockChance() - (monster.mLevel * 2);
 	blk = clamp(blk, 0, 90); /* max block reduced to 90% in ME Mod*/
@@ -1273,18 +1272,18 @@ void MonsterAttackPlayer(int i, int pnum, int hit, int minDam, int maxDam)
 
 	/* eliminate */
 	/*if (monster.MType->mtype == MT_INVALID && pnum == MyPlayerId) {
-		if (player._pMaxHP > 64) {
-			if (player._pMaxHPBase > 64) {
-				player._pMaxHP -= 64;
-				if (player._pHitPoints > player._pMaxHP) {
-					player._pHitPoints = player._pMaxHP;
-				}
-				player._pMaxHPBase -= 64;
-				if (player._pHPBase > player._pMaxHPBase) {
-					player._pHPBase = player._pMaxHPBase;
-				}
-			}
-		}
+	    if (player._pMaxHP > 64) {
+	        if (player._pMaxHPBase > 64) {
+	            player._pMaxHP -= 64;
+	            if (player._pHitPoints > player._pMaxHP) {
+	                player._pHitPoints = player._pMaxHP;
+	            }
+	            player._pMaxHPBase -= 64;
+	            if (player._pHPBase > player._pMaxHPBase) {
+	                player._pHPBase = player._pMaxHPBase;
+	            }
+	        }
+	    }
 	}*/
 	int dam = (minDam << 6) + GenerateRnd(((maxDam - minDam) << 6) + 1);
 	dam = std::max(dam + (player._pIGetHit << 6), 64);
@@ -1583,21 +1582,22 @@ bool MonsterDeath(int i)
 
 	monster._mVar1++;
 	/*if (monster.MType->mtype == MT_DIABLO) {
-		if (monster.position.tile.x < ViewPosition.x) {
-			ViewPosition.x--;
-		} else if (monster.position.tile.x > ViewPosition.x) {
-			ViewPosition.x++;
-		}
+	    if (monster.position.tile.x < ViewPosition.x) {
+	        ViewPosition.x--;
+	    } else if (monster.position.tile.x > ViewPosition.x) {
+	        ViewPosition.x++;
+	    }
 
-		if (monster.position.tile.y < ViewPosition.y) {
-			ViewPosition.y--;
-		} else if (monster.position.tile.y > ViewPosition.y) {
-			ViewPosition.y++;
-		}
+	    if (monster.position.tile.y < ViewPosition.y) {
+	        ViewPosition.y--;
+	    } else if (monster.position.tile.y > ViewPosition.y) {
+	        ViewPosition.y++;
+	    }
 
-		if (monster._mVar1 == 140)
-			PrepDoEnding();
-	} else*/ if (monster.AnimInfo.CurrentFrame == monster.AnimInfo.NumberOfFrames) {
+	    if (monster._mVar1 == 140)
+	        PrepDoEnding();
+	} else*/
+	if (monster.AnimInfo.CurrentFrame == monster.AnimInfo.NumberOfFrames) {
 		if (monster._uniqtype == 0)
 			AddCorpse(monster.position.tile, monster.MType->mdeadval, monster._mdir);
 		else
@@ -2630,7 +2630,7 @@ void ButcherAi(int i)
 
 void SuccubusAi(int i)
 {
-	AiRanged(i, MIS_FLARE, false);
+	AiRanged(i, MIS_BSTAR, false);
 }
 
 void SneakAi(int i)
@@ -3345,7 +3345,6 @@ bool IsRelativeMoveOK(const Monster &monster, Point position, Direction mdir)
 
 } // namespace
 
-
 void PlaceUniqueMonst(int uniqindex, int miniontype, int bosspacksize, int dx /* =0 */, int dy /* =0 */)
 {
 	auto &monster = Monsters[ActiveMonsterCount];
@@ -3567,7 +3566,7 @@ void PlaceUniqueMonst(int uniqindex, int miniontype, int bosspacksize, int dx /*
 
 	ActiveMonsterCount++;
 
-	if ((dx != 0 && dy != 0)  && uniqueMonsterData.monsterPack != UniqueMonsterPack::None) {
+	if ((dx != 0 && dy != 0) && uniqueMonsterData.monsterPack != UniqueMonsterPack::None) {
 		PlaceGroup(miniontype, bosspacksize, uniqueMonsterData.monsterPack, ActiveMonsterCount - 1);
 	}
 
@@ -3623,10 +3622,10 @@ void GetLevelMTypes()
 
 	AddMonsterType(MT_GOLEM, PLACE_SPECIAL);
 	if (currlevel == 16) {
-		//AddMonsterType(MT_ADVOCATE, PLACE_SCATTER);
-		//AddMonsterType(MT_RBLACK, PLACE_SCATTER);
+		// AddMonsterType(MT_ADVOCATE, PLACE_SCATTER);
+		// AddMonsterType(MT_RBLACK, PLACE_SCATTER);
 		AddMonsterType(MT_DIABLO, PLACE_SPECIAL);
-		//return;
+		// return;
 	}
 
 	if (currlevel == 18)
@@ -3688,9 +3687,9 @@ void GetLevelMTypes()
 			}
 		}
 
-		while (nt > 0 && LevelMonsterTypeCount < MAX_LVLMTYPES && monstimgtot < 4000) {
+		while (nt > 0 && LevelMonsterTypeCount < MAX_LVLMTYPES && monstimgtot < 4050) {
 			for (int i = 0; i < nt;) {
-				if (MonstersData[typelist[i]].mImage > 4000 - monstimgtot) {
+				if (MonstersData[typelist[i]].mImage > 4050 - monstimgtot) {
 					typelist[i] = typelist[--nt];
 					continue;
 				}
@@ -3750,8 +3749,8 @@ void InitMonsterGFX(int monst)
 	LevelMonsterTypes[monst].mMinHP = MonstersData[mtype].mMinHP;
 	LevelMonsterTypes[monst].mMaxHP = MonstersData[mtype].mMaxHP;
 	/*if (!gbIsHellfire && mtype == MT_DIABLO) {
-		LevelMonsterTypes[monst].mMinHP -= 2000;
-		LevelMonsterTypes[monst].mMaxHP -= 2000;
+	    LevelMonsterTypes[monst].mMinHP -= 2000;
+	    LevelMonsterTypes[monst].mMaxHP -= 2000;
 	}*/
 	LevelMonsterTypes[monst].mAFNum = MonstersData[mtype].mAFNum;
 	LevelMonsterTypes[monst].MData = &MonstersData[mtype];
@@ -4157,7 +4156,7 @@ void PrepDoEnding()
 	myPlayer.pDiabloKillLevel = std::max(myPlayer.pDiabloKillLevel, static_cast<uint8_t>(sgGameInitInfo.nDifficulty + 1));
 
 	/* Disable Diablo kill from ending game */
-	//for (auto &player : Players) {
+	// for (auto &player : Players) {
 	//	player._pmode = PM_QUIT;
 	//	player._pInvincible = true;
 	//	if (gbIsMultiplayer) {
@@ -4166,7 +4165,7 @@ void PrepDoEnding()
 	//		if (player._pMana >> 6 == 0)
 	//			player._pMana = 64;
 	//	}
-	//}
+	// }
 }
 
 void M_WalkDir(int i, Direction md)

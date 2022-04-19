@@ -1912,7 +1912,6 @@ DWORD OnSetEtherealize(const TCmd *pCmd, Player &player)
 			player.wEtherealize = 0;
 			player._pSpellFlags &= ~0x1;
 		}
-
 	}
 
 	return sizeof(message);

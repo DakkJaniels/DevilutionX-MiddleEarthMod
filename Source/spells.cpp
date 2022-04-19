@@ -341,7 +341,7 @@ int GetSpellBookLevel(spell_id s)
 		case SPL_GUARDIAN:
 		case SPL_GOLEM:
 		case SPL_ELEMENT:
-		case SPL_FLARE:
+		case SPL_BSTAR:
 		case SPL_BONESPIRIT:
 			return -1;
 		default:
@@ -373,7 +373,7 @@ int GetSpellStaffLevel(spell_id s)
 		case SPL_GOLEM:
 		case SPL_APOCA:
 		case SPL_ELEMENT:
-		case SPL_FLARE:
+		case SPL_BSTAR:
 		case SPL_BONESPIRIT:
 			return -1;
 		default:
