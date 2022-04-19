@@ -1280,13 +1280,6 @@ void GetItemBonus(Item &item, int minlvl, int maxlvl, bool onlygood, bool allows
 	if (minlvl > 25)
 		minlvl = 25;
 
-#ifdef _DEBUG
-	SDL_Log("Getting Item Bonus:\n");
-	// sprintf(tempstr, fmt::format(_("minlvl: {:d} maxlevel {:d}"), minlvl, maxlvl).c_str());
-	SDL_Log(fmt::format(_("minlvl: {:d} maxlevel {:d}"), minlvl, maxlvl).c_str());
-
-#endif
-
 	switch (item._itype) {
 	case ItemType::Sword:
 	case ItemType::Axe:
@@ -1328,14 +1321,6 @@ int RndUItem(Monster *monster)
 		return -((monster->MData->mTreasure & T_MASK) + 1);
 
 	int ril[512];
-
-	//#ifdef _DEBUG
-	// if (monster != nullptr) {
-	//	//SDL_Log("Getting RndUItem:\n");
-	//	// sprintf(tempstr, fmt::format(_("minlvl: {:d} maxlevel {:d}"), minlvl, maxlvl).c_str());
-	//	//SDL_Log(fmt::format(_("bilvl: {:d} ailvl {:d}"), monster->mLevel, monster->MData->mLevel).c_str());
-	//}
-	//#endif
 
 	int curlv = ItemsGetCurrlevel();
 	int ri = 0;
@@ -3201,14 +3186,6 @@ int RndItem(const Monster &monster)
 		return IDI_GOLD + 1;
 
 	int ril[512];
-
-#ifdef _DEBUG
-
-	SDL_Log("Generating Rnd Item:\n");
-	// sprintf(tempstr, fmt::format(_("minlvl: {:d} maxlevel {:d}"), minlvl, maxlvl).c_str());
-	SDL_Log(fmt::format(_("bilvl: {:d} ailvl {:d}"), monster.mLevel, monster.MData->mLevel).c_str());
-
-#endif
 
 	int ri = 0;
 	for (int i = 0; AllItemsList[i].iLoc != ILOC_INVALID; i++) {
