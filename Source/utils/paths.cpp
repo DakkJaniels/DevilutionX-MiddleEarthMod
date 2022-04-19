@@ -62,7 +62,7 @@ const std::string &PrefPath()
 {
 	if (!prefPath) {
 #ifndef __IPHONEOS__
-		prefPath = FromSDL(SDL_GetPrefPath("diasurgical", "devilution"));
+		prefPath = FromSDL(SDL_GetPrefPath("Diablo", "MiddleEarth"));
 		if (FileExistsAndIsWriteable("diablo.ini")) {
 			prefPath = std::string("./");
 		}
@@ -77,7 +77,7 @@ const std::string &ConfigPath()
 {
 	if (!configPath) {
 #ifndef __IPHONEOS__
-		configPath = FromSDL(SDL_GetPrefPath("diasurgical", "devilution"));
+		configPath = FromSDL(SDL_GetPrefPath("Diablo", "MiddleEarth"));
 		if (FileExistsAndIsWriteable("diablo.ini")) {
 			configPath = std::string("./");
 		}
