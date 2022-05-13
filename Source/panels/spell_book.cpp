@@ -17,16 +17,16 @@
 #include "utils/language.h"
 #include "utils/stdcompat/optional.hpp"
 
-#define SPLICONLAST (gbIsHellfire ? 52 : 43)
+#define SPLICONLAST (gbIsHellfire ? 51 : 42)
 
 namespace devilution {
 
-std::optional<CelSprite> pSBkIconCels;
+std::optional<OwnedCelSprite> pSBkIconCels;
 
 namespace {
 
-std::optional<CelSprite> pSBkBtnCel;
-std::optional<CelSprite> pSpellBkCel;
+std::optional<OwnedCelSprite> pSBkBtnCel;
+std::optional<OwnedCelSprite> pSpellBkCel;
 
 /** Maps from spellbook page number and position to spell_id. */
 spell_id SpellPages[6][7] = {
@@ -85,7 +85,7 @@ void InitSpellBook()
 	pSpellBkCel = LoadCel("Data\\SpellBk.CEL", SPANEL_WIDTH);
 
 	if (gbIsHellfire) {
-		static const int SBkBtnHellfireWidths[] = { 0, 61, 61, 61, 61, 61, 76 };
+		static const uint16_t SBkBtnHellfireWidths[] = { 61, 61, 61, 61, 61, 76 };
 		pSBkBtnCel = LoadCel("Data\\SpellBkB.CEL", SBkBtnHellfireWidths);
 	} else {
 		pSBkBtnCel = LoadCel("Data\\SpellBkB.CEL", 76);
@@ -117,16 +117,16 @@ void FreeSpellBook()
 
 void DrawSpellBook(const Surface &out)
 {
-	CelDrawTo(out, GetPanelPosition(UiPanels::Spell, { 0, 351 }), *pSpellBkCel, 1);
+	CelDrawTo(out, GetPanelPosition(UiPanels::Spell, { 0, 351 }), *pSpellBkCel, 0);
 	if (gbIsHellfire && sbooktab < 5) {
-		CelDrawTo(out, GetPanelPosition(UiPanels::Spell, { 61 * sbooktab + 7, 348 }), *pSBkBtnCel, sbooktab + 1);
+		CelDrawTo(out, GetPanelPosition(UiPanels::Spell, { 61 * sbooktab + 7, 348 }), *pSBkBtnCel, sbooktab);
 	} else {
 		// BUGFIX: rendering of page 3 and page 4 buttons are both off-by-one pixel (fixed).
 		int sx = 76 * sbooktab + 7;
 		if (sbooktab == 2 || sbooktab == 3) {
 			sx++;
 		}
-		CelDrawTo(out, GetPanelPosition(UiPanels::Spell, { sx, 348 }), *pSBkBtnCel, sbooktab + 1);
+		CelDrawTo(out, GetPanelPosition(UiPanels::Spell, { sx, 348 }), *pSBkBtnCel, sbooktab);
 	}
 	auto &player = Players[MyPlayerId];
 	uint64_t spl = player._pMemSpells | player._pISpells | player._pAblSpells;

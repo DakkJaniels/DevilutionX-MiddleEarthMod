@@ -15,7 +15,7 @@ namespace devilution {
 /** Data related to each missile ID. */
 MissileData MissilesData[] = {
 	// clang-format off
-	// mAddProc,                   mProc,              mName,             mDraw, mType, mResist,        mFileNum,        miSFX,       mlSFX,       MovementDistribution;
+	// mAddProc,                   mProc,              mName,             mDraw, mType, mResist,        mFileNum,        mlSFX,       miSFX,       MovementDistribution;
 	{  &AddArrow,                  &MI_Arrow,          MIS_ARROW,         true,      0, MISR_NONE,      MFILE_ARROWS,    SFX_NONE,    SFX_NONE,    MissileMovementDistrubution::Blockable   },
 	{  &AddFirebolt,               &MI_Firebolt,       MIS_FIREBOLT,      true,      1, MISR_FIRE,      MFILE_FIREBA,    LS_FBOLT1,   LS_FIRIMP2,  MissileMovementDistrubution::Blockable   },
 	{  &AddGuardian,               &MI_Guardian,       MIS_GUARDIAN,      true,      1, MISR_NONE,      MFILE_GUARD,     LS_GUARD,    LS_GUARDLAN, MissileMovementDistrubution::Disabled    },
@@ -217,7 +217,7 @@ std::array<T, 16> maybeAutofill(std::initializer_list<T> list)
 
 MissileFileData::MissileFileData(string_view name, uint8_t animName, uint8_t animFAmt, MissileDataFlags flags,
     std::initializer_list<uint8_t> animDelay, std::initializer_list<uint8_t> animLen,
-    int16_t animWidth, int16_t animWidth2)
+    uint16_t animWidth, int16_t animWidth2)
     : name(name)
     , animName(animName)
     , animFAmt(animFAmt)

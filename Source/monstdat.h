@@ -307,8 +307,8 @@ struct UniqueMonsterData {
 	 */
 
 	UniqueMonsterPack monsterPack;
-	uint8_t customToHit; // not really used here
-	uint8_t customAC;    // not really used here
+	uint8_t customToHit;      // not really used here
+	uint8_t customArmorClass; // not really used here
 	uint8_t mlevelNorm;
 	uint8_t mlevelNM;
 	uint8_t mlevelHell;

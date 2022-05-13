@@ -19,6 +19,7 @@
 #include "options.h"
 #include "pfile.h"
 #include "plrmsg.h"
+#include "qol/chatlog.h"
 #include "storm/storm_net.hpp"
 #include "sync.h"
 #include "tmsg.h"
@@ -76,7 +77,7 @@ void BufferInit(TBuffer *pBuf)
 	pBuf->bData[0] = byte { 0 };
 }
 
-void CopyPacket(TBuffer *buf, const byte *packet, uint8_t size)
+void CopyPacket(TBuffer *buf, const byte *packet, size_t size)
 {
 	if (buf->dwNextWriteOffset + size + 2 > 0x1000) {
 		return;
@@ -107,7 +108,7 @@ byte *ReceivePacket(TBuffer *pBuf, byte *body, size_t *size)
 			*size -= chunkSize;
 		}
 		memcpy(pBuf->bData, srcPtr, (pBuf->bData - srcPtr) + pBuf->dwNextWriteOffset + 1);
-		pBuf->dwNextWriteOffset += (pBuf->bData - srcPtr);
+		pBuf->dwNextWriteOffset += static_cast<uint32_t>(pBuf->bData - srcPtr);
 		return body;
 	}
 	return body;
@@ -125,6 +126,8 @@ void NetReceivePlayerData(TPkt *pkt)
 	pkt->hdr.targy = target.y;
 	pkt->hdr.php = myPlayer._pHitPoints;
 	pkt->hdr.pmhp = myPlayer._pMaxHP;
+	pkt->hdr.mana = myPlayer._pMana;
+	pkt->hdr.maxmana = myPlayer._pMaxMana;
 	pkt->hdr.bstr = myPlayer._pBaseStr;
 	pkt->hdr.bmag = myPlayer._pBaseMag;
 	pkt->hdr.bdex = myPlayer._pBaseDex;
@@ -135,7 +138,7 @@ void SendPacket(int playerId, const byte *packet, size_t size)
 	TPkt pkt;
 
 	NetReceivePlayerData(&pkt);
-	pkt.hdr.wLen = size + sizeof(pkt.hdr);
+	pkt.hdr.wLen = static_cast<uint16_t>(size + sizeof(pkt.hdr));
 	memcpy(pkt.body, packet, size);
 	if (!SNetSendMessage(playerId, &pkt.hdr, pkt.hdr.wLen))
 		nthread_terminate_game("SNetSendMessage0");
@@ -144,9 +147,9 @@ void SendPacket(int playerId, const byte *packet, size_t size)
 void MonsterSeeds()
 {
 	sgdwGameLoops++;
-	uint32_t l = (sgdwGameLoops >> 8) | (sgdwGameLoops << 24); // _rotr(sgdwGameLoops, 8)
+	const uint32_t seed = (sgdwGameLoops >> 8) | (sgdwGameLoops << 24); // _rotr(sgdwGameLoops, 8)
 	for (int i = 0; i < MAXMONSTERS; i++)
-		Monsters[i]._mAISeed = l + i;
+		Monsters[i]._mAISeed = seed + i;
 }
 
 void HandleTurnUpperBit(int pnum)
@@ -192,7 +195,7 @@ void PlayerLeftMsg(int pnum, bool left)
 	delta_close_portal(pnum);
 	RemovePlrMissiles(pnum);
 	if (left) {
-		const char *pszFmt = _("Player '{:s}' just left the game");
+		string_view pszFmt = _("Player '{:s}' just left the game");
 		switch (sgdwPlayerLeftReasonTbl[pnum]) {
 		case LEAVE_ENDING:
 			pszFmt = _("Player '{:s}' killed Diablo and left the game!");
@@ -254,42 +257,7 @@ void BeginTimeout()
 		return;
 	}
 
-	int nLowestActive = -1;
-	int nLowestPlayer = -1;
-	uint8_t bGroupPlayers = 0;
-	uint8_t bGroupCount = 0;
-	for (int i = 0; i < MAX_PLRS; i++) {
-		uint32_t nState = player_state[i];
-		if ((nState & PS_CONNECTED) != 0) {
-			if (nLowestPlayer == -1) {
-				nLowestPlayer = i;
-			}
-			if ((nState & PS_ACTIVE) != 0) {
-				bGroupPlayers++;
-				if (nLowestActive == -1) {
-					nLowestActive = i;
-				}
-			} else {
-				bGroupCount++;
-			}
-		}
-	}
-
-	assert(bGroupPlayers);
-	assert(nLowestActive != -1);
-	assert(nLowestPlayer != -1);
-
-	if (bGroupPlayers < bGroupCount) {
-		gbGameDestroyed = true;
-	} else if (bGroupPlayers == bGroupCount) {
-		if (nLowestPlayer != nLowestActive) {
-			gbGameDestroyed = true;
-		} else if (nLowestActive == MyPlayerId) {
-			CheckDropPlayer();
-		}
-	} else if (nLowestActive == MyPlayerId) {
-		CheckDropPlayer();
-	}
+	CheckDropPlayer();
 }
 
 void HandleAllPackets(int pnum, const byte *data, size_t size)
@@ -467,12 +435,12 @@ bool InitMulti(GameData *gameData)
 void InitGameInfo()
 {
 	sgGameInitInfo.size = sizeof(sgGameInitInfo);
-	sgGameInitInfo.dwSeed = time(nullptr);
+	sgGameInitInfo.dwSeed = static_cast<uint32_t>(time(nullptr));
 	sgGameInitInfo.programid = GAME_ID;
 	sgGameInitInfo.versionMajor = PROJECT_VERSION_MAJOR;
 	sgGameInitInfo.versionMinor = PROJECT_VERSION_MINOR;
 	sgGameInitInfo.versionPatch = PROJECT_VERSION_PATCH;
-	sgGameInitInfo.nTickRate = sgOptions.Gameplay.nTickRate;
+	sgGameInitInfo.nTickRate = *sgOptions.Gameplay.tickRate;
 	sgGameInitInfo.bRunInTown = *sgOptions.Gameplay.runInTown ? 1 : 0;
 	sgGameInitInfo.bTheoQuest = *sgOptions.Gameplay.theoQuest ? 1 : 0;
 	sgGameInitInfo.bCowQuest = *sgOptions.Gameplay.cowQuest ? 1 : 0;
@@ -502,8 +470,8 @@ void NetSendHiPri(int playerId, const byte *data, size_t size)
 		byte *lowpriBody = ReceivePacket(&sgLoPriBuf, hipriBody, &msgSize);
 		msgSize = sync_all_monsters(lowpriBody, msgSize);
 		size_t len = gdwNormalMsgSize - msgSize;
-		pkt.hdr.wLen = len;
-		if (!SNetSendMessage(SNPLAYER_OTHERS, &pkt.hdr, len))
+		pkt.hdr.wLen = static_cast<uint16_t>(len);
+		if (!SNetSendMessage(SNPLAYER_OTHERS, &pkt.hdr, static_cast<unsigned>(len)))
 			nthread_terminate_game("SNetSendMessage");
 	}
 }
@@ -512,13 +480,13 @@ void multi_send_msg_packet(uint32_t pmask, const byte *data, size_t size)
 {
 	TPkt pkt;
 	NetReceivePlayerData(&pkt);
-	size_t t = size + sizeof(pkt.hdr);
-	pkt.hdr.wLen = t;
+	size_t len = size + sizeof(pkt.hdr);
+	pkt.hdr.wLen = static_cast<uint16_t>(len);
 	memcpy(pkt.body, data, size);
-	size_t p = 0;
-	for (size_t v = 1; p < MAX_PLRS; p++, v <<= 1) {
+	size_t playerID = 0;
+	for (size_t v = 1; playerID < MAX_PLRS; playerID++, v <<= 1) {
 		if ((v & pmask) != 0) {
-			if (!SNetSendMessage(p, &pkt.hdr, t) && SErrGetLastError() != STORM_ERROR_INVALID_PLAYER) {
+			if (!SNetSendMessage(playerID, &pkt.hdr, len) && SErrGetLastError() != STORM_ERROR_INVALID_PLAYER) {
 				nthread_terminate_game("SNetSendMessage");
 				return;
 			}
@@ -612,6 +580,8 @@ void multi_process_network_packets()
 			assert(gbBufferMsgs != 2);
 			player._pHitPoints = pkt->php;
 			player._pMaxHP = pkt->pmhp;
+			player._pMana = pkt->mana;
+			player._pMaxMana = pkt->maxmana;
 			bool cond = gbBufferMsgs == 1;
 			player._pBaseStr = pkt->bstr;
 			player._pBaseMag = pkt->bmag;
@@ -762,6 +732,11 @@ bool NetInit(bool bSinglePlayer)
 		nthread_terminate_game("SNetGetGameInfo2");
 	PublicGame = DvlNet_IsPublicGame();
 
+	auto &myPlayer = Players[MyPlayerId];
+	// separator for marking messages from a different game
+	AddMessageToChatLog(_("New Game"), nullptr, UiFlags::ColorRed);
+	AddMessageToChatLog(fmt::format(_("Player '{:s}' (level {:d}) just joined the game"), myPlayer._pName, myPlayer._pLevel));
+
 	return true;
 }
 
@@ -807,7 +782,7 @@ void recv_plrinfo(int pnum, const TCmdPlrInfoHdr &header, bool recv)
 	player.plractive = true;
 	gbActivePlayers++;
 
-	const char *szEvent;
+	string_view szEvent;
 	if (sgbPlayerTurnBitTbl[pnum]) {
 		szEvent = _("Player '{:s}' (level {:d}) just joined the game");
 	} else {
@@ -829,7 +804,7 @@ void recv_plrinfo(int pnum, const TCmdPlrInfoHdr &header, bool recv)
 	player._pgfxnum &= ~0xF;
 	player._pmode = PM_DEATH;
 	NewPlrAnim(player, player_graphic::Death, Direction::South, player._pDFrames, 1);
-	player.AnimInfo.CurrentFrame = player.AnimInfo.NumberOfFrames - 1;
+	player.AnimInfo.CurrentFrame = player.AnimInfo.NumberOfFrames - 2;
 	dFlags[player.position.tile.x][player.position.tile.y] |= DungeonFlag::DeadPlayer;
 }
 
