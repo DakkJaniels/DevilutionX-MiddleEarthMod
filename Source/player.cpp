@@ -54,8 +54,8 @@ int plryoff2[9] = { 0, 0, 1, 1, 0, 2, 2, 1, 2 };
 /** Maps from player_class to starting stat in strength. */
 int StrengthTbl[enum_size<HeroClass>::value] = {
 	30,
-	20,
 	15,
+	0,
 	25,
 	20,
 	40,
@@ -63,9 +63,9 @@ int StrengthTbl[enum_size<HeroClass>::value] = {
 /** Maps from player_class to starting stat in magic. */
 int MagicTbl[enum_size<HeroClass>::value] = {
 	// clang-format off
-	10,
+	0,
 	15,
-	35,
+	40,
 	15,
 	20,
 	 0,
@@ -74,15 +74,15 @@ int MagicTbl[enum_size<HeroClass>::value] = {
 /** Maps from player_class to starting stat in dexterity. */
 int DexterityTbl[enum_size<HeroClass>::value] = {
 	20,
-	30,
-	15,
+	35,
+	10,
 	25,
 	25,
 	20,
 };
 /** Maps from player_class to starting stat in vitality. */
 int VitalityTbl[enum_size<HeroClass>::value] = {
-	25,
+	30,
 	20,
 	20,
 	20,
@@ -452,7 +452,7 @@ void StartAttack(int pnum, Direction d)
 		skippedAnimationFrames = 1;
 	} else if (HasAnyOf(player._pIFlags, ItemSpecialEffect::FastestAttack)) {
 		// Fastest Attack is skipped if Fast or Faster Attack is also specified, cause both skip the frame that triggers fastest attack skipping
-		skippedAnimationFrames = 2;
+		skippedAnimationFrames = 3;
 	}
 
 	auto animationFlags = AnimationDistributionFlags::ProcessAnimationPending;
@@ -476,10 +476,15 @@ void StartRangeAttack(int pnum, Direction d, int cx, int cy)
 		return;
 	}
 
+	// ME mod gives xbow and heavy xbow faster and fastest attack speed
 	int skippedAnimationFrames = 0;
 	if (!gbIsHellfire) {
-		if (HasAnyOf(player._pIFlags, ItemSpecialEffect::FastAttack)) {
-			skippedAnimationFrames += 1;
+		if (HasAnyOf(player._pIFlags, ItemSpecialEffect::FastestAttack)) {
+			skippedAnimationFrames = 3;
+		} else if (HasAnyOf(player._pIFlags, ItemSpecialEffect::FasterAttack)) {
+			skippedAnimationFrames = 2;
+		} else if (HasAnyOf(player._pIFlags, ItemSpecialEffect::FastAttack)) {
+			skippedAnimationFrames = 1;
 		}
 	}
 
@@ -622,12 +627,17 @@ void InitLevelChange(int pnum)
 	RemovePlrMissiles(pnum);
 	player.pManaShield = false;
 	player.wReflections = 0;
+	player.wEtherealize = 0;
 	// share info about your manashield when another player joins the level
 	if (pnum != MyPlayerId && myPlayer.pManaShield)
 		NetSendCmd(true, CMD_SETSHIELD);
 	// share info about your reflect charges when another player joins the level
 	if (pnum != MyPlayerId)
 		NetSendCmdParam1(true, CMD_SETREFLECT, myPlayer.wReflections);
+	// share info about your etherealize when another player joins the level
+	if (pnum != MyPlayerId) {
+		NetSendCmdParam1(true, CMD_SETETHEREALIZE, myPlayer.wEtherealize);
+	}
 	if (pnum == MyPlayerId && qtextflag) {
 		qtextflag = false;
 		stream_stop();
@@ -866,6 +876,8 @@ bool PlrHitMonst(int pnum, int m, bool adjacentDamage = false)
 		int midam = player._pIFMinDam + GenerateRnd(player._pIFMaxDam - player._pIFMinDam);
 		AddMissile(player.position.tile, player.position.temp, player._pdir, MIS_SPECARROW, TARGET_MONSTERS, pnum, midam, 0);
 	}
+	if (((player._pIFlags & ISPL_NOHEALMON) != 0))
+		monster._mFlags |= MFLAG_NOHEAL;
 	int mind = player._pIMinDam;
 	int maxd = player._pIMaxDam;
 	int dam = GenerateRnd(maxd - mind + 1) + mind;
@@ -2008,9 +2020,9 @@ int Player::GetMaximumAttributeValue(CharacterAttribute attribute) const
 {
 	static const int MaxStats[enum_size<HeroClass>::value][enum_size<CharacterAttribute>::value] = {
 		// clang-format off
-		{ 250,  50,  60, 100 },
-		{  55,  70, 250,  80 },
-		{  45, 250,  85,  80 },
+		{ 255,  30,  60, 120 },
+		{  50,  75, 255,  85 },
+		{   5, 255,  30,  80 },
 		{ 150,  80, 150,  80 },
 		{ 120, 120, 120, 100 },
 		{ 255,   0,  55, 150 },
@@ -2668,6 +2680,7 @@ void CreatePlayer(int playerId, HeroClass c)
 	player.pManaShield = false;
 	player.pDamAcFlags = ItemSpecialEffectHf::None;
 	player.wReflections = 0;
+	player.wEtherealize = 0;
 
 	InitDungMsgs(player);
 	CreatePlrItems(playerId);
@@ -2758,13 +2771,13 @@ void AddPlrExperience(int pnum, int lvl, int exp)
 	uint32_t clampedExp = std::max(static_cast<int>(exp * (1 + (lvl - player._pLevel) / 10.0)), 0);
 
 	// Prevent power leveling
-	if (gbIsMultiplayer) {
-		const uint32_t clampedPlayerLevel = clamp(static_cast<int>(player._pLevel), 1, MAXCHARLEVEL);
+	//if (gbIsMultiplayer) {
+	//	const uint32_t clampedPlayerLevel = clamp(static_cast<int>(player._pLevel), 1, MAXCHARLEVEL);
 
-		// for low level characters experience gain is capped to 1/20 of current levels xp
-		// for high level characters experience gain is capped to 200 * current level - this is a smaller value than 1/20 of the exp needed for the next level after level 5.
-		clampedExp = std::min({ clampedExp, /* level 0-5: */ ExpLvlsTbl[clampedPlayerLevel] / 20U, /* level 6-50: */ 200U * clampedPlayerLevel });
-	}
+	//	// for low level characters experience gain is capped to 1/20 of current levels xp
+	//	// for high level characters experience gain is capped to 200 * current level - this is a smaller value than 1/20 of the exp needed for the next level after level 5.
+	//	clampedExp = std::min({ clampedExp, /* level 0-5: */ ExpLvlsTbl[clampedPlayerLevel] / 20U, /* level 6-50: */ 200U * clampedPlayerLevel });
+	//}
 
 	constexpr uint32_t MaxExperience = 2000000000U;
 
@@ -2824,6 +2837,7 @@ void InitPlayer(Player &player, bool firstTime)
 		player._pSplType = player._pRSplType;
 		player.pManaShield = false;
 		player.wReflections = 0;
+		player.wEtherealize = 0;
 	}
 
 	if (player.plrlevel == currlevel) {

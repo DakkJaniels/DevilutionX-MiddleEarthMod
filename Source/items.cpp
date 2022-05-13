@@ -55,29 +55,7 @@ int MaxGold = GOLD_MAX_LIMIT;
 
 /** Maps from item_cursor_graphic to in-memory item type. */
 BYTE ItemCAnimTbl[] = {
-	20, 16, 16, 16, 4, 4, 4, 12, 12, 12,
-	12, 12, 12, 12, 12, 21, 21, 25, 12, 28,
-	28, 28, 38, 38, 38, 32, 38, 38, 38, 24,
-	24, 26, 2, 25, 22, 23, 24, 25, 27, 27,
-	29, 0, 0, 0, 12, 12, 12, 12, 12, 0,
-	8, 8, 0, 8, 8, 8, 8, 8, 8, 6,
-	8, 8, 8, 6, 8, 8, 6, 8, 8, 6,
-	6, 6, 8, 8, 8, 5, 9, 13, 13, 13,
-	5, 5, 5, 15, 5, 5, 18, 18, 18, 30,
-	5, 5, 14, 5, 14, 13, 16, 18, 5, 5,
-	7, 1, 3, 17, 1, 15, 10, 14, 3, 11,
-	8, 0, 1, 7, 0, 7, 15, 7, 3, 3,
-	3, 6, 6, 11, 11, 11, 31, 14, 14, 14,
-	6, 6, 7, 3, 8, 14, 0, 14, 14, 0,
-	33, 1, 1, 1, 1, 1, 7, 7, 7, 14,
-	14, 17, 17, 17, 0, 34, 1, 0, 3, 17,
-	8, 8, 6, 1, 3, 3, 11, 3, 12, 12,
-	12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
-	12, 12, 12, 12, 12, 12, 12, 35, 39, 36,
-	36, 36, 37, 38, 38, 38, 38, 38, 41, 42,
-	8, 8, 8, 17, 0, 6, 8, 11, 11, 3,
-	3, 1, 6, 6, 6, 1, 8, 6, 11, 3,
-	6, 8, 1, 6, 6, 17, 40, 0, 0
+	20, 16, 16, 16, 4, 4, 4, 12, 12, 12, 12, 12, 12, 12, 12, 21, 21, 25, 12, 28, 28, 28, 0, 0, 0, 32, 32, 0, 0, 24, 24, 26, 2, 25, 22, 23, 24, 25, 27, 27, 29, 12, 0, 0, 12, 12, 12, 12, 12, 0, 8, 8, 0, 8, 8, 8, 8, 8, 8, 6, 8, 8, 8, 6, 8, 8, 6, 8, 8, 6, 6, 6, 8, 8, 8, 5, 9, 13, 13, 13, 5, 5, 5, 15, 5, 5, 18, 18, 18, 30, 5, 5, 14, 5, 14, 13, 16, 18, 5, 5, 7, 1, 3, 17, 1, 15, 10, 14, 3, 11, 8, 0, 1, 7, 0, 7, 15, 7, 3, 3, 3, 6, 6, 11, 11, 11, 31, 14, 14, 14, 6, 6, 7, 3, 8, 14, 0, 14, 14, 0, 33, 1, 1, 1, 1, 1, 7, 7, 7, 14, 14, 17, 17, 17, 0, 34, 1, 0, 3, 17, 8, 8, 6, 1, 3, 3, 11, 3, 4, 0, 0, 0, 0, 0, 0, 0, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 32, 32, 16, 16, 16, 16, 32, 32, 32, 32, 32, 14, 14, 8, 8, 8, 14, 0, 6, 8, 11, 11, 3, 3, 1, 6, 6, 6, 1, 8, 6, 11, 3, 6, 8, 1, 6, 6, 0, 17, 32, 32, 12, 32, 32, 32, 13, 5, 5, 5, 5, 18, 30, 5, 7, 3, 17, 8, 0, 0, 7, 3, 3, 11, 11, 11, 8, 14, 1
 };
 
 /** Maps of drop sounds effect of placing the item in the inventory. */
@@ -117,14 +95,6 @@ _sfx_id ItemInvSnds[] = {
 	IS_IBLST,
 	IS_IANVL,
 	IS_ISTAF,
-	IS_IROCK,
-	IS_ISCROL,
-	IS_ISCROL,
-	IS_IROCK,
-	IS_IMUSH,
-	IS_IHARM,
-	IS_ILARM,
-	IS_ILARM,
 };
 
 namespace {
@@ -259,14 +229,6 @@ BYTE ItemAnimLs[] = {
 	13,
 	13,
 	8,
-	10,
-	16,
-	16,
-	10,
-	10,
-	15,
-	15,
-	15,
 };
 /** Maps of drop sounds effect of dropping the item on ground. */
 _sfx_id ItemDropSnds[] = {
@@ -305,14 +267,6 @@ _sfx_id ItemDropSnds[] = {
 	IS_FBLST,
 	IS_FANVL,
 	IS_FSTAF,
-	IS_FROCK,
-	IS_FSCRL,
-	IS_FSCRL,
-	IS_FROCK,
-	IS_FMUSH,
-	IS_FHARM,
-	IS_FLARM,
-	IS_FLARM,
 };
 /** Maps from Griswold premium item number to a quality level delta as added to the base quality level. */
 int premiumlvladd[] = {
@@ -350,13 +304,14 @@ bool IsPrefixValidForItemType(int i, AffixItemType flgs)
 {
 	AffixItemType itemTypes = ItemPrefixes[i].PLIType;
 
-	if (!gbIsHellfire) {
-		if (i > 82)
-			return false;
+	/* remove checks */
+	/*if (!gbIsHellfire) {
+	    if (i > 82)
+	        return false;
 
 		if (i >= 12 && i <= 20)
 			itemTypes &= ~AffixItemType::Staff;
-	}
+	}*/
 
 	return HasAnyOf(flgs, itemTypes);
 }
@@ -365,9 +320,11 @@ bool IsSuffixValidForItemType(int i, AffixItemType flgs)
 {
 	AffixItemType itemTypes = ItemSuffixes[i].PLIType;
 
-	if (!gbIsHellfire) {
-		if (i > 94)
-			return false;
+	/* remove checks */
+
+	/*if (!gbIsHellfire) {
+	    if (i > 94)
+	        return false;
 
 		if ((i >= 0 && i <= 1)
 		    || (i >= 14 && i <= 15)
@@ -375,8 +332,8 @@ bool IsSuffixValidForItemType(int i, AffixItemType flgs)
 		    || (i >= 34 && i <= 36)
 		    || (i >= 41 && i <= 44)
 		    || (i >= 60 && i <= 63))
-			itemTypes &= ~AffixItemType::Staff;
-	}
+			itemTypes &= ~PLT_STAFF;
+	}*/
 
 	return HasAnyOf(flgs, itemTypes);
 }
@@ -669,7 +626,7 @@ void GetBookSpell(Item &item, int lvl)
 		}
 		if (!gbIsMultiplayer) {
 			if (s == SPL_HEALOTHER)
-				s = SPL_FLARE;
+				s = SPL_BSTAR;
 		}
 		if (s == maxSpells)
 			s = 1;
@@ -705,20 +662,20 @@ int CalculateToHitBonus(int level)
 		return RndPL(1, 5);
 	case 36:
 		return RndPL(6, 10);
-	case 51:
-		return RndPL(11, 15);
-	case 66:
-		return RndPL(16, 20);
-	case 81:
-		return RndPL(21, 30);
-	case 96:
-		return RndPL(31, 40);
-	case 111:
-		return RndPL(41, 50);
-	case 126:
-		return RndPL(51, 75);
-	case 151:
-		return RndPL(76, 100);
+	case 50:
+		return RndPL(10, 19);
+	case 65:
+		return RndPL(20, 29);
+	case 80:
+		return RndPL(30, 39);
+	case 95:
+		return RndPL(40, 59);
+	case 110:
+		return RndPL(60, 79);
+	case 125:
+		return RndPL(80, 99);
+	case 171:
+		return RndPL(100, 110);
 	default:
 		app_fatal("Unknown to hit bonus");
 	}
@@ -1105,6 +1062,9 @@ int PLVal(int pv, int p1, int p2, int minv, int maxv)
 void SaveItemAffix(Item &item, const PLStruct &affix)
 {
 	auto power = affix.power;
+
+
+
 	int value = SaveItemPower(item, power);
 
 	value = PLVal(value, power.param1, power.param2, affix.minVal, affix.maxVal);
@@ -1286,7 +1246,7 @@ void GetStaffSpell(Item &item, int lvl, bool onlygood)
 		if (!gbIsMultiplayer && s == SPL_RESURRECT)
 			s = SPL_TELEKINESIS;
 		if (!gbIsMultiplayer && s == SPL_HEALOTHER)
-			s = SPL_FLARE;
+			s = SPL_BSTAR;
 		if (s == maxSpells)
 			s = SPL_FIREBOLT;
 	}
@@ -1384,29 +1344,21 @@ int RndUItem(Monster *monster)
 		if (!IsItemAvailable(i))
 			continue;
 
-		bool okflag = true;
-		if (AllItemsList[i].iRnd == IDROP_NEVER)
-			okflag = false;
-		if (monster != nullptr) {
-			if (monster->mLevel < AllItemsList[i].iMinMLvl)
-				okflag = false;
-		} else {
-			if (2 * curlv < AllItemsList[i].iMinMLvl)
-				okflag = false;
-		}
-		if (AllItemsList[i].itype == ItemType::Misc)
-			okflag = false;
-		if (AllItemsList[i].itype == ItemType::Gold)
-			okflag = false;
-		if (AllItemsList[i].iMiscId == IMISC_BOOK)
-			okflag = true;
-		if (AllItemsList[i].iSpell == SPL_RESURRECT && !gbIsMultiplayer)
-			okflag = false;
-		if (AllItemsList[i].iSpell == SPL_HEALOTHER && !gbIsMultiplayer)
-			okflag = false;
-		if (okflag && ri < 512) {
-			ril[ri] = i;
-			ri++;
+		auto &item = AllItemsList[i];
+
+		if (item.iUMonstDropRate > 0
+		        && (monster != nullptr && monster->mLevel >= item.iMinMLvl)
+		    || (monster == nullptr && 2 * curlv >= item.iMinMLvl)) {
+
+			if ((item.itype != ItemType::Misc || item.iMiscId == IMISC_BOOK)
+			    && item.itype != ItemType::Gold
+			    && (gbIsMultiplayer || (item.iSpell != SPL_RESURRECT && item.iSpell != SPL_HEALOTHER))) {
+
+				for (int j = item.iUMonstDropRate; j > 0 && ri < 512; j--) {
+					ril[ri] = i;
+					ri++;
+				}
+			}
 		}
 	}
 
@@ -1435,7 +1387,6 @@ int RndAllItems()
 		if (AllItemsList[i].iSpell == SPL_HEALOTHER && !gbIsMultiplayer)
 			ri--;
 	}
-
 	return ril[GenerateRnd(ri)];
 }
 
@@ -1451,8 +1402,8 @@ int RndTypeItems(ItemType itemType, int imid, int lvl)
 		bool okflag = true;
 		if (AllItemsList[i].iRnd == IDROP_NEVER)
 			okflag = false;
-		if (lvl * 2 < AllItemsList[i].iMinMLvl)
-			okflag = false;
+		/*if (lvl * 2 < AllItemsList[i].iMinMLvl)
+		    okflag = false;*/
 		if (AllItemsList[i].itype != itemType)
 			okflag = false;
 		if (imid != -1 && AllItemsList[i].iMiscId != imid)
@@ -1527,6 +1478,7 @@ void ItemRndDur(Item &item)
 		item._iDurability = GenerateRnd(item._iMaxDur / 2) + (item._iMaxDur / 4) + 1;
 }
 
+/* Determines what type of item is created?? */
 void SetupAllItems(Item &item, int idx, int iseed, int lvl, int uper, bool onlygood, bool recreate, bool pregen)
 {
 	item._iSeed = iseed;
@@ -1890,7 +1842,7 @@ void PrintItemInfo(const Item &item)
 	uint8_t dex = item._iMinDex;
 	uint8_t mag = item._iMinMag;
 	if (str != 0 || mag != 0 || dex != 0) {
-		std::string text = _("Required:");
+		std::string text = _("Req:");
 		if (str != 0)
 			text.append(fmt::format(_(" {:d} Str"), str));
 		if (mag != 0)
@@ -2022,8 +1974,8 @@ void SpawnOnePremium(Item &premiumItem, int plvl, int playerId)
 		GetItemBonus(premiumItem, plvl / 2, plvl, true, !gbIsHellfire);
 
 		if (!gbIsHellfire) {
-			if (premiumItem._iIvalue > 140000) {
-				keepGoing = true; // prevent breaking the do/while loop too early by failing hellfire's condition in while
+			if (premiumItem._iIvalue > 180000) { // ME Mod higher premium ivalue
+				keepGoing = true;                // prevent breaking the do/while loop too early by failing hellfire's condition in while
 				continue;
 			}
 			break;
@@ -2281,30 +2233,34 @@ bool IsItemAvailable(int i)
 {
 	if (i < 0 || i > IDI_LAST)
 		return false;
+	return true;
 
-	if (gbIsSpawn) {
-		if (i >= 62 && i <= 71)
-			return false; // Medium and heavy armors
-		if (IsAnyOf(i, 105, 107, 108, 110, 111, 113))
-			return false; // Unavailable scrolls
-	}
+	/* mod is Diablo only, and item positions are all moved around
+	getting rid of this stuff*/
 
-	if (gbIsHellfire)
-		return true;
+	// if (gbIsSpawn) {
+	//	if (i >= 62 && i <= 71)
+	//		return false; // Medium and heavy armors
+	//	if (IsAnyOf(i, 105, 107, 108, 110, 111, 113))
+	//		return false; // Unavailable scrolls
+	// }
 
-	return (
-	           i != IDI_MAPOFDOOM                   // Cathedral Map
-	           && i != IDI_LGTFORGE                 // Bovine Plate
-	           && (i < IDI_OIL || i > IDI_GREYSUIT) // Hellfire exclusive items
-	           && (i < 83 || i > 86)                // Oils
-	           && i != 92                           // Scroll of Search
-	           && (i < 161 || i > 165)              // Runes
-	           && i != IDI_SORCERER                 // Short Staff of Mana
-	           )
-	    || (
-	        // Bard items are technically Hellfire-exclusive
-	        // but are just normal items with adjusted stats.
-	        *sgOptions.Gameplay.testBard && IsAnyOf(i, IDI_BARDSWORD, IDI_BARDDAGGER));
+	// if (gbIsHellfire)
+	//	return true;
+
+	// return (
+	//            i != IDI_MAPOFDOOM                   // Cathedral Map
+	//            && i != IDI_LGTFORGE                 // Bovine Plate
+	//            && (i < IDI_OIL || i > IDI_GREYSUIT) // Hellfire exclusive items
+	//            && (i < 83 || i > 86)                // Oils
+	//            && i != 92                           // Scroll of Search
+	//            && (i < 161 || i > 165)              // Runes
+	//            && i != IDI_SORCERER                 // Short Staff of Mana
+	//            )
+	//     || (
+	//         // Bard items are technically Hellfire-exclusive
+	//         // but are just normal items with adjusted stats.
+	//         *sgOptions.Gameplay.testBard && IsAnyOf(i, IDI_BARDSWORD, IDI_BARDDAGGER));
 }
 
 BYTE GetOutlineColor(const Item &item, bool checkReq)
@@ -2323,14 +2279,14 @@ BYTE GetOutlineColor(const Item &item, bool checkReq)
 
 bool IsUniqueAvailable(int i)
 {
-	return gbIsHellfire || i <= 89;
+	return true;
 }
 
 void InitItemGFX()
 {
 	char arglist[64];
 
-	int itemTypes = gbIsHellfire ? ITEMTYPES : 35;
+	int itemTypes = 35;
 	for (int i = 0; i < itemTypes; i++) {
 		sprintf(arglist, "Items\\%s.CEL", ItemDropNames[i]);
 		itemanims[i] = LoadCel(arglist, ItemAnimWidth);
@@ -2873,7 +2829,7 @@ void CreatePlrItems(int playerId)
 		GenerateNewSeed(player.SpdList[1]);
 		break;
 	case HeroClass::Sorcerer:
-		InitializeItem(player.InvBody[INVLOC_HAND_LEFT], gbIsHellfire ? IDI_SORCERER : 166);
+		InitializeItem(player.InvBody[INVLOC_HAND_LEFT], gbIsHellfire ? IDI_SORCERER : IDI_SORCERER_DIABLO);
 		GenerateNewSeed(player.InvBody[INVLOC_HAND_LEFT]);
 
 		InitializeItem(player.SpdList[0], gbIsHellfire ? IDI_HEAL : IDI_MANA);
@@ -3061,20 +3017,18 @@ int RndItem(const Monster &monster)
 		if (!IsItemAvailable(i))
 			continue;
 
-		if (AllItemsList[i].iRnd == IDROP_DOUBLE && monster.mLevel >= AllItemsList[i].iMinMLvl
-		    && ri < 512) {
-			ril[ri] = i;
-			ri++;
+		auto &item = AllItemsList[i];
+
+		if (monster.mLevel >= item.iMinMLvl) {
+			if (!gbIsMultiplayer && (item.iSpell == SPL_RESURRECT || item.iSpell == SPL_HEALOTHER)) {
+				continue;
+			} else {
+				for (int j = AllItemsList[i].iRnd; j > 0 && ri < 512; j--) {
+					ril[ri] = i;
+					ri++;
+				}
+			}
 		}
-		if (AllItemsList[i].iRnd != IDROP_NEVER && monster.mLevel >= AllItemsList[i].iMinMLvl
-		    && ri < 512) {
-			ril[ri] = i;
-			ri++;
-		}
-		if (AllItemsList[i].iSpell == SPL_RESURRECT && !gbIsMultiplayer)
-			ri--;
-		if (AllItemsList[i].iSpell == SPL_HEALOTHER && !gbIsMultiplayer)
-			ri--;
 	}
 
 	int r = GenerateRnd(ri);
@@ -3137,8 +3091,8 @@ void SpawnItem(Monster &monster, Point position, bool sendmsg)
 	int uper = monster._uniqtype != 0 ? 15 : 1;
 
 	int8_t mLevel = monster.MData->mLevel;
-	if (!gbIsHellfire && monster.MType->mtype == MT_DIABLO)
-		mLevel -= 15;
+	/*if (!gbIsHellfire && monster.MType->mtype == MT_DIABLO)
+	    mLevel -= 15;*/
 
 	SetupAllItems(item, idx, AdvanceRndSeed(), mLevel, uper, onlygood, false, false);
 
@@ -3662,7 +3616,7 @@ bool DoOil(Player &player, int cii)
 		else
 			return fmt::format(_("fireball damage: {:d}-{:d}"), item._iFMinDam, item._iFMaxDam);
 	case IPL_THORNS:
-		return _("attacker takes 1-3 damage");
+		return _("attacker takes 1-10 damage");
 	case IPL_NOMANA:
 		return _("user loses all mana");
 	case IPL_NOHEALPLR:
@@ -3676,7 +3630,7 @@ bool DoOil(Player &player, int cii)
 	case IPL_ALLRESZERO:
 		return _("All Resistance equals 0");
 	case IPL_NOHEALMON:
-		return _("hit monster doesn't heal");
+		return _("Hit monster doesn't heal");
 	case IPL_STEALMANA:
 		if (HasAnyOf(item._iFlags, ItemSpecialEffect::StealMana3))
 			return _(/*xgettext:no-c-format*/ "hit steals 3% mana");
@@ -4498,6 +4452,7 @@ std::string DebugSpawnItem(std::string itemName)
 		std::uniform_int_distribution<int32_t> dist(0, INT_MAX);
 		SetRndSeed(dist(BetterRng));
 		if (SDL_GetTicks() - begin > max_time)
+
 			return fmt::format("Item not found in {:d} seconds!", max_time / 1000);
 
 		if (i > max_iter)

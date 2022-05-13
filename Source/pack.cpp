@@ -42,12 +42,12 @@ void PackItem(ItemPack &packedItem, const Item &item, bool isHellfire)
 		packedItem.idx = 0xFFFF;
 	} else {
 		auto idx = item.IDidx;
-		if (!isHellfire) {
-			idx = RemapItemIdxToDiablo(idx);
+		/* if (!isHellfire) {
+		    idx = RemapItemIdxToDiablo(idx);
 		}
 		if (gbIsSpawn) {
-			idx = RemapItemIdxToSpawn(idx);
-		}
+		    idx = RemapItemIdxToSpawn(idx);
+		}*/
 		packedItem.idx = SDL_SwapLE16(idx);
 		if (item.IDidx == IDI_EAR) {
 			packedItem.iCreateInfo = item._iName[8] | (item._iName[7] << 8);
@@ -131,6 +131,7 @@ void PackPlayer(PlayerPack *pPack, const Player &player, bool manashield, bool n
 	}
 
 	pPack->wReflections = SDL_SwapLE16(player.wReflections);
+	pPack->wEtherealize = SDL_SwapLE16(player.wEtherealize);
 	pPack->pDifficulty = SDL_SwapLE32(player.pDifficulty);
 	pPack->pDamAcFlags = static_cast<ItemSpecialEffectHf>(SDL_SwapLE32(static_cast<uint32_t>(player.pDamAcFlags)));
 	pPack->pDiabloKillLevel = SDL_SwapLE32(player.pDiabloKillLevel);
@@ -146,12 +147,12 @@ void UnPackItem(const ItemPack &packedItem, Item &item, bool isHellfire)
 {
 	auto idx = static_cast<_item_indexes>(SDL_SwapLE16(packedItem.idx));
 
-	if (gbIsSpawn) {
-		idx = RemapItemIdxFromSpawn(idx);
+	/*if (gbIsSpawn) {
+	    idx = RemapItemIdxFromSpawn(idx);
 	}
 	if (!isHellfire) {
-		idx = RemapItemIdxFromDiablo(idx);
-	}
+	    idx = RemapItemIdxFromDiablo(idx);
+	}*/
 
 	if (!IsItemAvailable(idx)) {
 		item.Clear();
@@ -283,6 +284,7 @@ bool UnPackPlayer(const PlayerPack *pPack, Player &player, bool netSync)
 
 	CalcPlrInv(player, false);
 	player.wReflections = SDL_SwapLE16(pPack->wReflections);
+	player.wEtherealize = SDL_SwapLE16(pPack->wEtherealize);
 	player.pTownWarps = 0;
 	player.pDungMsgs = 0;
 	player.pDungMsgs2 = 0;

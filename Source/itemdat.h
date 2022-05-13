@@ -65,10 +65,9 @@ enum _item_indexes : int16_t { // TODO defines all indexes in AllItemsList
 	IDI_FULLNOTE,
 	IDI_BROWNSUIT,
 	IDI_GREYSUIT,
-	IDI_RUNEOFSTONE = 165,
-	IDI_SORCERER_DIABLO,
+	IDI_SORCERER_DIABLO = IDI_SORCERER,
 
-	IDI_LAST = IDI_SORCERER_DIABLO,
+	IDI_LAST = 155,
 	IDI_NONE = -1,
 };
 
@@ -110,6 +109,8 @@ enum item_cursor_graphic : uint8_t {
 	ICURS_GOLD_LARGE                  = 6,
 	ICURS_RING_OF_TRUTH               = 10,
 	ICURS_RING                        = 12,
+	ICURS_LES_RING					  = 13, /* new item */
+	ICURS_NORM_RING					  = 14, /* new item */
 	ICURS_SPECTRAL_ELIXIR             = 15,
 	ICURS_GOLDEN_ELIXIR               = 17,
 	ICURS_EMPYREAN_BAND               = 18,
@@ -117,6 +118,7 @@ enum item_cursor_graphic : uint8_t {
 	ICURS_EAR_WARRIOR                 = 20,
 	ICURS_EAR_ROGUE                   = 21,
 	ICURS_BLOOD_STONE                 = 25,
+	ICURS_GEM						  = 26, /* new item */
 	ICURS_OIL                         = 30,
 	ICURS_ELIXIR_OF_VITALITY          = 31,
 	ICURS_POTION_OF_HEALING           = 32,
@@ -128,9 +130,13 @@ enum item_cursor_graphic : uint8_t {
 	ICURS_ELIXIR_OF_STRENGTH          = 38,
 	ICURS_POTION_OF_MANA              = 39,
 	ICURS_BRAIN                       = 40,
+	ICURS_CLAW						  = 41,
 	ICURS_OPTIC_AMULET                = 44,
 	ICURS_AMULET                      = 45,
+	ICURS_MAJ_AMULET				  = 48, /* new item */
+	ICURS_MORGUL_KNIFE				  = 50, /* new item */
 	ICURS_DAGGER                      = 51,
+	ICURS_LONG_KNIFE				  = 54, /* new item */
 	ICURS_BLADE                       = 56,
 	ICURS_BASTARD_SWORD               = 57,
 	ICURS_MACE                        = 59,
@@ -142,13 +148,17 @@ enum item_cursor_graphic : uint8_t {
 	ICURS_CLAYMORE                    = 65,
 	ICURS_CLUB                        = 66,
 	ICURS_SABRE                       = 67,
+	ICURS_SH_SWORD					  = 68, /* new item*/
 	ICURS_SPIKED_CLUB                 = 70,
+	ICURS_SPIKED_CLUB2				  = 71, /* new item */
 	ICURS_SCIMITAR                    = 72,
+	ICURS_ELVEN_BLADE				  = 73, /* new item */
 	ICURS_FULL_HELM                   = 75,
 	ICURS_MAGIC_ROCK                  = 76,
 	ICURS_THE_UNDEAD_CROWN            = 78,
 	ICURS_HELM                        = 82,
 	ICURS_BUCKLER                     = 83,
+	ICRUS_GREAT_HELM				  = 84, /* new item */
 	ICURS_VIEL_OF_STEEL               = 85,
 	ICURS_BOOK_GREY                   = 86,
 	ICURS_BOOK_RED                    = 87,
@@ -157,10 +167,12 @@ enum item_cursor_graphic : uint8_t {
 	ICURS_SKULL_CAP                   = 90,
 	ICURS_CAP                         = 91,
 	ICURS_HARLEQUIN_CREST             = 93,
+	ICURS_SHIRT						  = 94, /* new item */
 	ICURS_CROWN                       = 95,
 	ICURS_MAP_OF_THE_STARS            = 96,
 	ICURS_FUNGAL_TOME                 = 97,
 	ICURS_GREAT_HELM                  = 98,
+	ICURS_MITHRIL_SHIELD			  = 100, /* new item*/
 	ICURS_BATTLE_AXE                  = 101,
 	ICURS_HUNTERS_BOW                 = 102,
 	ICURS_FIELD_PLATE                 = 103,
@@ -173,6 +185,7 @@ enum item_cursor_graphic : uint8_t {
 	ICURS_SMALL_AXE                   = 112,
 	ICURS_KITE_SHIELD                 = 113,
 	ICURS_SCALE_MAIL                  = 114,
+	ICURS_DWARVEN_SHIELD              = 115, /*new item*/
 	ICURS_SHORT_BOW                   = 118,
 	ICURS_LONG_BATTLE_BOW             = 119,
 	ICURS_LONG_WAR_BOW                = 120,
@@ -184,6 +197,7 @@ enum item_cursor_graphic : uint8_t {
 	ICURS_HARD_LEATHER_ARMOR          = 127,
 	ICURS_RAGS                        = 128,
 	ICURS_QUILTED_ARMOR               = 129,
+	ICURS_WAR_FLAIL					  = 130, /* new item*/
 	ICURS_FLAIL                       = 131,
 	ICURS_TOWER_SHIELD                = 132,
 	ICURS_COMPOSITE_BOW               = 133,
@@ -191,11 +205,14 @@ enum item_cursor_graphic : uint8_t {
 	ICURS_LEATHER_ARMOR               = 135,
 	ICURS_SPLINT_MAIL                 = 136,
 	ICURS_ROBE                        = 137,
+	ICURS_MAGE_ROBES				  = 138, /* new item */
+	ICURS_CHAIN_SHIRT				  = 139, /* new item */
 	ICURS_ANVIL_OF_FURY               = 140,
 	ICURS_BROAD_AXE                   = 141,
 	ICURS_LARGE_AXE                   = 142,
 	ICURS_GREAT_AXE                   = 143,
 	ICURS_AXE                         = 144,
+	ICURS_NUM_SHIELD				  = 146, /* new item */
 	ICURS_LARGE_SHIELD                = 147,
 	ICURS_GOTHIC_SHIELD               = 148,
 	ICURS_CLOAK                       = 149,
@@ -205,7 +222,12 @@ enum item_cursor_graphic : uint8_t {
 	ICURS_BREAST_PLATE                = 153,
 	ICURS_RING_MAIL                   = 154,
 	ICURS_STAFF_OF_LAZARUS            = 155,
+	ICURS_WAR_AXE					  = 156, /* new item */
 	ICURS_ARKAINES_VALOR              = 157,
+	ICURS_HEAVY_XBOW				  = 158, /* new item */
+	ICURS_ROMACIL					  = 160, /* new item */
+	ICURS_DWARVEN_AXE				  = 163, /* new item */
+	ICURS_MALLORN_BOW				  = 164, /* new item*/
 	ICURS_SHORT_WAR_BOW               = 165,
 	ICURS_COMPOSITE_STAFF             = 166,
 	ICURS_SHORT_BATTLE_BOW            = 167,
@@ -225,6 +247,12 @@ enum item_cursor_graphic : uint8_t {
 	ICURS_GREY_SUIT                   = 198,
 	ICURS_BROWN_SUIT                  = 199,
 	ICURS_BOVINE                      = 226,
+	ICURS_NEW_HELM					  = 236, /* new item */
+	ICURS_SKULLCAP					  = 240, /* new item */
+	ICURS_PLATE_MAIL				  = 243, /* new item */
+	ICURS_GREAT_BLADE				  = 244, /* new item */
+	ICURS_LONG_BOW					  = 248, /* new item */
+	ICURS_ELVEN_SH_BOW				  = 249, /* new item */
 	// clang-format on
 };
 
@@ -319,6 +347,42 @@ enum unique_base_item : int8_t {
 	UITYPE_LGTFORGE,
 	UITYPE_LAZSTAFF,
 	UITYPE_BOVINE,
+	/* NEW ITEMS START HERE*/
+	UITYPE_NUMSWORD = 102,
+	UITYPE_MAJAMULET = 103,
+	UITYPE_WARAXE = 104,
+	UITYPE_HEAVYXBOW = 105,
+	UITYPE_MALLORNBOW = 106,
+	UITYPE_WARFLAIL = 107,
+	UITYPE_WARHELM = 108,
+	UITYPE_NUMSHIELD = 109,
+	UITYPE_ELVISHSBOW = 111,
+	UITYPE_MITHCHAINMAIL = 117,
+	UITYPE_ELVENBLADE = 118,
+	UITYPE_MITHRILSHIELD = 119,
+	UITYPE_ELVENBOW = 120,
+	UITYPE_MITHRILHELM = 121,
+	UITYPE_MAJRING = 122,
+	UITYPE_LESSRING = -128,
+	UITYPE_NORMRING = -127,
+	UITYPE_LCAP = -111,
+	UITYPE_CHAINSHIRT = -112,
+	UITYPE_FULLHELM = -109,
+	UITYPE_SDSCALE = -107,
+	UITYPE_GREATFLAIL = -106,
+	UITYPE_SHBATTLEBOW = -104,
+	UITYPE_DWARVENSHIELD = -64,
+	UITYPE_LEATHERARMOR = -63,
+	UITYPE_MAGEROBE = -62,
+	UITYPE_SCALEMAIL = -61,
+	UITYPE_HAUBERK = -60,
+	UITYPE_DWARVENAXE = -59,
+	UITYPE_LONGKNIFE = -58,
+	UITYPE_CSABRE = -57,
+	UITYPE_WOODAXE = -56,
+	UITYPE_SHWARBOW = -55,
+	UITYPE_MINRING = -54,
+	/* NEW ITEMS END HERE*/
 	UITYPE_INVALID = -1,
 };
 
@@ -435,7 +499,9 @@ enum item_misc_id : int8_t {
 };
 
 struct ItemData {
-	enum item_drop_rate iRnd;
+	uint8_t iRnd;
+	uint8_t iMonstDropRate;
+	uint8_t iUMonstDropRate;
 	enum item_class iClass;
 	enum item_equip_type iLoc;
 	enum item_cursor_graphic iCurs;
@@ -605,6 +671,12 @@ struct UniqueItem {
 	ItemPower powers[6];
 };
 
+struct ItemPanelData {
+	uint8_t ItemIdx;
+	const char *PanelText;
+};
+
+extern ItemPanelData ItemPanelList[];
 extern ItemData AllItemsList[];
 extern const PLStruct ItemPrefixes[];
 extern const PLStruct ItemSuffixes[];

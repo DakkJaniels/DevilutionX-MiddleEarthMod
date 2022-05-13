@@ -76,7 +76,7 @@ void InitSmith(Towner &towner, const TownerData &townerData)
 	towner.animOrder = AnimOrder;
 	towner.animOrderSize = sizeof(AnimOrder);
 	LoadTownerAnimations(towner, "Towners\\Smith\\SmithN.CEL", 16, 3);
-	towner.name = _("Griswold the Blacksmith");
+	towner.name = _("Celebrimbor of Eregion");
 }
 
 void InitBarOwner(Towner &towner, const TownerData &townerData)
@@ -98,7 +98,7 @@ void InitBarOwner(Towner &towner, const TownerData &townerData)
 	towner.animOrder = AnimOrder;
 	towner.animOrderSize = sizeof(AnimOrder);
 	LoadTownerAnimations(towner, "Towners\\TwnF\\TwnFN.CEL", 16, 3);
-	towner.name = _("Ogden the Tavern owner");
+	towner.name = _("Barliman Butterbur");
 }
 
 void InitTownDead(Towner &towner, const TownerData &townerData)
@@ -107,7 +107,7 @@ void InitTownDead(Towner &towner, const TownerData &townerData)
 	towner.animOrder = nullptr;
 	towner.animOrderSize = 0;
 	LoadTownerAnimations(towner, "Towners\\Butch\\Deadguy.CEL", 8, 6);
-	towner.name = _("Wounded Townsman");
+	towner.name = _("Wounded Knight");
 }
 
 void InitWitch(Towner &towner, const TownerData &townerData)
@@ -129,7 +129,7 @@ void InitWitch(Towner &towner, const TownerData &townerData)
 	towner.animOrder = AnimOrder;
 	towner.animOrderSize = sizeof(AnimOrder);
 	LoadTownerAnimations(towner, "Towners\\TownWmn1\\Witch.CEL", 19, 6);
-	towner.name = _("Adria the Witch");
+	towner.name = _("Galadriel");
 }
 
 void InitBarmaid(Towner &towner, const TownerData &townerData)
@@ -138,7 +138,7 @@ void InitBarmaid(Towner &towner, const TownerData &townerData)
 	towner.animOrder = nullptr;
 	towner.animOrderSize = 0;
 	LoadTownerAnimations(towner, "Towners\\TownWmn1\\WmnN.CEL", 18, 6);
-	towner.name = _("Gillian the Barmaid");
+	towner.name = _("Rosie Cotton");
 }
 
 void InitBoy(Towner &towner, const TownerData &townerData)
@@ -147,7 +147,7 @@ void InitBoy(Towner &towner, const TownerData &townerData)
 	towner.animOrder = nullptr;
 	towner.animOrderSize = 0;
 	LoadTownerAnimations(towner, "Towners\\TownBoy\\PegKid1.CEL", 20, 6);
-	towner.name = _("Wirt the Peg-legged boy");
+	towner.name = _("Gollum the Wicked");
 }
 
 void InitHealer(Towner &towner, const TownerData &townerData)
@@ -169,7 +169,7 @@ void InitHealer(Towner &towner, const TownerData &townerData)
 	towner.animOrder = AnimOrder;
 	towner.animOrderSize = sizeof(AnimOrder);
 	LoadTownerAnimations(towner, "Towners\\Healer\\Healer.CEL", 20, 6);
-	towner.name = _("Pepin the Healer");
+	towner.name = _("Herb-Master");
 }
 
 void InitTeller(Towner &towner, const TownerData &townerData)
@@ -186,7 +186,7 @@ void InitTeller(Towner &towner, const TownerData &townerData)
 	towner.animOrder = AnimOrder;
 	towner.animOrderSize = sizeof(AnimOrder);
 	LoadTownerAnimations(towner, "Towners\\Strytell\\Strytell.CEL", 25, 3);
-	towner.name = _("Cain the Elder");
+	towner.name = _("Gandalf the Grey");
 }
 
 void InitDrunk(Towner &towner, const TownerData &townerData)
@@ -202,7 +202,7 @@ void InitDrunk(Towner &towner, const TownerData &townerData)
 	towner.animOrder = AnimOrder;
 	towner.animOrderSize = sizeof(AnimOrder);
 	LoadTownerAnimations(towner, "Towners\\Drunk\\TwnDrunk.CEL", 18, 3);
-	towner.name = _("Farnham the Drunk");
+	towner.name = _("Grima son of Galmod");
 }
 
 void InitCows(Towner &towner, const TownerData &townerData)
@@ -272,7 +272,7 @@ void TownDead(Towner &towner)
 
 	if ((Quests[Q_BUTCHER]._qactive == QUEST_DONE || Quests[Q_BUTCHER]._qvar1 == 1) && towner._tAnimLen != 1) {
 		towner._tAnimLen = 1;
-		towner.name = _("Slain Townsman");
+		towner.name = _("Slain Knight");
 	}
 }
 
@@ -762,9 +762,9 @@ const TownerData TownersData[] = {
 	{ TOWN_TAVERN,  { 55, 62 }, Direction::SouthWest, InitBarOwner,  TalkToBarOwner    },
 	{ TOWN_STORY,   { 62, 71 }, Direction::South,     InitTeller,    TalkToStoryteller },
 	{ TOWN_DRUNK,   { 71, 84 }, Direction::South,     InitDrunk,     TalkToDrunk       },
-	{ TOWN_WITCH,   { 80, 20 }, Direction::South,     InitWitch,     TalkToWitch       },
-	{ TOWN_BMAID,   { 43, 66 }, Direction::South,     InitBarmaid,   TalkToBarmaid     },
-	{ TOWN_PEGBOY,  { 11, 53 }, Direction::South,     InitBoy,       TalkToBoy         },
+	{ TOWN_WITCH,   { 43, 66 }, Direction::South,     InitWitch,     TalkToWitch       },
+	{ TOWN_BMAID,   { 54, 64 }, Direction::South,     InitBarmaid,   TalkToBarmaid     },
+	{ TOWN_PEGBOY,  { 48, 63 }, Direction::South,     InitBoy,       TalkToBoy         },
 	{ TOWN_COW,     { 58, 16 }, Direction::SouthWest, InitCows,      TalkToCow         },
 	{ TOWN_COW,     { 56, 14 }, Direction::NorthWest, InitCows,      TalkToCow         },
 	{ TOWN_COW,     { 59, 20 }, Direction::North,     InitCows,      TalkToCow         },

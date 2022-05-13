@@ -23,6 +23,7 @@
 #include "monster.h"
 #include "spells.h"
 #include "trigs.h"
+#include <fmt/format.h>
 
 namespace devilution {
 
@@ -273,9 +274,9 @@ bool MonsterMHit(int pnum, int m, int mindam, int maxdam, int dist, missile_id t
 	if (pnum == MyPlayerId)
 		monster._mhitpoints -= dam;
 
-	if ((gbIsHellfire && HasAnyOf(player._pIFlags, ItemSpecialEffect::NoHealOnMonsters)) || (!gbIsHellfire && HasAnyOf(player._pIFlags, ItemSpecialEffect::FireArrows)))
-		monster._mFlags |= MFLAG_NOHEAL;
-
+	// if ((gbIsHellfire && HasAnyOf(player._pIFlags, ItemSpecialEffect::NoHealOnMonsters)) || (!gbIsHellfire && HasAnyOf(player._pIFlags, ItemSpecialEffect::FireArrows)))
+	//	monster._mFlags |= MFLAG_NOHEAL;
+	
 	if (monster._mhitpoints >> 6 <= 0) {
 		if (monster._mmode == MonsterMode::Petrified) {
 			M_StartKill(m, pnum);
@@ -900,8 +901,8 @@ void GetDamageAmt(int i, int *mind, int *maxd)
 		*mind = myPlayer._pLevel + 9;
 		*maxd = *mind + 9;
 		break;
-	case SPL_FLARE:
-		*mind = (myPlayer._pMagic / 2) + 3 * sl - (myPlayer._pMagic / 8);
+	case SPL_BSTAR:
+		*mind = (10 * sl + myPlayer._pMagic) - (myPlayer._pMagic / 2); // Blood Star Damage increase
 		*maxd = *mind;
 		break;
 	}
@@ -1053,19 +1054,19 @@ bool PlayerMHit(int pnum, Monster *monster, int dist, int mind, int maxd, missil
 	if (DebugGodMode)
 		hit = 1000;
 #endif
-	int hper = 40;
+	int hper = 50; // ME Mod Modification (from 40)
 	if (MissilesData[mtype].mType == 0) {
 		int tac = player.GetArmor();
 		if (monster != nullptr) {
 			hper = monster->mHit
 			    + ((monster->mLevel - player._pLevel) * 2)
-			    + 30
+			    + 50 // ME Mod modification (from 30)
 			    - (dist * 2) - tac;
 		} else {
 			hper = 100 - (tac / 2) - (dist * 2);
 		}
 	} else if (monster != nullptr) {
-		hper += (monster->mLevel * 2) - (player._pLevel * 2) - (dist * 2);
+		hper = (monster->mLevel * 2) - (player._pLevel * 2) - (dist * 2) + 60; // ME Mod modification
 	}
 
 	int minhit = 10;
@@ -1878,7 +1879,7 @@ void AddFirewall(Missile &missile, const AddMissileParameter &parameter)
 		missile._mirange += currlevel;
 	else
 		missile._mirange += (Players[missile._misource]._pISplDur * missile._mirange) / 128;
-	missile._mirange *= 16;
+	missile._mirange *= 8; // ME Mod modificaiton (was 16)
 	missile.var1 = missile._mirange - missile._miAnimLen;
 }
 
@@ -1892,7 +1893,7 @@ void AddFireball(Missile &missile, const AddMissileParameter &parameter)
 	if (missile._micaster == TARGET_MONSTERS) {
 		sp += std::min(missile._mispllvl * 2, 34);
 
-		int dmg = 2 * (Players[missile._misource]._pLevel + GenerateRndSum(10, 2)) + 4;
+		int dmg = 2 * (Players[missile._misource]._pLevel + GenerateRndSum(10, 2)); // ME Mod Modification (removed +4)
 		missile._midam = ScaleSpellEffect(dmg, missile._mispllvl);
 
 		UseMana(missile._misource, SPL_FIREBALL);
@@ -2080,6 +2081,40 @@ void AddManashield(Missile &missile, const AddMissileParameter & /*parameter*/)
 		UseMana(missile._misource, SPL_MANASHIELD);
 }
 
+void AddEtherealize(Missile &missile, const AddMissileParameter &parameter)
+{
+
+	missile._miDelFlag = true;
+
+	if (missile._misource < 0)
+		return;
+
+	auto &player = Players[missile._misource];
+	uint16_t duration;
+	/* Set the Duration for the Spell */
+	duration = 16 * player._pLevel >> 1;
+
+	for (int i = missile._mispllvl; i > 0; i--) {
+		duration += duration >> 3;
+	}
+
+	// duration += duration * player._pISplDur >> 7;
+
+	/* Save player current hitpoints (why?) */
+	/*missile.var1 = player._pHitPoints;
+	missile.var2 = player._pHPBase;*/
+
+	player.wEtherealize = duration;
+	player._pSpellFlags |= 1;
+
+	if (missile._misource == MyPlayerId) {
+		NetSendCmdParam1(true, CMD_SETETHEREALIZE, player.wEtherealize);
+	}
+
+	if (missile._micaster == TARGET_MONSTERS)
+		UseMana(missile._misource, SPL_ETHEREALIZE);
+}
+
 void AddFiremove(Missile &missile, const AddMissileParameter &parameter)
 {
 	missile._midam = GenerateRnd(10) + Players[missile._misource]._pLevel + 1;
@@ -2206,7 +2241,7 @@ void AddFlare(Missile &missile, const AddMissileParameter &parameter)
 	missile.var2 = missile.position.start.y;
 	missile._mlid = AddLight(missile.position.start, 8);
 	if (missile._micaster == TARGET_MONSTERS) {
-		UseMana(missile._misource, SPL_FLARE);
+		UseMana(missile._misource, SPL_BSTAR);
 		ApplyPlrDamage(missile._misource, 5);
 	} else if (missile._misource > 0) {
 		auto &monster = Monsters[missile._misource];
@@ -2263,6 +2298,14 @@ void AddStone(Missile &missile, const AddMissileParameter &parameter)
 		    auto &monster = Monsters[monsterId];
 
 		    if (IsAnyOf(monster.MType->mtype, MT_GOLEM, MT_DIABLO, MT_NAKRUL)) {
+			    return false;
+		    }
+		    /* Putting in ME Mod logic,  for stone curse exclusions based on AI*/
+		    if (monster._mAi >= AI_DIABLO)
+			    return false;
+
+		    /* set up stone curse immunity for specific monsters */
+		    if ((monster.mMagicRes & IMMUNE_SC) != 0) {
 			    return false;
 		    }
 		    if (IsAnyOf(monster._mmode, MonsterMode::FadeIn, MonsterMode::FadeOut, MonsterMode::Charge)) {
@@ -2860,8 +2903,8 @@ void MI_Firebolt(Missile &missile)
 				case MIS_FIREBOLT:
 					d = GenerateRnd(10) + (player._pMagic / 8) + missile._mispllvl + 1;
 					break;
-				case MIS_FLARE:
-					d = 3 * missile._mispllvl - (player._pMagic / 8) + (player._pMagic / 2);
+				case MIS_BSTAR:
+					d = 10 * missile._mispllvl + player._pMagic - player._pMagic / 2;
 					break;
 				case MIS_BONESPIRIT:
 					d = 0;
@@ -2886,7 +2929,7 @@ void MI_Firebolt(Missile &missile)
 			case MIS_MAGMABALL:
 				AddMissile(missile.position.tile, dst, dir, MIS_MISEXP, missile._micaster, missile._misource, 0, 0, &missile);
 				break;
-			case MIS_FLARE:
+			case MIS_BSTAR:
 				AddMissile(missile.position.tile, dst, dir, MIS_MISEXP2, missile._micaster, missile._misource, 0, 0, &missile);
 				break;
 			case MIS_ACID:
@@ -3029,7 +3072,7 @@ void MI_Fireball(Missile &missile)
 			Point m = missile.position.tile;
 			ChangeLight(missile._mlid, missile.position.tile, missile._miAnimFrame);
 
-			constexpr Displacement Pattern[] = { { 0, 0 }, { 0, 1 }, { 0, -1 }, { 1, 0 }, { 1, -1 }, { 1, 1 }, { -1, 0 }, { -1, 1 }, { -1, -1 } };
+			constexpr Displacement Pattern[] = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { 1, -1 }, { 1, 1 }, { -1, 0 }, { -1, 1 }, { -1, -1 } }; // Removed 0,0 per ME Mod
 			for (auto shift : Pattern) {
 				if (!CheckBlock(p, m + shift))
 					CheckMissileCol(missile, minDam, maxDam, false, m + shift, true);
@@ -3491,9 +3534,12 @@ void MI_Chain(Missile &missile)
 	Point dst { missile.var1, missile.var2 };
 	Direction dir = GetDirection(position, dst);
 	AddMissile(position, dst, dir, MIS_LIGHTCTRL, TARGET_MONSTERS, id, 1, missile._mispllvl);
-	int rad = missile._mispllvl + 3;
-	if (rad > 19)
-		rad = 19;
+	int rad = 17; // basically changed to static radius in ME Mod (from variable based on spell level, up to 19 max)
+
+	// missile._mispllvl + 3;
+	// if (rad > 17)	// reduced in ME Mod (from 19)
+	//	rad = 17;
+
 	for (int i = 1; i < rad; i++) {
 		int k = CrawlNum[i];
 		int ck = k + 2;
@@ -3501,7 +3547,7 @@ void MI_Chain(Missile &missile)
 			Point target = position + Displacement { CrawlTable[ck - 1], CrawlTable[ck] };
 			if (InDungeonBounds(target) && dMonster[target.x][target.y] > 0) {
 				dir = GetDirection(position, target);
-				AddMissile(position, target, dir, MIS_LIGHTCTRL, TARGET_MONSTERS, id, 1, missile._mispllvl);
+				AddMissile(position, target, dir, MIS_LIGHTCTRL, TARGET_MONSTERS, id, 1, missile._mispllvl >> 1); // ME Mod reduce spell level by half
 			}
 		}
 	}
@@ -4038,6 +4084,25 @@ void MI_Element(Missile &missile)
 	PutMissile(missile);
 }
 
+void ProcessEtherealize()
+{
+	auto &myPlayer = Players[MyPlayerId];
+
+	if (myPlayer.wEtherealize > 0) {
+		// reduce Etherealize duration
+		myPlayer.wEtherealize--;
+
+		// If duration over
+		if (myPlayer.wEtherealize == 0 || myPlayer._pHitPoints <= 0) {
+			myPlayer._pSpellFlags &= ~0x1;
+			NetSendCmdParam1(true, CMD_SETETHEREALIZE, 0);
+		} else {
+			// Set Spell Flag 1 to work with existing code
+			myPlayer._pSpellFlags |= 1;
+		}
+	}
+}
+
 void MI_Bonespirit(Missile &missile)
 {
 	missile._mirange--;
@@ -4161,6 +4226,7 @@ void ProcessMissiles()
 	}
 
 	ProcessManaShield();
+	ProcessEtherealize();
 	DeleteMissiles();
 }
 

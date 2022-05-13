@@ -591,12 +591,12 @@ void PressChar(char vkey)
 		}
 		return;
 #ifdef _DEBUG
-	case 'M':
-		NextDebugMonster();
-		return;
-	case 'm':
-		GetDebugMonster();
-		return;
+		/*case 'M':
+		    NextDebugMonster();
+		    return;
+		case 'm':
+		    GetDebugMonster();
+		    return;*/
 #endif
 	}
 }
@@ -1475,7 +1475,7 @@ void InitKeymapActions()
 	    DisplaySpellsKeyPressed,
 	    nullptr,
 	    CanPlayerTakeAction);
-	sgOptions.Keymapper.AddAction(
+	/*sgOptions.Keymapper.AddAction(
 	    "QuickSave",
 	    N_("Quick save"),
 	    N_("Saves the game."),
@@ -1490,7 +1490,7 @@ void InitKeymapActions()
 	    DVL_VK_F3,
 	    [] { gamemenu_load_game(false); },
 	    nullptr,
-	    [&]() { return !gbIsMultiplayer && gbValidSaveFile && stextflag == STORE_NONE && IsGameRunning(); });
+	    [&]() { return !gbIsMultiplayer && gbValidSaveFile && stextflag == STORE_NONE && IsGameRunning(); });*/
 #ifndef NOEXIT
 	sgOptions.Keymapper.AddAction(
 	    "QuitGame",
@@ -1627,14 +1627,14 @@ void InitKeymapActions()
 	    IncreaseGamma,
 	    nullptr,
 	    CanPlayerTakeAction);
-	sgOptions.Keymapper.AddAction(
+	/*sgOptions.Keymapper.AddAction(
 	    "Help",
 	    N_("Help"),
 	    N_("Open Help Screen."),
 	    DVL_VK_F1,
 	    HelpKeyPressed,
 	    nullptr,
-	    CanPlayerTakeAction);
+	    CanPlayerTakeAction);*/
 	sgOptions.Keymapper.AddAction(
 	    "Screenshot",
 	    N_("Screenshot"),

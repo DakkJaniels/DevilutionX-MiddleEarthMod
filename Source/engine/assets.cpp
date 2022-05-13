@@ -61,6 +61,11 @@ SDL_RWops *OpenAsset(const char *filename, bool threadsafe)
 		}
 	}
 
+	// Load from the `/assets` directory next to the devilutionx binary.
+	const std::string path = paths::AssetsPath() + relativePath;
+	if ((rwops = SDL_RWFromFile(path.c_str(), "rb")) != nullptr)
+		return rwops;
+
 	// Load from all the MPQ archives.
 	MpqArchive *archive;
 	uint32_t fileNumber;

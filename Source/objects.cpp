@@ -5439,12 +5439,8 @@ void GetObjectStr(const Object &object)
 		break;
 	case OBJ_BARREL:
 	case OBJ_BARRELEX:
-		if (currlevel >= 17 && currlevel <= 20)      // for hive levels
-			InfoString = _("Pod");                   // Then a barrel is called a pod
-		else if (currlevel >= 21 && currlevel <= 24) // for crypt levels
-			InfoString = _("Urn");                   // Then a barrel is called an urn
-		else
-			InfoString = _("Barrel");
+		// Barrels replaced with Urns
+		InfoString = _("Urn");
 		break;
 	case OBJ_SHRINEL:
 	case OBJ_SHRINER:

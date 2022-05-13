@@ -544,6 +544,8 @@ std::string DebugCmdLevelSeed(const string_view parameter)
 
 std::string DebugCmdSpawnUniqueMonster(const string_view parameter)
 {
+	bool isUnique = false;
+
 	if (currlevel == 0)
 		return "Do you want to kill the towners?!?";
 
@@ -678,6 +680,8 @@ std::string DebugCmdSpawnMonster(const string_view parameter)
 	}
 
 	if (!found) {
+		id = LevelMonsterTypeCount;
+		LevelMonsterTypeCount++;
 		LevelMonsterTypes[id].mtype = static_cast<_monster_id>(mtype);
 		InitMonsterGFX(id);
 		InitMonsterSND(id);
@@ -697,9 +701,13 @@ std::string DebugCmdSpawnMonster(const string_view parameter)
 				continue;
 			if (!IsTileWalkable(pos))
 				continue;
+			if (isUnique) {
+				PlaceUniqueMonst(uniqueidx, mtype, 0, pos.x, pos.y);
+			} else {
+				if (AddMonster(pos, myPlayer._pdir, id, true) < 0)
+					return fmt::format("I could only summon {} Monsters. The rest strike for shorter working hours.", spawnedMonster);
+			}
 
-			if (AddMonster(pos, myPlayer._pdir, id, true) < 0)
-				return fmt::format("I could only summon {} Monsters. The rest strike for shorter working hours.", spawnedMonster);
 			spawnedMonster += 1;
 
 			if (spawnedMonster >= count)

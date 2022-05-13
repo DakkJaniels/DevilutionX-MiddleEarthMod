@@ -20,9 +20,9 @@ std::optional<OwnedCelSprite> pChrButtons;
 
 /** Map of hero class names */
 const char *const ClassStrTbl[] = {
-	N_("Warrior"),
-	N_("Rogue"),
-	N_("Sorcerer"),
+	N_("Dunadan"),
+	N_("Noldo"),
+	N_("Istar"),
 	N_("Monk"),
 	N_("Bard"),
 	N_("Barbarian"),

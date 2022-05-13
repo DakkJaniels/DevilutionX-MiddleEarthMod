@@ -28,6 +28,7 @@
 #include "init.h"
 #include "inv.h"
 #include "inv_iterators.hpp"
+#include "itemdat.h" /* added to grab the item panel data*/
 #include "lighting.h"
 #include "minitext.h"
 #include "missiles.h"
@@ -866,6 +867,14 @@ void DrawInfoBox(const Surface &out)
 				InfoString = myPlayer.HoldItem._iIName;
 			else
 				InfoString = myPlayer.HoldItem._iName;
+			uint8_t idx = 0;
+			while (ItemPanelList[idx].ItemIdx != 0) {
+				if (myPlayer.HoldItem.IDidx == ItemPanelList[idx].ItemIdx) {
+					AddPanelString(ItemPanelList[idx].PanelText);
+					break;
+				}
+				idx++;
+			}
 			InfoColor = myPlayer.HoldItem.getTextColor();
 		}
 	} else {

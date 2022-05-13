@@ -29,7 +29,7 @@ namespace devilution {
 // number of inventory grid cells
 #define NUM_INV_GRID_ELEM 40
 #define MAXBELTITEMS 8
-#define MAXRESIST 75
+#define MAXRESIST 85
 #define MAXCHARLEVEL 50
 #define MAX_SPELL_LEVEL 15
 #define PLR_NAME_LEN 32
@@ -344,6 +344,7 @@ struct Player {
 	uint8_t pDungMsgs2;
 	bool pOriginalCathedral;
 	uint16_t wReflections;
+	uint16_t wEtherealize;
 	uint8_t pDiabloKillLevel;
 	_difficulty pDifficulty;
 	ItemSpecialEffectHf pDamAcFlags;
@@ -477,7 +478,7 @@ struct Player {
 	 */
 	int GetArmor() const
 	{
-		return _pIBonusAC + _pIAC + _pDexterity / 5;
+		return _pIBonusAC + _pIAC + _pDexterity / 4;
 	}
 
 	/**

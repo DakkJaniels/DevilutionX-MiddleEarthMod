@@ -69,7 +69,7 @@ enum monster_resistance : uint8_t {
 	IMMUNE_MAGIC     = 1 << 3,
 	IMMUNE_FIRE      = 1 << 4,
 	IMMUNE_LIGHTNING = 1 << 5,
-	IMMUNE_NULL_40   = 1 << 6,
+	IMMUNE_SC        = 1 << 6,
 	IMMUNE_ACID      = 1 << 7,
 	// clang-format on
 };
@@ -307,8 +307,11 @@ struct UniqueMonsterData {
 	 */
 
 	UniqueMonsterPack monsterPack;
-	uint8_t customToHit;
-	uint8_t customArmorClass;
+	uint8_t customToHit; // not really used here
+	uint8_t customArmorClass; // not really used here
+	uint8_t mlevelNorm;
+	uint8_t mlevelNM;
+	uint8_t mlevelHell;
 	_speech_id mtalkmsg;
 };
 

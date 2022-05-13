@@ -133,9 +133,9 @@ void SelheroListSelect(int value)
 
 		vecSelHeroDlgItems.clear();
 		int itemH = 33;
-		vecSelHeroDlgItems.push_back(std::make_unique<UiListItem>(_("Warrior"), static_cast<int>(HeroClass::Warrior)));
-		vecSelHeroDlgItems.push_back(std::make_unique<UiListItem>(_("Rogue"), static_cast<int>(HeroClass::Rogue)));
-		vecSelHeroDlgItems.push_back(std::make_unique<UiListItem>(_("Sorcerer"), static_cast<int>(HeroClass::Sorcerer)));
+		vecSelHeroDlgItems.push_back(std::make_unique<UiListItem>(_("Dunadan"), static_cast<int>(HeroClass::Warrior)));
+		vecSelHeroDlgItems.push_back(std::make_unique<UiListItem>(_("Noldo"), static_cast<int>(HeroClass::Rogue)));
+		vecSelHeroDlgItems.push_back(std::make_unique<UiListItem>(_("Istar"), static_cast<int>(HeroClass::Sorcerer)));
 		if (gbIsHellfire) {
 			vecSelHeroDlgItems.push_back(std::make_unique<UiListItem>(_("Monk"), static_cast<int>(HeroClass::Monk)));
 		}
