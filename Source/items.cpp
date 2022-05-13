@@ -309,8 +309,8 @@ bool IsPrefixValidForItemType(int i, AffixItemType flgs)
 	    if (i > 82)
 	        return false;
 
-		if (i >= 12 && i <= 20)
-			itemTypes &= ~AffixItemType::Staff;
+	    if (i >= 12 && i <= 20)
+	        itemTypes &= ~AffixItemType::Staff;
 	}*/
 
 	return HasAnyOf(flgs, itemTypes);
@@ -326,13 +326,13 @@ bool IsSuffixValidForItemType(int i, AffixItemType flgs)
 	    if (i > 94)
 	        return false;
 
-		if ((i >= 0 && i <= 1)
-		    || (i >= 14 && i <= 15)
-		    || (i >= 21 && i <= 22)
-		    || (i >= 34 && i <= 36)
-		    || (i >= 41 && i <= 44)
-		    || (i >= 60 && i <= 63))
-			itemTypes &= ~PLT_STAFF;
+	    if ((i >= 0 && i <= 1)
+	        || (i >= 14 && i <= 15)
+	        || (i >= 21 && i <= 22)
+	        || (i >= 34 && i <= 36)
+	        || (i >= 41 && i <= 44)
+	        || (i >= 60 && i <= 63))
+	        itemTypes &= ~PLT_STAFF;
 	}*/
 
 	return HasAnyOf(flgs, itemTypes);
@@ -1062,8 +1062,6 @@ int PLVal(int pv, int p1, int p2, int minv, int maxv)
 void SaveItemAffix(Item &item, const PLStruct &affix)
 {
 	auto power = affix.power;
-
-
 
 	int value = SaveItemPower(item, power);
 

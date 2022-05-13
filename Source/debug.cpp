@@ -633,28 +633,28 @@ std::string DebugCmdSpawnUniqueMonster(const string_view parameter)
 
 std::string DebugCmdSpawnMonster(const string_view parameter)
 {
-	//if (currlevel == 0)
+	// if (currlevel == 0)
 	//	return "Do you want to kill the towners?!?";
 
-	//std::stringstream paramsStream(parameter.data());
-	//std::string name;
-	//int count = 1;
-	//for (std::string tmp; std::getline(paramsStream, tmp, ' '); name += tmp + " ") {
+	// std::stringstream paramsStream(parameter.data());
+	// std::string name;
+	// int count = 1;
+	// for (std::string tmp; std::getline(paramsStream, tmp, ' '); name += tmp + " ") {
 	//	int num = atoi(tmp.c_str());
 	//	if (num > 0) {
 	//		count = num;
 	//		break;
 	//	}
-	//}
-	//if (name.empty())
+	// }
+	// if (name.empty())
 	//	return "Monster name cannot be empty. Duh.";
 
-	//name.pop_back(); // remove last space
-	//std::transform(name.begin(), name.end(), name.begin(), [](unsigned char c) { return std::tolower(c); });
+	// name.pop_back(); // remove last space
+	// std::transform(name.begin(), name.end(), name.begin(), [](unsigned char c) { return std::tolower(c); });
 
-	//int mtype = -1;
+	// int mtype = -1;
 
-	//for (int i = 0; i < NUM_MTYPES; i++) {
+	// for (int i = 0; i < NUM_MTYPES; i++) {
 	//	auto mondata = MonstersData[i];
 	//	std::string monsterName(mondata.mName);
 	//	std::transform(monsterName.begin(), monsterName.end(), monsterName.begin(), [](unsigned char c) { return std::tolower(c); });
@@ -663,23 +663,23 @@ std::string DebugCmdSpawnMonster(const string_view parameter)
 	//	mtype = i;
 	//	if (monsterName == name) // to support partial name matching but always choose the correct monster if full name is given
 	//		break;
-	//}
+	// }
 
-	//if (mtype == -1)
+	// if (mtype == -1)
 	//	return "Monster not found!";
 
-	//int id = MAX_LVLMTYPES - 1;
-	//bool found = false;
+	// int id = MAX_LVLMTYPES - 1;
+	// bool found = false;
 
-	//for (int i = 0; i < LevelMonsterTypeCount; i++) {
+	// for (int i = 0; i < LevelMonsterTypeCount; i++) {
 	//	if (LevelMonsterTypes[i].mtype == mtype) {
 	//		id = i;
 	//		found = true;
 	//		break;
 	//	}
-	//}
+	// }
 
-	//if (!found) {
+	// if (!found) {
 	//	id = LevelMonsterTypeCount;
 	//	LevelMonsterTypeCount++;
 	//	LevelMonsterTypes[id].mtype = static_cast<_monster_id>(mtype);
@@ -687,13 +687,13 @@ std::string DebugCmdSpawnMonster(const string_view parameter)
 	//	InitMonsterSND(id);
 	//	LevelMonsterTypes[id].mPlaceFlags |= PLACE_SCATTER;
 	//	LevelMonsterTypes[id].mdeadval = 1;
-	//}
+	// }
 
-	//auto &myPlayer = Players[MyPlayerId];
+	// auto &myPlayer = Players[MyPlayerId];
 
-	//int spawnedMonster = 0;
+	// int spawnedMonster = 0;
 
-	//for (int k : CrawlNum) {
+	// for (int k : CrawlNum) {
 	//	int ck = k + 2;
 	//	for (auto j = static_cast<uint8_t>(CrawlTable[k]); j > 0; j--, ck += 2) {
 	//		Point pos = myPlayer.position.tile + Displacement { CrawlTable[ck - 1], CrawlTable[ck] };

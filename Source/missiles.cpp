@@ -276,7 +276,7 @@ bool MonsterMHit(int pnum, int m, int mindam, int maxdam, int dist, missile_id t
 
 	// if ((gbIsHellfire && HasAnyOf(player._pIFlags, ItemSpecialEffect::NoHealOnMonsters)) || (!gbIsHellfire && HasAnyOf(player._pIFlags, ItemSpecialEffect::FireArrows)))
 	//	monster._mFlags |= MFLAG_NOHEAL;
-	
+
 	if (monster._mhitpoints >> 6 <= 0) {
 		if (monster._mmode == MonsterMode::Petrified) {
 			M_StartKill(m, pnum);

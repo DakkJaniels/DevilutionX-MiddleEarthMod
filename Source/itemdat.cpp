@@ -86,7 +86,6 @@ ItemPanelData ItemPanelList[] {
 	// clang-format on
 };
 
-
 constexpr ItemSpecialEffect TwoHandedItemSE = ItemSpecialEffect::FastestHitRecovery | ItemSpecialEffect::FasterAttack;
 constexpr ItemSpecialEffect HeavyXBowSE = ItemSpecialEffect::FastestHitRecovery | ItemSpecialEffect::FastestAttack;
 constexpr ItemSpecialEffect MallornBowSE = ItemSpecialEffect::FastestHitRecovery | ItemSpecialEffect::FastAttack;
