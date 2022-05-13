@@ -150,7 +150,7 @@ extern int setpc_h;
 extern std::unique_ptr<uint16_t[]> pSetPiece;
 /** Specifies whether a single player quest DUN has been loaded. */
 extern bool setloadflag;
-extern std::optional<CelSprite> pSpecialCels;
+extern std::optional<OwnedCelSprite> pSpecialCels;
 /** Specifies the tile definitions of the active dungeon type; (e.g. levels/l1data/l1.til). */
 extern std::unique_ptr<MegaTile[]> pMegaTiles;
 extern std::unique_ptr<uint16_t[]> pLevelPieces;
@@ -224,8 +224,6 @@ extern int16_t dMonster[MAXDUNX][MAXDUNY];
 extern DVL_API_FOR_TEST int8_t dCorpse[MAXDUNX][MAXDUNY];
 /** Contains the object numbers (objects array indices) of the map. */
 extern DVL_API_FOR_TEST int8_t dObject[MAXDUNX][MAXDUNY];
-/** Contains the item numbers (items array indices) of the map. */
-extern int8_t dItem[MAXDUNX][MAXDUNY];
 /**
  * Contains the arch frame numbers of the map from the special tileset
  * (e.g. "levels/l1data/l1s.cel"). Note, the special tileset of Tristram (i.e.
@@ -295,6 +293,38 @@ constexpr bool IsTileLit(Point position)
 {
 	return InDungeonBounds(position) && HasAnyOf(dFlags[position.x][position.y], DungeonFlag::Lit);
 }
+
+struct Miniset {
+	Size size;
+	/* these are indexed as [y][x] */
+	unsigned char search[5][5];
+	unsigned char replace[5][5];
+
+	bool matches(Point position) const
+	{
+		for (int yy = 0; yy < size.height; yy++) {
+			for (int xx = 0; xx < size.width; xx++) {
+				if (search[yy][xx] != 0 && dungeon[xx + position.x][yy + position.y] != search[yy][xx])
+					return false;
+				if (dflags[xx + position.x][yy + position.y] != 0)
+					return false;
+			}
+		}
+		return true;
+	}
+
+	void place(Point position, unsigned char extraFlags = 0) const
+	{
+		for (int y = 0; y < size.height; y++) {
+			for (int x = 0; x < size.width; x++) {
+				if (replace[y][x] == 0)
+					continue;
+				dungeon[x + position.x][y + position.y] = replace[y][x];
+				dflags[x + position.x][y + position.y] |= extraFlags;
+			}
+		}
+	}
+};
 
 void FillSolidBlockTbls();
 void SetDungeonMicros();

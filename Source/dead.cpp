@@ -18,12 +18,10 @@ int8_t stonendx;
 namespace {
 void InitDeadAnimationFromMonster(Corpse &corpse, const CMonster &mon)
 {
-	int i = 0;
 	const auto &animData = mon.GetAnimData(MonsterGraphic::Death);
-	for (const auto &celSprite : animData.CelSpritesForDirections)
-		corpse.data[i++] = celSprite->Data();
-	corpse.frame = animData.Frames;
-	corpse.width = animData.CelSpritesForDirections[0]->Width();
+	memcpy(&corpse.data[0], &animData.CelSpritesForDirections[0], sizeof(animData.CelSpritesForDirections[0]) * animData.CelSpritesForDirections.size());
+	corpse.frame = animData.Frames - 1;
+	corpse.width = animData.Width;
 }
 } // namespace
 
@@ -50,7 +48,7 @@ void InitCorpses()
 	for (auto &corpse : Corpses[nd].data)
 		corpse = MissileSpriteData[MFILE_SHATTER1].GetFirstFrame();
 
-	Corpses[nd].frame = 12;
+	Corpses[nd].frame = 11;
 	Corpses[nd].width = 128;
 	Corpses[nd].translationPaletteIndex = 0;
 	nd++;
@@ -61,7 +59,7 @@ void InitCorpses()
 		auto &monster = Monsters[ActiveMonsters[i]];
 		if (monster._uniqtype != 0) {
 			InitDeadAnimationFromMonster(Corpses[nd], *monster.MType);
-			Corpses[nd].translationPaletteIndex = monster._uniqtrans + 4;
+			Corpses[nd].translationPaletteIndex = ActiveMonsters[i] + 1;
 			nd++;
 
 			monster._udeadval = nd;

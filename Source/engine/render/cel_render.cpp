@@ -10,6 +10,7 @@
 
 #include "engine/cel_header.hpp"
 #include "engine/render/common_impl.h"
+#include "engine/trn.hpp"
 #include "options.h"
 #include "palette.h"
 #include "scrollrt.h"
@@ -435,9 +436,17 @@ void RenderCelOutlineClippedXY(const Surface &out, Point position, const byte *s
 
 	if (position.y == dstHeight) {
 		// After-bottom line - can only draw north.
-		src = RenderCelOutlineRowClipped<SkipColorIndexZero, /*North=*/true, /*West=*/false, /*South=*/false, /*East=*/false,
-		    /*ClipWidth=*/true>(
-		    out, position, src, clipX, color);
+		if (position.x <= 0) {
+			src = RenderCelOutlineRowClipped<SkipColorIndexZero, /*North=*/true, /*West=*/false, /*South=*/false, /*East=*/false,
+			    /*ClipWidth=*/true, /*CheckFirstColumn=*/true, /*CheckLastColumn=*/false>(out, position, src, clipX, color);
+		} else if (position.x + clipX.width >= out.w()) {
+			src = RenderCelOutlineRowClipped<SkipColorIndexZero, /*North=*/true, /*West=*/false, /*South=*/false, /*East=*/false,
+			    /*ClipWidth=*/true, /*CheckFirstColumn=*/false, /*CheckLastColumn=*/true>(out, position, src, clipX, color);
+		} else {
+			src = RenderCelOutlineRowClipped<SkipColorIndexZero, /*North=*/true, /*West=*/false, /*South=*/false, /*East=*/false,
+			    /*ClipWidth=*/true>(out, position, src, clipX, color);
+		}
+
 		--position.y;
 	}
 	if (src == srcEnd)
@@ -506,10 +515,17 @@ void RenderCelOutlineClippedXY(const Surface &out, Point position, const byte *s
 		return;
 
 	if (position.y == -1) {
-		// Special case: the top of the sprite is 1px below the last line, render just the outline above.
-		RenderCelOutlineRowClipped<SkipColorIndexZero, /*North=*/false, /*West=*/false, /*South=*/true, /*East=*/false,
-		    /*ClipWidth=*/true>(
-		    out, position, src, clipX, color);
+		// After-bottom line - can only draw south.
+		if (position.x <= 0) {
+			src = RenderCelOutlineRowClipped<SkipColorIndexZero, /*North=*/false, /*West=*/false, /*South=*/true, /*East=*/false,
+			    /*ClipWidth=*/true, /*CheckFirstColumn=*/true, /*CheckLastColumn=*/false>(out, position, src, clipX, color);
+		} else if (position.x + clipX.width >= out.w()) {
+			src = RenderCelOutlineRowClipped<SkipColorIndexZero, /*North=*/false, /*West=*/false, /*South=*/true, /*East=*/false,
+			    /*ClipWidth=*/true, /*CheckFirstColumn=*/false, /*CheckLastColumn=*/true>(out, position, src, clipX, color);
+		} else {
+			src = RenderCelOutlineRowClipped<SkipColorIndexZero, /*North=*/false, /*West=*/false, /*South=*/true, /*East=*/false,
+			    /*ClipWidth=*/true>(out, position, src, clipX, color);
+		}
 	}
 }
 
@@ -579,14 +595,14 @@ void CelBlitLightSafeTo(const Surface &out, Point position, const byte *pRLEByte
 
 } // namespace
 
-void CelDrawTo(const Surface &out, Point position, const CelSprite &cel, int frame)
+void CelDrawTo(const Surface &out, Point position, CelSprite cel, int frame)
 {
 	int nDataSize;
 	const auto *pRLEBytes = CelGetFrame(cel.Data(), frame, &nDataSize);
 	CelBlitSafeTo(out, position, pRLEBytes, nDataSize, cel.Width(frame));
 }
 
-void CelClippedDrawTo(const Surface &out, Point position, const CelSprite &cel, int frame)
+void CelClippedDrawTo(const Surface &out, Point position, CelSprite cel, int frame)
 {
 	int nDataSize;
 	const auto *pRLEBytes = CelGetFrameClipped(cel.Data(), frame, &nDataSize);
@@ -594,7 +610,7 @@ void CelClippedDrawTo(const Surface &out, Point position, const CelSprite &cel, 
 	CelBlitSafeTo(out, position, pRLEBytes, nDataSize, cel.Width(frame));
 }
 
-void CelDrawLightTo(const Surface &out, Point position, const CelSprite &cel, int frame, uint8_t *tbl)
+void CelDrawLightTo(const Surface &out, Point position, CelSprite cel, int frame, uint8_t *tbl)
 {
 	int nDataSize;
 	const auto *pRLEBytes = CelGetFrame(cel.Data(), frame, &nDataSize);
@@ -605,7 +621,7 @@ void CelDrawLightTo(const Surface &out, Point position, const CelSprite &cel, in
 		CelBlitSafeTo(out, position, pRLEBytes, nDataSize, cel.Width(frame));
 }
 
-void CelClippedDrawLightTo(const Surface &out, Point position, const CelSprite &cel, int frame)
+void CelClippedDrawLightTo(const Surface &out, Point position, CelSprite cel, int frame)
 {
 	int nDataSize;
 	const auto *pRLEBytes = CelGetFrameClipped(cel.Data(), frame, &nDataSize);
@@ -616,14 +632,14 @@ void CelClippedDrawLightTo(const Surface &out, Point position, const CelSprite &
 		CelBlitSafeTo(out, position, pRLEBytes, nDataSize, cel.Width(frame));
 }
 
-void CelDrawLightRedTo(const Surface &out, Point position, const CelSprite &cel, int frame)
+void CelDrawLightRedTo(const Surface &out, Point position, CelSprite cel, int frame)
 {
 	int nDataSize;
 	const auto *pRLEBytes = CelGetFrameClipped(cel.Data(), frame, &nDataSize);
-	RenderCelWithLightTable(out, position, pRLEBytes, nDataSize, cel.Width(frame), GetLightTable(1));
+	RenderCelWithLightTable(out, position, pRLEBytes, nDataSize, cel.Width(frame), GetInfravisionTRN());
 }
 
-void CelDrawItem(const Item &item, const Surface &out, Point position, const CelSprite &cel, int frame)
+void CelDrawItem(const Item &item, const Surface &out, Point position, CelSprite cel, int frame)
 {
 	bool usable = item._iStatFlag;
 	if (!usable) {
@@ -633,7 +649,7 @@ void CelDrawItem(const Item &item, const Surface &out, Point position, const Cel
 	}
 }
 
-void CelClippedBlitLightTransTo(const Surface &out, Point position, const CelSprite &cel, int frame)
+void CelClippedBlitLightTransTo(const Surface &out, Point position, CelSprite cel, int frame)
 {
 	int nDataSize;
 	const byte *pRLEBytes = CelGetFrameClipped(cel.Data(), frame, &nDataSize);
@@ -646,14 +662,14 @@ void CelClippedBlitLightTransTo(const Surface &out, Point position, const CelSpr
 		CelBlitSafeTo(out, position, pRLEBytes, nDataSize, cel.Width(frame));
 }
 
-void CelDrawUnsafeTo(const Surface &out, Point position, const CelSprite &cel, int frame)
+void CelDrawUnsafeTo(const Surface &out, Point position, CelSprite cel, int frame)
 {
 	int nDataSize;
 	const auto *pRLEBytes = CelGetFrame(cel.Data(), frame, &nDataSize);
 	RenderCelClipY(out, position, pRLEBytes, nDataSize, cel.Width(frame), RenderLineMemcpy, NullLineEndFn);
 }
 
-void CelBlitOutlineTo(const Surface &out, uint8_t col, Point position, const CelSprite &cel, int frame, bool skipColorIndexZero)
+void CelBlitOutlineTo(const Surface &out, uint8_t col, Point position, CelSprite cel, int frame, bool skipColorIndexZero)
 {
 	int nDataSize;
 	const byte *src = CelGetFrameClipped(cel.Data(), frame, &nDataSize);
@@ -663,7 +679,7 @@ void CelBlitOutlineTo(const Surface &out, uint8_t col, Point position, const Cel
 		RenderCelOutline<false>(out, position, src, nDataSize, cel.Width(frame), col);
 }
 
-std::pair<int, int> MeasureSolidHorizontalBounds(const CelSprite &cel, int frame)
+std::pair<int, int> MeasureSolidHorizontalBounds(CelSprite cel, int frame)
 {
 	int nDataSize;
 	const byte *src = CelGetFrameClipped(cel.Data(), frame, &nDataSize);

@@ -21,7 +21,7 @@ void set_up_scroll(Item &item, spell_id spell)
 void clear_inventory()
 {
 	for (int i = 0; i < NUM_INV_GRID_ELEM; i++) {
-		memset(&Players[MyPlayerId].InvList[i], 0, sizeof(Item));
+		Players[MyPlayerId].InvList[i] = {};
 		Players[MyPlayerId].InvGrid[i] = 0;
 	}
 	Players[MyPlayerId]._pNumInv = 0;
@@ -32,14 +32,14 @@ TEST(Inv, UseScroll_from_inventory)
 {
 	set_up_scroll(Players[MyPlayerId].InvList[2], SPL_FIREBOLT);
 	Players[MyPlayerId]._pNumInv = 5;
-	EXPECT_TRUE(UseScroll());
+	EXPECT_TRUE(UseScroll(Players[MyPlayerId]._pRSpell));
 }
 
 // Test that the scroll is used in the belt in correct conditions
 TEST(Inv, UseScroll_from_belt)
 {
 	set_up_scroll(Players[MyPlayerId].SpdList[2], SPL_FIREBOLT);
-	EXPECT_TRUE(UseScroll());
+	EXPECT_TRUE(UseScroll(Players[MyPlayerId]._pRSpell));
 }
 
 // Test that the scroll is not used in the inventory for each invalid condition
@@ -47,28 +47,28 @@ TEST(Inv, UseScroll_from_inventory_invalid_conditions)
 {
 	// Empty the belt to prevent using a scroll from the belt
 	for (int i = 0; i < MAXBELTITEMS; i++) {
-		Players[MyPlayerId].SpdList[i]._itype = ItemType::None;
+		Players[MyPlayerId].SpdList[i].Clear();
 	}
 
 	set_up_scroll(Players[MyPlayerId].InvList[2], SPL_FIREBOLT);
 	pcurs = CURSOR_IDENTIFY;
-	EXPECT_FALSE(UseScroll());
+	EXPECT_FALSE(UseScroll(Players[MyPlayerId]._pRSpell));
 
 	set_up_scroll(Players[MyPlayerId].InvList[2], SPL_FIREBOLT);
 	leveltype = DTYPE_TOWN;
-	EXPECT_FALSE(UseScroll());
+	EXPECT_FALSE(UseScroll(Players[MyPlayerId]._pRSpell));
 
 	set_up_scroll(Players[MyPlayerId].InvList[2], SPL_FIREBOLT);
 	Players[MyPlayerId]._pRSpell = static_cast<spell_id>(SPL_HEAL);
-	EXPECT_FALSE(UseScroll());
+	EXPECT_FALSE(UseScroll(Players[MyPlayerId]._pRSpell));
 
 	set_up_scroll(Players[MyPlayerId].InvList[2], SPL_FIREBOLT);
 	Players[MyPlayerId].InvList[2]._iMiscId = IMISC_STAFF;
-	EXPECT_FALSE(UseScroll());
+	EXPECT_FALSE(UseScroll(Players[MyPlayerId]._pRSpell));
 
 	set_up_scroll(Players[MyPlayerId].InvList[2], SPL_FIREBOLT);
-	Players[MyPlayerId].InvList[2]._itype = ItemType::None;
-	EXPECT_FALSE(UseScroll());
+	Players[MyPlayerId].InvList[2].Clear();
+	EXPECT_FALSE(UseScroll(Players[MyPlayerId]._pRSpell));
 }
 
 // Test that the scroll is not used in the belt for each invalid condition
@@ -79,23 +79,23 @@ TEST(Inv, UseScroll_from_belt_invalid_conditions)
 
 	set_up_scroll(Players[MyPlayerId].SpdList[2], SPL_FIREBOLT);
 	pcurs = CURSOR_IDENTIFY;
-	EXPECT_FALSE(UseScroll());
+	EXPECT_FALSE(UseScroll(Players[MyPlayerId]._pRSpell));
 
 	set_up_scroll(Players[MyPlayerId].SpdList[2], SPL_FIREBOLT);
 	leveltype = DTYPE_TOWN;
-	EXPECT_FALSE(UseScroll());
+	EXPECT_FALSE(UseScroll(Players[MyPlayerId]._pRSpell));
 
 	set_up_scroll(Players[MyPlayerId].SpdList[2], SPL_FIREBOLT);
 	Players[MyPlayerId]._pRSpell = static_cast<spell_id>(SPL_HEAL);
-	EXPECT_FALSE(UseScroll());
+	EXPECT_FALSE(UseScroll(Players[MyPlayerId]._pRSpell));
 
 	set_up_scroll(Players[MyPlayerId].SpdList[2], SPL_FIREBOLT);
 	Players[MyPlayerId].SpdList[2]._iMiscId = IMISC_STAFF;
-	EXPECT_FALSE(UseScroll());
+	EXPECT_FALSE(UseScroll(Players[MyPlayerId]._pRSpell));
 
 	set_up_scroll(Players[MyPlayerId].SpdList[2], SPL_FIREBOLT);
-	Players[MyPlayerId].SpdList[2]._itype = ItemType::None;
-	EXPECT_FALSE(UseScroll());
+	Players[MyPlayerId].SpdList[2].Clear();
+	EXPECT_FALSE(UseScroll(Players[MyPlayerId]._pRSpell));
 }
 
 // Test gold calculation
@@ -131,7 +131,7 @@ TEST(Inv, GoldAutoPlace)
 	Players[MyPlayerId].HoldItem._itype = ItemType::Gold;
 	Players[MyPlayerId].HoldItem._ivalue = GOLD_MAX_LIMIT - 100;
 
-	GoldAutoPlace(Players[MyPlayerId]);
+	GoldAutoPlace(Players[MyPlayerId], Players[MyPlayerId].HoldItem);
 	// We expect the inventory:
 	// | 5000 | 900 | ...
 	EXPECT_EQ(Players[MyPlayerId].InvList[0]._ivalue, GOLD_MAX_LIMIT);
@@ -182,13 +182,13 @@ TEST(Inv, RemoveSpdBarItem)
 {
 	// Clear the belt
 	for (int i = 0; i < MAXBELTITEMS; i++) {
-		Players[MyPlayerId].SpdList[i]._itype = ItemType::None;
+		Players[MyPlayerId].SpdList[i].Clear();
 	}
 	// Put an item in the belt: | x | x | item | x | x | x | x | x |
 	Players[MyPlayerId].SpdList[3]._itype = ItemType::Misc;
 
 	Players[MyPlayerId].RemoveSpdBarItem(3);
-	EXPECT_EQ(Players[MyPlayerId].SpdList[3]._itype, ItemType::None);
+	EXPECT_TRUE(Players[MyPlayerId].SpdList[3].isEmpty());
 }
 
 // Test removing a scroll from the inventory
@@ -213,7 +213,7 @@ TEST(Inv, RemoveScroll_belt)
 {
 	// Clear the belt
 	for (int i = 0; i < MAXBELTITEMS; i++) {
-		Players[MyPlayerId].SpdList[i]._itype = ItemType::None;
+		Players[MyPlayerId].SpdList[i].Clear();
 	}
 	// Put a firebolt scroll into the belt
 	Players[MyPlayerId]._pSpell = static_cast<spell_id>(SPL_FIREBOLT);
@@ -222,5 +222,27 @@ TEST(Inv, RemoveScroll_belt)
 	Players[MyPlayerId].SpdList[3]._iSpell = SPL_FIREBOLT;
 
 	RemoveScroll(Players[MyPlayerId]);
-	EXPECT_EQ(Players[MyPlayerId].SpdList[3]._itype, ItemType::None);
+	EXPECT_TRUE(Players[MyPlayerId].SpdList[3].isEmpty());
+}
+
+TEST(Inv, ItemSize)
+{
+	Item testItem {};
+
+	// Inventory sizes are currently determined by examining the sprite size
+	// rune of stone and grey suit are adjacent in the sprite list so provide an easy check for off-by-one errors
+	InitializeItem(testItem, IDI_FULLMANA);
+	EXPECT_EQ(GetInventorySize(testItem), Size(1, 1));
+	InitializeItem(testItem, IDI_GREYSUIT);
+	EXPECT_EQ(GetInventorySize(testItem), Size(2, 2));
+
+	// auric amulet is the first used hellfire sprite, but there's multiple unused sprites before it in the list.
+	// unfortunately they're the same size so this is less valuable as a test.
+	InitializeItem(testItem, IDI_AURIC);
+	EXPECT_EQ(GetInventorySize(testItem), Size(1, 1));
+
+	// gold is the last diablo sprite, off by ones will end up loading a 1x1 unused sprite from hellfire but maybe
+	//  this'll segfault if we make a mistake in the future?
+	InitializeItem(testItem, IDI_GOLD);
+	EXPECT_EQ(GetInventorySize(testItem), Size(1, 1));
 }
