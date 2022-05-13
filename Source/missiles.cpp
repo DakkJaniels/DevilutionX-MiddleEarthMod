@@ -2105,7 +2105,7 @@ void AddEtherealize(Missile &missile, const AddMissileParameter &parameter)
 	missile.var2 = player._pHPBase;*/
 
 	player.wEtherealize = duration;
-	player._pSpellFlags |= 1;
+	player._pSpellFlags |= SpellFlag::Etherealize;
 
 	if (missile._misource == MyPlayerId) {
 		NetSendCmdParam1(true, CMD_SETETHEREALIZE, player.wEtherealize);
@@ -4094,11 +4094,11 @@ void ProcessEtherealize()
 
 		// If duration over
 		if (myPlayer.wEtherealize == 0 || myPlayer._pHitPoints <= 0) {
-			myPlayer._pSpellFlags &= ~0x1;
+			myPlayer._pSpellFlags &= ~SpellFlag::Etherealize;
 			NetSendCmdParam1(true, CMD_SETETHEREALIZE, 0);
 		} else {
 			// Set Spell Flag 1 to work with existing code
-			myPlayer._pSpellFlags |= 1;
+			myPlayer._pSpellFlags |= SpellFlag::Etherealize;
 		}
 	}
 }

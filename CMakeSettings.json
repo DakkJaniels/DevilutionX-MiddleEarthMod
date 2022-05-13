@@ -15,7 +15,8 @@
           "value": "True",
           "type": "BOOL"
         }
-      ]
+      ],
+      "cmakeCommandArgs": "-DVERSION_NUM=1.4.0"
     },
     {
       "name": "x64-Debug-Translations",
@@ -63,7 +64,7 @@
       "configurationType": "Release",
       "buildRoot": "${workspaceRoot}\\build\\${name}",
       "installRoot": "${env.USERPROFILE}\\CMakeBuilds\\${workspaceHash}\\install\\${name}",
-      "cmakeCommandArgs": "-DCPACK=ON",
+      "cmakeCommandArgs": "-DCPACK=ON -DVERSION_NUM=1.4.0",
       "inheritEnvironments": [ "msvc_x64" ],
       "intelliSenseMode": "windows-msvc-x64",
       "enableClangTidyCodeAnalysis": true,

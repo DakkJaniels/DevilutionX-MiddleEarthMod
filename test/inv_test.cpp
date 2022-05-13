@@ -231,7 +231,7 @@ TEST(Inv, ItemSize)
 
 	// Inventory sizes are currently determined by examining the sprite size
 	// rune of stone and grey suit are adjacent in the sprite list so provide an easy check for off-by-one errors
-	InitializeItem(testItem, IDI_RUNEOFSTONE);
+	InitializeItem(testItem, IDI_FULLMANA);
 	EXPECT_EQ(GetInventorySize(testItem), Size(1, 1));
 	InitializeItem(testItem, IDI_GREYSUIT);
 	EXPECT_EQ(GetInventorySize(testItem), Size(2, 2));

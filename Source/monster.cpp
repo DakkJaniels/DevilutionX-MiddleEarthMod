@@ -187,7 +187,7 @@ void InitMonster(Monster &monster, Direction rd, int mtype, Point position)
 	monster.AnimInfo.CurrentFrame = GenerateRnd(monster.AnimInfo.NumberOfFrames - 1);
 
 	monster.mLevel = monster.MData->mLevel;
-	monster._mmaxhp = (monster.MType->mMinHP + GenerateRnd(monster.MType->mMaxHP - monster.MType->mMinHP + 1)) << 6;
+	monster._mmaxhp = (monster.MData->mMinHP + GenerateRnd(monster.MData->mMaxHP - monster.MData->mMinHP + 1)) << 6;
 
 	if (!gbIsMultiplayer)
 		monster._mmaxhp = std::max(monster._mmaxhp / 2, 64);
@@ -3471,7 +3471,7 @@ bool IsRelativeMoveOK(const Monster &monster, Point position, Direction mdir)
 
 } // namespace
 
-void InitLevelMonsters()
+void InitTRNForUniqueMonster(Monster &monster)
 {
 	char filestr[64];
 	sprintf(filestr, "Monsters\\Monsters\\%s.TRN", UniqueMonstersData[monster._uniqtype - 1].mTrnName);
@@ -4643,10 +4643,9 @@ void PrintMonstHistory(int mt)
 	int actHP = Monsters[pcursmonst]._mhitpoints >> 6;
 	int maxHP = Monsters[pcursmonst]._mmaxhp >> 6;
 	AddPanelString(fmt::format(_("Hit Points: {:d} of {:d}"), actHP, maxHP));
-	AddPanelString(tempstr);
-	
+
+	int res = (sgGameInitInfo.nDifficulty != DIFF_HELL) ? MonstersData[mt].mMagicRes : MonstersData[mt].mMagicRes2;
 	if (MonsterKillCounts[mt] >= 15) {
-		int res = (sgGameInitInfo.nDifficulty != DIFF_HELL) ? MonstersData[mt].mMagicRes : MonstersData[mt].mMagicRes2;
 		if ((res & (RESIST_MAGIC | RESIST_FIRE | RESIST_LIGHTNING | IMMUNE_MAGIC | IMMUNE_FIRE | IMMUNE_LIGHTNING | IMMUNE_SC)) == 0) {
 			AddPanelString(_("No magic resistance"));
 		} else {
@@ -4660,7 +4659,7 @@ void PrintMonstHistory(int mt)
 					resists.append(_(" Lightning"));
 				AddPanelString(resists);
 			}
-			if ((res & (IMMUNE_MAGIC | IMMUNE_FIRE | IMMUNE_LIGHTNING | IMMMUNE_SC)) != 0) {
+			if ((res & (IMMUNE_MAGIC | IMMUNE_FIRE | IMMUNE_LIGHTNING | IMMUNE_SC)) != 0) {
 				std::string immune = _("Immune:");
 				if ((res & IMMUNE_MAGIC) != 0)
 					immune.append(_(" Magic"));

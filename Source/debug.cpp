@@ -633,89 +633,89 @@ std::string DebugCmdSpawnUniqueMonster(const string_view parameter)
 
 std::string DebugCmdSpawnMonster(const string_view parameter)
 {
-	if (currlevel == 0)
-		return "Do you want to kill the towners?!?";
+	//if (currlevel == 0)
+	//	return "Do you want to kill the towners?!?";
 
-	std::stringstream paramsStream(parameter.data());
-	std::string name;
-	int count = 1;
-	for (std::string tmp; std::getline(paramsStream, tmp, ' '); name += tmp + " ") {
-		int num = atoi(tmp.c_str());
-		if (num > 0) {
-			count = num;
-			break;
-		}
-	}
-	if (name.empty())
-		return "Monster name cannot be empty. Duh.";
+	//std::stringstream paramsStream(parameter.data());
+	//std::string name;
+	//int count = 1;
+	//for (std::string tmp; std::getline(paramsStream, tmp, ' '); name += tmp + " ") {
+	//	int num = atoi(tmp.c_str());
+	//	if (num > 0) {
+	//		count = num;
+	//		break;
+	//	}
+	//}
+	//if (name.empty())
+	//	return "Monster name cannot be empty. Duh.";
 
-	name.pop_back(); // remove last space
-	std::transform(name.begin(), name.end(), name.begin(), [](unsigned char c) { return std::tolower(c); });
+	//name.pop_back(); // remove last space
+	//std::transform(name.begin(), name.end(), name.begin(), [](unsigned char c) { return std::tolower(c); });
 
-	int mtype = -1;
+	//int mtype = -1;
 
-	for (int i = 0; i < NUM_MTYPES; i++) {
-		auto mondata = MonstersData[i];
-		std::string monsterName(mondata.mName);
-		std::transform(monsterName.begin(), monsterName.end(), monsterName.begin(), [](unsigned char c) { return std::tolower(c); });
-		if (monsterName.find(name) == std::string::npos)
-			continue;
-		mtype = i;
-		if (monsterName == name) // to support partial name matching but always choose the correct monster if full name is given
-			break;
-	}
+	//for (int i = 0; i < NUM_MTYPES; i++) {
+	//	auto mondata = MonstersData[i];
+	//	std::string monsterName(mondata.mName);
+	//	std::transform(monsterName.begin(), monsterName.end(), monsterName.begin(), [](unsigned char c) { return std::tolower(c); });
+	//	if (monsterName.find(name) == std::string::npos)
+	//		continue;
+	//	mtype = i;
+	//	if (monsterName == name) // to support partial name matching but always choose the correct monster if full name is given
+	//		break;
+	//}
 
-	if (mtype == -1)
-		return "Monster not found!";
+	//if (mtype == -1)
+	//	return "Monster not found!";
 
-	int id = MAX_LVLMTYPES - 1;
-	bool found = false;
+	//int id = MAX_LVLMTYPES - 1;
+	//bool found = false;
 
-	for (int i = 0; i < LevelMonsterTypeCount; i++) {
-		if (LevelMonsterTypes[i].mtype == mtype) {
-			id = i;
-			found = true;
-			break;
-		}
-	}
+	//for (int i = 0; i < LevelMonsterTypeCount; i++) {
+	//	if (LevelMonsterTypes[i].mtype == mtype) {
+	//		id = i;
+	//		found = true;
+	//		break;
+	//	}
+	//}
 
-	if (!found) {
-		id = LevelMonsterTypeCount;
-		LevelMonsterTypeCount++;
-		LevelMonsterTypes[id].mtype = static_cast<_monster_id>(mtype);
-		InitMonsterGFX(id);
-		InitMonsterSND(id);
-		LevelMonsterTypes[id].mPlaceFlags |= PLACE_SCATTER;
-		LevelMonsterTypes[id].mdeadval = 1;
-	}
+	//if (!found) {
+	//	id = LevelMonsterTypeCount;
+	//	LevelMonsterTypeCount++;
+	//	LevelMonsterTypes[id].mtype = static_cast<_monster_id>(mtype);
+	//	InitMonsterGFX(id);
+	//	InitMonsterSND(id);
+	//	LevelMonsterTypes[id].mPlaceFlags |= PLACE_SCATTER;
+	//	LevelMonsterTypes[id].mdeadval = 1;
+	//}
 
-	auto &myPlayer = Players[MyPlayerId];
+	//auto &myPlayer = Players[MyPlayerId];
 
-	int spawnedMonster = 0;
+	//int spawnedMonster = 0;
 
-	for (int k : CrawlNum) {
-		int ck = k + 2;
-		for (auto j = static_cast<uint8_t>(CrawlTable[k]); j > 0; j--, ck += 2) {
-			Point pos = myPlayer.position.tile + Displacement { CrawlTable[ck - 1], CrawlTable[ck] };
-			if (dPlayer[pos.x][pos.y] != 0 || dMonster[pos.x][pos.y] != 0)
-				continue;
-			if (!IsTileWalkable(pos))
-				continue;
-			if (isUnique) {
-				PlaceUniqueMonst(uniqueidx, mtype, 0, pos.x, pos.y);
-			} else {
-				if (AddMonster(pos, myPlayer._pdir, id, true) < 0)
-					return fmt::format("I could only summon {} Monsters. The rest strike for shorter working hours.", spawnedMonster);
-			}
+	//for (int k : CrawlNum) {
+	//	int ck = k + 2;
+	//	for (auto j = static_cast<uint8_t>(CrawlTable[k]); j > 0; j--, ck += 2) {
+	//		Point pos = myPlayer.position.tile + Displacement { CrawlTable[ck - 1], CrawlTable[ck] };
+	//		if (dPlayer[pos.x][pos.y] != 0 || dMonster[pos.x][pos.y] != 0)
+	//			continue;
+	//		if (!IsTileWalkable(pos))
+	//			continue;
+	//		if (isUnique) {
+	//			PlaceUniqueMonst(uniqueidx, mtype, 0, pos.x, pos.y);
+	//		} else {
+	//			if (AddMonster(pos, myPlayer._pdir, id, true) < 0)
+	//				return fmt::format("I could only summon {} Monsters. The rest strike for shorter working hours.", spawnedMonster);
+	//		}
 
-			spawnedMonster += 1;
+	//		spawnedMonster += 1;
 
-			if (spawnedMonster >= count)
-				return "Let the fighting begin!";
-		}
-	}
+	//		if (spawnedMonster >= count)
+	//			return "Let the fighting begin!";
+	//	}
+	//}
 
-	return fmt::format("I could only summon {} Monsters. The rest strike for shorter working hours.", spawnedMonster);
+	return ("Broken");
 }
 
 std::string DebugCmdShowTileData(const string_view parameter)

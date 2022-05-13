@@ -1924,10 +1924,10 @@ DWORD OnSetEtherealize(const TCmd *pCmd, Player &player)
 		uint16_t duration = message.wParam1;
 		if (duration > 0) {
 			player.wEtherealize = duration;
-			player._pSpellFlags |= 1;
+			player._pSpellFlags |= SpellFlag::Etherealize;
 		} else {
 			player.wEtherealize = 0;
-			player._pSpellFlags &= ~0x1;
+			player._pSpellFlags &= ~SpellFlag::Etherealize;
 		}
 	}
 
