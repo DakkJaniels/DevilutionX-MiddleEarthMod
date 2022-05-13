@@ -876,7 +876,7 @@ bool PlrHitMonst(int pnum, int m, bool adjacentDamage = false)
 		int midam = player._pIFMinDam + GenerateRnd(player._pIFMaxDam - player._pIFMinDam);
 		AddMissile(player.position.tile, player.position.temp, player._pdir, MIS_SPECARROW, TARGET_MONSTERS, pnum, midam, 0);
 	}
-	if (HasAnyOf(player._pIFlags , ItemSpecialEffect::NoHealOnMonsters))
+	if (HasAnyOf(player._pIFlags, ItemSpecialEffect::NoHealOnMonsters))
 		monster._mFlags |= MFLAG_NOHEAL;
 	int mind = player._pIMinDam;
 	int maxd = player._pIMaxDam;
@@ -2771,7 +2771,7 @@ void AddPlrExperience(int pnum, int lvl, int exp)
 	uint32_t clampedExp = std::max(static_cast<int>(exp * (1 + (lvl - player._pLevel) / 10.0)), 0);
 
 	// Prevent power leveling
-	//if (gbIsMultiplayer) {
+	// if (gbIsMultiplayer) {
 	//	const uint32_t clampedPlayerLevel = clamp(static_cast<int>(player._pLevel), 1, MAXCHARLEVEL);
 
 	//	// for low level characters experience gain is capped to 1/20 of current levels xp

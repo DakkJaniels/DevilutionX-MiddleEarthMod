@@ -986,30 +986,30 @@ void SpawnLoot(Monster &monster, bool sendmsg)
 {
 	if (Quests[Q_GARBUD].IsAvailable() && monster._uniqtype - 1 == UMT_GARBUD) {
 		CreateTypeItem(monster.position.tile + Displacement { 1, 1 }, true, ItemType::Mace, IMISC_NONE, sendmsg, false);
-	/*} else if (monster._uniqtype - 1 == UMT_DEFILER) {
-		if (effect_is_playing(USFX_DEFILER8))
-		    stream_stop();
-		Quests[Q_DEFILER]._qlog = false;
-		SpawnMapOfDoom(monster.position.tile, sendmsg);
-	} else if (monster._uniqtype - 1 == UMT_HORKDMN) {
-		if (sgGameInitInfo.bTheoQuest != 0) {
-			SpawnTheodore(monster.position.tile);
-		} else {
-		    CreateAmulet(monster.position.tile, 13, sendmsg, false);
-		}
-	} else if (monster.MType->mtype == MT_HORKSPWN) {
-	} else if (monster.MType->mtype == MT_NAKRUL) {
-		int nSFX = IsUberRoomOpened ? USFX_NAKRUL4 : USFX_NAKRUL5;
-		if (sgGameInitInfo.bCowQuest != 0)
-		    nSFX = USFX_NAKRUL6;
-		if (effect_is_playing(nSFX))
-		    stream_stop();
-		Quests[Q_NAKRUL]._qlog = false;
-		UberDiabloMonsterIndex = -2;
-		CreateMagicWeapon(monster.position.tile, ItemType::Sword, ICURS_GREAT_SWORD, sendmsg, false);
-		CreateMagicWeapon(monster.position.tile, ItemType::Staff, ICURS_WAR_STAFF, sendmsg, false);
-		CreateMagicWeapon(monster.position.tile, ItemType::Bow, ICURS_LONG_WAR_BOW, sendmsg, false);
-		CreateSpellBook(monster.position.tile, SPL_APOCA, sendmsg, false);*/
+		/*} else if (monster._uniqtype - 1 == UMT_DEFILER) {
+		    if (effect_is_playing(USFX_DEFILER8))
+		        stream_stop();
+		    Quests[Q_DEFILER]._qlog = false;
+		    SpawnMapOfDoom(monster.position.tile, sendmsg);
+		} else if (monster._uniqtype - 1 == UMT_HORKDMN) {
+		    if (sgGameInitInfo.bTheoQuest != 0) {
+		        SpawnTheodore(monster.position.tile);
+		    } else {
+		        CreateAmulet(monster.position.tile, 13, sendmsg, false);
+		    }
+		} else if (monster.MType->mtype == MT_HORKSPWN) {
+		} else if (monster.MType->mtype == MT_NAKRUL) {
+		    int nSFX = IsUberRoomOpened ? USFX_NAKRUL4 : USFX_NAKRUL5;
+		    if (sgGameInitInfo.bCowQuest != 0)
+		        nSFX = USFX_NAKRUL6;
+		    if (effect_is_playing(nSFX))
+		        stream_stop();
+		    Quests[Q_NAKRUL]._qlog = false;
+		    UberDiabloMonsterIndex = -2;
+		    CreateMagicWeapon(monster.position.tile, ItemType::Sword, ICURS_GREAT_SWORD, sendmsg, false);
+		    CreateMagicWeapon(monster.position.tile, ItemType::Staff, ICURS_WAR_STAFF, sendmsg, false);
+		    CreateMagicWeapon(monster.position.tile, ItemType::Bow, ICURS_LONG_WAR_BOW, sendmsg, false);
+		    CreateSpellBook(monster.position.tile, SPL_APOCA, sendmsg, false);*/
 
 	} else if (monster.MType->mtype != MT_GOLEM) {
 		SpawnItem(monster, monster.position.tile, sendmsg);
@@ -1720,8 +1720,8 @@ bool MonsterDeath(int i)
 	        ViewPosition.y++;
 	    }
 
-		if (monster._mVar1 == 140)
-			PrepDoEnding();
+	    if (monster._mVar1 == 140)
+	        PrepDoEnding();
 	} else */
 	if (monster.AnimInfo.CurrentFrame == monster.AnimInfo.NumberOfFrames - 1) {
 		if (monster._uniqtype == 0)
@@ -3482,11 +3482,11 @@ void PrepareUniqueMonst(Monster &monster, int uniqindex, int miniontype, int bos
 {
 	monster._uniqtype = uniqindex + 1;
 
-	//if (uniqueMonsterData.mlevel != 0) {
+	// if (uniqueMonsterData.mlevel != 0) {
 	//	monster.mLevel = 2 * uniqueMonsterData.mlevel;
-	//} else {
+	// } else {
 	//	monster.mLevel = monster.MData->mLevel + 5;
-	//}
+	// }
 
 	monster.mLevel = uniqueMonsterData.mlevelNorm;
 
@@ -4637,7 +4637,7 @@ void PrintMonstHistory(int mt)
 	} else {
 		AddPanelString(fmt::format(_("Total kills: {:d}"), MonsterKillCounts[mt]));
 	}
-	
+
 	// Change to ACTUAL values
 	// Always print monster hp
 	int actHP = Monsters[pcursmonst]._mhitpoints >> 6;
