@@ -949,7 +949,7 @@ void StartEating(Monster &monster)
 
 void DiabloDeath(Monster &diablo, bool sendmsg)
 {
-	//	PlaySFX(USFX_DIABLOD);
+		PlaySFX(USFX_DIABLOD);
 	//	auto &quest = Quests[Q_DIABLO];
 	//	quest._qactive = QUEST_DONE;
 	//	if (sendmsg)
@@ -1105,9 +1105,10 @@ void StartMonsterDeath(int i, int pnum, bool sendmsg)
 	monster._mhitpoints = 0;
 	SetRndSeed(monster._mRndSeed);
 	SpawnLoot(monster, sendmsg);
-	/*if (monster.MType->mtype == MT_DIABLO)
-	    DiabloDeath(monster, true);*/
-	PlayEffect(monster, 2);
+	if (monster.MType->mtype == MT_DIABLO)
+	    DiabloDeath(monster, true);
+	else
+		PlayEffect(monster, 2);
 
 	Direction md = pnum >= 0 ? GetMonsterDirection(monster) : monster._mdir;
 	NewMonsterAnim(monster, MonsterGraphic::Death, md, gGameLogicStep < GameLogicStep::ProcessMonsters ? AnimationDistributionFlags::ProcessAnimationPending : AnimationDistributionFlags::None);
@@ -3525,7 +3526,7 @@ void PrepareUniqueMonst(Monster &monster, int uniqindex, int miniontype, int bos
 
 	if (sgGameInitInfo.nDifficulty == DIFF_NIGHTMARE) {
 		monster._mmaxhp = 4 * monster._mmaxhp;
-		monster.mLevel += uniqueMonsterData.mlevelNM;
+		monster.mLevel = uniqueMonsterData.mlevelNM;
 		monster._mhitpoints = monster._mmaxhp;
 		monster.mExp = 2 * (monster.mExp + 1000);
 		monster.mMinDamage = 2 * (monster.mMinDamage + 2);
@@ -3535,7 +3536,7 @@ void PrepareUniqueMonst(Monster &monster, int uniqindex, int miniontype, int bos
 	} else if (sgGameInitInfo.nDifficulty == DIFF_HELL) {
 		monster._mmaxhp = 5 * monster._mmaxhp;
 		monster._mmaxhp += 0x9600;
-		monster.mLevel += uniqueMonsterData.mlevelHell;
+		monster.mLevel = uniqueMonsterData.mlevelHell;
 		monster._mhitpoints = monster._mmaxhp;
 		monster.mExp = 4 * (monster.mExp + 1000);
 		monster.mMinDamage = 4 * monster.mMinDamage + 6;
