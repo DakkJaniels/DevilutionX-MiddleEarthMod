@@ -1,0 +1,1118 @@
+Dview v2.10 by Pedro Faria   2003- 6- 2  21:29  Diablo v1.07
+Source: diablo.exe  Size: 760320
+Target: datadiab.txt
+
+Monsters
+# = not active, * = special case, dlvl 16 and C4 are special cases
+pos name                       dlvl   mlvl     HP      AC   TH   Damage  MFL/MFL    Exp  Size  Type     walk  hitr  swing hit
+  0 Zombie                     1- 3     1     4-   7    5    0    2-  5  I--/I--     54   899  Undead  1.20  0.30  0.60  0.40
+  1 Ghoul                      2- 3     2     7-  11   10    0    3- 10  I--/I--     58   799  Undead  1.20  0.30  0.60  0.40
+  2 Corpse                     2- 4     4    15-  25   15    5    5- 15  I--/IR-    136   799  Undead  1.20  0.30  0.60  0.40
+  3 Huge Spider                9-10    18    70- 100   50   70   10- 20  --R/--I   1750  1386  Animal  0.50  0.30  0.75  0.40
+  4 Orcling                    1- 3     1     1-   4    0    0    1-  3  ---/---     46   799  Animal  0.55  0.55  0.65  0.35
+  5 Lesser Orc                 2- 4     3     4-   8    5    5    2-  5  ---/---     80   799  Animal  0.55  0.55  0.65  0.35
+  6 allen Istar               43-43#   30  1500-1500  130  130   60- 60  III/III   8000     1  Demon   0.05  0.30  0.05  0.05
+  7 Uruk-Hai                   4- 6     7    20-  36   15   10    4-  8  ---/--R    255   799  Animal  0.55  0.55  0.65  0.35
+  8 Skeleton                   1- 2     1     2-   4    0    0    1-  4  I--/I--     64   553  Undead  0.40  0.30  0.65  0.40
+  9 Cursed Guard               2- 3     2     4-   7    0    5    3-  5  I--/I--     68   553  Undead  0.40  0.30  0.65  0.40
+ 10 Lost Soul                  2- 4     4     8-  12    5   10    3-  7  IR-/II-    154   553  Undead  0.40  0.30  0.65  0.40
+ 11 The Damned                 3- 5     6    12-  20   15   15    4-  9  I-R/I-R    264   553  Undead  0.40  0.30  0.65  0.40
+ 12 Orcling                    1- 3     1     2-   5   10    0    1-  4  ---/---     52   879  Animal  0.60  0.55  0.65  0.40
+ 13 Lesser Orc                 3- 5     5    12-  24   15    5    3-  7  ---/---    155   879  Animal  0.60  0.55  0.65  0.40
+ 14 Orc                        4- 6     9    16-  30   20   15    4- 10  ---/-R-    352   879  Animal  0.60  0.55  0.65  0.40
+ 15 Uruk-Hai                   6- 8    12    40-  50   40   35    6- 14  ---/--R    850   879  Animal  0.60  0.55  0.65  0.40
+ 16 Wolf                       6- 8    11    50-  66   40   50    8- 15  ---/I--    846  1000  Animal  0.40  0.40  0.60  0.40
+ 17 Dire Wolf                  8-10    15    60-  80   55   65   10- 20  RRR/IRR   1248  1256  Animal  0.40  0.40  0.60  0.40
+ 18 Dread Wolf                10-11    21    80- 120   60   80   12- 22  RI-/RI-   2714  1256  Animal  0.40  0.40  0.60  0.40
+ 19 Warg                      11-13    25   120- 180   70  110   15- 25  RI-/II-   2940  1512  Animal  0.30  0.30  0.55  0.40
+ 20 Skeleton                   2- 3     3     2-   4    0    0    1-  2  I--/I--    110   567  Undead  0.40  0.25  0.80  0.60
+ 21 Cursed Bow                 2- 4     5     8-  16    0    5    1-  4  I--/I--    210   567  Undead  0.40  0.25  0.80  0.60
+ 22 Lost Soul                  3- 5     7    10-  24    5   10    1-  6  IR-/II-    364   567  Undead  0.40  0.25  0.80  0.60
+ 23 The Damned                 4- 6     9    15-  45   15   15    2-  9  I-R/I-R    594   567  Undead  0.40  0.25  0.80  0.60
+ 24 Skeleton Lord              1- 3     2     3-   6   10    0    2-  7  I--/I--     90   575  Undead  0.40  0.35  0.60  0.40
+ 25 Cursed Lord                2- 4     4    12-  20    5   10    3-  9  I--/I--    200   575  Undead  0.40  0.35  0.60  0.40
+ 26 Lost Soul                  3- 5     6    16-  30   15   15    4- 10  IR-/II-    393   575  Undead  0.40  0.35  0.60  0.40
+ 27 The Damned                 4- 6     8    35-  50   30   20    5- 14  I-R/I-R    604   575  Undead  0.40  0.35  0.60  0.40
+ 28 Warlock                   14-16    30   145- 145    0  110   15- 25  RRI/IRI   4968  1204  Demon   0.05  0.40  1.00  0.40
+ 29 Hidden                     2- 5     5     8-  24   25   15    3-  6  ---/---    278   992  Demon   0.40  0.40  0.60  0.40
+ 30 Giant Spider              11-12    22   130- 150   70   95   15- 22  R-R/I-I   2775  1386  Animal  0.50  0.30  0.75  0.40
+ 31 Unseen                     6- 8    11    35-  50   30   25   12- 20  R--/I--    935   992  Demon   0.40  0.40  0.60  0.40
+ 32 Illusion Weaver            8-10    13    40-  60   30   40   16- 24  RR-/IR-   1500   992  Demon   0.40  0.40  0.60  0.40
+ 33 Foul Corpse                1- 2     1     2-   5    3    0    1-  4  ---/---     50   947  Undead  1.20  0.30  0.60  0.40
+ 34 Flesh Clan                 4- 6     8    30-  45   40   30    4- 10  ---/---    460  1030  Demon   0.40  0.30  0.60  0.40
+ 35 Stone Clan                 5- 7    10    40-  55   40   40    6- 12  R--/I--    685  1030  Demon   0.40  0.30  0.60  0.40
+ 36 Fire Clan                  6- 8    12    50-  65   45   50    8- 16  -R-/-I-    906  1030  Demon   0.40  0.30  0.60  0.40
+ 37 Night Clan                 7- 9    14    55-  70   50   60   10- 20  R--/I--   1190  1030  Demon   0.40  0.30  0.60  0.40
+ 38 Fiend                      2- 3     3     3-   6    0   15    1-  6  ---/---    102   900  Animal  0.65  0.45  0.50  0.25
+ 39 Blink                      3- 5     7    12-  28   15   25    1-  8  ---/---    340   900  Animal  0.65  0.45  0.50  0.25
+ 40 Gloom                      4- 6     9    28-  36   35   50    4- 12  R--/R--    509   900  Animal  0.65  0.45  0.50  0.25
+ 41 Familiar                   6- 8    13    20-  35   35   30    4- 16  R-I/R-I    448  1000  Demon   0.65  0.45  0.50  0.25
+ 42 Flesh Clan                 4- 6     8    20-  35   35   15    1-  7  ---/---    448  1040  Demon   0.40  0.30  0.80  0.65
+ 43 Stone Clan                 5- 7    10    30-  40   35   20    2-  9  R--/I--    645  1040  Demon   0.40  0.30  0.80  0.65
+ 44 Mirkwood Witch            16-16    31   175- 240   90  120   29- 29  -II/-II   5500  1200  Demon   0.40  0.35  0.80  0.50
+ 45 Night Clan                 7- 9    14    50-  65   40   30    4- 13  R--/I--   1092  1040  Demon   0.40  0.30  0.80  0.65
+ 46 Poison Vermin              3- 5     8    20-  35   30   15    4- 10  ---/-R-    500   700  Animal  0.40  0.30  0.60  0.35
+ 47 Acid Crawler               5- 7    10    30-  40   40   25    6- 12  ---/--R    700   700  Animal  0.40  0.30  0.60  0.35
+ 48 Acid Fiend                 7- 9    14    50-  70   45   35    9- 18  R--/I--   1100   956  Animal  0.40  0.30  0.60  0.35
+ 49 Spitting Terror            9-11    19    70- 100   55   55   12- 20  RI-/II-   1900  1212  Animal  0.40  0.30  0.60  0.35
+ 50 Skeleton King              4- 4*   16   350- 350   80   55    9- 18  IRR/III    700  1010  Undead  0.30  0.30  0.80  0.40
+ 51 Bert                       1- 1*    6   400- 400   60   40    8- 15  -RR/RII    800   980  Demon   0.40  0.30  0.60  0.40
+ 52 Hill Troll                 9-11    18   140- 170   70   80   10- 20  -R-/RRR   1700  1130  Animal  0.50  0.30  0.75  0.40
+ 53 Cave Troll                10-12    21   180- 200   80   85   12- 22  RI-/II-   2100  1386  Animal  0.50  0.30  0.75  0.40
+ 54 Mountain Troll            12-14    24   200- 230   90  100   14- 24  I--/I-R   3200  1642  Animal  0.50  0.30  0.70  0.40
+ 55 Black Troll               14-15    28   220- 250  100  115   20- 30  RRR/IRI   4500  1642  Animal  0.50  0.30  0.65  0.40
+ 56 Blood Clan                 8-10    20    70- 100   65   60   12- 22  RI-/II-   2100  1030  Demon   0.40  0.20  0.50  0.40
+ 57 Brood of Shelob           14-16    30   300- 350  115  120   40- 40  -RR/RRI   5000  1807  Animal  0.50  0.30  0.75  0.40
+ 58 Olog-Hai                   8-10    16   130- 150   65   70   10- 15  RRR/RRI   1300  1295  Animal  0.55  0.30  0.80  0.40
+ 59 Cave Bat                   9-10    15    40-  45   45   60    6- 18  RI-/RIR    900  1248  Animal  0.50  0.35  0.50  0.25
+ 60 Doom Fire                 13-14    27   170- 210   85  110   12- 20  -I-/RI-   3800  1807  Undead  0.40  0.30  1.00  0.40
+ 61 Blood Stone                8-10    14    55-  75   45   30    2- 12  II-/II-   1309  1680  Demon   0.50  0.35  0.70  0.20
+ 62 Hell Stone                 9-11    16    60-  80   50   40    2- 20  II-/II-   1680  1680  Demon   0.50  0.35  0.70  0.20
+ 63 Lava Lord                  9-11    18    70-  85   60   55    4- 24  II-/II-   2124  1680  Demon   0.50  0.35  0.70  0.20
+ 64 Southron Beast             9-11    18    80- 110   60   80   10- 20  -R-/RRR   1750  1630  Animal  0.40  0.30  0.70  0.35
+ 65 Shadow                    10-12    20   160- 190   50   65   19- 27  -RR/RRR   2000  1204  Demon   0.40  0.40  0.60  0.40
+ 66 Tusk Beast                10-12    22   190- 210   75   85   14- 22  I-R/I-R   2700  1630  Animal  0.40  0.30  0.70  0.35
+ 67 Mumakil                   12-14    26   210- 240   85  110   20- 25  I-R/IRI   3600  1807  Animal  0.40  0.30  0.70  0.35
+ 68 Thunder Claw              15-16    30   175- 200   80  110   20- 30  -RI/RRI   4200  1204  Demon   0.35  0.20  0.70  0.25
+ 69 Necro Lord                13-14    26   150- 200   80  115   10- 15  -RR/IRI   3750  1204  Undead  0.40  0.30  1.00  0.40
+ 70 Wyrm                      10-11    19    80- 120   55   70    8- 18  I--/I--   2300  1780  Demon   0.55  0.25  0.65  0.40
+ 71 Ghost Knight of Erech     13-14    26   100- 200   85  133    1- 25  RR-/RI-   3800  1807  Undead  0.30  0.10  0.60  0.40
+ 72 Barrow Wight               4- 6    10    15-  25   25   30    8- 24  I--/I-R    500   799  Undead  0.90  0.25  0.55  0.40
+ 73 Brood of Ungoliant        15-16    33   350- 450  135  130   50- 50  RRI/IRI   6000  1807  Animal  0.50  0.20  0.75  0.40
+ 74 Witch Queen               14-16    34   260- 280  100  125    5- 30  RIR/III   8000  2220  Demon   0.30  0.25  0.50  0.50
+ 75 Greater War Mumakil       14-16    31   250- 300  115  125   33- 43  -RR/RRI   6000  1807  Animal  0.30  0.15  0.65  0.35
+ 76 Werewolf                  13-14    28   175- 190   85  120   20- 30  RIR/IIR   4300  1807  Animal  0.30  0.20  0.50  0.40
+ 77 Wraith Claw               14-15    29   120- 220   80  125    1- 30  -RR/RIR   4300  1807  Undead  0.15  0.20  0.80  0.25
+ 78 Storm Lord                11-13    22    75- 135   35   75   12- 24  R-I/I-I   2775  1807  Demon   0.40  0.20  0.90  0.25
+ 79 Demon Claw                13-14    26   130- 180   80  115   20- 28  R-I/I-I   4000  1807  Demon   0.40  0.20  0.75  0.25
+ 80 Nazgul                    15-16    34   300- 300  125  130   35- 45  IRI/IRI   8000  2220  Demon   0.35  0.05  0.65  0.40
+ 81 Blood Wing                 7- 9    13    60-  90   45   45   10- 16  IR-/II-   1205  1650  Undead  0.65  0.40  0.65  0.35
+ 82 Vampire                    9-11    19    75- 125   50   60   14- 22  I-R/I-I   1873  1650  Undead  0.60  0.35  0.60  0.35
+ 83 Greater Vampire           11-12    23    90- 150   60   85   16- 28  II-/IIR   2278  1650  Undead  0.50  0.30  0.55  0.35
+ 84 Melkoric Vampire          14-16    30   200- 220  100  120   20- 40  I-I/IRI   5000  1807  Undead  0.35  0.20  0.50  0.35
+ 85 Frost Demon               14-16    31   240- 280  115  130   30- 40  R-I/IRI   5500  1807  Demon   0.30  0.05  0.60  0.40
+ 86 Lesser Demon              11-13    22   140- 160   75  100   14- 22  RI-/RI-   2714  1807  Demon   0.35  0.05  0.70  0.40
+ 87 Dark Fire                 13-14    24   180- 200   85  115   22- 28  RI-/RIR   3600  1807  Demon   0.35  0.05  0.65  0.40
+ 88 Gerippe                    3- 5     7    20-  35   22   20    5- 12  IR-/II-    500   575  Undead  0.40  0.35  0.60  0.40
+ 89 Cave Drake                11-12    22   110- 160   70   85   10- 22  I--/I--   2800  1204  Animal  0.55  0.25  0.65  0.40
+ 90 Black Numenorean          14-16    30   220- 220  105  127   26- 38  IRI/IRI   5210  1807  Demon   0.35  0.10  0.60  0.40
+ 91 Ghost Drake               13-14    26   140- 180   75  120   12- 20  R-I/IIR   3600  1295  Undead  0.45  0.20  0.55  0.40
+ 92 Storm Dragon              14-16    30   180- 210   95  125   23- 32  R-I/IRI   5100  1204  Demon   0.50  0.25  0.65  0.40
+ 93 Easterling                13-14    25   165- 165   80  105   16- 22  R-I/R-I   3360  1807  Demon   0.40  0.20  0.75  0.40
+ 94 Variag                    13-14    27   180- 180   90  120   20- 27  RI-/RI-   3650  1807  Demon   0.40  0.20  0.70  0.40
+ 95 Haradrim                  14-15    29   200- 200   95  125   22- 32  IIR/IIR   4252  1807  Demon   0.35  0.15  0.65  0.40
+ 96 Guardian Balrog           15-16    30   400- 400  135  133   40- 40  RIR/RIR   7500  1807  Demon   0.35  0.05  0.60  0.40
+ 97 Fallen Istar              14-16    34   190- 190   95  130   30- 40  IRI/IRI   8000  2220  Demon   0.05  0.30  0.75  0.40
+ 98 Balrog                    15-15    35   300- 350  130  133   50- 60  IIR/IIR   9000  2220  Demon   0.30  0.05  0.60  0.40
+ 99 Fire Dragon               14-16    34   280- 360  120  130   35- 48  IIR/IIR   8000  2220  Demon   0.45  0.05  0.60  0.40
+100 Greater Corpse            14-16    30   200- 225   95  120   28- 32  IRI/IRI   5000  1807  Undead  0.40  0.30  0.80  0.40
+101 Succubus                  12-14    24   120- 150   60   90    1- 20  R--/IR-   3696  1204  Demon   0.40  0.35  0.80  0.50
+102 Snow Witch                13-14    26   135- 175   65  100    1- 24  --R/I-R   4084  1204  Demon   0.40  0.35  0.80  0.50
+103 Hell Spawn                14-16    28   150- 200   75  110    1- 30  R-I/IIR   4480  1204  Demon   0.40  0.35  0.80  0.50
+104 Soul Burner               15-16    30   140- 225   85  115    1- 35  RIR/RII   4644  1204  Demon   0.40  0.35  0.80  0.50
+105 Necromancer               13-14    25    70-  70    0   80    6- 15  RRR/RRR   4070  1204  Undead  0.05  0.40  0.40  0.40
+106 Conjuror                  13-14    27    85-  85    0   90   10- 24  RIR/IIR   4478  1204  Demon   0.05  0.40  1.00  0.40
+107 Sorcerer                  14-16    29   120- 120    0  100   14- 30  RRI/IRI   4929  1204  Demon   0.05  0.40  1.00  0.40
+108 Cultist of Mordor         15-16    31   160- 160    0  120   30- 30  IRI/IRI   7000  1807  Undead  0.05  0.40  0.05  0.05
+109 Golem                      1- 1*   12     1-   1    1    0    1-  1  RRR/RRR      0   386  Demon   0.60  0.00  0.60  0.35
+110 Morgoth Bauglir           26-26*   48  2500-2500  140  134   62- 62  RIR/RIR  31666     1  Demon   0.30  0.05  0.50  0.20
+111 Uruloki                   43-43#   30   300- 300  130  130   35- 35  RIR/RIR   5000     1  Demon   0.40  0.05  0.55  0.40
+
+Unique Monsters
+# = not active, * = special case, $ = wrong dlvl, dlvl 16 and C4 are special cases
+pos name                       type                       pack  dlvl  mlvl(f) mlvl(i)  HP   Damage  MFL
+  0 Gharbad the Weak           Flesh Clan                   0     4*      8       8   120    8- 16  --I
+  1 Skeleton King              Skeleton King                1     0*     21      16   350    8- 18  IRR
+  2 Zhar the Mad               Necromancer                  0     8*     16      25   360   16- 40  IRR
+  3 Snotspill                  Uruk-Hai                     0     4*      8       7   220   10- 18  --R
+  4 Sauron the Abhorred        allen Istar                  3     0*     35      30  2000   60- 60  III
+  5 The Mouth of Sauron        Black Numenorean             1     0*     35      30  1500   40- 60  IIR
+  6 Khamul                     Black Numenorean             1     0*     35      30  1500   40- 60  IRI
+  7 Lachdanan                  Guardian Balrog              0    14*     28      30   500    0-  0  ---
+  8 Warlord of Blood           Haradrim                     0    13*     26      29   850   35- 50  III
+  9 Bert                       Bert                         0     0*     11       6   300    8- 15  -RR
+ 10 Skulleater                 Cursed Guard                 1     2       4       2    95    5- 10  I--
+ 11 Utum'Kodur                 Fire Dragon                  1    14      28      34  1400   40- 60  IIR
+ 12 Bloodlust                  Hell Spawn                   0    85$    162      28   825   20- 55  I-I
+ 13 Ufthak                     Orcling                      1     2       4       1    50    3-  9  -R-
+ 14 Bonehowler                 Skeleton                     1     2       4       1    90    6- 15  II-
+ 15 The Foul                   Zombie                       1     3       6       1   100    4- 12  I--
+ 16 Lagduf                     Lesser Orc                   1     3       6       5    90    6- 16  -R-
+ 17 Neckbreaker Braineater     Cursed Lord                  1     3       6       4   125   12- 20  I-R
+ 18 Shagrat                    Orc                          1     4       8       9   178    9- 21  ---
+ 19 Seregruth                  Mirkwood Witch               3    16      32      31  1500   50- 50  RII
+ 20 Shadowtooth                Wolf                         1     6      12      11   350   17- 37  -I-
+ 21 Morgurond the Great        Greater Corpse               1    15      30      30  1280   15- 70  IR-
+ 22 Madburner                  Lost Soul                    1     4       8       4    75    9- 21  II-
+ 23 Nightclaw                  Dire Wolf                    1     9      18      15   400   27- 36  -R-
+ 24 Cruelshot                  Cursed Bow                   1     3       6       5   125    6- 10  -I-
+ 25 Voidshifter                Hidden                       1     3       6       5   117    6- 18  -RR
+ 26 Tombcrawler                Corpse                       1     4       8       4   160   15- 30  I--
+ 27 Darkhowler                 Dread Wolf                   1    11      22      21   550   20- 40  RRR
+ 28 Moonbender                 Blink                        1     4       8       7   135    9- 27  -I-
+ 29 Unkzark Maimer of Thousan  Black Troll                  1    14      28      28  1200   40- 55  IRR
+ 30 Morcaras the Black         Warg                         1    13      26      25   700   25- 50  --I
+ 31 Corpseburner               Lost Soul                    1     4       8       7   140    6- 16  II-
+ 32 Ugluk                      Uruk-Hai                     1     6      12      12   300   15- 28  RIR
+ 33 Gruzuk the Hideous         Foul Corpse                  1     2       4       1   117    3-  7  ---
+ 34 Ugro'Zokh the Mighty       Hill Troll                   1     9      18      18   750   25- 30  IIR
+ 35 Bloodskin Darkbow          Flesh Clan                   3     5      10       8   207    3- 16  -RR
+ 36 High-Priest of Dol Guldur  Cultist of Mordor            3    16      32      31  1500   40- 50  IRI
+ 37 Mordruk the Soulhunter     The Damned                   1     5      10       8   300   20- 26  IRR
+ 38 Snaga                      Orcling                      1     3       6       1    75    4- 10  RR-
+ 39 Wrathspitter               Poison Vermin                3     4       8       8   200   18- 27  -RR
+ 40 Bloodgutter                Fire Clan                    1     6      12      12   315   24- 34  -I-
+ 41 Nightweaver                Giant Spider                 1    11      22      22   600   26- 34  IRI
+ 42 Warmaggot the Mad          Blood Clan                   1     9      18      20   422   12- 25  -I-
+ 43 Saruman the Manycolored    Fallen Istar                 3    14      28      34  1700   60- 60  RII
+ 44 Glaurung                   Uruloki                      1    16#     32      30  1500   50- 50  RIR
+ 45 Darkwing the Tormented     Vampire                      1     9      18      19   550   18- 38  I-R
+ 46 Gorestone                  Night Clan                   1     7      14      14   303   15- 28  --R
+ 47 Bronzefist Firestone       Hell Stone                   3    10      20      16   360   30- 36  IR-
+ 48 Gravestalker the Cold      Barrow Wight                 1     6      12      10   266   12- 27  I-R
+ 49 Azothrac the Blazing       Doom Fire                    3    14      28      27   815   25- 40  RI-
+ 50 Gronk Mancrusher           Cave Troll                   1    11      22      21   850   25- 40  IRR
+ 51 Urgothmund the Desecrator  Necro Lord                   1    14      28      26   938   30- 40  RRR
+ 52 Vilespit                   Acid Fiend                   3     8      16      14   450   20- 30  RRR
+ 53 Claw of the Shade          Shadow                       1    11      22      20   496   25- 36  IRR
+ 54 Bones                      The Damned                   1     5      10       6   255   15- 21  RRR
+ 55 Mauhur                     Lesser Orc                   1     3       6       3   110    7- 15  --I
+ 56 Gorbag                     Orc                          1     5      10       9   200   12- 25  -R-
+ 57 Karruk the Brutish         Olog-Hai                     1     9      18      16   490   25- 28  RRR
+ 58 Carcharoth                 Werewolf                     1    14      28      28   932   50- 55  IIR
+ 59 Gothmog the Valarauko      Balrog                       1    15      30      35  2000   61- 61  III
+ 60 Gormukh Dwarfslayer        Mountain Troll               1    13      26      24  1000   25- 55  RRI
+ 61 Gorthur the Vile           Greater Vampire              1    12      24      23   580   22- 35  II-
+ 62 The Roaring Mountain       Mumakil                      1    13      26      26   900   35- 45  IRI
+ 63 Bloodreaver Mangrinder     Spitting Terror              3    11      22      19   450   20- 30  RIR
+ 64 Pale Talon the Ungodly     Wraith Claw                  3    15      30      29  1029    1- 60  RRR
+ 65 Bullroarer                 Tusk Beast                   1    11      22      22   800   30- 41  IR-
+ 66 Crawler the Evil           Wyrm                         1    11      22      19   429   14- 32  ---
+ 67 Scatha the Worm            Cave Drake                   1    12      24      22   700   19- 38  -IR
+ 68 The Cursed King            Ghost Knight of Erech        1    14      28      26   856    5- 58  RI-
+ 69 Ulfang the Black           Easterling                   1    13      26      25   710   30- 30  III
+ 70 Calataron                  Necromancer                  3    13      26      25   430   15- 30  -R-
+ 71 Thuringwethil              Melkoric Vampire             1    14      28      30  1200   40- 55  IRI
+ 72 Grishnakh                  Lesser Orc                   1     4       8       3   270   12- 25  -RR
+ 73 Khuzadrepa                 Ghost Drake                  1    14      28      26   800   15- 50  IRR
+ 74 Witchfire the Unholy       Succubus                     3    12      24      24   444   10- 20  IIR
+ 75 Knochenfresser             Gerippe                      1     3       6       7   250   15- 22  RRR
+ 76 Ringuraukar                Frost Demon                  1    15      30      31  1400   60- 60  IRI
+ 77 Durin's Bane               Guardian Balrog              1    16      32      30  1900   50- 60  IIR
+ 78 Agburanar the Black        Storm Dragon                 1    15      30      30  1200   38- 38  IRI
+ 79 The Witch-King             Nazgul                       1    15      30      34  1900   60- 60  RII
+ 80 The Lord of Thunder        Thunder Claw                 1    15      30      30   962   10- 60  -RI
+ 81 Doomslasher                Demon Claw                   3    13      26      26   900    1- 60  -RI
+ 82 Bloodmoon Soulfiend        Cave Bat                     1    10      20      15   428   21- 37  III
+ 83 Witchmoon                  Snow Witch                   3    13      26      26   310   30- 40  --R
+ 84 Ancariun                   Dark Fire                    1    14      28      24   890   28- 55  II-
+ 85 The Ravaging Kholomor      Variag                       1    14      28      27   910   35- 50  -RI
+ 86 Khurik the Merciless       Conjuror                     3    14      28      27   600   30- 40  IRR
+ 87 The Black Screamer         Acid Crawler                 3     7      14      10   400    1- 40  IRR
+ 88 The Red Sword              Haradrim                     1    15      30      29  1000   40- 55  RIR
+ 89 Ar-Pharazon the Proud      Black Numenorean             1    14      28      30  1200   40- 55  IRI
+ 90 Mortumar the Dreadful      Sorcerer                     3    15      30      29   850   25- 40  -I-
+ 91 Pallando the Fallen        Warlock                      3    15      30      30  1147   37- 60  IRR
+ 92 Ungoliant                  Brood of Ungoliant           1    16      32      33  2500   60- 60  III
+ 93 Moroyanthe                 Witch Queen                  3    15      30      34  1800   60- 60  III
+ 94 Fleshdancer                Soul Burner                  3    15      30      30   999   30- 50  III
+ 95 The Raging Armageddon      Greater War Mumakil          1    15      30      31  2200   60- 60  IIR
+ 96 Shelob                     Brood of Shelob              1    14      28      30  1750   50- 50  IRI
+
+Base Items
+pos type                       type                      qlvl  dur   damage    AC    str mag dex vit  price  pic
+  0 Gold                                                   1     0    0- 0    0- 0    0   0   0   0       0  168
+  1 Long Knife                                             2    20    2- 6    0- 0   18   0   0   0      50   64
+  2 Buckler                                                2    10    0- 0    3- 3    0   0   0   0      50   83
+  3 Club                                                   1    20    1- 6    0- 0    0   0   0   0      20   66
+  4 Short Bow                                              1    30    1- 4    0- 0    0   0   0   0     100  118
+  5 Short Staff of Charged Bo                              1    25    2- 4    0- 0    0  20   0   0     520  109
+  6 Cleaver                                               10    10    4-24    0- 0    0   0   0   0    2000  106
+  7 d                                                      0    50    0- 0   15-15    0   0   0   0   10000   78
+  8 Helm's Hammerhand                                      0     0    0- 0    0- 0    0   0   0   0    8000   18
+  9 Magic Rock                                             0     0    0- 0    0- 0    0   0   0   0       0   76
+ 10 el                                                     0     0    0- 0    0- 0    0   0   0   0    5000   44
+ 11 Phial of Galadriel                                     0     0    0- 0    0- 0    0   0   0   0    1000   10
+ 12 Tavern Sign                                            0     0    0- 0    0- 0    0   0   0   0       0  126
+ 13 Harlequin Crest                                        0    15    0- 0    0- 0    0   0   0   0      15   93
+ 14 Anguirel                                               0    60    0- 0   18-18    0   0   0   0       0   85
+ 15 Golden Elixir                                         15     0    0- 0    0- 0    0   0   0   0       0   17
+ 16 Anvil of Fury                                          0     0    0- 0    0- 0    0   0   0   0       0  140
+ 17 Black Mushroom                                         0     0    0- 0    0- 0    0   0   0   0       0   89
+ 18 Brain                                                  0     0    0- 0    0- 0    0   0   0   0       0   40
+ 19 Fungal Tome                                            0     0    0- 0    0- 0    0   0   0   0       0   97
+ 20 Spectral Elixir                                       15     0    0- 0    0- 0    0   0   0   0       0   15
+ 21 Blood Stone                                            0     0    0- 0    0- 0    0   0   0   0       0   25
+ 22 Numenorean Shield                                      0     0    0- 0    0- 0    0   0   0   0       0   96
+ 23 Heart                                                  0     0    0- 0    0- 0    0   0   0   0       0   19
+ 24 Potion of Healing                                      0     0    0- 0    0- 0    0   0   0   0      50   32
+ 25 Potion of Mana                                         0     0    0- 0    0- 0    0   0   0   0      50   39
+ 26 Scroll of Identify                                     1     0    0- 0    0- 0    0   0   0   0     200    1
+ 27 Scroll of Town Portal                                  4     0    0- 0    0- 0    0   0   0   0     200    1
+ 28 Arkaine's Valor                                        0    40    0- 0    0- 0    0   0   0   0       0  157
+ 29 Potion of Full Healing                                 1     0    0- 0    0- 0    0   0   0   0     150   35
+ 30 Potion of Full Mana                                    1     0    0- 0    0- 0    0   0   0   0     150    0
+ 31 Griswold's Edge                                        8    50    4-12    0- 0   40   0   0   0     750   61
+ 32 War Helm                   Helm                       31    80    0- 0   16-18  110   0  80   0    1250   85
+ 33 +Moria Plate+              +Moria Plate+              59   175    0- 0   76-80  110   0 110   0   17500  152
+ 34 Scroll of Resurrect                                    1     0    0- 0    0- 0    0   0   0   0     250    1
+ 35 Dwarven Shield             Shield                     31   100    0- 0   18-22  100   0  75   0    2200  115
+ 36 +Morgul Knife+             +Morgul Knife+             16     5    5- 5    0- 0    0 100   0   0     900   50
+ 37 Heavy Crossbow             Bow                        58    60    5- 5    0- 0  110   0 125   0    4000  158
+ 38 Major Ring                 Ring                       43     0    0- 0    0- 0    0   0   0   0    4000   18
+ 39 War Flail                  Flail                      45    60   12-16    0- 0  110   0  75   0    7000  130
+ 40 Chain Mail                 Mail                       24    60    0- 0   51-55   90   0  60   0    4000  154
+ 41 Elven Bow                  Bow                        58   150    1-20    0- 0  110   0 125   0    5000  120
+ 42 Mithril Helm               Helm                       55   150    0- 0   18-20   80   0  80   0    2500   98
+ 43 Elven Blade                Sword                      58   120   10-20    0- 0  120   0 110   0    8000   73
+ 44 Mithril Shield             Shield                     58   150    0- 0   26-30  125   0 110   0    7500  100
+ 45 +Romacil+                  +Romacil+                  44    90   40-70    0- 0  115   0   0   0    7000  160
+ 46 Seadrake Scale Mail        Mail                       28    70    0- 0   61-65  100   0  75   0    5000  114
+ 47 +Crown+                    +Crown+                    42    80    0- 0   10-20   75   0  75   0    2400   95
+ 48 Leather Cap                Cap                         1    10    0- 0    1- 4    0   0   0   0      10   91
+ 49 Iron Cap                   Cap                         6    30    0- 0    5- 6   10   0   0   0      35  240
+ 50 Helm                       Helm                       12    40    0- 0    7- 9   40   0   0   0      80  236
+ 51 Full Helm                  Helm                       18    55    0- 0   10-12   60   0   0   0     200   75
+ 52 Dwarven Helm               Helm                       40   175    0- 0   13-17  120   0   0   0    2000   82
+ 53 Battle Helm                Helm                       25    65    0- 0   13-15   80   0  50   4     800   84
+ 54 Cape                       Cape                        2    15    0- 0    2- 7    0   0   0   0      20  150
+ 55 Shirt                      Shirt                       1    10    0- 0    1- 5    0   0   0   0      10   94
+ 56 Cloak                      Cloak                       3    22    0- 0    4- 9    0   0   0   0      50  149
+ 57 Robe                       Robe                        4    28    0- 0    6-10    0   0   0   0     100  137
+ 58 Leather Armor              Armor                       8    35    0- 0   10-19   20   0   0   0     500  135
+ 59 Padded Armor               Armor                      15    40    0- 0   20-29   40   0   0   0     800  129
+ 60 Rigid Leather Armor        Armor                      20    45    0- 0   30-39   60   0   0   0    1600  127
+ 61 Boiled Leather Armor       Armor                      25    50    0- 0   40-50   70   0   0   0    2200  107
+ 62 Mage Robe                  Robe                       22   255    0- 0   10-15    0  80   0   0    1100  138
+ 63 Ring Mail                  Mail                       22    55    0- 0   46-50   85   0  50   0    3000  154
+ 64 Scale Mail                 Mail                       26    65    0- 0   56-60   95   0  70   0    4500  114
+ 65 Plate Mail                 Plate                      31   100    0- 0   65-75  115   0  85   0    9000  243
+ 66 Full Chain Hauberk         Mail                       30    75    0- 0   66-70  110   0  80   0    6000  111
+ 67 Dwarven Plate              Plate                      43   150    0- 0   71-80  120   0 100   0   15000  103
+ 68 Dwarven Axe                Axe                        43   130   75-100    0- 0  125   0   0   0    7500  163
+ 69 +Claw+                     +Claw+                     60     0    1- 3    0- 0    0   0   0   0    7500   41
+ 70 Mithril Full Plate Armor   Plate                      58   200    0- 0   76-85  125   0 110   0   20000  151
+ 71 Buckler                    Shield                      1    15    0- 0    1- 5   15   0   0   0      30   83
+ 72 Small Shield               Shield                      5    24    0- 0    4- 8   30   0   0   0     100  105
+ 73 Large Shield               Shield                     12    40    0- 0    6-12   50   0   0   0     400  147
+ 74 Great Shield               Shield                     18    50    0- 0    9-15   70   0  40   0     750  113
+ 75 Wall Shield                Shield                     30    90    0- 0   15-20   90   0  70   0    1500  132
+ 76 Tower Shield               Shield                     24    80    0- 0   13-16   80   0  55   0    1000  148
+ 77 Potion of Healing                                      1     0    0- 0    0- 0    0   0   0   0      50   32
+ 78 Potion of Full Healing                                 1     0    0- 0    0- 0    0   0   0   0     150   35
+ 79 Potion of Mana                                         1     0    0- 0    0- 0    0   0   0   0      50   39
+ 80 Potion of Full Mana                                    1     0    0- 0    0- 0    0   0   0   0     150    0
+ 81 Potion of Rejuvenation                                 3     0    0- 0    0- 0    0   0   0   0     120   37
+ 82 Potion of Full Rejuvenati                              7     0    0- 0    0- 0    0   0   0   0     600   33
+ 83 Elixir of Strength                                    15     0    0- 0    0- 0    0   0   0   0    5000   38
+ 84 Elixir of Magic                                       15     0    0- 0    0- 0    0   0   0   0    5000   34
+ 85 Elixir of Dexterity                                   15     0    0- 0    0- 0    0   0   0   0    5000   36
+ 86 Elixir of Vitality                                    20     0    0- 0    0- 0    0   0   0   0    5000   31
+ 87 Scroll of Healing                                      1     0    0- 0    0- 0    0   0   0   0      50    1
+ 88 War Axe                    Axe                        31   100   60-90    0- 0  110   0   0   0    4000  156
+ 89 Scroll of Identify                                     1     0    0- 0    0- 0    0   0   0   0     100    1
+ 90 Scroll of Resurrect                                    1     0    0- 0    0- 0    0   0   0   0     250    1
+ 91 Scroll of Teleport                                    14     0    0- 0    0- 0    0  81   0   0    3000    1
+ 92 Mallorn Bow                Bow                        43    90    1-15    0- 0   90   0 125   0    4000  164
+ 93 Scroll of Town Portal                                  4     0    0- 0    0- 0    0   0   0   0     200    1
+ 94 Major Amulet               Amulet                     43     0    0- 0    0- 0    0   0   0   0    5000   48
+ 95 Scroll of Infravision                                  8     0    0- 0    0- 0    0  23   0   0     600    1
+ 96 Scroll of Nova                                        16     0    0- 0    0- 0    0  57   0   0    1300    1
+ 97 Scroll of Mana Shield                                  8     0    0- 0    0- 0    0   0   0   0    1200    1
+ 98 Numenorean Sword           Sword                      43    90    8-18    0- 0  100   0  90   0    3500   57
+ 99 Numenorean Shield          Shield                     43   120    0- 0   21-25  110   0  80   4    3000  146
+100 Scroll of Stone Curse                                  6     0    0- 0    0- 0    0  33   0   0     800    1
+101 Chainmail Shirt            Mail                       20    50    0- 0   40-45   75   0  40   0    2000  139
+102 Elvish Short Bow           Bow                        22   255    8-16    0- 0   35   0  60   0    1200  249
+103 Non Item                                               0     0    0- 0    0- 0    0   0   0   0       0    1
+104 Scroll of Escape                                      14     0    0- 0    0- 0    0  75   0   0    3000    1
+105 Scroll of Golem                                       10     0    0- 0    0- 0    0  51   0   0    1100    1
+106 Scroll of None                                        99     0    0- 0    0- 0    0  61   0   0    1000    1
+107 Scroll of Etherealize                                 32     0    0- 0    0- 0    0  81   0   0    3000    1
+108 Scroll of Apocalypse                                  22     0    0- 0    0- 0    0 117   0   0    2000    1
+109 Book of                                                2     0    0- 0    0- 0    0   0   0   0       0   88
+110 Book of                                                8     0    0- 0    0- 0    0   0   0   0       0   88
+111 Book of                                               14     0    0- 0    0- 0    0   0   0   0       0   97
+112 Book of                                               20     0    0- 0    0- 0    0   0   0   0       0   97
+113 Dagger                     Dagger                      1    15    1- 4    0- 0    0   0   0   0      60   51
+114 Long Knife                 Knife                       4    30    2- 5    0- 0   20   0   0   0     120   54
+115 +Gem+                      +Gem+                      36     0    0- 0    3- 5    0   0   0   0    5000   26
+116 Scimitar                   Sword                      24    65    6-12    0- 0   70   0  50   0    1000   62
+117 Great Flail                Flail                      31    70   25-75    0- 0  120   0  95   0    2800  130
+118 Corsair's Sabre            Sword                      12    45    3- 9    0- 0   40   0  30   0     400   67
+119 Short Sword                Sword                       8    40    1- 8    0- 0   25   0   0   0     200   68
+120 Long Sword                 Sword                      18    55    1-15    0- 0   60   0  40   0     750   65
+121 Broad Sword                Sword                      30    75    6-16    0- 0   90   0  65   0    1500   61
+122 Harad Blade                Sword                      15    50    4-10    0- 0   50   0  35   0     500   60
+123 Two-Handed Sword           Sword                      27   100   25-50    0- 0  110   0   0   0    3000  110
+124 Great Battle Blade         Sword                      40   140   30-60    0- 0  125   0   0   0    5500  244
+125 Hatchet                    Axe                         2    24    5-15    0- 0   25   0   0   0     150  112
+126 Woodman's Axe              Axe                         5    32   10-20    0- 0   40   0   0   0     450  144
+127 Large Axe                  Axe                         8    40   20-30    0- 0   50   0   0   0     750  142
+128 Broad Axe                  Axe                        15    50   30-45    0- 0   75   0   0   0    1000  141
+129 Battle Axe                 Axe                        22    60   40-60    0- 0   90   0   0   0    1500  101
+130 Great Axe                  Axe                        28    75   50-80    0- 0  100   0   0   0    2500  143
+131 Mace                       Mace                       10    30    3- 9    0- 0   40   0   0   0     350   59
+132 Morning Star               Mace                       15    35    4-12    0- 0   55   0   0   0     500   63
+133 War Hammer                 Hammer                     25    50    8-14    0- 0   80   0   0   0     900  121
+134 Spiked Club                Club                        5    25    3- 6    0- 0   20   0   0   0     225   71
+135 Club                       Club                        1    20    1- 6    0- 0    0   0   0   0      20   66
+136 Flail                      Flail                      20    40    2-18    0- 0   70   0  50   0     700  131
+137 Maul                       Maul                       30    55    9-15    0- 0   90   0   0   0    1250  122
+138 Short Bow                  Bow                         1    30    1- 7    0- 0    0   0   0   0     100  118
+139 Hunter's Bow               Bow                         5    40    3- 9    0- 0   20   0  35   0     350  102
+140 Long Bow                   Bow                        10    35    1-15    0- 0   25   0  30   0     400  248
+141 Composite Bow              Bow                        15    45    6-12    0- 0   25   0  40   0     800  133
+142 Short Battle Bow           Bow                        20    45    5-15    0- 0   30   0  50   0    1000  167
+143 Crossbow                   Bow                        32    40    1- 1    0- 0   80   0 100   0    3000  158
+144 Short War Bow              Bow                        25    55   10-16    0- 0   35   0  70   0    1500  165
+145 Long War Bow               Bow                        30    60   12-18    0- 0   45   0  80   0    2500  119
+146 Short Staff                Staff                       1    25    4- 8    0- 0    0   0   0   0      30  109
+147 Long Staff                 Staff                       4    35    6-12    0- 0    0   0   0   0     100  123
+148 Composite Staff            Staff                       6    45   10-15    0- 0    0   0   0   0     500  166
+149 Quarter Staff              Staff                       9    55   14-18    0- 0   20   0   0   0    1000  109
+150 War Staff                  Staff                      12    75   15-25    0- 0   30   0   0   0    1500  124
+151 Minor Ring                 Ring                        5     0    0- 0    0- 0    0   0   0   0    1000   12
+152 Lesser Ring                Ring                       10     0    0- 0    0- 0    0   0   0   0    1500   13
+153 Ring                       Ring                       20     0    0- 0    0- 0    0   0   0   0    2000   14
+154 Lesser Amulet              Amulet                     10     0    0- 0    0- 0    0   0   0   0    1500   45
+155 Amulet                     Amulet                     20     0    0- 0    0- 0    0   0   0   0    2000   44
+
+Prefixes
+pos name                          range  qlvl cursed  occur    base-   max  mul  effect
+  0 Tin                           6- 10    4    0    --W-BJ       0-     0   -3  -% To Hit
+  1 Protecting                    1-  5    5    1    -----J    1000-  1500    5  specified armor class
+  2 Bronze                        1-  5    1    1    --W-BJ     100-   500    2  +% To Hit
+  3 Copper                        6- 15    4    1    --W-BJ     600-  1000    3  +% To Hit
+  4 Iron                         16- 25    6    1    --W-BJ    1100-  1500    5  +% To Hit
+  5 Steel                        26- 40   11    1    --W-BJ    1600-  2500    7  +% To Hit
+  6 Silver                       41- 55   16    1    --W-BJ    3100-  4000    9  +% To Hit
+  7 Gold                         56- 70   20    1    --W-B-    4100-  5000   11  +% To Hit
+  8 Ithildin                     71- 90   25    1    --W-B-    6100-  8000   13  +% To Hit
+  9 Mithril                      91-110   30    1    --W-B-    8100- 11000   15  +% To Hit
+ 10 Galvorn                     111-130   34    1    --W-B-   11100- 15000   17  +% To Hit
+ 11 Eog                         131-150   35    1    --W-B-   15100- 20000   20  +% To Hit
+ 12 Useless                     100-100    6    0    --W-B-       0-     0   -8  -% damage done
+ 13 Parrying                      6- 10   10    1    -----J    1700-  2200   10  specified armor class
+ 14 Shielding                    26- 30   34    1    -----J   15000- 20000   35  specified armor class
+ 15 Violent                      20- 40    5    1    --W-B-     500-  1000    4  +% damage done
+ 16 Deadly                       41- 60    8    1    --W-B-    1200-  1800   10  +% damage done
+ 17 Heavy                        61- 80   12    1    --W-B-    1900-  2300   12  +% damage done
+ 18 Vicious                      81-100   16    1    --W-B-    2000-  2450   15  +% damage done
+ 19 Brutal                      101-120   20    1    --W-B-    2500-  4000   16  +% damage done
+ 20 Fierce                      121-140   25    1    --W-B-    4000-  7000   18  +% damage done
+ 21 Fell                        141-160   30    1    --W-B-    8000- 12000   20  +% damage done
+ 22 Cruel                       161-180   34    1    --W-B-   11100- 16000   17  +% damage done
+ 23 Merciless                   181-200   35    1    --W-B-   15000- 20000   20  +% damage done
+ 24 Clumsy                       50- 75    9    0    --WTB-       0-     0   -7  -% To Hit, -% damage done
+ 25 Defending                    11- 15   18    1    -----J    4000-  6000   18  specified armor class
+ 26 Sharp                        20- 35    1    1    --WTB-     350-   950    5  +% To Hit, +% damage done
+ 27 Squire's                     36- 60    9    1    --WTB-    1300-  2000    7  +% To Hit, +% damage done
+ 28 Baron's                      50- 75   14    1    --WTB-    2500-  4000   15  +% To Hit, +% damage done
+ 29 Knight's                     65- 90   20    1    --WTB-    5000-  7000   20  +% To Hit, +% damage done
+ 30 Marshal's                    80-115   24    1    --WTB-    7000-  9000   27  +% To Hit, +% damage done
+ 31 Lord's                       95-130   26    1    --WT--    9000- 12000   28  +% To Hit, +% damage done
+ 32 Steward's                   110-150   28    1    --WT--   15000- 23000   30  +% To Hit, +% damage done
+ 33 King's                      125-170   30    1    --WT--   24000- 37000   40  +% To Hit, +% damage done
+ 34 High-King's                 171-200   31    1    --W---   40000- 70000   50  +% To Hit, +% damage done
+ 35 Vulnerable                   51-100    5    0    AS----       0-     0   -3  -% armor class
+ 36 Guarding                     16- 20   26    1    -----J    8000- 10000   24  specified armor class
+ 37 Fine                         20- 30    1    1    AS----      20-   100    2  +% armor class
+ 38 Strong                       31- 40    3    1    AS----     120-   200    3  +% armor class
+ 39 Grand                        41- 60    8    1    AS----     220-   350    5  +% armor class
+ 40 Excellent                    61- 80   12    1    AS----     360-   500    7  +% armor class
+ 41 Valiant                      81-100   18    1    AS----     600-   800   11  +% armor class
+ 42 Glorious                    101-120   22    1    AS----     800-  1100   13  +% armor class
+ 43 Heroic                      121-140   26    1    AS----    1100-  1500   14  +% armor class
+ 44 Awesome                     141-160   30    1    AS----    2000-  2500   15  +% armor class
+ 45 Magnificient                161-180   34    1    AS----    6000-  8000   20  +% armor class
+ 46 Ancient                     181-200   35    1    AS----    8000- 10000   24  +% armor class
+ 47 Red                          10- 20    4    1    ASWTBJ     500-  1500    2  +% resist fire
+ 48 Crimson                      21- 30   10    1    ASWTBJ    2100-  3000    2  +% resist fire
+ 49 Crimson                      31- 40   16    1    ASWTBJ    3100-  4000    2  +% resist fire
+ 50 Garnet                       41- 60   22    1    ASWTBJ    8200- 12000    5  +% resist fire
+ 51 Ruby                         61- 85   28    1    ASWTBJ   17100- 20000    7  +% resist fire
+ 52 Blue                         10- 20    4    1    ASWTBJ     500-  1500    2  +% resist lightning
+ 53 Azure                        21- 30   10    1    ASWTBJ    2100-  3000    2  +% resist lightning
+ 54 Lapis                        31- 40   16    1    ASWTBJ    3100-  4000    2  +% resist lightning
+ 55 Cobalt                       41- 60   22    1    ASWTBJ    8200- 12000    5  +% resist lightning
+ 56 Sapphire                     61- 85   28    1    ASWTBJ   17100- 20000    7  +% resist lightning
+ 57 White                        10- 20    4    1    ASWTBJ     500-  1500    2  +% resist magic
+ 58 Pearl                        21- 30   10    1    ASWTBJ    2100-  3000    2  +% resist magic
+ 59 Ivory                        31- 40   16    1    ASWTBJ    3100-  4000    2  +% resist magic
+ 60 Crystal                      41- 60   22    1    ASWTBJ    8200- 12000    4  +% resist magic
+ 61 Diamond                      61- 85   28    1    ASWTBJ   17100- 20000    7  +% resist magic
+ 62 Topaz                        10- 15    8    1    ASWTBJ    2000-  5000    3  +% resist all
+ 63 Amber                        16- 20   12    1    ASWTBJ    7400- 10000    3  +% resist all
+ 64 Jade                         21- 30   24    1    ASWTBJ   11000- 15000    5  +% resist all
+ 65 Obsidian                     31- 40   30    1    ASWTBJ   24000- 40000    6  +% resist all
+ 66 Emerald                      41- 50   31    1    -SWTB-   61000- 75000   15  +% resist all
+ 67 Hyena's                      11- 25    6    0    ASWTBJ     100-  1000   -2  - mana
+ 68 Warding                      21- 25   31    1    -----J   10000- 15000   30  specified armor class
+ 69 Spider's                     10- 15    1    1    ASWTBJ     500-  1000    2  + mana
+ 70 Raven's                      15- 20    5    1    ASWTBJ    1100-  2000    3  + mana
+ 71 Snake's                      21- 30    9    1    ASWTBJ    2100-  4000    5  + mana
+ 72 Serpent's                    30- 40   15    1    ASWTBJ    4100-  6000    7  + mana
+ 73 Drake's                      41- 50   21    1    ASWTBJ    6100- 10000    9  + mana
+ 74 Dragon's                     51- 60   27    1    ASWTBJ   10100- 15000   11  + mana
+ 75 Veteran's                    50- 64   30    1    -----J   17000- 24000   10  +% To Hit, +% damage done
+ 76 Hero's                       80- 95   34    1    -----J   41000- 60000   10  +% To Hit, +% damage done
+ 77 Master's                     65- 80   31    1    -----J   25000- 40000   10  +% To Hit, +% damage done
+ 78 Champion's                   95-110   35    1    -----J   60000- 80000   10  +% To Hit, +% damage done
+ 79 Plentiful                     2-  2    4    1    ---T--    2000-  2000    2  + charges
+ 80 Bountiful                     3-  3    9    1    ---T--    3000-  3000    3  + charges
+ 81 Flaming                       1- 50   25    1    --WT--   15000- 15000    3  + fire hit damage
+ 82 Lightning                     1- 50   25    1    --WT--   15000- 15000    3  + lightning hit damage
+
+Suffixes
+pos name                          range  qlvl cursed  occur    base-   max  mul  effect
+  0 quality                       1-  3    2    1    --W-B-     100-   200    2  + damage done
+  1 maiming                       4-  6   10    1    --W-B-    1500-  3500    5  + damage done
+  2 slaying                       7- 10   16    1    --W-B-    4000-  5000    6  + damage done
+  3 gore                         11- 18   25    1    --W---    5100-  7000   10  + damage done
+  4 carnage                      19- 24   34    1    --W---    8000- 12000   12  + damage done
+  5 slaughter                    25- 30   35    1    --W---   12100- 17000   16  + damage done
+  6 pain                          2-  4    6    0    AS---J       0-     0   -4  + damage taken
+  7 tears                         1-  1    2    0    AS---J       0-     0   -2  + damage taken
+  8 health                        1-  1    2    1    AS---J     200-   200    2  - damage taken
+  9 protection                    2-  3    6    1    AS---J     400-   800    4  - damage taken
+ 10 absorption                    4-  6   12    1    AS---J    1001-  2500   10  - damage taken
+ 11 deflection                    7-  9   24    1    AS----    3000-  8000   15  - damage taken
+ 12 evasion                      10- 12   30    1    AS----    8000- 12000   20  - damage taken
+ 13 frailty                       6- 10    3    0    ASW-BJ       0-     0   -3  - strength
+ 14 weakness                      1-  5    1    0    ASW-BJ       0-     0   -2  - strength
+ 15 strength                      1-  5    1    1    ASW-BJ     200-  1000    2  + strength
+ 16 might                         6- 10    5    1    ASW-BJ    1200-  2000    3  + strength
+ 17 power                        11- 15   11    1    ASW-BJ    2200-  3000    4  + strength
+ 18 bears                        16- 20   17    1    A-W-BJ    3200-  5000    7  + strength
+ 19 trolls                       21- 30   23    1    --W--J    5200- 10000   10  + strength
+ 20 paralysis                     6- 10    5    0    ASW-BJ       0-     0   -3  - dexterity
+ 21 atrophy                       1-  5    1    0    ASW-BJ       0-     0   -2  - dexterity
+ 22 dexterity                     1-  5    1    1    ASW-BJ     200-  1000    2  + dexterity
+ 23 skill                         6- 10    5    1    ASW-BJ    1200-  2000    3  + dexterity
+ 24 accuracy                     11- 15   11    1    ASW-BJ    2200-  3000    4  + dexterity
+ 25 precision                    16- 20   17    1    A-W-BJ    3200-  5000    7  + dexterity
+ 26 perfection                   21- 30   23    1    ----BJ    5200- 10000   10  + dexterity
+ 27 the fool                      6- 10    5    0    ASWTBJ       0-     0   -3  - magic
+ 28 dyslexia                      1-  5    1    0    ASWTBJ       0-     0   -2  - magic
+ 29 magic                         1-  5    1    1    ASWTBJ     200-  1000    2  + magic
+ 30 the mind                      6- 10    5    1    ASWTBJ    1200-  2000    3  + magic
+ 31 brilliance                   11- 15   11    1    ASWTBJ    2200-  3000    4  + magic
+ 32 sorcery                      16- 20   17    1    A-WTBJ    3200-  5000    7  + magic
+ 33 wizardry                     21- 30   23    1    ---T-J    5200- 10000   10  + magic
+ 34 illness                       6- 10    5    0    ASW-BJ       0-     0   -3  - vitality
+ 35 disease                       1-  5    1    0    ASW-BJ       0-     0   -2  - vitality
+ 36 vitality                      1-  5    1    1    ASW-BJ     200-  1000    2  + vitality
+ 37 health                        6- 10    5    1    ASW-BJ    1200-  2000    3  + vitality
+ 38 endurance                    11- 15   11    1    ASW-BJ    2200-  3000    4  + vitality
+ 39 vigor                        16- 20   17    1    A-W-BJ    3200-  5000    7  + vitality
+ 40 life                         21- 30   23    1    -----J    5200- 10000   10  + vitality
+ 41 trouble                       6- 10   13    0    ASW-BJ       0-     0  -10  - all attributes
+ 42 the pit                       1-  5    7    0    ASW-BJ       0-     0   -5  - all attributes
+ 43 tilion                        1-  4    6    1    ASW-BJ     900-  5000    6  + all attributes
+ 44 arien                         5-  8   12    1    ASW-BJ    5800-  9000   11  + all attributes
+ 45 menel                         9- 12   18    1    ASW-BJ    9800- 13000   16  + all attributes
+ 46 giliath                      13- 16   26    1    A-W-BJ   13800- 22000   24  + all attributes
+ 47 the maiar                    17- 20   30    1    --W-BJ   22800- 45000   32  + all attributes
+ 48 the neeker-breeker           11- 25    6    0    AS---J       0-     0   -4  - life
+ 49 the crow                      1- 10    1    0    AS---J       0-     0   -2  - life
+ 50 the fox                      10- 15    1    1    AS---J     100-  1000    2  + life
+ 51 the glutani                  16- 24    6    1    AS---J    1100-  2000    4  + life
+ 52 the wolf                     25- 34   12    1    AS---J    2100-  4000    7  + life
+ 53 the eagle                    35- 44   18    1    AS---J    5100-  7000    8  + life
+ 54 the mumakil                  45- 54   25    1    AS---J    7100- 11000   10  + life
+ 55 the kraken                   55- 64   30    1    AS---J   13100- 20000   16  + life
+ 56 the seadrake                 65- 80   34    1    A-----   19100- 26000   17  + life
+ 57 the whale                    81-100   35    1    A-----   25100- 35000   18  + life
+ 58 the valar                    21- 25   35    1    -----J   30000- 60000   40  + all attributes
+ 59 este                         36- 40   32    1    -----J   15100- 20000   20  + vitality
+ 60 mastery                      31- 35   30    1    -----J   10100- 15000   15  + dexterity
+ 61 archmagi                     31- 35   30    1    -----J   10100- 15000   15  + magic
+ 62 immortality                  31- 35   30    1    -----J   10100- 15000   15  + vitality
+ 63 ents                         31- 35   30    1    -----J   10100- 15000   15  + strength
+ 64 the dark                      4-  4    4    0    A-W--J       0-     0   -3  -% light
+ 65 the night                     2-  2    2    0    A-W--J       0-     0   -2  -% light
+ 66 light                         2-  2    4    1    A-W--J     750-   750    2  +% light
+ 67 radiance                      4-  4    8    1    A-W--J    1500-  1500    3  +% light
+ 68 flame                         1-  3    5    1    ----B-    4000-  6000    4  + fire arrows damage
+ 69 fire                          1-  6   18    1    ----B-    8000- 12000    8  + fire arrows damage
+ 70 burning                       1- 12   34    1    ----B-   12000- 20000   13  + fire arrows damage
+ 71 shock                         1-  3    5    1    ----B-    4000-  6000    4  + lightning arrows damage
+ 72 lightning                     1-  6   18    1    ----B-    8000- 12000    8  + lightning arrows damage
+ 73 thunder                       1- 12   34    1    ----B-   12000- 20000   13  + lightning arrows damage
+ 74 holiness                      1-  1   15    1    --WTB-    3500-  4500   10  monster can't heal
+ 75 nessa                        36- 40   32    1    -----J   15100- 20000   20  + dexterity
+ 76 thorns                        1- 10    8    1    AS---J    1000-  1500    3  attacker take 1-3 damage
+ 77 corruption                    0-  0   10    0    ASW---   -1000- -1000    2  -all mana
+ 78 calaquendi                    6-  6   12    1    -----J    2000-  3000    7  +% light
+ 79 the troll-fist                0-  0    5    1    --WTB-     750-   750    2  knocks target back
+ 80 the bat                       3-  3    8    1    --W---    7500-  7500    3  % steal mana
+ 81 vampires                      5-  5   19    1    --W---   15000- 15000    3  % steal mana
+ 82 the leech                     3-  3    8    1    --W---    7500-  7500    3  % steal life
+ 83 blood                         5-  5   19    1    --W---   15000- 15000    3  % steal life
+ 84 avoidance                    13- 15   31    1    AS----   12100- 16000   25  - damage taken
+ 85 tulkas                       36- 40   32    1    -----J   15100- 20000   20  + strength
+ 86 manwe                        36- 40   32    1    -----J   15100- 20000   20  + magic
+ 87 readiness                     1-  1    1    1    --WTB-    2000-  2000    2  attack speed (1=readiness, 4=haste)
+ 88 swiftness                     2-  2   13    1    --WTB-    6000-  6000    6  attack speed (1=readiness, 4=haste)
+ 89 speed                         3-  3   28    1    --WT--   10000- 10000   10  attack speed (1=readiness, 4=haste)
+ 90 haste                         4-  4   31    1    --WT--   30000- 30000   30  attack speed (1=readiness, 4=haste)
+ 91 balance                       1-  1    1    1    A----J    2000-  2000    2  hit recovery (1=balance, 3=harmony
+ 92 stability                     2-  2   10    1    A----J    4000-  4000    4  hit recovery (1=balance, 3=harmony
+ 93 harmony                       3-  3   20    1    A----J    8000-  8000    8  hit recovery (1=balance, 3=harmony
+ 94 blocking                      1-  1    5    1    -S----    4000-  4000    4  fast block
+
+Unique Items
+pos name                      type                       qlvl  price  effects (range/value, description)
+  0 The Butcher's Cleaver     Cleaver                      1    3650   10- 10  + strength
+                                                                        4- 24  x-y damage done (unusual item damage)
+                                                                       10- 10  altered durability
+
+  1 Tuor's Mail of Vinyamar   Full Chain Hauberk          32  235000  130-140  specified armor class
+                                                                        2-  2  attack speed (1=readiness, 4=haste)
+                                                                       10- 10  + all attributes
+                                                                       30- 30  +% To Hit
+
+  2 Gorakh's Maul of Wonders  Maul                        32   85000   30- 90  +% To Hit
+                                                                       50-100  +% damage done
+                                                                        1- 20  + strength
+                                                                        1- 20  + magic
+                                                                        1- 20  + dexterity
+                                                                        1- 20  + vitality
+
+  3 The Ring of Barahir       Minor Ring                  35  200000    2-  2  +% light
+                                                                       10- 15  + all attributes
+                                                                       10- 20  +% resist all
+                                                                        5- 15  specified armor class
+                                                                        2-  2  attack speed (1=readiness, 4=haste)
+                                                                      179-  0  unique picture
+
+  4 Phial of Galadriel        Minor Ring                  38  420000    4-  4  +% light
+                                                                       50- 50  +% resist all
+                                                                        3-  3  hit recovery (1=balance, 3=harmony
+                                                                        1-  1  fast block
+                                                                        1-  1  monster can't heal
+                                                                       17-  0  unique picture
+
+  5 Anduril Flame of the West Numenorean Sword            33  180000    8- 18  + fire hit damage
+                                                                      200-200  +% damage done
+                                                                        4-  4  attack speed (1=readiness, 4=haste)
+                                                                       10- 10  specified armor class
+                                                                      200-  0  unique picture
+
+  6 Anguirel                  Elven Blade                 34  190000  200-200  +% To Hit
+                                                                        4-  4  attack speed (1=readiness, 4=haste)
+                                                                        1-  1  fast block
+                                                                        2-  2  -% light
+                                                                       10- 10  - all attributes
+                                                                       10- 10  + damage taken
+
+  7 The Trollhewer            War Axe                     30  170000  300-300  +% damage done
+                                                                       30- 30  + damage done
+
+  8 Master of the Storm       Quarter Staff               30   89000   18- 20  spell-Nova 20 charges
+                                                                       10- 15  specified armor class
+                                                                        1-  1  +/- spell levels
+                                                                       30- 50  +% resist lightning
+
+  9 Guthwine                  Long Sword                  25   65000    5-  5  % steal life
+                                                                       50- 50  +% To Hit
+                                                                      100-100  +% damage done
+                                                                       30- 30  + life
+                                                                       15- 15  + strength
+
+ 10 Bard's Mithril Coat       Chain Mail                  20   43500   40- 40  specified armor class
+                                                                        2-  2  attack speed (1=readiness, 4=haste)
+                                                                       10- 10  + dexterity
+                                                                        5-  5  + magic
+
+ 11 The Cloak of Shadows      Cloak                        9   11300   15- 15  +% To Hit
+                                                                       25- 25  +% armor class
+                                                                        5-  5  + vitality
+                                                                        7-  7  + magic
+                                                                        1-  1  -% light
+                                                                        1-  1  indestructable
+
+ 12 The Burning Axe of Udun   Broad Axe                   20   41900    1-100  + fire hit damage
+                                                                       15- 30  x-y damage done (unusual item damage)
+                                                                       30- 40  +% resist fire
+                                                                        8-  8  + all attributes
+
+ 13 The Goblinpiercer         Hunter's Bow                 3    8750   10- 10  +% To Hit
+                                                                        1-  2  + damage done
+                                                                        2-  2  + strength
+                                                                        3-  3  - dexterity
+
+ 14 Eorl's Two-hander         Two-Handed Sword            24   52000   10- 10  + all attributes
+                                                                        4-  4  attack speed (1=readiness, 4=haste)
+                                                                      100-100  +% damage done
+                                                                       50- 50  +% durability (high durability)
+                                                                      253-  0  unique picture
+
+ 15 Grimbold's Orcmaimer      Flail                       23   31500   50- 50  +% To Hit
+                                                                       90-120  +% damage done
+                                                                        5- 10  + all attributes
+                                                                       15- 25  +% resist all
+
+ 16 The Shortbow of Legolas   Elvish Short Bow            22   39000    5-  5  - damage taken
+                                                                       25- 25  + dexterity
+                                                                       15- 30  + mana
+                                                                       10- 10  + magic
+                                                                        1-  1  +% light
+                                                                      209-  0  unique picture
+
+ 17 The Black Blade of Umbar  Corsair's Sabre             15   35000   60- 60  +% To Hit
+                                                                        3-  3  x-y damage done (unusual item damage)
+                                                                        2-  2  attack speed (1=readiness, 4=haste)
+                                                                       10- 10  + life
+                                                                       10- 10  + mana
+
+ 18 Aragorn's Royal Shield    Wall Shield                 34   79400   70- 70  specified armor class
+                                                                        1-  1  -all mana
+                                                                        3-  3  hit recovery (1=balance, 3=harmony
+                                                                       75- 75  + life
+                                                                      241-  0  unique picture
+
+ 19 Varnaturma the Protector  Great Shield                15   22000   20- 20  specified armor class
+                                                                       25- 25  + dexterity
+                                                                       10- 10  - life
+
+ 20 The White Robe            Robe                        13   10500    3-  3  hit recovery (1=balance, 3=harmony
+                                                                        5-  5  - damage taken
+                                                                       30- 30  + mana
+                                                                        5-  5  + strength
+
+ 21 Bow of Galadriel of Lorie Long War Bow                31   62000   10- 10  + strength
+                                                                      250-250  +% damage done
+                                                                        5-  5  + damage done
+                                                                       10- 10  altered durability
+                                                                       10- 10  - life
+                                                                       10- 10  - mana
+
+ 22 The Shieldbow             Short War Bow               12   15750    3-  3  - damage taken
+                                                                       10- 10  specified armor class
+                                                                       15- 20  +% resist all
+
+ 23 The Elessar               Amulet                      35  125000   20- 20  +% resist all
+                                                                       10- 10  specified armor class
+                                                                       10- 10  - damage taken
+                                                                       10- 10  + all attributes
+                                                                        3-  3  hit recovery (1=balance, 3=harmony
+                                                                       46-  0  unique picture
+
+ 24 Hyarmacil the Southblade  Scimitar                    19   40000    1-  1  +200% damage versus demons
+                                                                        3-  3  % steal mana
+                                                                       25- 25  +% resist magic
+                                                                        2-  4  knocks target back
+                                                                       58-  0  unique picture
+
+ 25 Marvandel the Wand of Hom Short Staff                  1    2100    3-  3  + magic
+                                                                        7- 10  spell-Town Portal 10 charges
+                                                                        2-  2  - strength
+
+ 26 The Foeslayer             Morning Star                16   37900   50- 80  +% damage done
+                                                                        2-  2  attack speed (1=readiness, 4=haste)
+                                                                       15- 15  + strength
+                                                                        1-  1  -% light
+
+ 27 Macar the Ring of War     Lesser Ring                 35  200000   30- 30  + strength
+                                                                       85- 85  +% resist fire
+                                                                       50- 50  + life
+                                                                      181-  0  unique picture
+
+ 28 Adancur the Ring of the B Ring                        35  200000   30- 30  + dexterity
+                                                                       85- 85  +% resist lightning
+                                                                       25- 25  + life
+                                                                       25- 25  + mana
+                                                                      183-  0  unique picture
+
+ 29 Nolwar the Ring of the Wi Major Ring                  35  200000   30- 30  + magic
+                                                                       85- 85  +% resist magic
+                                                                       50- 50  + mana
+                                                                       11-  0  unique picture
+
+ 30 Herugrim                  Broad Sword                 30  135000   20- 20  x-y damage done (unusual item damage)
+                                                                        1-  1  monster can't heal
+                                                                        3-  4  attack speed (1=readiness, 4=haste)
+                                                                       10- 15  + all attributes
+
+ 31 The Hammer of the North   War Hammer                  27   76000    5-  5  % steal life
+                                                                      125-175  +% damage done
+                                                                        3-  3  damage/penetrate armor
+                                                                        1-  1  indestructable
+
+ 32 The Basher                Large Axe                   10   27400   20- 20  +% To Hit
+                                                                        1-  1  knocks target back
+                                                                       50- 50  +% damage done
+
+ 33 Faramir's Mail of Gondor  Scale Mail                  28  175000  100-100  +% armor class
+                                                                       10- 20  +% resist all
+                                                                       15- 15  + magic
+                                                                       45- 45  +% To Hit
+
+ 34 Plate of Elrond Halfelven Plate Mail                  32  191000   10- 50  +% resist fire
+                                                                       10- 50  +% resist lightning
+                                                                       10- 50  +% resist magic
+                                                                        1-  1  no strength requirements
+                                                                        3-  3  hit recovery (1=balance, 3=harmony
+                                                                        1-  1  +/- spell levels
+
+ 35 The Trollcoat             Padded Armor                15   23500   50- 75  +% armor class
+                                                                       20- 20  + life
+                                                                       15- 15  +% resist magic
+
+ 36 Helm's Hammerhand         Maul                        35  180000   10- 40  x-y damage done (unusual item damage)
+                                                                      100-150  +% damage done
+                                                                       10- 15  + damage done
+                                                                       50- 50  + strength
+                                                                        4-  4  attack speed (1=readiness, 4=haste)
+                                                                      205-  0  unique picture
+
+ 37 Scatha's Doom             Heavy Crossbow              35  150000    1- 20  + fire arrows damage
+                                                                       10- 10  + all attributes
+                                                                       15- 25  +% resist all
+                                                                       40- 70  +% To Hit
+                                                                       10- 10  x-y damage done (unusual item damage)
+
+ 38 Ugluk's Bow of Slaying    Composite Bow               10   15200    3-  3  + damage done
+                                                                        1-  5  + fire arrows damage
+                                                                        1-  1  knocks target back
+                                                                        1-  1  indestructable
+
+ 39 The Orc-Hewer             Dagger                       5    3600    3-  3  % steal life
+                                                                       10- 10  +% To Hit
+                                                                       53-  0  unique picture
+
+ 40 Merry's Dagger of Western Short Sword                 10   22000   50- 75  +% damage done
+                                                                       15- 20  +% To Hit
+                                                                        5-  5  specified armor class
+                                                                        1-  1  +% light
+                                                                        2-  2  attack speed (1=readiness, 4=haste)
+
+ 41 Durin's Great Battle-Axe  Dwarven Axe                 35  240000   70- 70  +% To Hit
+                                                                      200-200  +% damage done
+                                                                        3-  3  +% light
+                                                                       30- 30  + vitality
+                                                                       30- 30  - dexterity
+                                                                        1-  1  monster can't heal
+
+ 42 Dramborleg The Axe of Tuo War Axe                     35  230000  150-150  +% To Hit
+                                                                       90- 90  x-y damage done (unusual item damage)
+                                                                       30- 30  specified armor class
+                                                                        1-  1  monster can't heal
+
+ 43 Gimli's Axe               Great Axe                   25  110000   50- 50  +% To Hit
+                                                                      100-100  +% damage done
+                                                                       20- 20  +% resist all
+                                                                        4-  4  attack speed (1=readiness, 4=haste)
+                                                                      104- 25  unique picture
+
+ 44 Feanor's Battlemail       Mithril Full Plate Armor    38  450000  125-125  +% armor class
+                                                                        5-  5  - damage taken
+                                                                        2-  2  +% light
+                                                                       50- 60  +% resist all
+                                                                        1-  1  indestructable
+
+ 45 Durin's Plate             Dwarven Plate               32  360000  120-140  +% armor class
+                                                                       15- 15  + strength
+                                                                       40- 40  + life
+                                                                       30- 30  - dexterity
+                                                                        5-  5  + damage taken
+
+ 46 The Mail of Maedhros      Full Chain Hauberk          35  300000  100-120  specified armor class
+                                                                       50- 50  +% armor class
+                                                                       70- 70  +% To Hit
+                                                                       20- 20  + damage done
+                                                                       10- 15  - all attributes
+                                                                       10- 15  + damage taken
+
+ 47 Khamul's Scalemail        Seadrake Scale Mail         27  120000   70-100  +% armor class
+                                                                        5-  5  % steal life
+                                                                        1-  1  -% light
+                                                                        4-  6  + damage taken
+                                                                        5-  5  + damage done
+                                                                      204-  0  unique picture
+
+ 48 Bilbo's Mithrilshirt      Chainmail Shirt             20   31000   75- 75  specified armor class
+                                                                       20- 20  + mana
+                                                                       30- 30  +% resist magic
+                                                                       50- 50  +% durability (high durability)
+
+ 49 The Dragon's Hide         Boiled Leather Armor        27   62000  100-100  specified armor class
+                                                                       25- 25  + life
+                                                                       25- 25  + mana
+                                                                       15- 20  +% resist all
+                                                                        3-  3  hit recovery (1=balance, 3=harmony
+                                                                      203-  0  unique picture
+
+ 50 Robe of the Istar         Mage Robe                   30   75000    1-  1  +/- spell levels
+                                                                       20- 20  + magic
+                                                                       40- 40  + mana
+                                                                       10- 15  +% resist all
+                                                                      100-100  -% armor class
+
+ 51 The Thief's Armor         Leather Armor               15   13400    3-  5  - damage taken
+                                                                       60- 60  +% armor class
+                                                                        3-  5  + all attributes
+                                                                        0-  0  absorb half trap damage
+                                                                       33- 33  -% durability (decreased durability)
+
+ 52 Snaga's ragged Jerkin     Shirt                        1     900    1-  1  altered durability
+                                                                        1-  1  hit recovery (1=balance, 3=harmony
+                                                                        1-  3  + dexterity
+
+ 53 Labadal's Demise          Woodman's Axe               15   26450    4-  4  attack speed (1=readiness, 4=haste)
+                                                                      100-100  +% To Hit
+                                                                       33- 33  -% damage done
+                                                                       20- 20  + mana
+                                                                        5-  5  - damage taken
+
+ 54 The Glass-Axe             Hatchet                      5    9700    5-  5  + damage done
+                                                                        5-  5  + life
+                                                                        2-  7  specified armor class
+                                                                       15- 15  +% To Hit
+                                                                       15- 15  altered durability
+
+ 55 Flail of Barahir          War Flail                   35  178000  200-220  +% damage done
+                                                                       30- 40  +% To Hit
+                                                                        3-  3  attack speed (1=readiness, 4=haste)
+                                                                        5-  5  % steal life
+                                                                       10- 10  - dexterity
+
+ 56 Grond the Underworld-Hamm Great Flail                 36  350000  500-500  +% damage done
+                                                                      100-100  + damage done
+                                                                        5-  5  % steal life
+                                                                        4-  4  -% light
+                                                                       50- 50  - all attributes
+                                                                        1-  1  -all mana
+
+ 57 Glamdring Gandalf's Sword Long Sword                  35  190000   15- 30  x-y damage done (unusual item damage)
+                                                                       50- 70  +% To Hit
+                                                                       20- 20  specified armor class
+                                                                        3-  3  attack speed (1=readiness, 4=haste)
+                                                                       30- 30  + magic
+                                                                       15- 15  - vitality
+
+ 58 Gurthang                  Great Battle Blade          31  215000    1-  1  0-12.5% steal life
+                                                                       50- 70  +% To Hit
+                                                                       60- 80  +% damage done
+                                                                       30- 30  + strength
+                                                                       30- 30  - magic
+                                                                        1-  1  constantly lose life
+
+ 59 Vilya the Ring of Air     Major Ring                  36  400000   45- 45  +% resist lightning
+                                                                        5- 15  + lightning hit damage
+                                                                        1- 10  + lightning arrows damage
+                                                                        1-  1  fast block
+                                                                       25- 25  + strength
+                                                                       10- 10  - damage taken
+
+ 60 The Nauglamir             Major Amulet                38  500000   30- 60  +% resist fire
+                                                                       30- 60  +% resist lightning
+                                                                       30- 60  +% resist magic
+                                                                       20- 20  - damage taken
+                                                                        3-  3  hit recovery (1=balance, 3=harmony
+                                                                        3-  3  +% light
+
+ 61 Sting                     Long Knife                  18   36000   50- 50  +% To Hit
+                                                                        5-  5  + damage done
+                                                                        2-  2  attack speed (1=readiness, 4=haste)
+                                                                        2-  2  damage/penetrate armor
+
+ 62 Narsil the Sword of Elend Numenorean Sword            36  275000   20- 30  x-y damage done (unusual item damage)
+                                                                      100-100  +% damage done
+                                                                       30- 30  + dexterity
+                                                                        3-  3  attack speed (1=readiness, 4=haste)
+                                                                       10- 10  - damage taken
+                                                                       15- 15  + all attributes
+
+ 63 Ringil                    Elven Blade                 38  310000  125-125  +% To Hit
+                                                                       21- 25  + all attributes
+                                                                        4-  4  attack speed (1=readiness, 4=haste)
+                                                                        3-  3  hit recovery (1=balance, 3=harmony
+                                                                       10- 20  + lightning hit damage
+                                                                        2-  2  +% light
+
+ 64 Hendumaica the Eye        Mace                        12   18000    1-  1  infravision
+
+ 65 The One Ring              Major Ring                  4810400001    3-  3  -% light
+                                                                        0-  0  infravision
+                                                                       70- 70  + all attributes
+                                                                        0-  0  0-12.5% steal life
+                                                                        0-  0  constantly lose life
+                                                                        0-  0  all resistances equal 0%
+
+ 66 The Stormbow              Short Battle Bow            16   35000    1-  5  + lightning arrows damage
+                                                                       50- 50  +% resist lightning
+                                                                       10- 10  + all attributes
+
+ 67 The Hobbit's Bow          Short Bow                    5    3700    1-  5  + vitality
+                                                                        1-  5  + dexterity
+                                                                        1- 10  attacker take 1-3 damage
+
+ 68 Belthronding              Elven Bow                   36  250000    1-  2  +% light
+                                                                        1-  1  +/- spell levels
+                                                                       20- 30  + all attributes
+                                                                       50- 50  +% resist magic
+                                                                        1- 40  x-y damage done (unusual item damage)
+                                                                        4-  4  - damage taken
+
+ 69 The Great Bow of Celeborn Mallorn Bow                 31  190000  100-150  +% damage done
+                                                                       50- 80  +% To Hit
+                                                                       10- 10  + damage done
+
+ 70 Thrain's Mithril Crossbow Crossbow                    22   73500   50- 50  +% To Hit
+                                                                       10- 15  specified armor class
+                                                                        5-  5  x-y damage done (unusual item damage)
+                                                                       66- 66  +% durability (high durability)
+                                                                        5-  5  + all attributes
+
+ 71 Nenya the Ring of Water   Ring                        36  400000   45- 45  +% resist magic
+                                                                       20- 20  + mana
+                                                                       15- 15  + magic
+                                                                        5-  5  % steal mana
+                                                                       10- 10  specified armor class
+                                                                        3-  3  hit recovery (1=balance, 3=harmony
+
+ 72 Elu Thingol's Battle Shie Mithril Shield              36  280000    2-  2  +% light
+                                                                        4-  4  attack speed (1=readiness, 4=haste)
+                                                                        3-  3  hit recovery (1=balance, 3=harmony
+                                                                        1-  1  fast block
+                                                                       40- 40  specified armor class
+
+ 73 Shield of Elros           Numenorean Shield           32  194000   50- 50  +% resist fire
+                                                                        1- 20  + fire hit damage
+                                                                      100-120  +% armor class
+                                                                       40- 50  + life
+
+ 74 Azaghal's War Shield      Dwarven Shield              27   95000   50- 50  specified armor class
+                                                                       -1- -1  +/- spell levels
+                                                                       10- 20  + vitality
+                                                                       10- 20  - mana
+                                                                        0-  0  indestructable
+
+ 75 Nolaturma Shield of the W Small Shield                18   37000   10- 10  - strength
+                                                                        1-  1  +/- spell levels
+                                                                       15- 20  + magic
+                                                                        1-  1  no strength requirements
+                                                                        1-  1  fast block
+
+ 76 The Shield of Splendour   Large Shield                10   18000    4-  5  - damage taken
+                                                                       10- 10  +% resist all
+                                                                        8- 10  + dexterity
+
+ 77 The Nightshield           Buckler                      4    2300    8-  8  specified armor class
+                                                                        3-  3  + all attributes
+                                                                        4-  4  -% light
+
+ 78 Olorin's Staff of Guidanc War Staff                   36  260000    2-  2  +/- spell levels
+                                                                       85- 85  +% resist all
+                                                                      125-  0  unique picture
+
+ 79 Aeglos Spear of Gil-Galad Quarter Staff               37  280000  100-100  x-y damage done (unusual item damage)
+                                                                       80- 80  +% To Hit
+                                                                        4-  4  attack speed (1=readiness, 4=haste)
+                                                                        1-  1  monster can't heal
+                                                                       25-  1  spell-Etherealize 1 charges
+                                                                      251-  0  unique picture
+
+ 80 Featuru the Flamebringer  Composite Staff             20   40000    6- 25  spell-Fire Wall 25 charges
+                                                                       10- 10  - damage taken
+                                                                       15- 15  + magic
+                                                                        5-  5  + strength
+                                                                       10- 10  + dexterity
+
+ 81 Staff of Wisdom           Long Staff                  15   19200    5-  5  spell-Identify 5 charges
+                                                                       10- 10  + magic
+                                                                       10- 10  +% resist all
+
+ 82 Finwe's Crown of Glory    Mithril Helm                38  195000   20- 20  + all attributes
+                                                                       10- 10  - damage taken
+                                                                      100-125  +% armor class
+                                                                        2-  2  +% light
+                                                                       79-  0  unique picture
+
+ 83 Dragon-Helm of Dor-Lomin  Dwarven Helm                34  130000   30- 30  specified armor class
+                                                                       85- 85  +% resist fire
+                                                                        5- 10  + damage done
+                                                                       20- 30  + life
+                                                                       20- 30  + mana
+
+ 84 Earendil's Warhelm        War Helm                    30   78000   30- 40  specified armor class
+                                                                       20- 30  + dexterity
+                                                                       20- 20  +% resist all
+                                                                      237-  0  unique picture
+
+ 85 Alatar's Coif             Helm                        26   60000    1-  1  no strength requirements
+                                                                        1-  1  +/- spell levels
+                                                                       40- 40  + magic
+                                                                       10- 10  + damage taken
+                                                                       10- 10  - dexterity
+                                                                       81-  0  unique picture
+
+ 86 Azog's Helmet             Full Helm                   17   31000    0-  0  specified armor class
+                                                                      150-150  + life
+                                                                        1-  1  constantly lose life
+
+ 87 Cap of the Halfling       Iron Cap                    10   17500   15- 15  specified armor class
+                                                                       10- 10  - mana
+                                                                        5-  5  + dexterity
+                                                                       93-  0  unique picture
+
+ 88 Helm of Victory           Battle Helm                 24   72500    5-  5  % steal mana
+                                                                       50- 75  +% resist magic
+                                                                       10- 10  + all attributes
+                                                                        5-  5  + damage taken
+
+ 89 Narya the Ring of Fire    Lesser Ring                 36  400000   45- 45  +% resist fire
+                                                                        5- 15  + fire hit damage
+                                                                        1- 10  + fire arrows damage
+                                                                       10- 10  + damage done
+                                                                       20- 20  + vitality
+                                                                        5-  5  % steal life
+
+
+Spells
+pos nbr name                      type      qlvl(bo) qlvl(st) ini  min  dec  req town  charges   price(bo)  multiplier
+  0   1 Firebolt                  Fire           1        1     6    3    1   15   0    40- 80      1000         10
+  1   2 Healing                   Magic/Other    1        1     5    1    3   17   1    20- 40      1000         10
+  2   3 Lightning                 Lightning      4        3    10    6    1   20   0    20- 60      3000         30
+  3   4 Flash                     Magic/Other    5        4    30   16    2   33   0    20- 40      7500        100
+  4   5 Identify                  Magic/Other   -1       -1    13    1    2   23   1     8- 12         0         20
+  5   6 Fire Wall                 Fire           3        2    28   16    2   27   0     8- 16      6000         80
+  6   7 Town Portal               Magic/Other    3        3    35   18    3   20   0     8- 12      3000         40
+  7   8 Stone Curse               Magic/Other    6        5    60   40    3   51   0     8- 16     12000        160
+  8   9 Infravision               Magic/Other   -1       -1    40   20    5   36   0     0-  0         0        120
+  9  10 Escape                    Magic/Other   13       12    40   20    2  110   0    10- 20     25000        600
+ 10  11 Mana Shield               Magic/Other    6        5    33   33    0   25   0     4- 10     16000        240
+ 11  12 Fireball                  Fire           8        7    16   10    1   48   0    40- 80      8000         60
+ 12  13 Guardian                  Fire           9        8    50   30    2   61   0    16- 32     14000        190
+ 13  14 Chain Lightning           Lightning      8        7    30   18    1   54   0    20- 60     11000        150
+ 14  15 Flame wave                Fire           9        8    35   20    3   54   0    20- 40     10000        130
+ 15  16 umenorean Sword           Lightning     -1       -1     0    0    0    0   0    40- 80         0          0
+ 16  17 Mallorn Bow               Magic/Other   -1       -1     0    0    0    0   0    40- 80         0          0
+ 17  18 Nova                      Magic/Other   -1       10    60   35    3   87   0    16- 32     21000        260
+ 18  19 War Axe                   Magic/Other   -1       -1     0    0    0    0   0    40- 80         0          0
+ 19  20 Inferno                   Fire           3        2    11    6    1   20   0    20- 40      2000         20
+ 20  21 Golem                     Magic/Other   11        9   100   60    6   81   0    16- 32     18000        220
+ 21  22 Thunder                   Lightning     12       10    30   18    2   55   0    15- 30     10000        100
+ 22  23 Teleport                  Magic/Other   14       12    35   15    2  105   1    16- 32     20000        250
+ 23  24 Apocalypse                Fire          -1       15   150   90    6  149   0     8- 12     30000        400
+ 24  25 Etherealize               Magic/Other   -1       -1   100  100    0   93   0     2-  6     26000        320
+ 25  26 Item Repair               Magic/Other   -1       -1     0    0    0   -1   1    40- 80         0          0
+ 26  27 Staff Recharge            Magic/Other   -1       -1     0    0    0   -1   1    40- 80         0          0
+ 27  28 Trap Disarm               Magic/Other   -1       -1     0    0    0   -1   0    40- 80         0          0
+ 28  29 Elemental                 Fire           8        6    35   20    2   68   0    20- 60     10500        140
+ 29  30 Charged Bolt              Lightning      1        1     6    6    1   25   0    40- 80      1000         10
+ 30  31 Holy Bolt                 Magic/Other    1        1     7    3    1   20   0    40- 80      1000         10
+ 31  32 Resurrect                 Magic/Other    7        5    30    2    0   50   1     4- 10      7500         50
+ 32  33 Telekinesis               Magic/Other    2        2    15    8    2   33   0    20- 40      2500         40
+ 33  34 Heal Other                Magic/Other    1        1     5    1    3   17   1    20- 40      1000         10
+ 34  35 Blood Star                Magic/Other   14       13    20    5    1   70   0    20- 60     27500        360
+ 35  36 Bone Spirit               Magic/Other    9        7    24   12    1   34   0    20- 60     11500        160
+
+Characters
+pos name                        str/max  mag/max  dex/max  vit/max
+  0 Warrior                      30/255    0/ 30   20/ 60   30/120
+  1 Rogue                        15/ 50   15/ 75   35/255   20/ 85
+  2 Sorceror                      0/  5   40/255   10/ 30   20/ 80
