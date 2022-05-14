@@ -966,11 +966,11 @@ void DiabloInit()
 	forceDiablo = true;
 
 	/*if (forceSpawn || *sgOptions.StartUp.shareware)
-		gbIsSpawn = true;*/
+	    gbIsSpawn = true;*/
 	if (forceDiablo || *sgOptions.StartUp.gameMode == StartUpGameMode::Diablo)
 		gbIsHellfire = false;
 	/*if (forceHellfire)
-		gbIsHellfire = true;*/
+	    gbIsHellfire = true;*/
 
 	gbIsHellfireSaveGame = gbIsHellfire;
 
@@ -994,7 +994,7 @@ void DiabloInit()
 
 	ReadOnlyTest();
 
-	//if (gbIsHellfire && !forceHellfire && *sgOptions.StartUp.gameMode == StartUpGameMode::Ask) {
+	// if (gbIsHellfire && !forceHellfire && *sgOptions.StartUp.gameMode == StartUpGameMode::Ask) {
 	//	UiSelStartUpGameOption();
 	//	if (!gbIsHellfire) {
 	//		// Reinitalize the UI Elements cause we changed the game
@@ -1003,7 +1003,7 @@ void DiabloInit()
 	//		if (IsHardwareCursor())
 	//			SetHardwareCursor(CursorInfo::UnknownCursor());
 	//	}
-	//}
+	// }
 
 	DiabloInitScreen();
 
