@@ -963,12 +963,14 @@ void DiabloInit()
 	init_create_window();
 	was_window_init = true;
 
-	if (forceSpawn || *sgOptions.StartUp.shareware)
-		gbIsSpawn = true;
+	forceDiablo = true;
+
+	/*if (forceSpawn || *sgOptions.StartUp.shareware)
+		gbIsSpawn = true;*/
 	if (forceDiablo || *sgOptions.StartUp.gameMode == StartUpGameMode::Diablo)
 		gbIsHellfire = false;
-	if (forceHellfire)
-		gbIsHellfire = true;
+	/*if (forceHellfire)
+		gbIsHellfire = true;*/
 
 	gbIsHellfireSaveGame = gbIsHellfire;
 
@@ -992,16 +994,16 @@ void DiabloInit()
 
 	ReadOnlyTest();
 
-	if (gbIsHellfire && !forceHellfire && *sgOptions.StartUp.gameMode == StartUpGameMode::Ask) {
-		UiSelStartUpGameOption();
-		if (!gbIsHellfire) {
-			// Reinitalize the UI Elements cause we changed the game
-			UnloadUiGFX();
-			UiInitialize();
-			if (IsHardwareCursor())
-				SetHardwareCursor(CursorInfo::UnknownCursor());
-		}
-	}
+	//if (gbIsHellfire && !forceHellfire && *sgOptions.StartUp.gameMode == StartUpGameMode::Ask) {
+	//	UiSelStartUpGameOption();
+	//	if (!gbIsHellfire) {
+	//		// Reinitalize the UI Elements cause we changed the game
+	//		UnloadUiGFX();
+	//		UiInitialize();
+	//		if (IsHardwareCursor())
+	//			SetHardwareCursor(CursorInfo::UnknownCursor());
+	//	}
+	//}
 
 	DiabloInitScreen();
 
