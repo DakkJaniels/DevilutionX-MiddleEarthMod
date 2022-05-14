@@ -10,7 +10,7 @@ android {
 	compileSdkVersion 31
 	defaultConfig {
 		if (buildAsApplication) {
-			applicationId "org.diasurgical.devilutionx"
+			applicationId "org.diasurgical.devilutionx.mod.middleearth"
 		}
 		minSdkVersion 18
 		targetSdkVersion 31
