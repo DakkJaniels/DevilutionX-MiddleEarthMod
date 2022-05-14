@@ -1,5 +1,7 @@
 Middle Earth Mod created by Varaya and Khan for Diablo 1.07, now ported to Devilution X.
 
+For changes to monsters and items, see [DView output](https://github.com/DakkJaniels/DevilutionX-MiddleEarthMod/blob/04dc51cb55980eab730a9d3e2de12a762afa6b7f/DataMiddleEarth.txt). 
+
 Based on data files I had for the Mod, and a copy of the modified binary I compared to Diablo 1.07, I think I've determined most, if not all of the changes that V&K implemented in Diablo. To play the mod, compile the source as described in the readme, then copy the folders in the `ME Mod assets.zip` file to the assets folder in your build folder (or to the assets folder wherever the executable file is located). In addition, you have to copy your `DIABDAT.MPQ` file to the location of the executable or have your Diablo CD in your disc drive.
 
 NOTE: MOD IS **NOT** DESIGNED FOR HELLFIRE AND IS FOR MULTIPLAYER ONLY (use loopback if you are playing on your own). While I'm sure this could be fixed to make single player work, all the tables were copied over just like they were written originally (for the most part), so if that overwrote unique monsters and/or items, they will not work correctly in single-player.
