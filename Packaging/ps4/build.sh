@@ -11,4 +11,4 @@ cmake -S "${SCRIPTDIR}/../../" \
       -DCMAKE_TOOLCHAIN_FILE="/opt/pacbrew/ps4/openorbis/cmake/ps4.cmake"
 
 cmake --build build-ps4 -j $(getconf _NPROCESSORS_ONLN)
-mv build-ps4/IV0001-DVLX00001_00-*.pkg build-ps4/devilutionx.pkg
+mv build-ps4/IV0001-DXME00001_00-*.pkg build-ps4/devilutionx.pkg
