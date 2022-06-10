@@ -876,6 +876,7 @@ std::vector<OptionEntryBase *> GameplayOptions::GetEntries()
 		&experienceBar,
 		&enemyHealthBar,
 		&showMonsterType,
+		&showItemLabels,
 		&disableCripplingShrines,
 		&quickCast,
 		&autoRefillBelt,
