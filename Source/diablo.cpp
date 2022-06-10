@@ -150,6 +150,9 @@ bool was_ui_init = false;
 void StartGame(interface_mode uMsg)
 {
 	zoomflag = true;
+	if (*sgOptions.Gameplay.showItemLabels && !IsHighlightingLabelsEnabled()) {
+		ToggleItemLabelHighlight();
+	}
 	CalcViewportGeometry();
 	cineflag = false;
 	InitCursor();
