@@ -1051,7 +1051,7 @@ void StartMonsterDeath(int i, int pnum, bool sendmsg)
 	SetRndSeed(monster._mRndSeed);
 	SpawnLoot(monster, sendmsg);
 	if (monster.MType->mtype == MT_DIABLO)
-	    DiabloDeath(monster, true);
+		DiabloDeath(monster, true);
 	else
 		PlayEffect(monster, 2);
 
