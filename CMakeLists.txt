@@ -252,10 +252,10 @@ set_relative_file_macro(${BIN_TARGET})
 
 if(APPLE)
   set_source_files_properties("./Packaging/apple/AppIcon.icns" PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
-  set(MACOSX_BUNDLE_GUI_IDENTIFIER com.diasurgical.devilutionx)
+  set(MACOSX_BUNDLE_GUI_IDENTIFIER com.diasurgical.devilutionxme)
   set(MACOSX_BUNDLE_COPYRIGHT Unlicense)
-  set(MACOSX_BUNDLE_BUNDLE_NAME devilutionx)
-  set(MACOSX_BUNDLE_DISPLAY_NAME DevilutionX)
+  set(MACOSX_BUNDLE_BUNDLE_NAME devilutionx-me)
+  set(MACOSX_BUNDLE_DISPLAY_NAME DevilutionX-ME)
   set(MACOSX_BUNDLE_INFO_STRING ${PROJECT_VERSION})
   set(MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION})
   set(MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION})
@@ -306,7 +306,7 @@ if(NINTENDO_SWITCH)
   add_dependencies(romfs_files romfs_directory devilutionx_mpq)
 
   nx_generate_nacp (${BIN_TARGET}.nacp
-    NAME    "DevilutionX"
+    NAME    "DevilutionX-ME"
     AUTHOR  "Devilution Team"
     VERSION "${PROJECT_VERSION}"
   )
@@ -322,21 +322,21 @@ if(NINTENDO_SWITCH)
 endif()
 
 if(VITA)
-  set(VITA_APP_NAME "devilutionX")
-  set(VITA_TITLEID  "DVLX00001")
+  set(VITA_APP_NAME "DevilutionX-ME")
+  set(VITA_TITLEID  "DXME00001")
   set(VITA_VERSION  "01.00")
   set(VITA_MKSFOEX_FLAGS "${VITA_MKSFOEX_FLAGS} -d PARENTAL_LEVEL=1")
   set(VITA_MKSFOEX_FLAGS "${VITA_MKSFOEX_FLAGS} -d ATTRIBUTE2=12")
   vita_create_self(devilutionx.self devilutionx UNSAFE)
   if(BUILD_ASSETS_MPQ OR SRC_DIST)
-    vita_create_vpk(devilutionx.vpk ${VITA_TITLEID} devilutionx.self
+    vita_create_vpk(devilutionx-me.vpk ${VITA_TITLEID} devilutionx.self
       VERSION ${VITA_VERSION}
       NAME ${VITA_APP_NAME}
       FILE Packaging/vita/sce_sys sce_sys
       FILE ${DEVILUTIONX_MPQ} devilutionx.mpq
     )
   else()
-    vita_create_vpk(devilutionx.vpk ${VITA_TITLEID} devilutionx.self
+    vita_create_vpk(devilutionx-me.vpk ${VITA_TITLEID} devilutionx.self
       VERSION ${VITA_VERSION}
       NAME ${VITA_APP_NAME}
       FILE Packaging/vita/sce_sys sce_sys
@@ -353,11 +353,11 @@ if(PS4)
     COMMAND ${CMAKE_COMMAND} -E copy ${DEVILUTIONX_MPQ} "${PROJECT_SOURCE_DIR}/Packaging/ps4/")
   add_self(${BIN_TARGET})
   add_pkg(${BIN_TARGET} "${PROJECT_SOURCE_DIR}/Packaging/ps4"
-    "DVLX00001" "DevilutionX" "${PROJECT_VERSION}")
+    "DXME00001" "DevilutionX-ME" "${PROJECT_VERSION}")
 endif()
 
 if(NINTENDO_3DS)
-  set(APP_TITLE       "DevilutionX")
+  set(APP_TITLE       "DevilutionX-ME")
   set(APP_DESCRIPTION "DevilutionX port for 3DS")
   set(APP_AUTHOR      "Diasurgical Team")
   set(APP_ICON        "${PROJECT_SOURCE_DIR}/Packaging/ctr/icon.png")
@@ -420,7 +420,7 @@ if(CPACK AND (APPLE OR BUILD_ASSETS_MPQ OR SRC_DIST))
       "${SDL2_WIN32_LICENSES_DIR}/LICENSE*.txt"
       "${SDL2_WIN32_LICENSES_DIR}/README*.txt")
 
-    set(CPACK_PACKAGE_FILE_NAME "devilutionx")
+    set(CPACK_PACKAGE_FILE_NAME "devilutionx-me")
     set(CPACK_PACKAGE_NAME ${project_name})
     set(CPACK_GENERATOR "ZIP")
     set(CPACK_STRIP_FILES TRUE)
@@ -511,7 +511,7 @@ if(CPACK AND (APPLE OR BUILD_ASSETS_MPQ OR SRC_DIST))
     endif()
 
   elseif(APPLE)
-    set(CPACK_PACKAGE_FILE_NAME "devilutionx")
+    set(CPACK_PACKAGE_FILE_NAME "devilutionx-me")
     set(CPACK_DMG_DISABLE_APPLICATIONS_SYMLINK "ON")
     set(CPACK_STRIP_FILES TRUE)
     set(CPACK_GENERATOR "DragNDrop")
