@@ -85,7 +85,6 @@ workflows:
   testflow:
     jobs:
       - linux_x86_64
-      - linux_x86_64_test
       - switch
       - 3ds
       - amigaos-m68k
