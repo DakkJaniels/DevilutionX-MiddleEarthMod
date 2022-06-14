@@ -85,7 +85,7 @@ void AnimationInfo::SetNewAnimation(std::optional<CelSprite> celSprite, int numb
 	}
 
 	if (ticksPerFrame <= 0) {
-		Log("SetNewAnimation: Invalid ticksPerFrame {}", ticksPerFrame);
+		// Log("SetNewAnimation: Invalid ticksPerFrame {}", ticksPerFrame);
 		ticksPerFrame = 1;
 	}
 
