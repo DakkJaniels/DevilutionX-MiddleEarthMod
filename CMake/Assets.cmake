@@ -203,9 +203,9 @@ else()
   endif()
 
   if(BUILD_ASSETS_MPQ)
-    set(DEVILUTIONX_MPQ "${CMAKE_CURRENT_BINARY_DIR}/devilutionx.mpq")
+    set(DEVILUTIONX_MPQ "${CMAKE_CURRENT_BINARY_DIR}/${BIN_TARGET}.mpq")
     add_custom_command(
-      COMMENT "Building devilutionx.mpq"
+      COMMENT "Building ${BIN_TARGET}.mpq"
       OUTPUT "${DEVILUTIONX_MPQ}"
       COMMAND ${CMAKE_COMMAND} -E remove -f "${DEVILUTIONX_MPQ}"
       COMMAND ${SMPQ} -M 1 -C PKWARE -c "${DEVILUTIONX_MPQ}" ${DEVILUTIONX_MPQ_FILES}
