@@ -327,9 +327,9 @@ if(VITA)
   set(VITA_VERSION  "01.00")
   set(VITA_MKSFOEX_FLAGS "${VITA_MKSFOEX_FLAGS} -d PARENTAL_LEVEL=1")
   set(VITA_MKSFOEX_FLAGS "${VITA_MKSFOEX_FLAGS} -d ATTRIBUTE2=12")
-  vita_create_self(devilutionx.self devilutionx UNSAFE)
+  vita_create_self(${BIN_TARGET}.self ${BIN_TARGET} UNSAFE)
   if(BUILD_ASSETS_MPQ OR SRC_DIST)
-    vita_create_vpk(devilutionx-me.vpk ${VITA_TITLEID} devilutionx.self
+    vita_create_vpk(${BIN_TARGET}.vpk ${VITA_TITLEID} devilutionx.self
       VERSION ${VITA_VERSION}
       NAME ${VITA_APP_NAME}
       FILE Packaging/vita/sce_sys sce_sys
