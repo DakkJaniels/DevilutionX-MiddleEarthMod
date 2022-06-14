@@ -76,7 +76,7 @@ if(SMPQ)
 else()
   set(_has_smpq OFF)
 endif()
-option(BUILD_ASSETS_MPQ "If true, assets are packaged into devilutionx.mpq." ${_has_smpq})
+option(BUILD_ASSETS_MPQ "If true, assets are packaged into ${BIN_TARGET}.mpq." ${_has_smpq})
 
 # The gettext[tools] package takes a very long time to install
 if(CMAKE_TOOLCHAIN_FILE MATCHES "vcpkg.cmake$")
@@ -204,7 +204,7 @@ include(Dependencies)
 
 add_subdirectory(Source)
 
-set(BIN_TARGET devilutionx)
+set(BIN_TARGET devilutionx_me)
 if(NINTENDO_3DS)
   set(BIN_TARGET ${BIN_TARGET}.elf)
 endif()
@@ -254,7 +254,7 @@ if(APPLE)
   set_source_files_properties("./Packaging/apple/AppIcon.icns" PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
   set(MACOSX_BUNDLE_GUI_IDENTIFIER com.diasurgical.devilutionxme)
   set(MACOSX_BUNDLE_COPYRIGHT Unlicense)
-  set(MACOSX_BUNDLE_BUNDLE_NAME devilutionx_me)
+  set(MACOSX_BUNDLE_BUNDLE_NAME ${BIN_TARGET})
   set(MACOSX_BUNDLE_DISPLAY_NAME DevilutionX_ME)
   set(MACOSX_BUNDLE_INFO_STRING ${PROJECT_VERSION})
   set(MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION})
@@ -274,7 +274,7 @@ if(APPLE)
   if(MACOSX_STANDALONE_APP_BUNDLE)
       install(CODE "
         include(BundleUtilities)
-        fixup_bundle(${CMAKE_BINARY_DIR}/${MACOSX_BUNDLE_BUNDLE_NAME}.app \"\" \"\")
+        fixup_bundle(${CMAKE_INSTALL_PREFIX}/${MACOSX_BUNDLE_BUNDLE_NAME}.app \"\" \"\")
         "
         COMPONENT Runtime)
   endif()
@@ -327,16 +327,16 @@ if(VITA)
   set(VITA_VERSION  "01.00")
   set(VITA_MKSFOEX_FLAGS "${VITA_MKSFOEX_FLAGS} -d PARENTAL_LEVEL=1")
   set(VITA_MKSFOEX_FLAGS "${VITA_MKSFOEX_FLAGS} -d ATTRIBUTE2=12")
-  vita_create_self(devilutionx.self devilutionx UNSAFE)
+  vita_create_self(${BIN_TARGET}.self ${BIN_TARGET} UNSAFE)
   if(BUILD_ASSETS_MPQ OR SRC_DIST)
-    vita_create_vpk(devilutionx-me.vpk ${VITA_TITLEID} devilutionx.self
+    vita_create_vpk(${BIN_TARGET}.vpk ${VITA_TITLEID} ${BIN_TARGET}.self
       VERSION ${VITA_VERSION}
       NAME ${VITA_APP_NAME}
       FILE Packaging/vita/sce_sys sce_sys
-      FILE ${DEVILUTIONX_MPQ} devilutionx.mpq
+      FILE ${DEVILUTIONX_MPQ} ${BIN_TARGET}.mpq
     )
   else()
-    vita_create_vpk(devilutionx-me.vpk ${VITA_TITLEID} devilutionx.self
+    vita_create_vpk(${BIN_TARGET}.vpk ${VITA_TITLEID} ${BIN_TARGET}.self
       VERSION ${VITA_VERSION}
       NAME ${VITA_APP_NAME}
       FILE Packaging/vita/sce_sys sce_sys
