@@ -78,14 +78,13 @@ jobs:
       - run: apk --no-cache add git cmake ninja bash pkgconfig gettext
       - run: cmake -S. -Bbuild -GNinja -DCMAKE_TOOLCHAIN_FILE=${VITASDK}/share/vita.toolchain.cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo
       - run: cmake --build build -j 2
-      - store_artifacts: {path: ./build/devilutionx.vpk, destination: devilutionx.vpk}
+      - store_artifacts: {path: ./build/devilutionx-me.vpk, destination: devilutionx-me.vpk}
 
 workflows:
   version: 2
   testflow:
     jobs:
       - linux_x86_64
-      - linux_x86_64_test
       - switch
       - 3ds
       - amigaos-m68k
