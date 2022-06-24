@@ -872,10 +872,6 @@ bool PlrHitMonst(int pnum, int m, bool adjacentDamage = false)
 			return false;
 	}
 
-	if (HasAnyOf(player._pIFlags, ItemSpecialEffect::FireDamage) && HasAnyOf(player._pIFlags, ItemSpecialEffect::LightningDamage)) {
-		int midam = player._pIFMinDam + GenerateRnd(player._pIFMaxDam - player._pIFMinDam);
-		AddMissile(player.position.tile, player.position.temp, player._pdir, MIS_SPECARROW, TARGET_MONSTERS, pnum, midam, 0);
-	}
 	if (HasAnyOf(player._pIFlags, ItemSpecialEffect::NoHealOnMonsters))
 		monster._mFlags |= MFLAG_NOHEAL;
 	int mind = player._pIMinDam;
@@ -997,9 +993,6 @@ bool PlrHitMonst(int pnum, int m, bool adjacentDamage = false)
 			player._pHPBase = player._pMaxHPBase;
 		}
 		drawhpflag = true;
-	}
-	if (HasAnyOf(player._pIFlags, ItemSpecialEffect::NoHealOnPlayer)) { // Why is there a different ItemSpecialEffect here? (see missile.cpp) is this a BUG?
-		monster._mFlags |= MFLAG_NOHEAL;
 	}
 #ifdef _DEBUG
 	if (DebugGodMode) {
@@ -1144,12 +1137,11 @@ bool DoAttack(int pnum)
 			}
 		}
 
-		if (!HasAllOf(player._pIFlags, ItemSpecialEffect::FireDamage | ItemSpecialEffect::LightningDamage)) {
-			if (HasAnyOf(player._pIFlags, ItemSpecialEffect::FireDamage)) {
-				AddMissile(position, { 1, 0 }, Direction::South, MIS_WEAPEXP, TARGET_MONSTERS, pnum, 0, 0);
-			} else if (HasAnyOf(player._pIFlags, ItemSpecialEffect::LightningDamage)) {
-				AddMissile(position, { 2, 0 }, Direction::South, MIS_WEAPEXP, TARGET_MONSTERS, pnum, 0, 0);
-			}
+		if (HasAnyOf(player._pIFlags, ItemSpecialEffect::FireDamage)) {
+			AddMissile(position, { 1, 0 }, Direction::South, MIS_WEAPEXP, TARGET_MONSTERS, pnum, 0, 0);
+		}
+		if (HasAnyOf(player._pIFlags, ItemSpecialEffect::LightningDamage)) {
+			AddMissile(position, { 2, 0 }, Direction::South, MIS_WEAPEXP, TARGET_MONSTERS, pnum, 0, 0);
 		}
 
 		if (dMonster[dx][dy] != 0) {
@@ -1258,10 +1250,6 @@ bool DoRangeAttack(int pnum)
 		}
 		if (HasAnyOf(player._pIFlags, ItemSpecialEffect::LightningArrows)) {
 			mistype = MIS_LARROW;
-		}
-		if (HasAllOf(player._pIFlags, ItemSpecialEffect::FireArrows | ItemSpecialEffect::LightningArrows)) {
-			dmg = player._pIFMinDam + GenerateRnd(player._pIFMaxDam - player._pIFMinDam);
-			mistype = MIS_SPECARROW;
 		}
 
 		AddMissile(
