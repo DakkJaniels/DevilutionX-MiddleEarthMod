@@ -175,6 +175,7 @@ struct Item {
 	/** Randomly generated identifier */
 	int32_t _iSeed = 0;
 	uint16_t _iCreateInfo = 0;
+	uint8_t conversionFlag = 0;
 	enum ItemType _itype = ItemType::None;
 	Point position = { 0, 0 };
 	bool _iAnimFlag = false;
