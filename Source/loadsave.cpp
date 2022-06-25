@@ -222,7 +222,8 @@ void LoadItemData(LoadHelper &file, Item &item)
 {
 	item._iSeed = file.NextLE<int32_t>();
 	item._iCreateInfo = file.NextLE<uint16_t>();
-	file.Skip(2); // Alignment
+	item.conversionFlag = file.NextLE<uint8_t>();
+	file.Skip(1); // Alignment
 	item._itype = static_cast<ItemType>(file.NextLE<uint32_t>());
 	item.position.x = file.NextLE<int32_t>();
 	item.position.y = file.NextLE<int32_t>();
@@ -298,6 +299,11 @@ void LoadItemData(LoadHelper &file, Item &item)
 		item._iDamAcFlags = static_cast<ItemSpecialEffectHf>(file.NextLE<uint32_t>());
 	else
 		item._iDamAcFlags = ItemSpecialEffectHf::None;
+
+	if (item.conversionFlag != 16) {
+		item.IDidx = RemapItemIdxFromDiablo(item.IDidx);
+		item.conversionFlag = 16;
+	}
 
 	RemoveInvalidItem(item);
 }
@@ -936,7 +942,8 @@ void SaveItem(SaveHelper &file, const Item &item)
 
 	file.WriteLE<int32_t>(item._iSeed);
 	file.WriteLE<int16_t>(item._iCreateInfo);
-	file.Skip(2); // Alignment
+	file.WriteLE<uint8_t>(item.conversionFlag);
+	file.Skip(1); // Alignment
 	file.WriteLE<int32_t>(static_cast<int32_t>(iType));
 	file.WriteLE<int32_t>(item.position.x);
 	file.WriteLE<int32_t>(item.position.y);
@@ -1617,9 +1624,9 @@ _item_indexes RemapItemIdxToDiablo(_item_indexes i)
 		if (i == IDI_SORCERER_DIABLO) {
 			return IDI_SORCERER;
 		}
-		if ((i >= 83 && i <= 86) || i == 92 || i >= 161) {
-			return -1; // Hellfire exclusive items
-		}
+		// if ((i >= 83 && i <= 86) || i == 92 || i >= 161) {
+		//	return -1; // Hellfire exclusive items
+		// }
 		if (i >= 93) {
 			i -= 1; // Scroll of Search
 		}
