@@ -139,12 +139,12 @@ void SelheroListSelect(int value)
 		if (gbIsHellfire) {
 			vecSelHeroDlgItems.push_back(std::make_unique<UiListItem>(_("Monk"), static_cast<int>(HeroClass::Monk)));
 		}
-		if (gbBard || *sgOptions.Gameplay.testBard) {
-			vecSelHeroDlgItems.push_back(std::make_unique<UiListItem>(_("Bard"), static_cast<int>(HeroClass::Bard)));
+		/*if (gbBard || *sgOptions.Gameplay.testBard) {
+		    vecSelHeroDlgItems.push_back(std::make_unique<UiListItem>(_("Bard"), static_cast<int>(HeroClass::Bard)));
 		}
 		if (gbBarbarian || *sgOptions.Gameplay.testBarbarian) {
-			vecSelHeroDlgItems.push_back(std::make_unique<UiListItem>(_("Barbarian"), static_cast<int>(HeroClass::Barbarian)));
-		}
+		    vecSelHeroDlgItems.push_back(std::make_unique<UiListItem>(_("Barbarian"), static_cast<int>(HeroClass::Barbarian)));
+		}*/
 		if (vecSelHeroDlgItems.size() > 4)
 			itemH = 26;
 		int itemY = 246 + (176 - vecSelHeroDlgItems.size() * itemH) / 2;
