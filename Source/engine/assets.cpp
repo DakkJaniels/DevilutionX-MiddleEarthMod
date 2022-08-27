@@ -1,6 +1,7 @@
 #include "engine/assets.hpp"
 
 #include <algorithm>
+#include <cctype>
 #include <cstdint>
 #include <cstring>
 
@@ -68,6 +69,7 @@ SDL_RWops *OpenAsset(const char *filename, bool threadsafe)
 		return SDL_RWops_FromMpqFile(*archive, fileNumber, filename, threadsafe);
 
 	// Load from the `/assets` directory next to the devilutionx binary.
+	std::transform(relativePath.begin(), relativePath.end(), relativePath.begin(), ::tolower);
 	if (loadFile(paths::AssetsPath() + relativePath))
 		return rwops;
 
