@@ -139,12 +139,12 @@ void SelheroListSelect(int value)
 		if (gbIsHellfire) {
 			vecSelHeroDlgItems.push_back(std::make_unique<UiListItem>(_("Monk"), static_cast<int>(HeroClass::Monk)));
 		}
-		if (gbBard || *sgOptions.Gameplay.testBard) {
+		/*if (gbBard || *sgOptions.Gameplay.testBard) {
 			vecSelHeroDlgItems.push_back(std::make_unique<UiListItem>(_("Bard"), static_cast<int>(HeroClass::Bard)));
 		}
 		if (gbBarbarian || *sgOptions.Gameplay.testBarbarian) {
 			vecSelHeroDlgItems.push_back(std::make_unique<UiListItem>(_("Barbarian"), static_cast<int>(HeroClass::Barbarian)));
-		}
+		}*/
 		if (vecSelHeroDlgItems.size() > 4)
 			itemH = 26;
 		int itemY = 246 + (176 - vecSelHeroDlgItems.size() * itemH) / 2;
@@ -229,6 +229,13 @@ void SelheroClassSelectorSelect(int value)
 	if (gbIsSpawn && (hClass == HeroClass::Rogue || hClass == HeroClass::Sorcerer || (hClass == HeroClass::Bard && !hfbard_mpq))) {
 		ArtBackground.Unload();
 		UiSelOkDialog(nullptr, _("The Rogue and Sorcerer are only available in the full retail version of Diablo. Visit https://www.gog.com/game/diablo to purchase.").c_str(), false);
+		LoadBackgroundArt("ui_art\\selhero.pcx");
+		SelheroListSelect(selhero_SaveCount);
+		return;
+	}
+	if (hClass == HeroClass::Barbarian || hClass == HeroClass::Bard || hClass == HeroClass::Monk) {
+		ArtBackground.Unload();
+		UiSelOkDialog(nullptr, _("Monk, Barbarian, and Bard cannot be used in Middle Earth Mod.").c_str(), false);
 		LoadBackgroundArt("ui_art\\selhero.pcx");
 		SelheroListSelect(selhero_SaveCount);
 		return;
