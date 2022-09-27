@@ -2758,14 +2758,14 @@ void AddPlrExperience(int pnum, int lvl, int exp)
 	// Adjust xp based on difference in level between player and monster
 	uint32_t clampedExp = std::max(static_cast<int>(exp * (1 + (lvl - player._pLevel) / 10.0)), 0);
 
-	// Prevent power leveling
-	// if (gbIsMultiplayer) {
-	//	const uint32_t clampedPlayerLevel = clamp(static_cast<int>(player._pLevel), 1, MAXCHARLEVEL);
+	// Prevent power leveling for low level characters
+	 if (gbIsMultiplayer) {
+		const uint32_t clampedPlayerLevel = clamp(static_cast<int>(player._pLevel), 1, MAXCHARLEVEL);
 
-	//	// for low level characters experience gain is capped to 1/20 of current levels xp
-	//	// for high level characters experience gain is capped to 200 * current level - this is a smaller value than 1/20 of the exp needed for the next level after level 5.
-	//	clampedExp = std::min({ clampedExp, /* level 0-5: */ ExpLvlsTbl[clampedPlayerLevel] / 20U, /* level 6-50: */ 200U * clampedPlayerLevel });
-	//}
+		// for low level characters experience gain is capped to 1/20 of current levels xp
+		// REMOVED - for high level characters experience gain is capped to 200 * current level - this is a smaller value than 1/20 of the exp needed for the next level after level 5.
+		clampedExp = std::min({ clampedExp, /* level 0-5: */ ExpLvlsTbl[clampedPlayerLevel] / 20U});
+	}
 
 	constexpr uint32_t MaxExperience = 2000000000U;
 
@@ -2795,19 +2795,29 @@ void AddPlrExperience(int pnum, int lvl, int exp)
 	NetSendCmdParam1(false, CMD_PLRLEVEL, player._pLevel);
 }
 
+int GetActivePlrsOnLevel()
+{
+	int activePlrs = 0;
+	for (int i = 0; i < MAX_PLRS; i++) {
+		auto &player = Players[i];
+		if (player.plractive && player.plrlevel == currlevel)
+			activePlrs++;
+	}
+	return activePlrs;
+}
+
 void AddPlrMonstExper(int lvl, int exp, char pmask)
 {
-	int totplrs = 0;
-	for (int i = 0; i < MAX_PLRS; i++) {
-		if (((1 << i) & pmask) != 0) {
-			totplrs++;
-		}
-	}
+	int totplrs = GetActivePlrsOnLevel();
+	// for (int i = 0; i < MAX_PLRS; i++) {
+	//	if (((1 << i) & pmask) != 0) {
+	//		totplrs++;
+	//	}
+	// }
 
 	if (totplrs != 0) {
 		int e = exp / totplrs;
-		if ((pmask & (1 << MyPlayerId)) != 0)
-			AddPlrExperience(MyPlayerId, lvl, e);
+		AddPlrExperience(MyPlayerId, lvl, e);
 	}
 }
 
