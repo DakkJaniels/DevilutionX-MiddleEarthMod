@@ -2795,19 +2795,29 @@ void AddPlrExperience(int pnum, int lvl, int exp)
 	NetSendCmdParam1(false, CMD_PLRLEVEL, player._pLevel);
 }
 
+int GetActivePlrsOnLevel()
+{
+	int activePlrs = 0;
+	for (int i = 0; i < MAX_PLRS; i++) {
+		auto &player = Players[i];
+		if (player.plractive && player.plrlevel == currlevel)
+			activePlrs++;
+	}
+	return activePlrs;
+}
+
 void AddPlrMonstExper(int lvl, int exp, char pmask)
 {
-	int totplrs = 0;
-	for (int i = 0; i < MAX_PLRS; i++) {
-		if (((1 << i) & pmask) != 0) {
-			totplrs++;
-		}
-	}
+	int totplrs = GetActivePlrsOnLevel();
+	// for (int i = 0; i < MAX_PLRS; i++) {
+	//	if (((1 << i) & pmask) != 0) {
+	//		totplrs++;
+	//	}
+	// }
 
 	if (totplrs != 0) {
 		int e = exp / totplrs;
-		if ((pmask & (1 << MyPlayerId)) != 0)
-			AddPlrExperience(MyPlayerId, lvl, e);
+		AddPlrExperience(MyPlayerId, lvl, e);
 	}
 }
 
