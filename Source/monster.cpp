@@ -1042,8 +1042,6 @@ void StartMonsterDeath(int i, int pnum, bool sendmsg)
 	auto &monster = Monsters[i];
 	assert(monster.MType != nullptr);
 
-	
-
 	if (pnum >= 0)
 		monster.mWhoHit |= 1 << pnum;
 	if (pnum < MAX_PLRS && i >= MAX_PLRS) /// BUGFIX: i >= MAX_PLRS (fixed)
