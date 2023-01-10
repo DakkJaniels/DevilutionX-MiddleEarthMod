@@ -104,9 +104,9 @@ if(NOT VERSION_SUFFIX)
   set(VERSION_SUFFIX "debug")
 endif()
 if(VERSION_NUM MATCHES untagged)
-  project(DevilutionX LANGUAGES C CXX)
+  project(DevilutionXMiddleEarthMod LANGUAGES C CXX)
 else()
-  project(DevilutionX
+  project(DevilutionXMiddleEarthMod
     VERSION ${VERSION_NUM}
     LANGUAGES C CXX)
 endif()
