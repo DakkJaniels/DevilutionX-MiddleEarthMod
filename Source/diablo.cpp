@@ -109,6 +109,8 @@ clicktype sgbMouseDown;
 uint16_t gnTickDelay = 50;
 char gszProductName[64] = "DevilutionX vUnknown";
 
+extern int provider;
+
 #ifdef _DEBUG
 bool DebugDisableNetworkTimeout = false;
 std::vector<std::string> DebugCmdsFromCommandLine;
@@ -1895,7 +1897,7 @@ bool TryIconCurs()
 
 void diablo_pause_game()
 {
-	if (!gbIsMultiplayer) {
+	if (!gbIsMultiplayer || provider == SELCONN_LOOPBACK) {
 		if (PauseMode != 0) {
 			PauseMode = 0;
 		} else {
