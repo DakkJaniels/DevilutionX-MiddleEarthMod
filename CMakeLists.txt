@@ -104,9 +104,9 @@ if(NOT VERSION_SUFFIX)
   set(VERSION_SUFFIX "debug")
 endif()
 if(VERSION_NUM MATCHES untagged)
-  project(DevilutionX LANGUAGES C CXX)
+  project(middleearthmod LANGUAGES C CXX)
 else()
-  project(DevilutionX
+  project(middleearthmod
     VERSION ${VERSION_NUM}
     LANGUAGES C CXX)
 endif()
@@ -204,7 +204,7 @@ include(Dependencies)
 
 add_subdirectory(Source)
 
-set(BIN_TARGET devilutionx)
+set(BIN_TARGET middleearthmod)
 if(NINTENDO_3DS)
   set(BIN_TARGET ${BIN_TARGET}.elf)
 endif()
@@ -333,7 +333,7 @@ if(VITA)
       VERSION ${VITA_VERSION}
       NAME ${VITA_APP_NAME}
       FILE Packaging/vita/sce_sys sce_sys
-      FILE ${DEVILUTIONX_MPQ} devilutionx.mpq
+      FILE ${DEVILUTIONX_MPQ} devilutionx-me.mpq
     )
   else()
     vita_create_vpk(devilutionx-me.vpk ${VITA_TITLEID} devilutionx.self
