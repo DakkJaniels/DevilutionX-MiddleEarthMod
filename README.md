@@ -6,9 +6,23 @@ Based on data files I had for the Mod, and a copy of the modified binary I compa
 
 # Mod Install Instructions
 
-To play the mod, compile the source as described in the readme (or use the latest [Release](https://github.com/DakkJaniels/DevilutionX-MiddleEarthMod/releases/latest) if one is available for your system), then copy the folders in the `ME.Mod.assets.zip` [file](https://github.com/DakkJaniels/DevilutionX-MiddleEarthMod/releases/download/1.4.1/ME.Mod.assets.zip) (also found in the Release) to wherever the diablo.ini file is located - %appdata%\Diablo\MiddleEarth for Windows Systems). In addition, you have to copy your `DIABDAT.MPQ` file to the location of the executable or have your Diablo CD in your disc drive.
+To play the mod:
+1. Compile the source as described in the readme OR use the latest [Release](https://github.com/DakkJaniels/DevilutionX-MiddleEarthMod/releases/latest) if one is available for your system: 
+![image](https://user-images.githubusercontent.com/6080734/221417208-85ef1a2b-97aa-4dcc-a179-36aa8f08abd0.png)
 
-NOTE: MOD IS **NOT** DESIGNED FOR HELLFIRE AND IS FOR MULTIPLAYER ONLY (use loopback if you are playing on your own). While I'm sure this could be fixed to make single player work, all the tables were copied over just like they were written originally (for the most part), so if that overwrote unique monsters and/or items, they will not work correctly in single-player.
+2. Run the devilutionx.exe and then quit the game (this makes the folder to be used in the next step):
+![image](https://user-images.githubusercontent.com/6080734/221417229-8c6d7997-7d85-4be7-889c-dbbb06110a4e.png)
+
+3. Copy the folders in the `ME.Mod.assets.zip` [file](https://github.com/DakkJaniels/DevilutionX-MiddleEarthMod/releases/download/1.4.1/ME.Mod.assets.zip) (also found in the Release) to wherever the diablo.ini file is located - %appdata%\Diablo\MiddleEarth for Windows Systems):
+![image](https://user-images.githubusercontent.com/6080734/221416873-fec77ef4-0cb7-4810-93e5-15cc438f72c5.png)
+4. If you have the GoG.com release installed on your machine, you should be all set, otherwise copy your `DIABDAT.MPQ` file to the location of the executable (the location from step 2). 
+
+
+
+
+NOTE: MOD IS **NOT** DESIGNED FOR HELLFIRE AND IS FOR MULTIPLAYER ONLY (you can use loopback if you are playing on your own, but ZeroTier and TCP also work). While I'm sure this could be fixed to make single player work, all the tables were copied over just like they were written originally (for the most part), so if that overwrote unique monsters and/or items, they will not work correctly in single-player.
+
+What follows is the DevilutionX readme from when I cloned it (around version 1.4.0 of DevilutionX)
 
 <p align="center">
 <img width="554" src="https://user-images.githubusercontent.com/204594/113575181-c946a400-961d-11eb-8347-a8829fa3830c.png">
