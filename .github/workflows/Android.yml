@@ -42,5 +42,5 @@ jobs:
       if: ${{ !env.ACT }}
       uses: actions/upload-artifact@v2
       with:
-        name: devilutionx-debug.apk
+        name: middleearthmod-debug.apk
         path: android-project/app/build/outputs/apk/debug/app-debug.apk

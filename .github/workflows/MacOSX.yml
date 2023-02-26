@@ -51,5 +51,5 @@ jobs:
       if: ${{ !env.ACT }}
       uses: actions/upload-artifact@v2
       with:
-        name: devilutionx.dmg
-        path: ${{github.workspace}}/build/devilutionx.dmg
+        name: middleearthmod.dmg
+        path: ${{github.workspace}}/build/middleearthmod.dmg

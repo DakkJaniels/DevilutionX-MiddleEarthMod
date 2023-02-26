@@ -46,12 +46,12 @@ jobs:
       if: ${{ !env.ACT }}
       uses: actions/upload-artifact@v2
       with:
-        name: devilutionx_linux_x86.tar.xz
-        path: devilutionx.tar.xz
+        name: middleearthmod_linux_x86.tar.xz
+        path: middleearthmod.tar.xz
 
     - name: Upload-AppImage
       if: ${{ !env.ACT }}
       uses: actions/upload-artifact@v2
       with:
-        name: devilutionx_linux_x86.appimage
-        path: devilutionx.appimage
+        name: middleearthmod_linux_x86.appimage
+        path: middleearthmod.appimage

@@ -45,5 +45,5 @@ jobs:
       if: ${{ !env.ACT }}
       uses: actions/upload-artifact@v2
       with:
-        name: devilutionx_linux_x86_64_SDL1.tar.xz
-        path: devilutionx.tar.xz
+        name: middleearthmod_linux_x86_64_SDL1.tar.xz
+        path: middleearthmod.tar.xz

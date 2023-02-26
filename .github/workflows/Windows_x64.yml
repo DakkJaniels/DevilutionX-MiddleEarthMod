@@ -37,5 +37,5 @@ jobs:
       if: ${{ !env.ACT }}
       uses: actions/upload-artifact@v2
       with:
-        name: devilutionx_ME_x64.zip
-        path: build/devilutionx-me.zip
+        name: middleearthmod_x64.zip
+        path: build/middleearthmod.zip
