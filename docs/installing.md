@@ -12,8 +12,7 @@ Download the latest [DevilutionX release](https://github.com/diasurgical/devilut
 
 <details><summary>Android</summary>
 
-First install the App via one of these 3 methods:
-  - [Google Play](https://play.google.com/store/apps/details?id=org.diasurgical.devilutionx)
+First install the App via one of these 2 methods:
   - Copy the APK file to the device and tap on it in the device's file explorer and follow the instructions
   - Install via `adb install` (if USB debugging is enabled on the device)
 
@@ -23,7 +22,7 @@ Connect the device to your computer via USB cable, and allow data access from yo
 
 ![image](https://user-images.githubusercontent.com/204594/139543023-3c45bb22-35f7-41af-8b3d-c714a9542d23.png)
   
-Open the device's internal storage, and navigate to `Android/data/org.diasurgical.devilutionx/files`, then copy the MPQ-files to this folder.
+Open the device's internal storage, and navigate to `Android/data/org.diasurgical.devilutionx.mod.middleearth/files`, then copy the MPQ-files to this folder.
 
 ![image](https://user-images.githubusercontent.com/204594/139542962-4e776854-6ca4-4872-8ed6-6303fc4bf040.png)
   
@@ -35,8 +34,8 @@ When the transfer is done you can disconnect your device and press "Check again"
 
 <details><summary>Windows</summary>
 
-- Copy the MPQ files to the folder containing the DevilutionX exe, or to the data folder. The data folder path may differ, but will normally be `%AppData%\diasurgical\devilution`
-- Run `devilutionx.exe`
+- Copy the MPQ files to the folder containing the middleearthmod.exe, or to the data folder. The data folder path may differ, but will normally be `%AppData%\Diablo\MiddleEarth`
+- Run `middleearthmod.exe`
 
 </details>
 
