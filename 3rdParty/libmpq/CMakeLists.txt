@@ -1,37 +1,34 @@
+if(NOT TARGET ZLIB::ZLIB)
+  find_package(ZLIB REQUIRED)
+endif()
+
+if(NOT TARGET BZip2::BZip2)
+  find_package(BZip2 REQUIRED)
+endif()
+
 include(functions/FetchContent_MakeAvailableExcludeFromAll)
 
-if(NOT DISABLE_LTO)
-  # Force CMake to raise an error if INTERPROCEDURAL_OPTIMIZATION
-  # is enabled and compiler does not support IPO
-  set(CMAKE_POLICY_DEFAULT_CMP0069 NEW)
-endif()
-
-if(DEVILUTIONX_STATIC_LIBPNG)
-  set(PNG_LIBRARY png_static)
-  set(PNG_STATIC ON)
-  set(PNG_SHARED OFF)
-else()
-  set(PNG_LIBRARY png)
-  set(PNG_STATIC OFF)
-  set(PNG_SHARED ON)
-endif()
-set(PNG_TESTS OFF)
-set(PNG_EXECUTABLES OFF)
-set(SKIP_INSTALL_ALL ON)
-
-if(APPLE AND "${CMAKE_OSX_ARCHITECTURES}" STREQUAL "arm64")
-  set(PNG_ARM_NEON "on" CACHE STRING "" FORCE)
-endif()
-
 include(FetchContent)
-FetchContent_Declare(libpng
-  URL https://github.com/glennrp/libpng/archive/0a158f3506502dfa23edfc42790dfaed82efba17.tar.gz
-  URL_HASH MD5=6d705417242732e8e081bff752c98c18
+FetchContent_Declare(libmpq
+    URL https://github.com/diasurgical/libmpq/archive/b78d66c6fee6a501cc9b95d8556a129c68841b05.tar.gz
+    URL_HASH MD5=da531a1a6f719e89798a26e679ffc329
 )
-FetchContent_MakeAvailableExcludeFromAll(libpng)
+FetchContent_MakeAvailableExcludeFromAll(libmpq)
 
-target_include_directories(${PNG_LIBRARY} INTERFACE
-  $<BUILD_INTERFACE:${libpng_SOURCE_DIR}>
-  $<BUILD_INTERFACE:${libpng_BINARY_DIR}>)
+add_library(libmpq STATIC
+  ${libmpq_SOURCE_DIR}/libmpq/common.c
+  ${libmpq_SOURCE_DIR}/libmpq/explode.c
+  ${libmpq_SOURCE_DIR}/libmpq/extract.c
+  ${libmpq_SOURCE_DIR}/libmpq/huffman.c
+  ${libmpq_SOURCE_DIR}/libmpq/mpq.c
+  ${libmpq_SOURCE_DIR}/libmpq/wave.c
+)
 
-add_library(PNG::PNG ALIAS ${PNG_LIBRARY})
+target_include_directories(libmpq PUBLIC ${libmpq_SOURCE_DIR})
+target_include_directories(libmpq PRIVATE ${CMAKE_CURRENT_LIST_DIR})
+
+target_link_libraries(libmpq PRIVATE ZLIB::ZLIB BZip2::BZip2)
+
+if(LIBMPQ_FILE_BUFFER_SIZE)
+  target_compile_definitions(libmpq PRIVATE "LIBMPQ_FILE_BUFFER_SIZE=${LIBMPQ_FILE_BUFFER_SIZE}")
+endif()
