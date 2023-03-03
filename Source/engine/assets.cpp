@@ -62,6 +62,13 @@ SDL_RWops *OpenAsset(const char *filename, bool threadsafe)
 		}
 	}
 
+	#if defined(__ANDROID__) || defined(__APPLE__)
+	// Fall back to the bundled assets on supported systems.
+	// This is handled by SDL when we pass a relative path.
+	if (!paths::AssetsPath().empty() && (rwops = SDL_RWFromFile(relativePath.c_str(), "rb")))
+		return rwops;
+	#endif
+
 	// Load from the `/assets` directory next to the devilutionx binary.
 	std::transform(relativePath.begin(), relativePath.end(), relativePath.begin(), ::tolower);
 	if (loadFile(paths::AssetsPath() + relativePath))
@@ -72,13 +79,6 @@ SDL_RWops *OpenAsset(const char *filename, bool threadsafe)
 	uint32_t fileNumber;
 	if (OpenMpqFile(filename, &archive, &fileNumber))
 		return SDL_RWops_FromMpqFile(*archive, fileNumber, filename, threadsafe);
-
-#if defined(__ANDROID__) || defined(__APPLE__)
-	// Fall back to the bundled assets on supported systems.
-	// This is handled by SDL when we pass a relative path.
-	if (!paths::AssetsPath().empty() && (rwops = SDL_RWFromFile(relativePath.c_str(), "rb")))
-		return rwops;
-#endif
 
 	return nullptr;
 }
