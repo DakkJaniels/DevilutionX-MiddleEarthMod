@@ -16,9 +16,9 @@ android {
 			applicationId "org.diasurgical.devilutionx.mod.middleearth"
 		}
 		minSdkVersion 18
-		targetSdkVersion 31
+		targetSdkVersion 32
 		versionCode 22
-		versionName "1.4.0"
+		versionName "1.4.3"
 		externalNativeBuild {
 			cmake {
 				arguments "-DANDROID_STL=c++_static"
@@ -44,6 +44,7 @@ android {
 			cmake {
 				path '../../CMakeLists.txt'
 				version "3.22.1+"
+				buildStagingDirectory System.env.DevilutionX_Android_StagingDirectory
 			}
 		}
 
