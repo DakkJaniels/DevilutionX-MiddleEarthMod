@@ -8,9 +8,9 @@ Based on data files I had for the Mod, and a copy of the modified binary I compa
 
 To play the mod:
 1. Compile the source as described in the readme OR use the latest [Release](https://github.com/DakkJaniels/DevilutionX-MiddleEarthMod/releases/latest) if one is available for your system: 
-![image](https://user-images.githubusercontent.com/6080734/221417208-85ef1a2b-97aa-4dcc-a179-36aa8f08abd0.png)
+![image](https://user-images.githubusercontent.com/6080734/222812752-1985f095-80f9-4f59-abfc-818b92d41947.png)
 
-2. If you have the GoG.com release installed on your machine, you should be all set, otherwise copy your `DIABDAT.MPQ` file to the location of the executable (the location from step 2). 
+2. If you have the GoG.com release installed on your machine, you should be all set, otherwise copy your `DIABDAT.MPQ` file to the location of the executable or wherever you are supposed to put it based on [Installation Instructions](https://github.com/DakkJaniels/DevilutionX-MiddleEarthMod/blob/master/docs/installing.md). 
 
 
 
