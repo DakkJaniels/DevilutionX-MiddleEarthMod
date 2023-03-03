@@ -62,12 +62,12 @@ SDL_RWops *OpenAsset(const char *filename, bool threadsafe)
 		}
 	}
 
-	#if defined(__ANDROID__) || defined(__APPLE__)
+#if defined(__ANDROID__) || defined(__APPLE__)
 	// Fall back to the bundled assets on supported systems.
 	// This is handled by SDL when we pass a relative path.
 	if (!paths::AssetsPath().empty() && (rwops = SDL_RWFromFile(relativePath.c_str(), "rb")))
 		return rwops;
-	#endif
+#endif
 
 	// Load from the `/assets` directory next to the devilutionx binary.
 	std::transform(relativePath.begin(), relativePath.end(), relativePath.begin(), ::tolower);
