@@ -3,7 +3,13 @@ name: Build source tarball
 on:
   release:
     types: [created]
+    paths-ignore:
+      - '*.md'
   workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   make_src_dist:

@@ -4,8 +4,16 @@ on:
   push:
     branches:
       - master
+    paths-ignore:
+      - '*.md'
   pull_request:
     types: [ opened, synchronize ]
+    paths-ignore:
+      - '*.md'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
