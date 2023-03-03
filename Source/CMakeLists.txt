@@ -147,6 +147,19 @@ set(libdevilutionx_SRCS
   miniwin/misc_msg.cpp
   platform/locale.cpp)
 
+if(NOT (UNPACKED_MPQS AND UNPACKED_SAVES))
+  list(APPEND libdevilutionx_DEPS libmpq)
+  list(APPEND libdevilutionx_SRCS
+    mpq/mpq_reader.cpp
+    mpq/mpq_sdl_rwops.cpp
+    mpq/mpq_writer.cpp)
+endif()
+
+if(NOT (UNPACKED_MPQS AND UNPACKED_SAVES AND NONET))
+  list(APPEND libdevilutionx_DEPS PKWare)
+  list(APPEND libdevilutionx_SRCS encrypt.cpp)
+endif()
+
 if(IOS)
   list(APPEND libdevilutionx_SRCS platform/ios/ios_paths.m)
 endif()
@@ -224,14 +237,17 @@ endif()
 target_link_libraries(libdevilutionx PUBLIC
   Threads::Threads
   DevilutionX::SDL
-  DevilutionX::SDL_image
   fmt::fmt
-  PKWare
-  libmpq
   libsmackerdec
-  simpleini
+  simpleini::simpleini
+  tl
   hoehrmann_utf8
+  ${libdevilutionx_DEPS}
 )
+
+if(NOT USE_SDL1)
+  target_link_libraries(libdevilutionx PUBLIC SDL2::SDL2_image)
+endif()
 
 if(NOT NONET)
   if(NOT DISABLE_TCP)
@@ -243,7 +259,7 @@ if(NOT NONET)
 endif()
 
 if(NOT NOSOUND)
-  target_link_libraries(libdevilutionx PUBLIC SDL_audiolib)
+  target_link_libraries(libdevilutionx PUBLIC SDL_audiolib::SDL_audiolib)
 endif()
 
 if(NOT NONET AND NOT DISABLE_ZERO_TIER)
@@ -259,3 +275,17 @@ foreach(path ${DEVILUTIONX_PLATFORM_SUBDIRECTORIES})
 endforeach()
 
 target_link_libraries(libdevilutionx PUBLIC ${DEVILUTIONX_PLATFORM_LINK_LIBRARIES})
+
+if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
+  if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS 9 AND NOT AMIGA)
+    target_link_libraries(libdevilutionx PUBLIC stdc++fs)
+  endif()
+elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  # Assumes libc++ (clang) is used rather than libstdc++ (gcc).
+  # This is not always true but these are ancient clang versions anyway.
+  if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS 7)
+    target_link_libraries(libdevilutionx PUBLIC c++experimental)
+  elseif(CMAKE_CXX_COMPILER_VERSION VERSION_LESS 9)
+    target_link_libraries(libdevilutionx PUBLIC c++fs)
+  endif()
+endif()
