@@ -62,16 +62,16 @@ SDL_RWops *OpenAsset(const char *filename, bool threadsafe)
 		}
 	}
 
+	// Load from the `/assets` directory next to the devilutionx binary.
+	std::transform(relativePath.begin(), relativePath.end(), relativePath.begin(), ::tolower);
+	if (loadFile(paths::AssetsPath() + relativePath))
+		return rwops;
+
 	// Load from all the MPQ archives.
 	MpqArchive *archive;
 	uint32_t fileNumber;
 	if (OpenMpqFile(filename, &archive, &fileNumber))
 		return SDL_RWops_FromMpqFile(*archive, fileNumber, filename, threadsafe);
-
-	// Load from the `/assets` directory next to the devilutionx binary.
-	std::transform(relativePath.begin(), relativePath.end(), relativePath.begin(), ::tolower);
-	if (loadFile(paths::AssetsPath() + relativePath))
-		return rwops;
 
 #if defined(__ANDROID__) || defined(__APPLE__)
 	// Fall back to the bundled assets on supported systems.
