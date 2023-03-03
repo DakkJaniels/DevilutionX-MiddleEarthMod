@@ -211,9 +211,7 @@ set(devilutionx_assets
   ui_art/selconn.pcx
   ui_art/selgame.pcx
   ui_art/selhero.pcx
-  ui_art/title.pcx
-
-)
+  ui_art/title.pcx)
 
 if(NOT USE_SDL1 AND NOT VITA)
   list(APPEND devilutionx_assets
