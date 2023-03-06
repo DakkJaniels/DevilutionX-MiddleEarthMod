@@ -71,7 +71,7 @@ TSFX sgSFX[] = {
 	{ sfx_MISC,                  "Sfx\\Items\\Dooropen.wav",    nullptr },// IS_DOOROPEN
 	{ sfx_MISC,                  "Sfx\\Items\\Flipanvl.wav",    nullptr },// IS_FANVL
 	{ sfx_MISC,                  "Sfx\\Items\\Flipaxe.wav",     nullptr },// IS_FAXE
-	{ sfx_MISC,                  "Sfx\\Items\\Flipblst.wav",    nullptr },// IS_FBLST
+	{ sfx_MISC,                  "Sfx\\Items\\Flipmag.wav",     nullptr },// IS_FBLST ME MODIFIED
 	{ sfx_MISC,                  "Sfx\\Items\\Flipbody.wav",    nullptr },// IS_FBODY
 	{ sfx_MISC,                  "Sfx\\Items\\Flipbook.wav",    nullptr },// IS_FBOOK
 	{ sfx_MISC,                  "Sfx\\Items\\Flipbow.wav",     nullptr },// IS_FBOW
@@ -93,7 +93,7 @@ TSFX sgSFX[] = {
 	{ sfx_MISC,                  "Sfx\\Items\\Hlmtfkd.wav",     nullptr },// IS_HLMTFKD
 	{ sfx_MISC,                  "Sfx\\Items\\Invanvl.wav",     nullptr },// IS_IANVL
 	{ sfx_MISC,                  "Sfx\\Items\\Invaxe.wav",      nullptr },// IS_IAXE
-	{ sfx_MISC,                  "Sfx\\Items\\Invblst.wav",     nullptr },// IS_IBLST
+	{ sfx_MISC,                  "Sfx\\Items\\magic.wav",       nullptr },// IS_IBLST ME MODIFIED
 	{ sfx_MISC,                  "Sfx\\Items\\Invbody.wav",     nullptr },// IS_IBODY
 	{ sfx_MISC,                  "Sfx\\Items\\Invbook.wav",     nullptr },// IS_IBOOK
 	{ sfx_MISC,                  "Sfx\\Items\\Invbow.wav",      nullptr },// IS_IBOW
@@ -143,7 +143,7 @@ TSFX sgSFX[] = {
 	{ sfx_MISC,                  "Sfx\\Misc\\Blsimpt.wav",      nullptr },// LS_BLSIMPT
 	{ sfx_MISC,                  "Sfx\\Misc\\Bonesp.wav",       nullptr },// LS_BONESP
 	{ sfx_MISC,                  "Sfx\\Misc\\Bsimpct.wav",      nullptr },// LS_BSIMPCT
-	{ sfx_MISC,                  "Sfx\\Misc\\Caldron.wav",      nullptr },// LS_CALDRON
+	{ sfx_MISC,                  "Sfx\\Misc\\invisibl.wav",     nullptr },// LS_CALDRON ME MODIFIED
 	{ sfx_MISC,                  "Sfx\\Misc\\Cbolt.wav",        nullptr },// LS_CBOLT
 	{ sfx_MISC,                  "Sfx\\Misc\\Chltning.wav",     nullptr },// LS_CHLTNING
 	{ sfx_MISC,                  "Sfx\\Misc\\DSerp.wav",        nullptr },// LS_DSERP
@@ -161,7 +161,7 @@ TSFX sgSFX[] = {
 	{ sfx_MISC,                  "Sfx\\Misc\\Golum.wav",        nullptr },// LS_GOLUM
 	{ sfx_MISC,                  "Sfx\\Misc\\Golumded.wav",     nullptr },// LS_GOLUMDED
 	{ sfx_MISC,                  "Sfx\\Misc\\Gshrine.wav",      nullptr },// LS_GSHRINE
-	{ sfx_MISC,                  "Sfx\\Misc\\Guard.wav",        nullptr },// LS_GUARD
+	{ sfx_MISC,                  "Sfx\\Misc\\dserp.wav",        nullptr },// LS_GUARD  ME MODIFIED
 	{ sfx_MISC,                  "Sfx\\Misc\\Grdlanch.wav",     nullptr },// LS_GUARDLAN
 	{ sfx_MISC,                  "Sfx\\Misc\\Holybolt.wav",     nullptr },// LS_HOLYBOLT
 	{ sfx_MISC,                  "Sfx\\Misc\\Hyper.wav",        nullptr },// LS_HYPER
@@ -192,7 +192,7 @@ TSFX sgSFX[] = {
 	{ sfx_MISC | sfx_HELLFIRE,   "Sfx\\Misc\\LMag.wav",         nullptr },// LS_LMAG
 	{ sfx_STREAM,                "Sfx\\Towners\\Bmaid01.wav",   nullptr },// TSFX_BMAID1
 	{ sfx_STREAM,                "Sfx\\Towners\\Bmaid02.wav",   nullptr },// TSFX_BMAID2
-	{ sfx_STREAM,                "Sfx\\Towners\\Bmaid03.wav",   nullptr },// TSFX_BMAID3
+	{ sfx_STREAM,                "Sfx\\Towners\\Bmaid16.wav",   nullptr },// TSFX_BMAID3 ME MODIFIED
 	{ sfx_STREAM,                "Sfx\\Towners\\Bmaid04.wav",   nullptr },// TSFX_BMAID4
 	{ sfx_STREAM,                "Sfx\\Towners\\Bmaid05.wav",   nullptr },// TSFX_BMAID5
 	{ sfx_STREAM,                "Sfx\\Towners\\Bmaid06.wav",   nullptr },// TSFX_BMAID6
@@ -232,7 +232,7 @@ TSFX sgSFX[] = {
 	{ sfx_STREAM,                "Sfx\\Towners\\Bmaid40.wav",   nullptr },// TSFX_BMAID40
 	{ sfx_STREAM,                "Sfx\\Towners\\Bsmith01.wav",  nullptr },// TSFX_SMITH1
 	{ sfx_STREAM,                "Sfx\\Towners\\Bsmith02.wav",  nullptr },// TSFX_SMITH2
-	{ sfx_STREAM,                "Sfx\\Towners\\Bsmith03.wav",  nullptr },// TSFX_SMITH3
+	{ sfx_STREAM,                "Sfx\\Towners\\Bsmith48.wav",  nullptr },// TSFX_SMITH3  ME MODIFIED
 	{ sfx_STREAM,                "Sfx\\Towners\\Bsmith04.wav",  nullptr },// TSFX_SMITH4
 	{ sfx_STREAM,                "Sfx\\Towners\\Bsmith05.wav",  nullptr },// TSFX_SMITH5
 	{ sfx_STREAM,                "Sfx\\Towners\\Bsmith06.wav",  nullptr },// TSFX_SMITH6
@@ -279,27 +279,21 @@ TSFX sgSFX[] = {
 	{ sfx_STREAM,                "Sfx\\Towners\\Bsmith47.wav",  nullptr },// TSFX_SMITH47
 	{ sfx_STREAM,                "Sfx\\Towners\\Bsmith48.wav",  nullptr },// TSFX_SMITH48
 	{ sfx_STREAM,                "Sfx\\Towners\\Bsmith49.wav",  nullptr },// TSFX_SMITH49
-	{ sfx_STREAM,                "Sfx\\Towners\\Bsmith50.wav",  nullptr },// TSFX_SMITH50
+	{ sfx_STREAM,                "Sfx\\Towners\\Bsmith09.wav",  nullptr },// TSFX_SMITH50  ME MODIFIED
 	{ sfx_STREAM,                "Sfx\\Towners\\Bsmith51.wav",  nullptr },// TSFX_SMITH51
 	{ sfx_STREAM,                "Sfx\\Towners\\Bsmith52.wav",  nullptr },// TSFX_SMITH52
 	{ sfx_STREAM,                "Sfx\\Towners\\Bsmith53.wav",  nullptr },// TSFX_SMITH53
 	{ sfx_STREAM,                "Sfx\\Towners\\Bsmith54.wav",  nullptr },// TSFX_SMITH54
-	{ sfx_STREAM,                "Sfx\\Towners\\Bsmith55.wav",  nullptr },// TSFX_SMITH55
+	{ sfx_STREAM,                "Sfx\\Towners\\Bsmith16.wav",  nullptr },// TSFX_SMITH55  ME MODIFIED
 	{ sfx_STREAM,                "Sfx\\Towners\\Bsmith56.wav",  nullptr },// TSFX_SMITH56
 	{ sfx_MISC,                  "Sfx\\Towners\\Cow1.wav",      nullptr },// TSFX_COW1
 	{ sfx_MISC,                  "Sfx\\Towners\\Cow2.wav",      nullptr },// TSFX_COW2
-/*
-	{ sfx_MISC,                  "Sfx\\Towners\\Cow3.wav",      nullptr },// TSFX_COW3
-	{ sfx_MISC,                  "Sfx\\Towners\\Cow4.wav",      nullptr },// TSFX_COW4
-	{ sfx_MISC,                  "Sfx\\Towners\\Cow5.wav",      nullptr },// TSFX_COW5
-	{ sfx_MISC,                  "Sfx\\Towners\\Cow6.wav",      nullptr },// TSFX_COW6
-*/
 	{ sfx_MISC | sfx_HELLFIRE,   "Sfx\\Towners\\Cow7.wav",      nullptr },// TSFX_COW7
 	{ sfx_MISC | sfx_HELLFIRE,   "Sfx\\Towners\\Cow8.wav",      nullptr },// TSFX_COW8
 	{ sfx_STREAM,                "Sfx\\Towners\\Deadguy2.wav",  nullptr },// TSFX_DEADGUY
 	{ sfx_STREAM,                "Sfx\\Towners\\Drunk01.wav",   nullptr },// TSFX_DRUNK1
 	{ sfx_STREAM,                "Sfx\\Towners\\Drunk02.wav",   nullptr },// TSFX_DRUNK2
-	{ sfx_STREAM,                "Sfx\\Towners\\Drunk03.wav",   nullptr },// TSFX_DRUNK3
+	{ sfx_STREAM,                "Sfx\\Towners\\Drunk16.wav",   nullptr },// TSFX_DRUNK3  ME MODIFIED
 	{ sfx_STREAM,                "Sfx\\Towners\\Drunk04.wav",   nullptr },// TSFX_DRUNK4
 	{ sfx_STREAM,                "Sfx\\Towners\\Drunk05.wav",   nullptr },// TSFX_DRUNK5
 	{ sfx_STREAM,                "Sfx\\Towners\\Drunk06.wav",   nullptr },// TSFX_DRUNK6
@@ -334,7 +328,7 @@ TSFX sgSFX[] = {
 	{ sfx_STREAM,                "Sfx\\Towners\\Drunk35.wav",   nullptr },// TSFX_DRUNK35
 	{ sfx_STREAM,                "Sfx\\Towners\\Healer01.wav",  nullptr },// TSFX_HEALER1
 	{ sfx_STREAM,                "Sfx\\Towners\\Healer02.wav",  nullptr },// TSFX_HEALER2
-	{ sfx_STREAM,                "Sfx\\Towners\\Healer03.wav",  nullptr },// TSFX_HEALER3
+	{ sfx_STREAM,                "Sfx\\Towners\\Healer16.wav",  nullptr },// TSFX_HEALER3  ME MODIFIED
 	{ sfx_STREAM,                "Sfx\\Towners\\Healer04.wav",  nullptr },// TSFX_HEALER4
 	{ sfx_STREAM,                "Sfx\\Towners\\Healer05.wav",  nullptr },// TSFX_HEALER5
 	{ sfx_STREAM,                "Sfx\\Towners\\Healer06.wav",  nullptr },// TSFX_HEALER6
@@ -381,7 +375,7 @@ TSFX sgSFX[] = {
 	{ sfx_STREAM,                "Sfx\\Towners\\Healer47.wav",  nullptr },// TSFX_HEALER47
 	{ sfx_STREAM,                "Sfx\\Towners\\Pegboy01.wav",  nullptr },// TSFX_PEGBOY1
 	{ sfx_STREAM,                "Sfx\\Towners\\Pegboy02.wav",  nullptr },// TSFX_PEGBOY2
-	{ sfx_STREAM,                "Sfx\\Towners\\Pegboy03.wav",  nullptr },// TSFX_PEGBOY3
+	{ sfx_STREAM,                "Sfx\\Towners\\Pegboy08.wav",  nullptr },// TSFX_PEGBOY3  ME MODIFIED
 	{ sfx_STREAM,                "Sfx\\Towners\\Pegboy04.wav",  nullptr },// TSFX_PEGBOY4
 	{ sfx_STREAM,                "Sfx\\Towners\\Pegboy05.wav",  nullptr },// TSFX_PEGBOY5
 	{ sfx_STREAM,                "Sfx\\Towners\\Pegboy06.wav",  nullptr },// TSFX_PEGBOY6
@@ -433,7 +427,7 @@ TSFX sgSFX[] = {
 	{ sfx_STREAM,                "Sfx\\Towners\\Storyt00.wav",  nullptr },// TSFX_STORY0
 	{ sfx_STREAM,                "Sfx\\Towners\\Storyt01.wav",  nullptr },// TSFX_STORY1
 	{ sfx_STREAM,                "Sfx\\Towners\\Storyt02.wav",  nullptr },// TSFX_STORY2
-	{ sfx_STREAM,                "Sfx\\Towners\\Storyt03.wav",  nullptr },// TSFX_STORY3
+	{ sfx_STREAM,                "Sfx\\Towners\\Storyt23.wav",  nullptr },// TSFX_STORY3  ME MODIFIED
 	{ sfx_STREAM,                "Sfx\\Towners\\Storyt04.wav",  nullptr },// TSFX_STORY4
 	{ sfx_STREAM,                "Sfx\\Towners\\Storyt05.wav",  nullptr },// TSFX_STORY5
 	{ sfx_STREAM,                "Sfx\\Towners\\Storyt06.wav",  nullptr },// TSFX_STORY6
@@ -464,13 +458,13 @@ TSFX sgSFX[] = {
 	{ sfx_STREAM,                "Sfx\\Towners\\Storyt31.wav",  nullptr },// TSFX_STORY31
 	{ sfx_STREAM,                "Sfx\\Towners\\Storyt32.wav",  nullptr },// TSFX_STORY32
 	{ sfx_STREAM,                "Sfx\\Towners\\Storyt33.wav",  nullptr },// TSFX_STORY33
-	{ sfx_STREAM,                "Sfx\\Towners\\Storyt34.wav",  nullptr },// TSFX_STORY34
+	{ sfx_STREAM,                "Sfx\\Towners\\Storyt08.wav",  nullptr },// TSFX_STORY34  ME MODIFIED
 	{ sfx_STREAM,                "Sfx\\Towners\\Storyt35.wav",  nullptr },// TSFX_STORY35
-	{ sfx_STREAM,                "Sfx\\Towners\\Storyt36.wav",  nullptr },// TSFX_STORY36
-	{ sfx_STREAM,                "Sfx\\Towners\\Storyt37.wav",  nullptr },// TSFX_STORY37
-	{ sfx_STREAM,                "Sfx\\Towners\\Storyt38.wav",  nullptr },// TSFX_STORY38
+	{ sfx_STREAM,                "Sfx\\Towners\\Storyt23.wav",  nullptr },// TSFX_STORY36  ME MODIFIED
+	{ sfx_STREAM,                "Sfx\\Towners\\Storyt23.wav",  nullptr },// TSFX_STORY37  ME MODIFIED
+	{ sfx_STREAM,                "Sfx\\Towners\\Storyt23.wav",  nullptr },// TSFX_STORY38  ME MODIFIED
 	{ sfx_STREAM,                "Sfx\\Towners\\Tavown00.wav",  nullptr },// TSFX_TAVERN0
-	{ sfx_STREAM,                "Sfx\\Towners\\Tavown01.wav",  nullptr },// TSFX_TAVERN1
+	{ sfx_STREAM,                "Sfx\\Towners\\Tavown05.wav",  nullptr },// TSFX_TAVERN1  ME MODIFIED
 	{ sfx_STREAM,                "Sfx\\Towners\\Tavown02.wav",  nullptr },// TSFX_TAVERN2
 	{ sfx_STREAM,                "Sfx\\Towners\\Tavown03.wav",  nullptr },// TSFX_TAVERN3
 	{ sfx_STREAM,                "Sfx\\Towners\\Tavown04.wav",  nullptr },// TSFX_TAVERN4
@@ -517,7 +511,7 @@ TSFX sgSFX[] = {
 	{ sfx_STREAM,                "Sfx\\Towners\\Tavown45.wav",  nullptr },// TSFX_TAVERN45
 	{ sfx_STREAM,                "Sfx\\Towners\\Witch01.wav",   nullptr },// TSFX_WITCH1
 	{ sfx_STREAM,                "Sfx\\Towners\\Witch02.wav",   nullptr },// TSFX_WITCH2
-	{ sfx_STREAM,                "Sfx\\Towners\\Witch03.wav",   nullptr },// TSFX_WITCH3
+	{ sfx_STREAM,                "Sfx\\Towners\\Witch12.wav",   nullptr },// TSFX_WITCH3  ME MODIFIED
 	{ sfx_STREAM,                "Sfx\\Towners\\Witch04.wav",   nullptr },// TSFX_WITCH4
 	{ sfx_STREAM,                "Sfx\\Towners\\Witch05.wav",   nullptr },// TSFX_WITCH5
 	{ sfx_STREAM,                "Sfx\\Towners\\Witch06.wav",   nullptr },// TSFX_WITCH6
@@ -649,7 +643,7 @@ TSFX sgSFX[] = {
 	{ sfx_STREAM | sfx_SORCERER, "Sfx\\Sorceror\\Mage80.wav",   nullptr },// PS_MAGE80
 	{ sfx_STREAM | sfx_SORCERER, "Sfx\\Sorceror\\Mage81.wav",   nullptr },// PS_MAGE81
 	{ sfx_STREAM | sfx_SORCERER, "Sfx\\Sorceror\\Mage82.wav",   nullptr },// PS_MAGE82
-	{ sfx_STREAM | sfx_SORCERER, "Sfx\\Sorceror\\Mage83.wav",   nullptr },// PS_MAGE83
+	{ sfx_STREAM | sfx_SORCERER, "Sfx\\Sorceror\\Mage94.wav",   nullptr },// PS_MAGE83  ME MODIFIED
 	{ sfx_STREAM | sfx_SORCERER, "Sfx\\Sorceror\\Mage84.wav",   nullptr },// PS_MAGE84
 	{ sfx_STREAM | sfx_SORCERER, "Sfx\\Sorceror\\Mage85.wav",   nullptr },// PS_MAGE85
 	{ sfx_STREAM | sfx_SORCERER, "Sfx\\Sorceror\\Mage86.wav",   nullptr },// PS_MAGE86
@@ -752,7 +746,7 @@ TSFX sgSFX[] = {
 	{ sfx_STREAM | sfx_ROGUE,    "Sfx\\Rogue\\Rogue80.wav",     nullptr },// PS_ROGUE80
 	{ sfx_STREAM | sfx_ROGUE,    "Sfx\\Rogue\\Rogue81.wav",     nullptr },// PS_ROGUE81
 	{ sfx_STREAM | sfx_ROGUE,    "Sfx\\Rogue\\Rogue82.wav",     nullptr },// PS_ROGUE82
-	{ sfx_STREAM | sfx_ROGUE,    "Sfx\\Rogue\\Rogue83.wav",     nullptr },// PS_ROGUE83
+	{ sfx_STREAM | sfx_ROGUE,    "Sfx\\Rogue\\Rogue94.wav",     nullptr },// PS_ROGUE83  ME MODIFIED
 	{ sfx_STREAM | sfx_ROGUE,    "Sfx\\Rogue\\Rogue84.wav",     nullptr },// PS_ROGUE84
 	{ sfx_STREAM | sfx_ROGUE,    "Sfx\\Rogue\\Rogue85.wav",     nullptr },// PS_ROGUE85
 	{ sfx_STREAM | sfx_ROGUE,    "Sfx\\Rogue\\Rogue86.wav",     nullptr },// PS_ROGUE86
@@ -861,7 +855,7 @@ TSFX sgSFX[] = {
 	{ sfx_STREAM | sfx_WARRIOR,  "Sfx\\Warrior\\Warior80.wav",  nullptr },// PS_WARR80
 	{ sfx_STREAM | sfx_WARRIOR,  "Sfx\\Warrior\\Warior81.wav",  nullptr },// PS_WARR81
 	{ sfx_STREAM | sfx_WARRIOR,  "Sfx\\Warrior\\Warior82.wav",  nullptr },// PS_WARR82
-	{ sfx_STREAM | sfx_WARRIOR,  "Sfx\\Warrior\\Warior83.wav",  nullptr },// PS_WARR83
+	{ sfx_STREAM | sfx_WARRIOR,  "Sfx\\Warrior\\Warior94.wav",  nullptr },// PS_WARR83  ME MODIFIED
 	{ sfx_STREAM | sfx_WARRIOR,  "Sfx\\Warrior\\Warior84.wav",  nullptr },// PS_WARR84
 	{ sfx_STREAM | sfx_WARRIOR,  "Sfx\\Warrior\\Warior85.wav",  nullptr },// PS_WARR85
 	{ sfx_STREAM | sfx_WARRIOR,  "Sfx\\Warrior\\Warior86.wav",  nullptr },// PS_WARR86
@@ -1008,7 +1002,7 @@ TSFX sgSFX[] = {
 	{ sfx_STREAM,                "Sfx\\Monsters\\Lach01.wav",   nullptr },// USFX_LACH1
 	{ sfx_STREAM,                "Sfx\\Monsters\\Lach02.wav",   nullptr },// USFX_LACH2
 	{ sfx_STREAM,                "Sfx\\Monsters\\Lach03.wav",   nullptr },// USFX_LACH3
-	{ sfx_STREAM,                "Sfx\\Monsters\\Laz01.wav",    nullptr },// USFX_LAZ1
+	{ sfx_STREAM,                "Sfx\\Monsters\\Izual01.wav",  nullptr },// USFX_LAZ1  ME MODIFIED
 	{ sfx_STREAM,                "Sfx\\Monsters\\Laz02.wav",    nullptr },// USFX_LAZ2
 	{ sfx_STREAM,                "Sfx\\Monsters\\Sking01.wav",  nullptr },// USFX_SKING1
 	{ sfx_STREAM,                "Sfx\\Monsters\\Snot01.wav",   nullptr },// USFX_SNOT1
