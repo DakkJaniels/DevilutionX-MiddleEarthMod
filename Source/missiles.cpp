@@ -813,6 +813,10 @@ void GetDamageAmt(int i, int *mind, int *maxd)
 		*mind = 2;
 		*maxd = 2 + myPlayer._pLevel;
 		break;
+	case SPL_THUNDER:
+		*mind = 2*3;
+		*maxd = (2 + myPlayer._pLevel)*3;
+		break;
 	case SPL_FLASH:
 		*mind = ScaleSpellEffect(myPlayer._pLevel, sl);
 		*mind += *mind / 2;
@@ -827,7 +831,6 @@ void GetDamageAmt(int i, int *mind, int *maxd)
 	case SPL_DOOMSERP:
 	case SPL_BLODRIT:
 	case SPL_INVISIBIL:
-	case SPL_BLODBOIL:
 	case SPL_TELEPORT:
 	case SPL_ETHEREALIZE:
 	case SPL_REPAIR:
@@ -2520,7 +2523,7 @@ void AddBlodboil(Missile &missile, const AddMissileParameter & /*parameter*/)
 		return;
 	}
 
-	UseMana(missile._misource, SPL_BLODBOIL);
+	UseMana(missile._misource, SPL_THUNDER);
 	int tmp = 3 * player._pLevel;
 	tmp <<= 7;
 	player._pSpellFlags |= SpellFlag::RageActive;
