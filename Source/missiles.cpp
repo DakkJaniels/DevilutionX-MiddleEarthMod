@@ -814,8 +814,8 @@ void GetDamageAmt(int i, int *mind, int *maxd)
 		*maxd = 2 + myPlayer._pLevel;
 		break;
 	case SPL_THUNDER:
-		*mind = 2*3;
-		*maxd = (2 + myPlayer._pLevel)*3;
+		*mind = 2 * 3;
+		*maxd = (2 + myPlayer._pLevel) * 3;
 		break;
 	case SPL_FLASH:
 		*mind = ScaleSpellEffect(myPlayer._pLevel, sl);
