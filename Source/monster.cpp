@@ -1855,15 +1855,15 @@ bool IsTileSafe(const Monster &monster, Point position)
 		return true;
 	}
 
-	bool fearsFire = (monster.mMagicRes & IMMUNE_FIRE) == 0 || monster.MType->mtype == MT_DIABLO;
-	bool fearsLightning = (monster.mMagicRes & IMMUNE_LIGHTNING) == 0 || monster.MType->mtype == MT_DIABLO;
+	bool fearsFire = (monster.mMagicRes & IMMUNE_FIRE) == 0;
+	if (!fearsFire)
+		return true;
 
 	for (auto &missile : Missiles) {
+		if (monster.position.tile == missile.position.tile && missile._mitype == MIS_FIREWALL)
+			return true;
 		if (missile.position.tile == position) {
 			if (fearsFire && missile._mitype == MIS_FIREWALL) {
-				return false;
-			}
-			if (fearsLightning && missile._mitype == MIS_LIGHTWALL) {
 				return false;
 			}
 		}
