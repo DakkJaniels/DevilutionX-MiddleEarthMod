@@ -13,6 +13,7 @@
 #include "miniwin/miniwin.h"
 #include "misdat.h"
 #include "monster.h"
+#include "player.h"
 #include "spelldat.h"
 
 namespace devilution {
@@ -85,6 +86,12 @@ enum class Direction16 {
 	South_SouthEast,
 };
 
+enum class MissileSource : uint8_t {
+	Player,
+	Monster,
+	Trap,
+};
+
 struct Missile {
 	/** Type of projectile */
 	missile_id _mitype;
@@ -131,6 +138,30 @@ struct Missile {
 	[[nodiscard]] bool IsTrap() const
 	{
 		return _misource == -1;
+	}
+	[[nodiscard]] Player *sourcePlayer()
+	{
+		if (IsNoneOf(_micaster, TARGET_BOTH, TARGET_MONSTERS) || _misource == -1)
+			return nullptr;
+		return &Players[_misource];
+	}
+	[[nodiscard]] Monster *sourceMonster()
+	{
+		if (_micaster != TARGET_PLAYERS || _misource == -1)
+			return nullptr;
+		return &Monsters[_misource];
+	}
+	[[nodiscard]] bool isSameSource(Missile &missile)
+	{
+		return sourceType() == missile.sourceType() && _misource == missile._misource;
+	}
+	MissileSource sourceType()
+	{
+		if (_misource == -1)
+			return MissileSource::Trap;
+		if (_micaster == TARGET_PLAYERS)
+			return MissileSource::Monster;
+		return MissileSource::Player;
 	}
 };
 
@@ -353,7 +384,7 @@ Missile *AddMissile(Point src, Point dst, Direction midir, missile_id mitype, mi
 void AddEtherealize(Missile &missile, const AddMissileParameter &parameter);
 void MI_LArrow(Missile &missile);
 void MI_Arrow(Missile &missile);
-void MI_Firebolt(Missile &missile);
+void MI_Projectile(Missile &missile);
 void MI_Lightball(Missile &missilei);
 void MI_Acidpud(Missile &missile);
 void MI_Firewall(Missile &missile);

@@ -2077,9 +2077,9 @@ void AiRanged(int i, missile_id missileType, bool special)
 		if (monster._mmode == MonsterMode::Stand) {
 			if (LineClearMissile(monster.position.tile, { fx, fy })) {
 				if (special)
-					StartRangedSpecialAttack(monster, missileType, 4);
+					StartRangedSpecialAttack(monster, missileType, 0);
 				else
-					StartRangedAttack(monster, missileType, 4);
+					StartRangedAttack(monster, missileType, 0);
 			} else {
 				monster.CheckStandAnimationIsLoaded(md);
 			}
@@ -2276,7 +2276,7 @@ void SkeletonBowAi(int i)
 	if (!walking) {
 		if (GenerateRnd(100) < 2 * monster._mint + 3) {
 			if (LineClearMissile(monster.position.tile, monster.enemyPosition))
-				StartRangedAttack(monster, MIS_ARROW, 4);
+				StartRangedAttack(monster, MIS_ARROW, 0);
 		}
 	}
 
