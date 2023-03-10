@@ -115,6 +115,21 @@ void FreeSpellBook()
 	pSBkIconCels = std::nullopt;
 }
 
+int GetGolemHitpoints(int spellLevel, int playerMaxMana)
+{
+	return 10 * spellLevel + ((2 * playerMaxMana / 3) >> 6);
+}
+
+int GetGolemAC(int spellLevel, int playerMaxMana)
+{
+	return 25;
+}
+
+int GetGolemToHit(int spellLevel, int playerLevel)
+{
+	return 5 * (spellLevel + 8) + 2 * playerLevel;
+}
+
 void DrawSpellBook(const Surface &out)
 {
 	CelDrawTo(out, GetPanelPosition(UiPanels::Spell, { 0, 351 }), *pSpellBkCel, 0);
@@ -149,7 +164,14 @@ void DrawSpellBook(const Surface &out)
 
 			const Point line0 { 0, yp + textPaddingTop };
 			const Point line1 { 0, yp + textPaddingTop + lineHeight };
-			PrintSBookStr(out, line0, pgettext("spell", spelldata[sn].sNameText));
+			if (sn != SPL_GOLEM)
+				PrintSBookStr(out, line0, pgettext("spell", spelldata[sn].sNameText));
+			else {
+				int golemSpellLevel = player._pSplLvl[sn] + player._pISplLvlAdd;
+				int golemHitpoints = GetGolemHitpoints(golemSpellLevel, player._pMaxMana);
+				int golemAC = GetGolemAC(golemSpellLevel, player._pMaxMana);
+				PrintSBookStr(out, line0, fmt::format("Golem  HP: {:d}  AC: {:d}", golemHitpoints, golemAC));
+			}
 			switch (GetSBookTrans(sn, false)) {
 			case RSPLTYPE_SKILL:
 				PrintSBookStr(out, line1, _("Skill"));
@@ -165,7 +187,15 @@ void DrawSpellBook(const Surface &out)
 				if (lvl == 0) {
 					PrintSBookStr(out, line1, _("Unusable"), UiFlags::AlignRight);
 				} else {
-					if (sn != SPL_BONESPIRIT) {
+					if (sn == SPL_GOLEM) {
+						int min;
+						int max;
+						int golemSpellLevel = player._pSplLvl[sn] + player._pISplLvlAdd;
+						int golemToHit = GetGolemToHit(golemSpellLevel, player._pLevel);
+
+						GetDamageAmt(sn, &min, &max);
+						PrintSBookStr(out, line1, fmt::format(_(/* TRANSLATORS: UI constrains, keep short please.*/ "Dmg:{:d}-{:d}  CTH:{:d}"), min, max, golemToHit), UiFlags::AlignRight);
+					} else if (sn != SPL_BONESPIRIT) {
 						int min;
 						int max;
 						GetDamageAmt(sn, &min, &max);

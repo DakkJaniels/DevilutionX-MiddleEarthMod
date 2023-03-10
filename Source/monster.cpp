@@ -4614,7 +4614,7 @@ void PrintMonstHistory(int mt)
 				if ((res & IMMUNE_LIGHTNING) != 0)
 					immune.append(_(" Lightning"));
 				if ((res & IMMUNE_SC) != 0)
-					immune.append(_("Stone Curse "));
+					immune.append(_(" Stone Curse"));
 				AddPanelString(immune);
 			}
 		}

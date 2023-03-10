@@ -885,8 +885,8 @@ void GetDamageAmt(int i, int *mind, int *maxd)
 		*maxd += *maxd / 2;
 		break;
 	case SPL_GOLEM:
-		*mind = 11;
-		*maxd = 17;
+		*mind = 2 * (sl + 4);
+		*maxd = 2 * (sl + 8);
 		break;
 	case SPL_APOCA:
 		*mind = myPlayer._pLevel;
