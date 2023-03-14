@@ -1,6 +1,7 @@
 #include "engine/assets.hpp"
 
 #include <algorithm>
+#include <cctype>
 #include <cstdint>
 #include <cstring>
 
@@ -60,16 +61,7 @@ SDL_RWops *OpenAsset(const char *filename, bool threadsafe)
 			return rwops;
 		}
 	}
-
-	// Load from all the MPQ archives.
-	MpqArchive *archive;
-	uint32_t fileNumber;
-	if (OpenMpqFile(filename, &archive, &fileNumber))
-		return SDL_RWops_FromMpqFile(*archive, fileNumber, filename, threadsafe);
-
-	// Load from the `/assets` directory next to the devilutionx binary.
-	if (loadFile(paths::AssetsPath() + relativePath))
-		return rwops;
+	std::transform(relativePath.begin(), relativePath.end(), relativePath.begin(), ::tolower);
 
 #if defined(__ANDROID__) || defined(__APPLE__)
 	// Fall back to the bundled assets on supported systems.
@@ -77,6 +69,17 @@ SDL_RWops *OpenAsset(const char *filename, bool threadsafe)
 	if (!paths::AssetsPath().empty() && (rwops = SDL_RWFromFile(relativePath.c_str(), "rb")))
 		return rwops;
 #endif
+
+	// Load from the `/assets` directory next to the devilutionx binary.
+
+	if (loadFile(paths::AssetsPath() + relativePath))
+		return rwops;
+
+	// Load from all the MPQ archives.
+	MpqArchive *archive;
+	uint32_t fileNumber;
+	if (OpenMpqFile(filename, &archive, &fileNumber))
+		return SDL_RWops_FromMpqFile(*archive, fileNumber, filename, threadsafe);
 
 	return nullptr;
 }

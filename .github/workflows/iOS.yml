@@ -4,8 +4,16 @@ on:
   push:
     branches:
       - master
+    paths-ignore:
+      - '*.md'
   pull_request:
     types: [ opened, synchronize ]
+    paths-ignore:
+      - '*.md'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -40,14 +48,14 @@ jobs:
       run: >
         cmake --build build -j $(sysctl -n hw.physicalcpu) --config Release &&
         cd build &&
-        rm -rf Payload devilutionx.ipa &&
+        rm -rf Payload middleearthmod.ipa &&
         mkdir Payload &&
-        mv devilutionx.app Payload &&
-        zip -r devilutionx.ipa Payload
+        mv middleearthmod.app Payload &&
+        zip -r middleearthmod.ipa Payload
 
     - name: Upload-Package
       if: ${{ !env.ACT }}
       uses: actions/upload-artifact@v2
       with:
-        name: devilutionx.ipa
-        path: build/devilutionx.ipa
+        name: middleearthmod.ipa
+        path: build/middleearthmod.ipa

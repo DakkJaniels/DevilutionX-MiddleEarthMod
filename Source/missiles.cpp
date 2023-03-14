@@ -274,8 +274,10 @@ bool MonsterMHit(int pnum, int m, int mindam, int maxdam, int dist, missile_id t
 	if (pnum == MyPlayerId)
 		monster._mhitpoints -= dam;
 
-	// if ((gbIsHellfire && HasAnyOf(player._pIFlags, ItemSpecialEffect::NoHealOnMonsters)) || (!gbIsHellfire && HasAnyOf(player._pIFlags, ItemSpecialEffect::FireArrows)))
-	//	monster._mFlags |= MFLAG_NOHEAL;
+	// stop monster heal only for actual arrows
+	if (HasAnyOf(player._pIFlags, ItemSpecialEffect::NoHealOnMonsters) && (t == MIS_ARROW || t == MIS_FARROW || t == MIS_LIGHTARROW)) {
+		monster._mFlags |= MFLAG_NOHEAL;
+	}
 
 	if (monster._mhitpoints >> 6 <= 0) {
 		if (monster._mmode == MonsterMode::Petrified) {
@@ -811,6 +813,10 @@ void GetDamageAmt(int i, int *mind, int *maxd)
 		*mind = 2;
 		*maxd = 2 + myPlayer._pLevel;
 		break;
+	case SPL_THUNDER:
+		*mind = 2 * 3;
+		*maxd = (2 + myPlayer._pLevel) * 3;
+		break;
 	case SPL_FLASH:
 		*mind = ScaleSpellEffect(myPlayer._pLevel, sl);
 		*mind += *mind / 2;
@@ -825,7 +831,6 @@ void GetDamageAmt(int i, int *mind, int *maxd)
 	case SPL_DOOMSERP:
 	case SPL_BLODRIT:
 	case SPL_INVISIBIL:
-	case SPL_BLODBOIL:
 	case SPL_TELEPORT:
 	case SPL_ETHEREALIZE:
 	case SPL_REPAIR:
@@ -2518,7 +2523,7 @@ void AddBlodboil(Missile &missile, const AddMissileParameter & /*parameter*/)
 		return;
 	}
 
-	UseMana(missile._misource, SPL_BLODBOIL);
+	UseMana(missile._misource, SPL_THUNDER);
 	int tmp = 3 * player._pLevel;
 	tmp <<= 7;
 	player._pSpellFlags |= SpellFlag::RageActive;

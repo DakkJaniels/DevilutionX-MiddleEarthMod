@@ -855,7 +855,6 @@ int SaveItemPower(Item &item, ItemPower &power)
 		break;
 	case IPL_FIRE_ARROWS:
 		item._iFlags |= ItemSpecialEffect::FireArrows;
-		item._iFlags &= ~ItemSpecialEffect::LightningArrows;
 		item._iFMinDam = power.param1;
 		item._iFMaxDam = power.param2;
 		item._iLMinDam = 0;
@@ -863,7 +862,6 @@ int SaveItemPower(Item &item, ItemPower &power)
 		break;
 	case IPL_LIGHT_ARROWS:
 		item._iFlags |= ItemSpecialEffect::LightningArrows;
-		item._iFlags &= ~ItemSpecialEffect::FireArrows;
 		item._iLMinDam = power.param1;
 		item._iLMaxDam = power.param2;
 		item._iFMinDam = 0;
@@ -1400,8 +1398,8 @@ int RndTypeItems(ItemType itemType, int imid, int lvl)
 		bool okflag = true;
 		if (AllItemsList[i].iRnd == IDROP_NEVER)
 			okflag = false;
-		/*if (lvl * 2 < AllItemsList[i].iMinMLvl)
-		    okflag = false;*/
+		if (lvl * 2 < AllItemsList[i].iMinMLvl)
+			okflag = false;
 		if (AllItemsList[i].itype != itemType)
 			okflag = false;
 		if (imid != -1 && AllItemsList[i].iMiscId != imid)

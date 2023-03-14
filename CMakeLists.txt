@@ -104,9 +104,9 @@ if(NOT VERSION_SUFFIX)
   set(VERSION_SUFFIX "debug")
 endif()
 if(VERSION_NUM MATCHES untagged)
-  project(DevilutionX LANGUAGES C CXX)
+  project(middleearthmod LANGUAGES C CXX)
 else()
-  project(DevilutionX
+  project(middleearthmod
     VERSION ${VERSION_NUM}
     LANGUAGES C CXX)
 endif()
@@ -204,7 +204,7 @@ include(Dependencies)
 
 add_subdirectory(Source)
 
-set(BIN_TARGET devilutionx)
+set(BIN_TARGET middleearthmod)
 if(NINTENDO_3DS)
   set(BIN_TARGET ${BIN_TARGET}.elf)
 endif()
@@ -254,8 +254,8 @@ if(APPLE)
   set_source_files_properties("./Packaging/apple/AppIcon.icns" PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
   set(MACOSX_BUNDLE_GUI_IDENTIFIER com.diasurgical.devilutionxme)
   set(MACOSX_BUNDLE_COPYRIGHT Unlicense)
-  set(MACOSX_BUNDLE_BUNDLE_NAME devilutionx_me)
-  set(MACOSX_BUNDLE_DISPLAY_NAME DevilutionX_ME)
+  set(MACOSX_BUNDLE_BUNDLE_NAME ${BIN_TARGET})
+  set(MACOSX_BUNDLE_DISPLAY_NAME ${BIN_TARGET})
   set(MACOSX_BUNDLE_INFO_STRING ${PROJECT_VERSION})
   set(MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION})
   set(MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION})
@@ -333,7 +333,7 @@ if(VITA)
       VERSION ${VITA_VERSION}
       NAME ${VITA_APP_NAME}
       FILE Packaging/vita/sce_sys sce_sys
-      FILE ${DEVILUTIONX_MPQ} devilutionx.mpq
+      FILE ${DEVILUTIONX_MPQ} devilutionx-me.mpq
     )
   else()
     vita_create_vpk(devilutionx-me.vpk ${VITA_TITLEID} devilutionx.self
@@ -420,8 +420,8 @@ if(CPACK AND (APPLE OR BUILD_ASSETS_MPQ OR SRC_DIST))
       "${SDL2_WIN32_LICENSES_DIR}/LICENSE*.txt"
       "${SDL2_WIN32_LICENSES_DIR}/README*.txt")
 
-    set(CPACK_PACKAGE_FILE_NAME "devilutionx-me")
-    set(CPACK_PACKAGE_NAME ${project_name})
+    set(CPACK_PACKAGE_FILE_NAME ${PROJECT_NAME})
+    set(CPACK_PACKAGE_NAME ${PROJECT_NAME})
     set(CPACK_GENERATOR "ZIP")
     set(CPACK_STRIP_FILES TRUE)
     install(TARGETS ${BIN_TARGET} DESTINATION .)
@@ -511,7 +511,7 @@ if(CPACK AND (APPLE OR BUILD_ASSETS_MPQ OR SRC_DIST))
     endif()
 
   elseif(APPLE)
-    set(CPACK_PACKAGE_FILE_NAME "devilutionx-me")
+    set(CPACK_PACKAGE_FILE_NAME ${BIN_TARGET})
     set(CPACK_DMG_DISABLE_APPLICATIONS_SYMLINK "ON")
     set(CPACK_STRIP_FILES TRUE)
     set(CPACK_GENERATOR "DragNDrop")

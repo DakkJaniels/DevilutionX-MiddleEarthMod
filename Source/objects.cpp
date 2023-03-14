@@ -3763,16 +3763,10 @@ void OperateArmorStand(int pnum, int i, bool sendmsg)
 	}
 	SetRndSeed(Objects[i]._oRndSeed);
 	bool uniqueRnd = (GenerateRnd(2) != 0);
-	if (currlevel <= 5) {
+	if (currlevel < 10) {
 		CreateTypeItem(Objects[i].position, true, ItemType::LightArmor, IMISC_NONE, sendmsg, false);
-	} else if (currlevel >= 6 && currlevel <= 9) {
-		CreateTypeItem(Objects[i].position, uniqueRnd, ItemType::MediumArmor, IMISC_NONE, sendmsg, false);
-	} else if (currlevel >= 10 && currlevel <= 12) {
-		CreateTypeItem(Objects[i].position, false, ItemType::HeavyArmor, IMISC_NONE, sendmsg, false);
-	} else if (currlevel >= 13 && currlevel <= 16) {
-		CreateTypeItem(Objects[i].position, true, ItemType::HeavyArmor, IMISC_NONE, sendmsg, false);
-	} else if (currlevel >= 17) {
-		CreateTypeItem(Objects[i].position, true, ItemType::HeavyArmor, IMISC_NONE, sendmsg, false);
+	} else {
+		CreateTypeItem(Objects[i].position, true, ItemType::MediumArmor, IMISC_NONE, sendmsg, false);
 	}
 	if (pnum == MyPlayerId)
 		NetSendCmdParam1(false, CMD_OPERATEOBJ, i);

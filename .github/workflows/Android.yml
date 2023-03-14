@@ -4,8 +4,16 @@ on:
   push:
     branches:
       - master
+    paths-ignore:
+      - '*.md'
   pull_request:
     types: [ opened, synchronize ]
+    paths-ignore:
+      - '*.md'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -26,11 +34,6 @@ jobs:
         distribution: 'adopt'
         cache: gradle
 
-    # CMake version 3.21.3 causes gradle to throw a NullPointerException during the build
-    # Removing it will cause gradle to fall back on 3.18.1 installed by the Android SDK
-    - name: Create Build Environment
-      run: rm /usr/local/bin/cmake
-
     - name: Cache CMake build folder
       uses: actions/cache@v2
       with:
@@ -47,5 +50,5 @@ jobs:
       if: ${{ !env.ACT }}
       uses: actions/upload-artifact@v2
       with:
-        name: devilutionx-debug.apk
+        name: middleearthmod-debug.apk
         path: android-project/app/build/outputs/apk/debug/app-debug.apk

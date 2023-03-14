@@ -3,7 +3,13 @@ name: OpenDingux Release Build
 on:
   release:
     types: [created]
+    paths-ignore:
+      - '*.md'
   workflow_dispatch:
+  
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   gcw0:

@@ -60,6 +60,7 @@ set(devilutionx_assets
   data/stashnavbtns.pcx
   data/talkbutton.pcx
   data/xpbar.pcx
+  data/inv/objcurs.cel
   fonts/12-00.bin
   fonts/12-00.pcx
   fonts/12-01.bin
@@ -157,10 +158,60 @@ set(devilutionx_assets
   gendata/cutportlw.pcx
   gendata/cutportrw.pcx
   gendata/cutstartw.pcx
+  monsters/balrog/megaa1.wav
+  monsters/balrog/megaa2.wav
+  monsters/balrog/megad1.wav
+  monsters/balrog/megad2.wav
+  monsters/balrog/megah1.wav
+  monsters/balrog/megah2.wav
+  monsters/balrog/megas1.wav
+  monsters/balrog/megas2.wav
+  monsters/byclps/biclopa1.wav
+  monsters/byclps/biclopa2.wav
+  monsters/byclps/biclopd1.wav
+  monsters/byclps/biclopd2.wav
+  monsters/byclps/bicloph1.wav
+  monsters/byclps/bicloph2.wav
+  monsters/byclps/byclpsa.cl2
+  monsters/byclps/byclpsd.cl2
+  monsters/byclps/byclpsh.cl2
+  monsters/byclps/byclpsn.cl2
+  monsters/byclps/byclpsw.cl2
+  monsters/gargoyle/gargoa1.wav
+  monsters/gargoyle/gargoa2.wav
+  monsters/spider/spidera.cl2
+  monsters/spider/spiderd.cl2
+  monsters/spider/spiderh.cl2
+  monsters/spider/spidern.cl2
+  monsters/spider/spiderw.cl2
+  monsters/wolf/wolfa1.wav
+  monsters/wolf/wolfa2.wav
+  monsters/wolf/wolfd1.wav
+  monsters/wolf/wolfd2.wav
+  monsters/wolf/wolfh1.wav
+  monsters/wolf/wolfh2.wav
+  objects/barrelex.cel
+  objects/sarc.cel
+  objects/urn.cel
+  sfx/items/barlfire.wav
+  sfx/items/barrel.wav
+  sfx/items/chest.wav
+  sfx/items/flipaxe.wav
+  sfx/items/fliplarm.wav
+  sfx/items/flipswor.wav
+  sfx/items/invaxe.wav
+  sfx/items/invlarm.wav
+  sfx/items/invsword.wav
   ui_art/creditsw.pcx
   ui_art/hf_titlew.pcx
   ui_art/mainmenuw.pcx
-  ui_art/supportw.pcx)
+  ui_art/supportw.pcx
+  ui_art/credits.pcx
+  ui_art/mainmenu.pcx
+  ui_art/selconn.pcx
+  ui_art/selgame.pcx
+  ui_art/selhero.pcx
+  ui_art/title.pcx)
 
 if(NOT USE_SDL1 AND NOT VITA)
   list(APPEND devilutionx_assets
@@ -203,9 +254,9 @@ else()
   endif()
 
   if(BUILD_ASSETS_MPQ)
-    set(DEVILUTIONX_MPQ "${CMAKE_CURRENT_BINARY_DIR}/devilutionx.mpq")
+    set(DEVILUTIONX_MPQ "${CMAKE_CURRENT_BINARY_DIR}/devilutionx-me.mpq")
     add_custom_command(
-      COMMENT "Building devilutionx.mpq"
+      COMMENT "Building devilutionx-me.mpq"
       OUTPUT "${DEVILUTIONX_MPQ}"
       COMMAND ${CMAKE_COMMAND} -E remove -f "${DEVILUTIONX_MPQ}"
       COMMAND ${SMPQ} -M 1 -C PKWARE -c "${DEVILUTIONX_MPQ}" ${DEVILUTIONX_MPQ_FILES}

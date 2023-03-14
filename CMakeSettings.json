@@ -64,7 +64,7 @@
       "configurationType": "Release",
       "buildRoot": "${workspaceRoot}\\build\\${name}",
       "installRoot": "${env.USERPROFILE}\\CMakeBuilds\\${workspaceHash}\\install\\${name}",
-      "cmakeCommandArgs": "-DCPACK=ON -DVERSION_NUM=1.4.0",
+      "cmakeCommandArgs": "-DCPACK=ON",
       "inheritEnvironments": [ "msvc_x64" ],
       "intelliSenseMode": "windows-msvc-x64",
       "enableClangTidyCodeAnalysis": true,

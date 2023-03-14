@@ -7,7 +7,10 @@ if (buildAsApplication) {
 }
 
 android {
-	compileSdkVersion 31
+	//ndkVersion '25.0.8775105'
+	//ndkVersion '24.0.8215888'
+	ndkVersion '23.2.8568313'
+	compileSdkVersion 32
 	defaultConfig {
 		if (buildAsApplication) {
 			applicationId "org.diasurgical.devilutionx.mod.middleearth"
@@ -15,7 +18,7 @@ android {
 		minSdkVersion 18
 		targetSdkVersion 31
 		versionCode 22
-		versionName "1.4.0"
+		versionName "1.4.3"
 		externalNativeBuild {
 			cmake {
 				arguments "-DANDROID_STL=c++_static"
@@ -40,7 +43,7 @@ android {
 		externalNativeBuild {
 			cmake {
 				path '../../CMakeLists.txt'
-				version "3.13.0+"
+				version "3.22.1+"
 			}
 		}
 

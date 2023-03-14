@@ -2,9 +2,22 @@ Middle Earth Mod created by Varaya and Khan for Diablo 1.07, now ported to Devil
 
 For changes to monsters and items, see [DView output](https://github.com/DakkJaniels/DevilutionX-MiddleEarthMod/blob/04dc51cb55980eab730a9d3e2de12a762afa6b7f/DataMiddleEarth.txt). 
 
-Based on data files I had for the Mod, and a copy of the modified binary I compared to Diablo 1.07, I think I've determined most, if not all of the changes that V&K implemented in Diablo. To play the mod, compile the source as described in the readme, then copy the folders in the `ME Mod assets.zip` file to wherever the diablo.ini file is located - %appdata%\Diablo\MiddleEarth for Windows Systems). In addition, you have to copy your `DIABDAT.MPQ` file to the location of the executable or have your Diablo CD in your disc drive.
+Based on data files I had for the Mod, and a copy of the modified binary I compared to Diablo 1.07, I think I've determined most, if not all of the changes that V&K implemented in Diablo. 
 
-NOTE: MOD IS **NOT** DESIGNED FOR HELLFIRE AND IS FOR MULTIPLAYER ONLY (use loopback if you are playing on your own). While I'm sure this could be fixed to make single player work, all the tables were copied over just like they were written originally (for the most part), so if that overwrote unique monsters and/or items, they will not work correctly in single-player.
+# Mod Install Instructions
+
+To play the mod:
+1. Compile the source as described in the readme OR use the latest [Release](https://github.com/DakkJaniels/DevilutionX-MiddleEarthMod/releases/latest) if one is available for your system: 
+![image](https://user-images.githubusercontent.com/6080734/222812752-1985f095-80f9-4f59-abfc-818b92d41947.png)
+
+2. If you have the GoG.com release installed on your machine, you should be all set, otherwise copy your `DIABDAT.MPQ` file to the location of the executable or wherever you are supposed to put it based on [Installation Instructions](https://github.com/DakkJaniels/DevilutionX-MiddleEarthMod/blob/master/docs/installing.md). 
+
+
+
+
+NOTE: MOD IS **NOT** DESIGNED FOR HELLFIRE AND IS FOR MULTIPLAYER ONLY (you can use loopback if you are playing on your own, but ZeroTier and TCP also work). While I'm sure this could be fixed to make single player work, all the tables were copied over just like they were written originally (for the most part), so if that overwrote unique monsters and/or items, they will not work correctly in single-player.
+
+What follows is the DevilutionX readme from when I cloned it (around version 1.4.0 of DevilutionX)
 
 <p align="center">
 <img width="554" src="https://user-images.githubusercontent.com/204594/113575181-c946a400-961d-11eb-8347-a8829fa3830c.png">

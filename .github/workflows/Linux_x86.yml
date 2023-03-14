@@ -4,12 +4,20 @@ on:
   push:
     branches:
       - master
+    paths-ignore:
+      - '*.md'
   pull_request:
     types: [ opened, synchronize ]
+    paths-ignore:
+      - '*.md'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -46,12 +54,12 @@ jobs:
       if: ${{ !env.ACT }}
       uses: actions/upload-artifact@v2
       with:
-        name: devilutionx_linux_x86.tar.xz
-        path: devilutionx.tar.xz
+        name: middleearthmod_linux_x86.tar.xz
+        path: middleearthmod.tar.xz
 
     - name: Upload-AppImage
       if: ${{ !env.ACT }}
       uses: actions/upload-artifact@v2
       with:
-        name: devilutionx_linux_x86.appimage
-        path: devilutionx.appimage
+        name: middleearthmod_linux_x86.appimage
+        path: middleearthmod.appimage

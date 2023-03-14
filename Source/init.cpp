@@ -154,7 +154,7 @@ void LoadCoreArchives()
 
 #if !defined(__ANDROID__) && !defined(__APPLE__)
 	// Load devilutionx.mpq first to get the font file for error messages
-	devilutionx_mpq = LoadMPQ(paths, "devilutionx.mpq");
+	devilutionx_mpq = LoadMPQ(paths, "devilutionx-me.mpq");
 #endif
 	font_mpq = LoadMPQ(paths, "fonts.mpq"); // Extra fonts
 }

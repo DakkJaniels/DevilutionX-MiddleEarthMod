@@ -872,10 +872,6 @@ bool PlrHitMonst(int pnum, int m, bool adjacentDamage = false)
 			return false;
 	}
 
-	if (HasAnyOf(player._pIFlags, ItemSpecialEffect::FireDamage) && HasAnyOf(player._pIFlags, ItemSpecialEffect::LightningDamage)) {
-		int midam = player._pIFMinDam + GenerateRnd(player._pIFMaxDam - player._pIFMinDam);
-		AddMissile(player.position.tile, player.position.temp, player._pdir, MIS_SPECARROW, TARGET_MONSTERS, pnum, midam, 0);
-	}
 	if (HasAnyOf(player._pIFlags, ItemSpecialEffect::NoHealOnMonsters))
 		monster._mFlags |= MFLAG_NOHEAL;
 	int mind = player._pIMinDam;
@@ -997,9 +993,6 @@ bool PlrHitMonst(int pnum, int m, bool adjacentDamage = false)
 			player._pHPBase = player._pMaxHPBase;
 		}
 		drawhpflag = true;
-	}
-	if (HasAnyOf(player._pIFlags, ItemSpecialEffect::NoHealOnPlayer)) { // Why is there a different ItemSpecialEffect here? (see missile.cpp) is this a BUG?
-		monster._mFlags |= MFLAG_NOHEAL;
 	}
 #ifdef _DEBUG
 	if (DebugGodMode) {
@@ -1144,12 +1137,11 @@ bool DoAttack(int pnum)
 			}
 		}
 
-		if (!HasAllOf(player._pIFlags, ItemSpecialEffect::FireDamage | ItemSpecialEffect::LightningDamage)) {
-			if (HasAnyOf(player._pIFlags, ItemSpecialEffect::FireDamage)) {
-				AddMissile(position, { 1, 0 }, Direction::South, MIS_WEAPEXP, TARGET_MONSTERS, pnum, 0, 0);
-			} else if (HasAnyOf(player._pIFlags, ItemSpecialEffect::LightningDamage)) {
-				AddMissile(position, { 2, 0 }, Direction::South, MIS_WEAPEXP, TARGET_MONSTERS, pnum, 0, 0);
-			}
+		if (HasAnyOf(player._pIFlags, ItemSpecialEffect::FireDamage)) {
+			AddMissile(position, { 1, 0 }, Direction::South, MIS_WEAPEXP, TARGET_MONSTERS, pnum, 0, 0);
+		}
+		if (HasAnyOf(player._pIFlags, ItemSpecialEffect::LightningDamage)) {
+			AddMissile(position, { 2, 0 }, Direction::South, MIS_WEAPEXP, TARGET_MONSTERS, pnum, 0, 0);
 		}
 
 		if (dMonster[dx][dy] != 0) {
@@ -1258,10 +1250,6 @@ bool DoRangeAttack(int pnum)
 		}
 		if (HasAnyOf(player._pIFlags, ItemSpecialEffect::LightningArrows)) {
 			mistype = MIS_LARROW;
-		}
-		if (HasAllOf(player._pIFlags, ItemSpecialEffect::FireArrows | ItemSpecialEffect::LightningArrows)) {
-			dmg = player._pIFMinDam + GenerateRnd(player._pIFMaxDam - player._pIFMinDam);
-			mistype = MIS_SPECARROW;
 		}
 
 		AddMissile(
@@ -2623,8 +2611,8 @@ void CreatePlayer(int playerId, HeroClass c)
 		player._pAblSpells = GetSpellBitmask(SPL_IDENTIFY);
 		player._pRSpell = SPL_IDENTIFY;
 	} else if (c == HeroClass::Barbarian) {
-		player._pAblSpells = GetSpellBitmask(SPL_BLODBOIL);
-		player._pRSpell = SPL_BLODBOIL;
+		player._pAblSpells = GetSpellBitmask(SPL_THUNDER);
+		player._pRSpell = SPL_THUNDER;
 	}
 
 	if (c == HeroClass::Sorcerer) {
@@ -2770,14 +2758,14 @@ void AddPlrExperience(int pnum, int lvl, int exp)
 	// Adjust xp based on difference in level between player and monster
 	uint32_t clampedExp = std::max(static_cast<int>(exp * (1 + (lvl - player._pLevel) / 10.0)), 0);
 
-	// Prevent power leveling
-	// if (gbIsMultiplayer) {
-	//	const uint32_t clampedPlayerLevel = clamp(static_cast<int>(player._pLevel), 1, MAXCHARLEVEL);
+	// Prevent power leveling for low level characters
+	if (gbIsMultiplayer) {
+		const uint32_t clampedPlayerLevel = clamp(static_cast<int>(player._pLevel), 1, MAXCHARLEVEL);
 
-	//	// for low level characters experience gain is capped to 1/20 of current levels xp
-	//	// for high level characters experience gain is capped to 200 * current level - this is a smaller value than 1/20 of the exp needed for the next level after level 5.
-	//	clampedExp = std::min({ clampedExp, /* level 0-5: */ ExpLvlsTbl[clampedPlayerLevel] / 20U, /* level 6-50: */ 200U * clampedPlayerLevel });
-	//}
+		// for low level characters experience gain is capped to 1/20 of current levels xp
+		// REMOVED - for high level characters experience gain is capped to 200 * current level - this is a smaller value than 1/20 of the exp needed for the next level after level 5.
+		clampedExp = std::min({ clampedExp, /* level 0-5: */ ExpLvlsTbl[clampedPlayerLevel] / 20U });
+	}
 
 	constexpr uint32_t MaxExperience = 2000000000U;
 
@@ -2807,19 +2795,29 @@ void AddPlrExperience(int pnum, int lvl, int exp)
 	NetSendCmdParam1(false, CMD_PLRLEVEL, player._pLevel);
 }
 
+int GetActivePlrsOnLevel()
+{
+	int activePlrs = 0;
+	for (int i = 0; i < MAX_PLRS; i++) {
+		auto &player = Players[i];
+		if (player.plractive && player.plrlevel == currlevel)
+			activePlrs++;
+	}
+	return activePlrs;
+}
+
 void AddPlrMonstExper(int lvl, int exp, char pmask)
 {
-	int totplrs = 0;
-	for (int i = 0; i < MAX_PLRS; i++) {
-		if (((1 << i) & pmask) != 0) {
-			totplrs++;
-		}
-	}
+	int totplrs = GetActivePlrsOnLevel();
+	// for (int i = 0; i < MAX_PLRS; i++) {
+	//	if (((1 << i) & pmask) != 0) {
+	//		totplrs++;
+	//	}
+	// }
 
 	if (totplrs != 0) {
 		int e = exp / totplrs;
-		if ((pmask & (1 << MyPlayerId)) != 0)
-			AddPlrExperience(MyPlayerId, lvl, e);
+		AddPlrExperience(MyPlayerId, lvl, e);
 	}
 }
 
@@ -2898,7 +2896,7 @@ void InitPlayer(Player &player, bool firstTime)
 	} else if (player._pClass == HeroClass::Bard) {
 		player._pAblSpells = GetSpellBitmask(SPL_IDENTIFY);
 	} else if (player._pClass == HeroClass::Barbarian) {
-		player._pAblSpells = GetSpellBitmask(SPL_BLODBOIL);
+		player._pAblSpells = GetSpellBitmask(SPL_THUNDER);
 	}
 
 	player._pNextExper = ExpLvlsTbl[player._pLevel];
