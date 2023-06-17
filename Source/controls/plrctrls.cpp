@@ -7,7 +7,7 @@
 #ifdef USE_SDL1
 #include "utils/sdl2_to_1_2_backports.h"
 #endif
-
+// test
 #include "automap.h"
 #include "control.h"
 #include "controls/controller_motion.h"
@@ -1624,7 +1624,7 @@ void plrctrls_after_check_curs_move()
 		if (pcursmonst == -1 && pcursobj == -1 && pcursitem == -1 && pcursinvitem == -1 && pcursstashitem == uint16_t(-1) && pcursplr == -1) {
 			FindTrigger();
 		}
-		return;
+		// return;
 	}
 
 	// Clear focuse set by cursor
