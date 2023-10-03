@@ -569,13 +569,11 @@ StartUpOptions::StartUpOptions()
           })
 {
 	gameMode.SetValueChangedCallback(OptionGameModeChanged);
-	shareware.SetValueChangedCallback(OptionSharewareChanged);
 }
 std::vector<OptionEntryBase *> StartUpOptions::GetEntries()
 {
 	return {
 		&gameMode,
-		&shareware,
 		&diabloIntro,
 		&hellfireIntro,
 		&splash,
