@@ -286,11 +286,6 @@ void OptionGameModeChanged()
 	discord_manager::UpdateMenu(true);
 }
 
-void OptionSharewareChanged()
-{
-	gbIsSpawn = *sgOptions.StartUp.shareware;
-}
-
 void OptionAudioChanged()
 {
 	effects_cleanup_sfx();
